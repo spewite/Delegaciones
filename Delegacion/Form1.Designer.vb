@@ -35,6 +35,7 @@ Partial Class Form1
         Me.NuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImprimirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -44,7 +45,7 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestionToolStripMenuItem, Me.PedidosToolStripMenuItem, Me.FacturasToolStripMenuItem, Me.SalirToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 30)
+        Me.MenuStrip1.Size = New System.Drawing.Size(800, 28)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -52,7 +53,7 @@ Partial Class Form1
         '
         Me.GestionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AltasToolStripMenuItem, Me.BajasToolStripMenuItem, Me.ModificacionesToolStripMenuItem, Me.ConsultasToolStripMenuItem})
         Me.GestionToolStripMenuItem.Name = "GestionToolStripMenuItem"
-        Me.GestionToolStripMenuItem.Size = New System.Drawing.Size(73, 26)
+        Me.GestionToolStripMenuItem.Size = New System.Drawing.Size(73, 24)
         Me.GestionToolStripMenuItem.Text = "Gestion"
         '
         'AltasToolStripMenuItem
@@ -83,7 +84,7 @@ Partial Class Form1
         '
         Me.PedidosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportarToolStripMenuItem, Me.ModificarToolStripMenuItem})
         Me.PedidosToolStripMenuItem.Name = "PedidosToolStripMenuItem"
-        Me.PedidosToolStripMenuItem.Size = New System.Drawing.Size(75, 26)
+        Me.PedidosToolStripMenuItem.Size = New System.Drawing.Size(75, 24)
         Me.PedidosToolStripMenuItem.Text = "Pedidos"
         '
         'ImportarToolStripMenuItem
@@ -102,7 +103,7 @@ Partial Class Form1
         '
         Me.FacturasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevoToolStripMenuItem, Me.ImprimirToolStripMenuItem})
         Me.FacturasToolStripMenuItem.Name = "FacturasToolStripMenuItem"
-        Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(76, 26)
+        Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(76, 24)
         Me.FacturasToolStripMenuItem.Text = "Facturas"
         '
         'NuevoToolStripMenuItem
@@ -120,14 +121,24 @@ Partial Class Form1
         'SalirToolStripMenuItem
         '
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(52, 26)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(52, 24)
         Me.SalirToolStripMenuItem.Text = "Salir"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(34, 169)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(296, 23)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "iñigo furro gai"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
@@ -153,4 +164,5 @@ Partial Class Form1
     Friend WithEvents ModificarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NuevoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImprimirToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button1 As Button
 End Class

@@ -11,3 +11,4 @@ C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegac
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.exe
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.xml
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.pdb
+C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.Form3.resources

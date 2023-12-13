@@ -24,8 +24,11 @@ Partial Class Consultas
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.pedidosTab = New System.Windows.Forms.TabPage()
+<<<<<<< HEAD
         Me.Button1 = New System.Windows.Forms.Button()
         Me.comboIdPedido = New System.Windows.Forms.ComboBox()
+=======
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -49,6 +52,7 @@ Partial Class Consultas
         Me.transportistasTab = New System.Windows.Forms.TabPage()
         Me.zonasTab = New System.Windows.Forms.TabPage()
         Me.categoriasSubcategoriasTab = New System.Windows.Forms.TabPage()
+<<<<<<< HEAD
         Me.Button2 = New System.Windows.Forms.Button()
         Me.comboIdArticulo = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -65,6 +69,9 @@ Partial Class Consultas
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.ComboBox7 = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
+=======
+        Me.Button1 = New System.Windows.Forms.Button()
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.TabControl1.SuspendLayout()
         Me.pedidosTab.SuspendLayout()
         CType(Me.dataGridPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,6 +81,9 @@ Partial Class Consultas
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.pedidosTab)
         Me.TabControl1.Controls.Add(Me.articulosTab)
         Me.TabControl1.Controls.Add(Me.partnersTab)
@@ -93,7 +103,10 @@ Partial Class Consultas
         'pedidosTab
         '
         Me.pedidosTab.Controls.Add(Me.Button1)
+<<<<<<< HEAD
         Me.pedidosTab.Controls.Add(Me.comboIdPedido)
+=======
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.pedidosTab.Controls.Add(Me.Label8)
         Me.pedidosTab.Controls.Add(Me.Label7)
         Me.pedidosTab.Controls.Add(Me.Label6)
@@ -118,6 +131,7 @@ Partial Class Consultas
         Me.pedidosTab.Text = "Pedidos"
         Me.pedidosTab.UseVisualStyleBackColor = True
         '
+<<<<<<< HEAD
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(778, 119)
@@ -139,6 +153,12 @@ Partial Class Consultas
         '
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(707, 74)
+=======
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(657, 110)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(55, 16)
         Me.Label8.TabIndex = 16
@@ -147,7 +167,11 @@ Partial Class Consultas
         'Label7
         '
         Me.Label7.AutoSize = True
+<<<<<<< HEAD
         Me.Label7.Location = New System.Drawing.Point(643, 33)
+=======
+        Me.Label7.Location = New System.Drawing.Point(592, 56)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(119, 16)
         Me.Label7.TabIndex = 15
@@ -297,7 +321,11 @@ Partial Class Consultas
         Me.articulosTab.Controls.Add(Me.Label16)
         Me.articulosTab.Location = New System.Drawing.Point(4, 25)
         Me.articulosTab.Name = "articulosTab"
+<<<<<<< HEAD
         Me.articulosTab.Size = New System.Drawing.Size(1060, 593)
+=======
+        Me.articulosTab.Size = New System.Drawing.Size(991, 554)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
         Me.articulosTab.UseVisualStyleBackColor = True
@@ -307,7 +335,11 @@ Partial Class Consultas
         Me.partnersTab.Location = New System.Drawing.Point(4, 25)
         Me.partnersTab.Name = "partnersTab"
         Me.partnersTab.Padding = New System.Windows.Forms.Padding(3)
+<<<<<<< HEAD
         Me.partnersTab.Size = New System.Drawing.Size(1060, 593)
+=======
+        Me.partnersTab.Size = New System.Drawing.Size(991, 554)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.partnersTab.TabIndex = 1
         Me.partnersTab.Text = "Partners"
         Me.partnersTab.UseVisualStyleBackColor = True
@@ -317,7 +349,11 @@ Partial Class Consultas
         Me.comercialesTab.Location = New System.Drawing.Point(4, 25)
         Me.comercialesTab.Name = "comercialesTab"
         Me.comercialesTab.Padding = New System.Windows.Forms.Padding(3)
+<<<<<<< HEAD
         Me.comercialesTab.Size = New System.Drawing.Size(1060, 593)
+=======
+        Me.comercialesTab.Size = New System.Drawing.Size(991, 554)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
         Me.comercialesTab.UseVisualStyleBackColor = True
@@ -326,7 +362,11 @@ Partial Class Consultas
         '
         Me.facturasTab.Location = New System.Drawing.Point(4, 25)
         Me.facturasTab.Name = "facturasTab"
+<<<<<<< HEAD
         Me.facturasTab.Size = New System.Drawing.Size(1060, 593)
+=======
+        Me.facturasTab.Size = New System.Drawing.Size(991, 554)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.facturasTab.TabIndex = 4
         Me.facturasTab.Text = "Facturas"
         Me.facturasTab.UseVisualStyleBackColor = True
@@ -335,7 +375,11 @@ Partial Class Consultas
         '
         Me.transportistasTab.Location = New System.Drawing.Point(4, 25)
         Me.transportistasTab.Name = "transportistasTab"
+<<<<<<< HEAD
         Me.transportistasTab.Size = New System.Drawing.Size(1060, 593)
+=======
+        Me.transportistasTab.Size = New System.Drawing.Size(991, 554)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.transportistasTab.TabIndex = 6
         Me.transportistasTab.Text = "Transportistas"
         Me.transportistasTab.UseVisualStyleBackColor = True
@@ -344,7 +388,11 @@ Partial Class Consultas
         '
         Me.zonasTab.Location = New System.Drawing.Point(4, 25)
         Me.zonasTab.Name = "zonasTab"
+<<<<<<< HEAD
         Me.zonasTab.Size = New System.Drawing.Size(1060, 593)
+=======
+        Me.zonasTab.Size = New System.Drawing.Size(991, 554)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.zonasTab.TabIndex = 5
         Me.zonasTab.Text = "Zonas"
         Me.zonasTab.UseVisualStyleBackColor = True
@@ -353,11 +401,16 @@ Partial Class Consultas
         '
         Me.categoriasSubcategoriasTab.Location = New System.Drawing.Point(4, 25)
         Me.categoriasSubcategoriasTab.Name = "categoriasSubcategoriasTab"
+<<<<<<< HEAD
         Me.categoriasSubcategoriasTab.Size = New System.Drawing.Size(1060, 593)
+=======
+        Me.categoriasSubcategoriasTab.Size = New System.Drawing.Size(991, 554)
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         Me.categoriasSubcategoriasTab.TabIndex = 7
         Me.categoriasSubcategoriasTab.Text = "Categorias y subcategorias"
         Me.categoriasSubcategoriasTab.UseVisualStyleBackColor = True
         '
+<<<<<<< HEAD
         'Button2
         '
         Me.Button2.Location = New System.Drawing.Point(780, 115)
@@ -500,13 +553,23 @@ Partial Class Consultas
         Me.Label16.Size = New System.Drawing.Size(74, 16)
         Me.Label16.TabIndex = 19
         Me.Label16.Text = "Comercial: "
+=======
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(892, 94)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 17
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
         '
         'Consultas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.ClientSize = New System.Drawing.Size(1068, 622)
+        Me.ClientSize = New System.Drawing.Size(1347, 674)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Consultas"
         Me.Text = "Consultas"
@@ -547,6 +610,7 @@ Partial Class Consultas
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Button1 As Button
+<<<<<<< HEAD
     Friend WithEvents comboIdPedido As ComboBox
     Friend WithEvents Button2 As Button
     Friend WithEvents comboIdArticulo As ComboBox
@@ -564,4 +628,6 @@ Partial Class Consultas
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents ComboBox7 As ComboBox
     Friend WithEvents Label16 As Label
+=======
+>>>>>>> d1c5344 (Primera implementacion de la dll y consultar datagrid)
 End Class

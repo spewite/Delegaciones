@@ -24,6 +24,7 @@ Partial Class Consultas
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.pedidosTab = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -48,7 +49,6 @@ Partial Class Consultas
         Me.transportistasTab = New System.Windows.Forms.TabPage()
         Me.zonasTab = New System.Windows.Forms.TabPage()
         Me.categoriasSubcategoriasTab = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.pedidosTab.SuspendLayout()
         CType(Me.dataGridPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,6 +97,15 @@ Partial Class Consultas
         Me.pedidosTab.TabIndex = 2
         Me.pedidosTab.Text = "Pedidos"
         Me.pedidosTab.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(887, 76)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 17
+        Me.Button1.Text = "benito"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -308,15 +317,6 @@ Partial Class Consultas
         Me.categoriasSubcategoriasTab.TabIndex = 7
         Me.categoriasSubcategoriasTab.Text = "Categorias y subcategorias"
         Me.categoriasSubcategoriasTab.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(887, 76)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 17
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'Consultas
         '

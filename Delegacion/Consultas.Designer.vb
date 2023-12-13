@@ -24,6 +24,11 @@ Partial Class Consultas
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.pedidosTab = New System.Windows.Forms.TabPage()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.fechaPedidoHasta = New System.Windows.Forms.DateTimePicker()
+        Me.fechaPedidoDesde = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -43,11 +48,7 @@ Partial Class Consultas
         Me.transportistasTab = New System.Windows.Forms.TabPage()
         Me.zonasTab = New System.Windows.Forms.TabPage()
         Me.categoriasSubcategoriasTab = New System.Windows.Forms.TabPage()
-        Me.fechaPedidoDesde = New System.Windows.Forms.DateTimePicker()
-        Me.fechaPedidoHasta = New System.Windows.Forms.DateTimePicker()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.pedidosTab.SuspendLayout()
         CType(Me.dataGridPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,6 +72,7 @@ Partial Class Consultas
         '
         'pedidosTab
         '
+        Me.pedidosTab.Controls.Add(Me.Button1)
         Me.pedidosTab.Controls.Add(Me.Label8)
         Me.pedidosTab.Controls.Add(Me.Label7)
         Me.pedidosTab.Controls.Add(Me.Label6)
@@ -95,6 +97,49 @@ Partial Class Consultas
         Me.pedidosTab.TabIndex = 2
         Me.pedidosTab.Text = "Pedidos"
         Me.pedidosTab.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(657, 110)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(55, 16)
+        Me.Label8.TabIndex = 16
+        Me.Label8.Text = "Factura:"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(592, 56)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(119, 16)
+        Me.Label7.TabIndex = 15
+        Me.Label7.Text = "Estado de Pedido:"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(389, 123)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(53, 16)
+        Me.Label6.TabIndex = 14
+        Me.Label6.Text = "Partner:"
+        '
+        'fechaPedidoHasta
+        '
+        Me.fechaPedidoHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.fechaPedidoHasta.Location = New System.Drawing.Point(198, 119)
+        Me.fechaPedidoHasta.Name = "fechaPedidoHasta"
+        Me.fechaPedidoHasta.Size = New System.Drawing.Size(117, 22)
+        Me.fechaPedidoHasta.TabIndex = 13
+        '
+        'fechaPedidoDesde
+        '
+        Me.fechaPedidoDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.fechaPedidoDesde.Location = New System.Drawing.Point(198, 76)
+        Me.fechaPedidoDesde.Name = "fechaPedidoDesde"
+        Me.fechaPedidoDesde.Size = New System.Drawing.Size(117, 22)
+        Me.fechaPedidoDesde.TabIndex = 12
         '
         'Label5
         '
@@ -203,7 +248,7 @@ Partial Class Consultas
         '
         Me.articulosTab.Location = New System.Drawing.Point(4, 25)
         Me.articulosTab.Name = "articulosTab"
-        Me.articulosTab.Size = New System.Drawing.Size(991, 531)
+        Me.articulosTab.Size = New System.Drawing.Size(991, 554)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
         Me.articulosTab.UseVisualStyleBackColor = True
@@ -213,7 +258,7 @@ Partial Class Consultas
         Me.partnersTab.Location = New System.Drawing.Point(4, 25)
         Me.partnersTab.Name = "partnersTab"
         Me.partnersTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.partnersTab.Size = New System.Drawing.Size(991, 531)
+        Me.partnersTab.Size = New System.Drawing.Size(991, 554)
         Me.partnersTab.TabIndex = 1
         Me.partnersTab.Text = "Partners"
         Me.partnersTab.UseVisualStyleBackColor = True
@@ -223,7 +268,7 @@ Partial Class Consultas
         Me.comercialesTab.Location = New System.Drawing.Point(4, 25)
         Me.comercialesTab.Name = "comercialesTab"
         Me.comercialesTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.comercialesTab.Size = New System.Drawing.Size(991, 531)
+        Me.comercialesTab.Size = New System.Drawing.Size(991, 554)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
         Me.comercialesTab.UseVisualStyleBackColor = True
@@ -232,7 +277,7 @@ Partial Class Consultas
         '
         Me.facturasTab.Location = New System.Drawing.Point(4, 25)
         Me.facturasTab.Name = "facturasTab"
-        Me.facturasTab.Size = New System.Drawing.Size(991, 531)
+        Me.facturasTab.Size = New System.Drawing.Size(991, 554)
         Me.facturasTab.TabIndex = 4
         Me.facturasTab.Text = "Facturas"
         Me.facturasTab.UseVisualStyleBackColor = True
@@ -241,7 +286,7 @@ Partial Class Consultas
         '
         Me.transportistasTab.Location = New System.Drawing.Point(4, 25)
         Me.transportistasTab.Name = "transportistasTab"
-        Me.transportistasTab.Size = New System.Drawing.Size(991, 531)
+        Me.transportistasTab.Size = New System.Drawing.Size(991, 554)
         Me.transportistasTab.TabIndex = 6
         Me.transportistasTab.Text = "Transportistas"
         Me.transportistasTab.UseVisualStyleBackColor = True
@@ -250,7 +295,7 @@ Partial Class Consultas
         '
         Me.zonasTab.Location = New System.Drawing.Point(4, 25)
         Me.zonasTab.Name = "zonasTab"
-        Me.zonasTab.Size = New System.Drawing.Size(991, 531)
+        Me.zonasTab.Size = New System.Drawing.Size(991, 554)
         Me.zonasTab.TabIndex = 5
         Me.zonasTab.Text = "Zonas"
         Me.zonasTab.UseVisualStyleBackColor = True
@@ -259,53 +304,19 @@ Partial Class Consultas
         '
         Me.categoriasSubcategoriasTab.Location = New System.Drawing.Point(4, 25)
         Me.categoriasSubcategoriasTab.Name = "categoriasSubcategoriasTab"
-        Me.categoriasSubcategoriasTab.Size = New System.Drawing.Size(991, 531)
+        Me.categoriasSubcategoriasTab.Size = New System.Drawing.Size(991, 554)
         Me.categoriasSubcategoriasTab.TabIndex = 7
         Me.categoriasSubcategoriasTab.Text = "Categorias y subcategorias"
         Me.categoriasSubcategoriasTab.UseVisualStyleBackColor = True
         '
-        'fechaPedidoDesde
+        'Button1
         '
-        Me.fechaPedidoDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.fechaPedidoDesde.Location = New System.Drawing.Point(198, 76)
-        Me.fechaPedidoDesde.Name = "fechaPedidoDesde"
-        Me.fechaPedidoDesde.Size = New System.Drawing.Size(117, 22)
-        Me.fechaPedidoDesde.TabIndex = 12
-        '
-        'fechaPedidoHasta
-        '
-        Me.fechaPedidoHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.fechaPedidoHasta.Location = New System.Drawing.Point(198, 119)
-        Me.fechaPedidoHasta.Name = "fechaPedidoHasta"
-        Me.fechaPedidoHasta.Size = New System.Drawing.Size(117, 22)
-        Me.fechaPedidoHasta.TabIndex = 13
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(389, 123)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(53, 16)
-        Me.Label6.TabIndex = 14
-        Me.Label6.Text = "Partner:"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(592, 56)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(119, 16)
-        Me.Label7.TabIndex = 15
-        Me.Label7.Text = "Estado de Pedido:"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(657, 110)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(55, 16)
-        Me.Label8.TabIndex = 16
-        Me.Label8.Text = "Factura:"
+        Me.Button1.Location = New System.Drawing.Point(887, 76)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 17
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Consultas
         '
@@ -350,4 +361,5 @@ Partial Class Consultas
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents Button1 As Button
 End Class

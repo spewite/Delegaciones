@@ -4,7 +4,7 @@ Public Class Consultas
 
     Dim conexion As String = "Data Source=192.168.0.241; Initial Catalog=DELEGACION; User ID=sa; Password=Negrocabron8@"
 
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label.Click
 
     End Sub
 

@@ -193,6 +193,7 @@ Partial Class Facturas
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1467, 807)
+        Me.ControlBox = False
         Me.Controls.Add(Me.DateFechaPagoHastaFactura)
         Me.Controls.Add(Me.DateFechaPagoDesdeFactura)
         Me.Controls.Add(Me.Label53)

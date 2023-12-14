@@ -24,7 +24,6 @@ C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.vbproj.AssemblyRefe
 C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.vbproj.SuggestedBindingRedirects.cache
 C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.Consultas.resources
 C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.Form1.resources
-C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.Form3.resources
 C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.Resources.resources
 C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.vbproj.GenerateResource.cache
 C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.vbproj.CoreCompileInputs.cache
@@ -49,3 +48,7 @@ C:\Users\USER\Documents\Delegaciones\Delegacion\obj\Debug\Delegacion.vbproj.Copy
 C:\Users\USER\Documents\Delegaciones\Delegacion\obj\Debug\Delegacion.exe
 C:\Users\USER\Documents\Delegaciones\Delegacion\obj\Debug\Delegacion.xml
 C:\Users\USER\Documents\Delegaciones\Delegacion\obj\Debug\Delegacion.pdb
+C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.Facturas.resources
+C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.Gestion.resources
+C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.Inicio.resources
+C:\Clase\Visual\Delegaciones\Delegacion\obj\Debug\Delegacion.Pedidos.resources

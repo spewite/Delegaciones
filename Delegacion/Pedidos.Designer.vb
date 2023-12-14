@@ -47,6 +47,7 @@ Partial Class Pedidos
         Me.DataGridView5 = New System.Windows.Forms.DataGridView()
         Me.comboComercialPedido = New System.Windows.Forms.ComboBox()
         Me.Label48 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -264,11 +265,22 @@ Partial Class Pedidos
         Me.Label48.TabIndex = 42
         Me.Label48.Text = "Comercial: "
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(1248, 66)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 67
+        Me.Button1.Text = "+"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Pedidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1467, 752)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DateFechaPagoHastaPedido)
         Me.Controls.Add(Me.DateFechaPagoDesdePedido)
         Me.Controls.Add(Me.Label51)
@@ -327,4 +339,5 @@ Partial Class Pedidos
     Friend WithEvents DataGridView5 As DataGridView
     Friend WithEvents comboComercialPedido As ComboBox
     Friend WithEvents Label48 As Label
+    Friend WithEvents Button1 As Button
 End Class

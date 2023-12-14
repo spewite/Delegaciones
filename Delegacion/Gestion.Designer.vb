@@ -23,24 +23,6 @@ Partial Class Gestion
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.pedidosTab = New System.Windows.Forms.TabPage()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.fechaPedidoHasta = New System.Windows.Forms.DateTimePicker()
-        Me.fechaPedidoDesde = New System.Windows.Forms.DateTimePicker()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label = New System.Windows.Forms.Label()
-        Me.inputIdPedidos = New System.Windows.Forms.TextBox()
-        Me.comboPartnerPedidos = New System.Windows.Forms.ComboBox()
-        Me.comboFacturaPedidos = New System.Windows.Forms.ComboBox()
-        Me.comboEstadoPedidos = New System.Windows.Forms.ComboBox()
-        Me.comboTransportistaPedidos = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.dataGridPedidos = New System.Windows.Forms.DataGridView()
-        Me.comboComercialPedidos = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.articulosTab = New System.Windows.Forms.TabPage()
         Me.inputBajoMinimoArticulos = New System.Windows.Forms.TextBox()
         Me.inputSobreMaximoArticulos = New System.Windows.Forms.TextBox()
@@ -115,9 +97,10 @@ Partial Class Gestion
         Me.inputIdTransportista = New System.Windows.Forms.TextBox()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
-        Me.pedidosTab.SuspendLayout()
-        CType(Me.dataGridPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.articulosTab.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.partnersTab.SuspendLayout()
@@ -130,7 +113,6 @@ Partial Class Gestion
         '
         'TabControl1
         '
-        Me.TabControl1.Controls.Add(Me.pedidosTab)
         Me.TabControl1.Controls.Add(Me.articulosTab)
         Me.TabControl1.Controls.Add(Me.partnersTab)
         Me.TabControl1.Controls.Add(Me.comercialesTab)
@@ -141,181 +123,9 @@ Partial Class Gestion
         Me.TabControl1.Size = New System.Drawing.Size(1382, 817)
         Me.TabControl1.TabIndex = 2
         '
-        'pedidosTab
-        '
-        Me.pedidosTab.Controls.Add(Me.Label8)
-        Me.pedidosTab.Controls.Add(Me.Label7)
-        Me.pedidosTab.Controls.Add(Me.Label6)
-        Me.pedidosTab.Controls.Add(Me.fechaPedidoHasta)
-        Me.pedidosTab.Controls.Add(Me.fechaPedidoDesde)
-        Me.pedidosTab.Controls.Add(Me.Label5)
-        Me.pedidosTab.Controls.Add(Me.Label4)
-        Me.pedidosTab.Controls.Add(Me.Label)
-        Me.pedidosTab.Controls.Add(Me.inputIdPedidos)
-        Me.pedidosTab.Controls.Add(Me.comboPartnerPedidos)
-        Me.pedidosTab.Controls.Add(Me.comboFacturaPedidos)
-        Me.pedidosTab.Controls.Add(Me.comboEstadoPedidos)
-        Me.pedidosTab.Controls.Add(Me.comboTransportistaPedidos)
-        Me.pedidosTab.Controls.Add(Me.Label2)
-        Me.pedidosTab.Controls.Add(Me.dataGridPedidos)
-        Me.pedidosTab.Controls.Add(Me.comboComercialPedidos)
-        Me.pedidosTab.Controls.Add(Me.Label1)
-        Me.pedidosTab.Location = New System.Drawing.Point(4, 25)
-        Me.pedidosTab.Name = "pedidosTab"
-        Me.pedidosTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.pedidosTab.Size = New System.Drawing.Size(1374, 788)
-        Me.pedidosTab.TabIndex = 2
-        Me.pedidosTab.Text = "Pedidos"
-        Me.pedidosTab.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(591, 120)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(55, 16)
-        Me.Label8.TabIndex = 16
-        Me.Label8.Text = "Factura:"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(592, 77)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(119, 16)
-        Me.Label7.TabIndex = 15
-        Me.Label7.Text = "Estado de Pedido:"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(393, 120)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(53, 16)
-        Me.Label6.TabIndex = 14
-        Me.Label6.Text = "Partner:"
-        '
-        'fechaPedidoHasta
-        '
-        Me.fechaPedidoHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.fechaPedidoHasta.Location = New System.Drawing.Point(202, 116)
-        Me.fechaPedidoHasta.Name = "fechaPedidoHasta"
-        Me.fechaPedidoHasta.Size = New System.Drawing.Size(117, 22)
-        Me.fechaPedidoHasta.TabIndex = 13
-        '
-        'fechaPedidoDesde
-        '
-        Me.fechaPedidoDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.fechaPedidoDesde.Location = New System.Drawing.Point(202, 73)
-        Me.fechaPedidoDesde.Name = "fechaPedidoDesde"
-        Me.fechaPedidoDesde.Size = New System.Drawing.Size(117, 22)
-        Me.fechaPedidoDesde.TabIndex = 12
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(59, 121)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(137, 16)
-        Me.Label5.TabIndex = 11
-        Me.Label5.Text = "Fecha Pedido Hasta: "
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(57, 74)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(139, 16)
-        Me.Label4.TabIndex = 10
-        Me.Label4.Text = "Fecha Pedido Desde:"
-        '
-        'Label
-        '
-        Me.Label.AutoSize = True
-        Me.Label.Location = New System.Drawing.Point(55, 29)
-        Me.Label.Name = "Label"
-        Me.Label.Size = New System.Drawing.Size(70, 16)
-        Me.Label.TabIndex = 9
-        Me.Label.Text = "ID Pedido:"
-        '
-        'inputIdPedidos
-        '
-        Me.inputIdPedidos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdPedidos.Location = New System.Drawing.Point(143, 29)
-        Me.inputIdPedidos.Name = "inputIdPedidos"
-        Me.inputIdPedidos.Size = New System.Drawing.Size(172, 22)
-        Me.inputIdPedidos.TabIndex = 8
-        '
-        'comboPartnerPedidos
-        '
-        Me.comboPartnerPedidos.FormattingEnabled = True
-        Me.comboPartnerPedidos.Location = New System.Drawing.Point(452, 116)
-        Me.comboPartnerPedidos.Name = "comboPartnerPedidos"
-        Me.comboPartnerPedidos.Size = New System.Drawing.Size(116, 24)
-        Me.comboPartnerPedidos.TabIndex = 7
-        '
-        'comboFacturaPedidos
-        '
-        Me.comboFacturaPedidos.FormattingEnabled = True
-        Me.comboFacturaPedidos.Location = New System.Drawing.Point(721, 117)
-        Me.comboFacturaPedidos.Name = "comboFacturaPedidos"
-        Me.comboFacturaPedidos.Size = New System.Drawing.Size(121, 24)
-        Me.comboFacturaPedidos.TabIndex = 6
-        '
-        'comboEstadoPedidos
-        '
-        Me.comboEstadoPedidos.FormattingEnabled = True
-        Me.comboEstadoPedidos.Location = New System.Drawing.Point(721, 73)
-        Me.comboEstadoPedidos.Name = "comboEstadoPedidos"
-        Me.comboEstadoPedidos.Size = New System.Drawing.Size(121, 24)
-        Me.comboEstadoPedidos.TabIndex = 5
-        '
-        'comboTransportistaPedidos
-        '
-        Me.comboTransportistaPedidos.FormattingEnabled = True
-        Me.comboTransportistaPedidos.Location = New System.Drawing.Point(452, 71)
-        Me.comboTransportistaPedidos.Name = "comboTransportistaPedidos"
-        Me.comboTransportistaPedidos.Size = New System.Drawing.Size(116, 24)
-        Me.comboTransportistaPedidos.TabIndex = 4
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(354, 76)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 16)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Transportista: "
-        '
-        'dataGridPedidos
-        '
-        Me.dataGridPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataGridPedidos.Location = New System.Drawing.Point(56, 176)
-        Me.dataGridPedidos.Name = "dataGridPedidos"
-        Me.dataGridPedidos.RowHeadersWidth = 51
-        Me.dataGridPedidos.RowTemplate.Height = 24
-        Me.dataGridPedidos.Size = New System.Drawing.Size(1288, 576)
-        Me.dataGridPedidos.TabIndex = 2
-        '
-        'comboComercialPedidos
-        '
-        Me.comboComercialPedidos.FormattingEnabled = True
-        Me.comboComercialPedidos.Location = New System.Drawing.Point(448, 29)
-        Me.comboComercialPedidos.Name = "comboComercialPedidos"
-        Me.comboComercialPedidos.Size = New System.Drawing.Size(116, 24)
-        Me.comboComercialPedidos.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(368, 32)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(74, 16)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Comercial: "
-        '
         'articulosTab
         '
+        Me.articulosTab.Controls.Add(Me.Button1)
         Me.articulosTab.Controls.Add(Me.inputBajoMinimoArticulos)
         Me.articulosTab.Controls.Add(Me.inputSobreMaximoArticulos)
         Me.articulosTab.Controls.Add(Me.inputExistenciasArticulos)
@@ -545,6 +355,7 @@ Partial Class Gestion
         '
         'partnersTab
         '
+        Me.partnersTab.Controls.Add(Me.Button2)
         Me.partnersTab.Controls.Add(Me.DataGridView2)
         Me.partnersTab.Controls.Add(Me.comboZonaPartners)
         Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartner)
@@ -718,6 +529,7 @@ Partial Class Gestion
         '
         'comercialesTab
         '
+        Me.comercialesTab.Controls.Add(Me.Button3)
         Me.comercialesTab.Controls.Add(Me.DataGridView3)
         Me.comercialesTab.Controls.Add(Me.inputBajoMinimoComercial)
         Me.comercialesTab.Controls.Add(Me.inputSobreMaximoComercial)
@@ -1023,18 +835,44 @@ Partial Class Gestion
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(1095, 52)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 48
+        Me.Button1.Text = "+"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(1125, 73)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 66
+        Me.Button2.Text = "+"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(1071, 65)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 72
+        Me.Button3.Text = "+"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'Gestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1555, 813)
+        Me.ControlBox = False
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Gestion"
+        Me.RightToLeftLayout = True
         Me.Text = "Gestion"
         Me.TabControl1.ResumeLayout(False)
-        Me.pedidosTab.ResumeLayout(False)
-        Me.pedidosTab.PerformLayout()
-        CType(Me.dataGridPedidos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.articulosTab.ResumeLayout(False)
         Me.articulosTab.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1052,24 +890,6 @@ Partial Class Gestion
     End Sub
 
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents pedidosTab As TabPage
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents fechaPedidoHasta As DateTimePicker
-    Friend WithEvents fechaPedidoDesde As DateTimePicker
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label As Label
-    Friend WithEvents inputIdPedidos As TextBox
-    Friend WithEvents comboPartnerPedidos As ComboBox
-    Friend WithEvents comboFacturaPedidos As ComboBox
-    Friend WithEvents comboEstadoPedidos As ComboBox
-    Friend WithEvents comboTransportistaPedidos As ComboBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents dataGridPedidos As DataGridView
-    Friend WithEvents comboComercialPedidos As ComboBox
-    Friend WithEvents Label1 As Label
     Friend WithEvents articulosTab As TabPage
     Friend WithEvents inputBajoMinimoArticulos As TextBox
     Friend WithEvents inputSobreMaximoArticulos As TextBox
@@ -1144,4 +964,7 @@ Partial Class Gestion
     Friend WithEvents inputIdTransportista As TextBox
     Friend WithEvents Label38 As Label
     Friend WithEvents Label46 As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

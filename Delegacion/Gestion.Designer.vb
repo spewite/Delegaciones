@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Gestion
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,10 +20,13 @@ Partial Class Gestion
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.articulosTab = New System.Windows.Forms.TabPage()
+        Me.btnBorrarArticulos = New System.Windows.Forms.Button()
+        Me.btnAltaArticulos = New System.Windows.Forms.Button()
+        Me.btnConsultarArticulos = New System.Windows.Forms.Button()
         Me.inputBajoMinimoArticulos = New System.Windows.Forms.TextBox()
         Me.inputSobreMaximoArticulos = New System.Windows.Forms.TextBox()
         Me.inputExistenciasArticulos = New System.Windows.Forms.TextBox()
@@ -42,30 +45,32 @@ Partial Class Gestion
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.comboSubCategoriaArticulos = New System.Windows.Forms.ComboBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.dataGridArticulos = New System.Windows.Forms.DataGridView()
         Me.comboCategoriaArticulos = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.partnersTab = New System.Windows.Forms.TabPage()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.comboZonaPartners = New System.Windows.Forms.ComboBox()
-        Me.inputFechaRegistroPartner = New System.Windows.Forms.TextBox()
-        Me.inputCorreoPartner = New System.Windows.Forms.TextBox()
-        Me.inputTelefonoPartner = New System.Windows.Forms.TextBox()
-        Me.inputDireccionPartner = New System.Windows.Forms.TextBox()
-        Me.inputCifPartner = New System.Windows.Forms.TextBox()
-        Me.inputNombrePartner = New System.Windows.Forms.TextBox()
+        Me.inputFechaRegistroPartners = New System.Windows.Forms.DateTimePicker()
+        Me.btnBorrarPartners = New System.Windows.Forms.Button()
+        Me.btnAltaPartners = New System.Windows.Forms.Button()
+        Me.btnConsultarPartners = New System.Windows.Forms.Button()
+        Me.inputCorreoPartners = New System.Windows.Forms.TextBox()
+        Me.inputNombrePartners = New System.Windows.Forms.TextBox()
         Me.inputIdPartner = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.dataGridPartners = New System.Windows.Forms.DataGridView()
+        Me.comboZonaPartners = New System.Windows.Forms.ComboBox()
+        Me.inputTelefonoPartners = New System.Windows.Forms.TextBox()
+        Me.inputDireccionPartners = New System.Windows.Forms.TextBox()
+        Me.inputCifPartners = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.Label28 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
         Me.comercialesTab = New System.Windows.Forms.TabPage()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.inputBajoMinimoComercial = New System.Windows.Forms.TextBox()
         Me.inputSobreMaximoComercial = New System.Windows.Forms.TextBox()
@@ -97,14 +102,11 @@ Partial Class Gestion
         Me.inputIdTransportista = New System.Windows.Forms.TextBox()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.partnersTab.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dataGridPartners, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.comercialesTab.SuspendLayout()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.transportistasTab.SuspendLayout()
@@ -117,15 +119,18 @@ Partial Class Gestion
         Me.TabControl1.Controls.Add(Me.partnersTab)
         Me.TabControl1.Controls.Add(Me.comercialesTab)
         Me.TabControl1.Controls.Add(Me.transportistasTab)
-        Me.TabControl1.Location = New System.Drawing.Point(2, 0)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1382, 817)
+        Me.TabControl1.Size = New System.Drawing.Size(1783, 1225)
         Me.TabControl1.TabIndex = 2
         '
         'articulosTab
         '
-        Me.articulosTab.Controls.Add(Me.Button1)
+        Me.articulosTab.Controls.Add(Me.btnBorrarArticulos)
+        Me.articulosTab.Controls.Add(Me.btnAltaArticulos)
+        Me.articulosTab.Controls.Add(Me.btnConsultarArticulos)
         Me.articulosTab.Controls.Add(Me.inputBajoMinimoArticulos)
         Me.articulosTab.Controls.Add(Me.inputSobreMaximoArticulos)
         Me.articulosTab.Controls.Add(Me.inputExistenciasArticulos)
@@ -144,94 +149,120 @@ Partial Class Gestion
         Me.articulosTab.Controls.Add(Me.Label11)
         Me.articulosTab.Controls.Add(Me.Label13)
         Me.articulosTab.Controls.Add(Me.Label14)
-        Me.articulosTab.Controls.Add(Me.comboSubCategoriaArticulos)
-        Me.articulosTab.Controls.Add(Me.Label15)
-        Me.articulosTab.Controls.Add(Me.DataGridView1)
+        Me.articulosTab.Controls.Add(Me.dataGridArticulos)
         Me.articulosTab.Controls.Add(Me.comboCategoriaArticulos)
         Me.articulosTab.Controls.Add(Me.Label16)
         Me.articulosTab.Location = New System.Drawing.Point(4, 25)
         Me.articulosTab.Name = "articulosTab"
-        Me.articulosTab.Size = New System.Drawing.Size(1374, 788)
+        Me.articulosTab.Size = New System.Drawing.Size(1775, 1196)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
         Me.articulosTab.UseVisualStyleBackColor = True
         '
+        'btnBorrarArticulos
+        '
+        Me.btnBorrarArticulos.Location = New System.Drawing.Point(1184, 66)
+        Me.btnBorrarArticulos.Name = "btnBorrarArticulos"
+        Me.btnBorrarArticulos.Size = New System.Drawing.Size(162, 32)
+        Me.btnBorrarArticulos.TabIndex = 50
+        Me.btnBorrarArticulos.Text = "Borrar"
+        Me.btnBorrarArticulos.UseVisualStyleBackColor = True
+        '
+        'btnAltaArticulos
+        '
+        Me.btnAltaArticulos.Location = New System.Drawing.Point(1184, 108)
+        Me.btnAltaArticulos.Name = "btnAltaArticulos"
+        Me.btnAltaArticulos.Size = New System.Drawing.Size(162, 32)
+        Me.btnAltaArticulos.TabIndex = 49
+        Me.btnAltaArticulos.Text = "Alta"
+        Me.btnAltaArticulos.UseVisualStyleBackColor = True
+        '
+        'btnConsultarArticulos
+        '
+        Me.btnConsultarArticulos.Location = New System.Drawing.Point(1184, 25)
+        Me.btnConsultarArticulos.Name = "btnConsultarArticulos"
+        Me.btnConsultarArticulos.Size = New System.Drawing.Size(162, 32)
+        Me.btnConsultarArticulos.TabIndex = 48
+        Me.btnConsultarArticulos.Text = "Consultar"
+        Me.btnConsultarArticulos.UseVisualStyleBackColor = True
+        '
         'inputBajoMinimoArticulos
         '
         Me.inputBajoMinimoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputBajoMinimoArticulos.Location = New System.Drawing.Point(785, 116)
+        Me.inputBajoMinimoArticulos.Location = New System.Drawing.Point(699, 118)
         Me.inputBajoMinimoArticulos.Name = "inputBajoMinimoArticulos"
-        Me.inputBajoMinimoArticulos.Size = New System.Drawing.Size(83, 22)
+        Me.inputBajoMinimoArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputBajoMinimoArticulos.TabIndex = 47
         '
         'inputSobreMaximoArticulos
         '
         Me.inputSobreMaximoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputSobreMaximoArticulos.Location = New System.Drawing.Point(578, 116)
+        Me.inputSobreMaximoArticulos.Location = New System.Drawing.Point(412, 118)
         Me.inputSobreMaximoArticulos.Name = "inputSobreMaximoArticulos"
-        Me.inputSobreMaximoArticulos.Size = New System.Drawing.Size(83, 22)
+        Me.inputSobreMaximoArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputSobreMaximoArticulos.TabIndex = 45
         '
         'inputExistenciasArticulos
         '
         Me.inputExistenciasArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputExistenciasArticulos.Location = New System.Drawing.Point(341, 116)
+        Me.inputExistenciasArticulos.Location = New System.Drawing.Point(412, 70)
         Me.inputExistenciasArticulos.Name = "inputExistenciasArticulos"
-        Me.inputExistenciasArticulos.Size = New System.Drawing.Size(83, 22)
+        Me.inputExistenciasArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputExistenciasArticulos.TabIndex = 44
         '
         'inputPrCostArticulos
         '
         Me.inputPrCostArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputPrCostArticulos.Location = New System.Drawing.Point(148, 114)
+        Me.inputPrCostArticulos.Location = New System.Drawing.Point(699, 27)
         Me.inputPrCostArticulos.Name = "inputPrCostArticulos"
-        Me.inputPrCostArticulos.Size = New System.Drawing.Size(83, 22)
+        Me.inputPrCostArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputPrCostArticulos.TabIndex = 42
         '
         'inputPrVentArticulos
         '
         Me.inputPrVentArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputPrVentArticulos.Location = New System.Drawing.Point(785, 74)
+        Me.inputPrVentArticulos.Location = New System.Drawing.Point(699, 72)
         Me.inputPrVentArticulos.Name = "inputPrVentArticulos"
-        Me.inputPrVentArticulos.Size = New System.Drawing.Size(83, 22)
+        Me.inputPrVentArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputPrVentArticulos.TabIndex = 40
         '
         'inputProveedorArticulos
         '
         Me.inputProveedorArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputProveedorArticulos.Location = New System.Drawing.Point(578, 72)
+        Me.inputProveedorArticulos.Location = New System.Drawing.Point(142, 116)
         Me.inputProveedorArticulos.Name = "inputProveedorArticulos"
-        Me.inputProveedorArticulos.Size = New System.Drawing.Size(83, 22)
+        Me.inputProveedorArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputProveedorArticulos.TabIndex = 38
         '
         'inputDescripcionArticulos
         '
         Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDescripcionArticulos.Location = New System.Drawing.Point(341, 72)
+        Me.inputDescripcionArticulos.Location = New System.Drawing.Point(881, 43)
+        Me.inputDescripcionArticulos.Multiline = True
         Me.inputDescripcionArticulos.Name = "inputDescripcionArticulos"
-        Me.inputDescripcionArticulos.Size = New System.Drawing.Size(83, 22)
+        Me.inputDescripcionArticulos.Size = New System.Drawing.Size(261, 97)
         Me.inputDescripcionArticulos.TabIndex = 36
         '
         'inputNombreArticulos
         '
         Me.inputNombreArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputNombreArticulos.Location = New System.Drawing.Point(148, 72)
+        Me.inputNombreArticulos.Location = New System.Drawing.Point(142, 70)
         Me.inputNombreArticulos.Name = "inputNombreArticulos"
-        Me.inputNombreArticulos.Size = New System.Drawing.Size(83, 22)
+        Me.inputNombreArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputNombreArticulos.TabIndex = 34
         '
         'inputIdArticulo
         '
         Me.inputIdArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdArticulo.Location = New System.Drawing.Point(148, 27)
+        Me.inputIdArticulo.Location = New System.Drawing.Point(142, 25)
         Me.inputIdArticulo.Name = "inputIdArticulo"
-        Me.inputIdArticulo.Size = New System.Drawing.Size(79, 22)
+        Me.inputIdArticulo.Size = New System.Drawing.Size(145, 22)
         Me.inputIdArticulo.TabIndex = 25
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(672, 118)
+        Me.Label9.Location = New System.Drawing.Point(612, 121)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(81, 16)
         Me.Label9.TabIndex = 46
@@ -240,7 +271,7 @@ Partial Class Gestion
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(237, 118)
+        Me.Label18.Location = New System.Drawing.Point(331, 72)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(75, 16)
         Me.Label18.TabIndex = 43
@@ -249,25 +280,25 @@ Partial Class Gestion
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(55, 115)
+        Me.Label12.Location = New System.Drawing.Point(606, 30)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(47, 16)
+        Me.Label12.Size = New System.Drawing.Size(87, 16)
         Me.Label12.TabIndex = 41
-        Me.Label12.Text = "PrCost"
+        Me.Label12.Text = "Precio Coste:"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(672, 74)
+        Me.Label17.Location = New System.Drawing.Point(608, 74)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(50, 16)
+        Me.Label17.Size = New System.Drawing.Size(85, 16)
         Me.Label17.TabIndex = 39
-        Me.Label17.Text = "PrVent:"
+        Me.Label17.Text = "Precio venta:"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(462, 74)
+        Me.Label10.Location = New System.Drawing.Point(62, 119)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(74, 16)
         Me.Label10.TabIndex = 37
@@ -276,7 +307,7 @@ Partial Class Gestion
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(237, 74)
+        Me.Label3.Location = New System.Drawing.Point(882, 23)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(82, 16)
         Me.Label3.TabIndex = 35
@@ -285,7 +316,7 @@ Partial Class Gestion
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(462, 118)
+        Me.Label11.Location = New System.Drawing.Point(312, 120)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(94, 16)
         Me.Label11.TabIndex = 31
@@ -294,7 +325,7 @@ Partial Class Gestion
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(55, 73)
+        Me.Label13.Location = New System.Drawing.Point(77, 74)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(59, 16)
         Me.Label13.TabIndex = 27
@@ -303,51 +334,34 @@ Partial Class Gestion
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(55, 29)
+        Me.Label14.Location = New System.Drawing.Point(66, 27)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(70, 16)
         Me.Label14.TabIndex = 26
         Me.Label14.Text = "ID Articulo:"
         '
-        'comboSubCategoriaArticulos
+        'dataGridArticulos
         '
-        Me.comboSubCategoriaArticulos.FormattingEnabled = True
-        Me.comboSubCategoriaArticulos.Location = New System.Drawing.Point(578, 26)
-        Me.comboSubCategoriaArticulos.Name = "comboSubCategoriaArticulos"
-        Me.comboSubCategoriaArticulos.Size = New System.Drawing.Size(116, 24)
-        Me.comboSubCategoriaArticulos.TabIndex = 21
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(462, 29)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(93, 16)
-        Me.Label15.TabIndex = 20
-        Me.Label15.Text = "SubCategoria:"
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(56, 176)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowHeadersWidth = 51
-        Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(1294, 590)
-        Me.DataGridView1.TabIndex = 19
+        Me.dataGridArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataGridArticulos.Location = New System.Drawing.Point(56, 176)
+        Me.dataGridArticulos.Name = "dataGridArticulos"
+        Me.dataGridArticulos.RowHeadersWidth = 51
+        Me.dataGridArticulos.RowTemplate.Height = 24
+        Me.dataGridArticulos.Size = New System.Drawing.Size(1294, 590)
+        Me.dataGridArticulos.TabIndex = 19
         '
         'comboCategoriaArticulos
         '
         Me.comboCategoriaArticulos.FormattingEnabled = True
-        Me.comboCategoriaArticulos.Location = New System.Drawing.Point(341, 25)
+        Me.comboCategoriaArticulos.Location = New System.Drawing.Point(412, 24)
         Me.comboCategoriaArticulos.Name = "comboCategoriaArticulos"
-        Me.comboCategoriaArticulos.Size = New System.Drawing.Size(100, 24)
+        Me.comboCategoriaArticulos.Size = New System.Drawing.Size(145, 24)
         Me.comboCategoriaArticulos.TabIndex = 18
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(237, 30)
+        Me.Label16.Location = New System.Drawing.Point(331, 26)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(69, 16)
         Me.Label16.TabIndex = 17
@@ -355,24 +369,26 @@ Partial Class Gestion
         '
         'partnersTab
         '
-        Me.partnersTab.Controls.Add(Me.Button2)
-        Me.partnersTab.Controls.Add(Me.DataGridView2)
-        Me.partnersTab.Controls.Add(Me.comboZonaPartners)
-        Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartner)
-        Me.partnersTab.Controls.Add(Me.inputCorreoPartner)
-        Me.partnersTab.Controls.Add(Me.inputTelefonoPartner)
-        Me.partnersTab.Controls.Add(Me.inputDireccionPartner)
-        Me.partnersTab.Controls.Add(Me.inputCifPartner)
-        Me.partnersTab.Controls.Add(Me.inputNombrePartner)
+        Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartners)
+        Me.partnersTab.Controls.Add(Me.btnBorrarPartners)
+        Me.partnersTab.Controls.Add(Me.btnAltaPartners)
+        Me.partnersTab.Controls.Add(Me.btnConsultarPartners)
+        Me.partnersTab.Controls.Add(Me.inputCorreoPartners)
+        Me.partnersTab.Controls.Add(Me.inputNombrePartners)
         Me.partnersTab.Controls.Add(Me.inputIdPartner)
+        Me.partnersTab.Controls.Add(Me.Label2)
+        Me.partnersTab.Controls.Add(Me.Label4)
+        Me.partnersTab.Controls.Add(Me.dataGridPartners)
+        Me.partnersTab.Controls.Add(Me.comboZonaPartners)
+        Me.partnersTab.Controls.Add(Me.inputTelefonoPartners)
+        Me.partnersTab.Controls.Add(Me.inputDireccionPartners)
+        Me.partnersTab.Controls.Add(Me.inputCifPartners)
         Me.partnersTab.Controls.Add(Me.Label20)
         Me.partnersTab.Controls.Add(Me.Label21)
         Me.partnersTab.Controls.Add(Me.Label22)
         Me.partnersTab.Controls.Add(Me.Label23)
         Me.partnersTab.Controls.Add(Me.Label25)
-        Me.partnersTab.Controls.Add(Me.Label28)
         Me.partnersTab.Controls.Add(Me.Label27)
-        Me.partnersTab.Controls.Add(Me.Label24)
         Me.partnersTab.Location = New System.Drawing.Point(4, 25)
         Me.partnersTab.Name = "partnersTab"
         Me.partnersTab.Padding = New System.Windows.Forms.Padding(3)
@@ -381,84 +397,130 @@ Partial Class Gestion
         Me.partnersTab.Text = "Partners"
         Me.partnersTab.UseVisualStyleBackColor = True
         '
-        'DataGridView2
+        'inputFechaRegistroPartners
         '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(56, 176)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.RowHeadersWidth = 51
-        Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.Size = New System.Drawing.Size(1294, 590)
-        Me.DataGridView2.TabIndex = 65
+        Me.inputFechaRegistroPartners.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.inputFechaRegistroPartners.Location = New System.Drawing.Point(429, 117)
+        Me.inputFechaRegistroPartners.Name = "inputFechaRegistroPartners"
+        Me.inputFechaRegistroPartners.Size = New System.Drawing.Size(145, 22)
+        Me.inputFechaRegistroPartners.TabIndex = 75
+        Me.inputFechaRegistroPartners.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
         '
-        'comboZonaPartners
+        'btnBorrarPartners
         '
-        Me.comboZonaPartners.FormattingEnabled = True
-        Me.comboZonaPartners.Location = New System.Drawing.Point(436, 27)
-        Me.comboZonaPartners.Name = "comboZonaPartners"
-        Me.comboZonaPartners.Size = New System.Drawing.Size(100, 24)
-        Me.comboZonaPartners.TabIndex = 64
+        Me.btnBorrarPartners.Location = New System.Drawing.Point(1179, 66)
+        Me.btnBorrarPartners.Name = "btnBorrarPartners"
+        Me.btnBorrarPartners.Size = New System.Drawing.Size(162, 32)
+        Me.btnBorrarPartners.TabIndex = 74
+        Me.btnBorrarPartners.Text = "Borrar"
+        Me.btnBorrarPartners.UseVisualStyleBackColor = True
         '
-        'inputFechaRegistroPartner
+        'btnAltaPartners
         '
-        Me.inputFechaRegistroPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputFechaRegistroPartner.Location = New System.Drawing.Point(341, 117)
-        Me.inputFechaRegistroPartner.Name = "inputFechaRegistroPartner"
-        Me.inputFechaRegistroPartner.Size = New System.Drawing.Size(83, 22)
-        Me.inputFechaRegistroPartner.TabIndex = 60
+        Me.btnAltaPartners.Location = New System.Drawing.Point(1179, 107)
+        Me.btnAltaPartners.Name = "btnAltaPartners"
+        Me.btnAltaPartners.Size = New System.Drawing.Size(162, 32)
+        Me.btnAltaPartners.TabIndex = 73
+        Me.btnAltaPartners.Text = "Alta"
+        Me.btnAltaPartners.UseVisualStyleBackColor = True
         '
-        'inputCorreoPartner
+        'btnConsultarPartners
         '
-        Me.inputCorreoPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputCorreoPartner.Location = New System.Drawing.Point(148, 115)
-        Me.inputCorreoPartner.Name = "inputCorreoPartner"
-        Me.inputCorreoPartner.Size = New System.Drawing.Size(83, 22)
-        Me.inputCorreoPartner.TabIndex = 58
+        Me.btnConsultarPartners.Location = New System.Drawing.Point(1179, 24)
+        Me.btnConsultarPartners.Name = "btnConsultarPartners"
+        Me.btnConsultarPartners.Size = New System.Drawing.Size(162, 32)
+        Me.btnConsultarPartners.TabIndex = 72
+        Me.btnConsultarPartners.Text = "Consultar"
+        Me.btnConsultarPartners.UseVisualStyleBackColor = True
         '
-        'inputTelefonoPartner
+        'inputCorreoPartners
         '
-        Me.inputTelefonoPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputTelefonoPartner.Location = New System.Drawing.Point(785, 75)
-        Me.inputTelefonoPartner.Name = "inputTelefonoPartner"
-        Me.inputTelefonoPartner.Size = New System.Drawing.Size(83, 22)
-        Me.inputTelefonoPartner.TabIndex = 56
+        Me.inputCorreoPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputCorreoPartners.Location = New System.Drawing.Point(142, 116)
+        Me.inputCorreoPartners.Name = "inputCorreoPartners"
+        Me.inputCorreoPartners.Size = New System.Drawing.Size(145, 22)
+        Me.inputCorreoPartners.TabIndex = 71
         '
-        'inputDireccionPartner
+        'inputNombrePartners
         '
-        Me.inputDireccionPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDireccionPartner.Location = New System.Drawing.Point(578, 73)
-        Me.inputDireccionPartner.Name = "inputDireccionPartner"
-        Me.inputDireccionPartner.Size = New System.Drawing.Size(83, 22)
-        Me.inputDireccionPartner.TabIndex = 54
-        '
-        'inputCifPartner
-        '
-        Me.inputCifPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputCifPartner.Location = New System.Drawing.Point(341, 73)
-        Me.inputCifPartner.Name = "inputCifPartner"
-        Me.inputCifPartner.Size = New System.Drawing.Size(83, 22)
-        Me.inputCifPartner.TabIndex = 52
-        '
-        'inputNombrePartner
-        '
-        Me.inputNombrePartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputNombrePartner.Location = New System.Drawing.Point(148, 73)
-        Me.inputNombrePartner.Name = "inputNombrePartner"
-        Me.inputNombrePartner.Size = New System.Drawing.Size(83, 22)
-        Me.inputNombrePartner.TabIndex = 50
+        Me.inputNombrePartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputNombrePartners.Location = New System.Drawing.Point(142, 70)
+        Me.inputNombrePartners.Name = "inputNombrePartners"
+        Me.inputNombrePartners.Size = New System.Drawing.Size(145, 22)
+        Me.inputNombrePartners.TabIndex = 69
         '
         'inputIdPartner
         '
         Me.inputIdPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdPartner.Location = New System.Drawing.Point(148, 27)
+        Me.inputIdPartner.Location = New System.Drawing.Point(142, 25)
         Me.inputIdPartner.Name = "inputIdPartner"
-        Me.inputIdPartner.Size = New System.Drawing.Size(172, 22)
-        Me.inputIdPartner.TabIndex = 25
+        Me.inputIdPartner.Size = New System.Drawing.Size(145, 22)
+        Me.inputIdPartner.TabIndex = 66
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(77, 74)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(59, 16)
+        Me.Label2.TabIndex = 68
+        Me.Label2.Text = "Nombre:"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(66, 27)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(69, 16)
+        Me.Label4.TabIndex = 67
+        Me.Label4.Text = "ID Partner:"
+        '
+        'dataGridPartners
+        '
+        Me.dataGridPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataGridPartners.Location = New System.Drawing.Point(56, 176)
+        Me.dataGridPartners.Name = "dataGridPartners"
+        Me.dataGridPartners.RowHeadersWidth = 51
+        Me.dataGridPartners.RowTemplate.Height = 24
+        Me.dataGridPartners.Size = New System.Drawing.Size(1294, 590)
+        Me.dataGridPartners.TabIndex = 65
+        '
+        'comboZonaPartners
+        '
+        Me.comboZonaPartners.FormattingEnabled = True
+        Me.comboZonaPartners.Location = New System.Drawing.Point(429, 23)
+        Me.comboZonaPartners.Name = "comboZonaPartners"
+        Me.comboZonaPartners.Size = New System.Drawing.Size(145, 24)
+        Me.comboZonaPartners.TabIndex = 64
+        '
+        'inputTelefonoPartners
+        '
+        Me.inputTelefonoPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputTelefonoPartners.Location = New System.Drawing.Point(429, 71)
+        Me.inputTelefonoPartners.Name = "inputTelefonoPartners"
+        Me.inputTelefonoPartners.Size = New System.Drawing.Size(145, 22)
+        Me.inputTelefonoPartners.TabIndex = 56
+        '
+        'inputDireccionPartners
+        '
+        Me.inputDireccionPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDireccionPartners.Location = New System.Drawing.Point(688, 74)
+        Me.inputDireccionPartners.Name = "inputDireccionPartners"
+        Me.inputDireccionPartners.Size = New System.Drawing.Size(272, 22)
+        Me.inputDireccionPartners.TabIndex = 54
+        '
+        'inputCifPartners
+        '
+        Me.inputCifPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputCifPartners.Location = New System.Drawing.Point(688, 26)
+        Me.inputCifPartners.Name = "inputCifPartners"
+        Me.inputCifPartners.Size = New System.Drawing.Size(134, 22)
+        Me.inputCifPartners.TabIndex = 52
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(237, 119)
+        Me.Label20.Location = New System.Drawing.Point(324, 119)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(99, 16)
         Me.Label20.TabIndex = 59
@@ -467,7 +529,7 @@ Partial Class Gestion
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(55, 115)
+        Me.Label21.Location = New System.Drawing.Point(88, 119)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(48, 16)
         Me.Label21.TabIndex = 57
@@ -476,7 +538,7 @@ Partial Class Gestion
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(672, 75)
+        Me.Label22.Location = New System.Drawing.Point(359, 73)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(61, 16)
         Me.Label22.TabIndex = 55
@@ -485,7 +547,7 @@ Partial Class Gestion
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(462, 75)
+        Me.Label23.Location = New System.Drawing.Point(617, 77)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(64, 16)
         Me.Label23.TabIndex = 53
@@ -494,38 +556,20 @@ Partial Class Gestion
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(237, 75)
+        Me.Label25.Location = New System.Drawing.Point(651, 28)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(30, 16)
         Me.Label25.TabIndex = 51
         Me.Label25.Text = "CIF:"
         '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(55, 73)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(59, 16)
-        Me.Label28.TabIndex = 48
-        Me.Label28.Text = "Nombre:"
-        '
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(365, 29)
+        Me.Label27.Location = New System.Drawing.Point(358, 27)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(57, 16)
         Me.Label27.TabIndex = 35
         Me.Label27.Text = "ID Zona:"
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(55, 29)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(69, 16)
-        Me.Label24.TabIndex = 26
-        Me.Label24.Text = "ID Partner:"
         '
         'comercialesTab
         '
@@ -560,6 +604,15 @@ Partial Class Gestion
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
         Me.comercialesTab.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(1071, 65)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 72
+        Me.Button3.Text = "+"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'DataGridView3
         '
@@ -835,38 +888,11 @@ Partial Class Gestion
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(1095, 52)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 48
-        Me.Button1.Text = "+"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(1125, 73)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 66
-        Me.Button2.Text = "+"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(1071, 65)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 72
-        Me.Button3.Text = "+"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Gestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1555, 813)
+        Me.ClientSize = New System.Drawing.Size(1426, 980)
         Me.ControlBox = False
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Gestion"
@@ -875,10 +901,10 @@ Partial Class Gestion
         Me.TabControl1.ResumeLayout(False)
         Me.articulosTab.ResumeLayout(False)
         Me.articulosTab.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.partnersTab.ResumeLayout(False)
         Me.partnersTab.PerformLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dataGridPartners, System.ComponentModel.ISupportInitialize).EndInit()
         Me.comercialesTab.ResumeLayout(False)
         Me.comercialesTab.PerformLayout()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -909,29 +935,21 @@ Partial Class Gestion
     Friend WithEvents Label11 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
-    Friend WithEvents comboSubCategoriaArticulos As ComboBox
-    Friend WithEvents Label15 As Label
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dataGridArticulos As DataGridView
     Friend WithEvents comboCategoriaArticulos As ComboBox
     Friend WithEvents Label16 As Label
     Friend WithEvents partnersTab As TabPage
-    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents dataGridPartners As DataGridView
     Friend WithEvents comboZonaPartners As ComboBox
-    Friend WithEvents inputFechaRegistroPartner As TextBox
-    Friend WithEvents inputCorreoPartner As TextBox
-    Friend WithEvents inputTelefonoPartner As TextBox
-    Friend WithEvents inputDireccionPartner As TextBox
-    Friend WithEvents inputCifPartner As TextBox
-    Friend WithEvents inputNombrePartner As TextBox
-    Friend WithEvents inputIdPartner As TextBox
+    Friend WithEvents inputTelefonoPartners As TextBox
+    Friend WithEvents inputDireccionPartners As TextBox
+    Friend WithEvents inputCifPartners As TextBox
     Friend WithEvents Label20 As Label
     Friend WithEvents Label21 As Label
     Friend WithEvents Label22 As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents Label25 As Label
-    Friend WithEvents Label28 As Label
     Friend WithEvents Label27 As Label
-    Friend WithEvents Label24 As Label
     Friend WithEvents comercialesTab As TabPage
     Friend WithEvents DataGridView3 As DataGridView
     Friend WithEvents inputBajoMinimoComercial As TextBox
@@ -964,7 +982,17 @@ Partial Class Gestion
     Friend WithEvents inputIdTransportista As TextBox
     Friend WithEvents Label38 As Label
     Friend WithEvents Label46 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnConsultarArticulos As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents btnBorrarArticulos As Button
+    Friend WithEvents btnAltaArticulos As Button
+    Friend WithEvents inputCorreoPartners As TextBox
+    Friend WithEvents inputNombrePartners As TextBox
+    Friend WithEvents inputIdPartner As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents btnConsultarPartners As Button
+    Friend WithEvents btnBorrarPartners As Button
+    Friend WithEvents btnAltaPartners As Button
+    Friend WithEvents inputFechaRegistroPartners As DateTimePicker
 End Class

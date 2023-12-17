@@ -240,12 +240,13 @@ Partial Class Pedidos
         '
         'DataGridView5
         '
+        Me.DataGridView5.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView5.Location = New System.Drawing.Point(30, 176)
+        Me.DataGridView5.Location = New System.Drawing.Point(36, 177)
         Me.DataGridView5.Name = "DataGridView5"
         Me.DataGridView5.RowHeadersWidth = 51
         Me.DataGridView5.RowTemplate.Height = 24
-        Me.DataGridView5.Size = New System.Drawing.Size(1288, 576)
+        Me.DataGridView5.Size = New System.Drawing.Size(1390, 651)
         Me.DataGridView5.TabIndex = 44
         '
         'comboComercialPedido

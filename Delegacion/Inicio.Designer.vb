@@ -75,6 +75,7 @@ Partial Class Inicio
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Inicio"
         Me.Text = "Delegaciones"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)

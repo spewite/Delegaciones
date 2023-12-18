@@ -1,7 +1,10 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Reflection.Emit
+Imports System.Windows.Forms
 
 Public Class Inicio
     Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
 
     End Sub
 
@@ -35,4 +38,7 @@ Public Class Inicio
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
         Me.Close()
     End Sub
+
+
+
 End Class

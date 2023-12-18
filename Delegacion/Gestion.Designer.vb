@@ -123,7 +123,7 @@ Partial Class Gestion
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1783, 1225)
+        Me.TabControl1.Size = New System.Drawing.Size(1426, 980)
         Me.TabControl1.TabIndex = 2
         '
         'articulosTab
@@ -154,7 +154,7 @@ Partial Class Gestion
         Me.articulosTab.Controls.Add(Me.Label16)
         Me.articulosTab.Location = New System.Drawing.Point(4, 25)
         Me.articulosTab.Name = "articulosTab"
-        Me.articulosTab.Size = New System.Drawing.Size(1775, 1196)
+        Me.articulosTab.Size = New System.Drawing.Size(1418, 951)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
         Me.articulosTab.UseVisualStyleBackColor = True
@@ -392,7 +392,7 @@ Partial Class Gestion
         Me.partnersTab.Location = New System.Drawing.Point(4, 25)
         Me.partnersTab.Name = "partnersTab"
         Me.partnersTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.partnersTab.Size = New System.Drawing.Size(1374, 788)
+        Me.partnersTab.Size = New System.Drawing.Size(1775, 1196)
         Me.partnersTab.TabIndex = 1
         Me.partnersTab.Text = "Partners"
         Me.partnersTab.UseVisualStyleBackColor = True
@@ -600,7 +600,7 @@ Partial Class Gestion
         Me.comercialesTab.Location = New System.Drawing.Point(4, 25)
         Me.comercialesTab.Name = "comercialesTab"
         Me.comercialesTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.comercialesTab.Size = New System.Drawing.Size(1374, 788)
+        Me.comercialesTab.Size = New System.Drawing.Size(1775, 1196)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
         Me.comercialesTab.UseVisualStyleBackColor = True
@@ -822,7 +822,7 @@ Partial Class Gestion
         Me.transportistasTab.Controls.Add(Me.Label46)
         Me.transportistasTab.Location = New System.Drawing.Point(4, 25)
         Me.transportistasTab.Name = "transportistasTab"
-        Me.transportistasTab.Size = New System.Drawing.Size(1374, 788)
+        Me.transportistasTab.Size = New System.Drawing.Size(1775, 1196)
         Me.transportistasTab.TabIndex = 6
         Me.transportistasTab.Text = "Transportistas"
         Me.transportistasTab.UseVisualStyleBackColor = True

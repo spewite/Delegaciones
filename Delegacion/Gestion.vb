@@ -18,7 +18,7 @@ Public Class Gestion
 
         ' Agregar condiciones según los valores ingresados en los controles
         If Not String.IsNullOrEmpty(inputIdArticulo.Text) Then
-            sqlQuery &= " AND IdArticulo = @IdArticulo"
+            sqlQuery &= $" AND IdArticulo = {inputIdArticulo.Text}"
         End If
 
         If Not String.IsNullOrEmpty(inputNombreArticulo.Text) Then

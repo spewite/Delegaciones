@@ -22,7 +22,7 @@ Public Class Gestion
         End If
 
         If Not String.IsNullOrEmpty(inputNombreArticulo.Text) Then
-            sqlQuery &= " AND NombreArticulo = @NombreArticulo"
+            sqlQuery &= $" AND UPPER(NombreArticulo) LIKE %{inputNombreArticulo.Text.ToUpper}%"
         End If
 
         If Not String.IsNullOrEmpty(inputProveedorArticulo.Text) Then

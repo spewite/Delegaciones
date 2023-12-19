@@ -5,7 +5,7 @@ Imports Dllgaciones.BaseDeDatos
 Public Class Gestion
 
     Dim connectionString As String = "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@"
-    Dim dataGrid As DataGrid
+    Dim dataTable As DataTable
 
     Private Sub Gestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.WindowState = FormWindowState.Maximized
@@ -13,35 +13,44 @@ Public Class Gestion
     End Sub
 
     Private Sub btnConsultarArticulos_Click(sender As Object, e As EventArgs) Handles btnConsultarArticulos.Click
+        ' Construir la sentencia SQL base
+        Dim sqlQuery As String = "SELECT * FROM ARTICULOS WHERE 1 = 1"
 
-        Try
-            ' Crear una nueva conexión
-            Using connection As New SqlConnection(connectionString)
-                ' Abrir la conexión
-                connection.Open()
+        ' Agregar condiciones según los valores ingresados en los controles
+        If Not String.IsNullOrEmpty(inputIdArticulo.Text) Then
+            sqlQuery &= " AND IdArticulo = @IdArticulo"
+        End If
 
-                Dim query As String = "SELECT * FROM ARTICULOS"
+        If Not String.IsNullOrEmpty(inputNombreArticulo.Text) Then
+            sqlQuery &= " AND NombreArticulo = @NombreArticulo"
+        End If
 
-                Using command As New SqlCommand(query, connection)
-                    ' Crear un lector de datos
-                    Using reader As SqlDataReader = command.ExecuteReader()
-                        ' Crear un DataTable para almacenar los resultados de la consulta
-                        Dim dataTable As New DataTable()
+        If Not String.IsNullOrEmpty(inputProveedorArticulo.Text) Then
+            sqlQuery &= " AND ProveedorArticulo = @ProveedorArticulo"
+        End If
 
-                        ' Cargar el DataTable con los resultados del lector de datos
-                        dataTable.Load(reader)
+        If Not String.IsNullOrEmpty(inputExistenciasArticulo.Text) Then
+            sqlQuery &= " AND ExistenciasArticulo = @ExistenciasArticulo"
+        End If
 
-                        ' Vincular el DataTable al DataGridView
-                        dataGridArticulos.DataSource = dataTable
+        If Not String.IsNullOrEmpty(inputPrCostArticulos.Text) Then
+            sqlQuery &= " AND PrCostArticulos = @PrCostArticulos"
+        End If
 
-                    End Using
-                End Using
-            End Using
+        If Not String.IsNullOrEmpty(inputPrVentArticulos.Text) Then
+            sqlQuery &= " AND PrVentArticulos = @PrVentArticulos"
+        End If
 
+        If Not String.IsNullOrEmpty(inputSobreMaximoArticulos.Text) Then
+            sqlQuery &= " AND SobreMaximoArticulos = @SobreMaximoArticulos"
+        End If
 
-        Catch ex As Exception
-            MessageBox.Show("Error al conectar a la base de datos: " & ex.Message)
-        End Try
+        If Not String.IsNullOrEmpty(inputBajoMinimoArticulos.Text) Then
+            sqlQuery &= " AND BajoMinimoArticulos = @BajoMinimoArticulos"
+        End If
+
+        dataTable = ConsultaBBDD(connectionString, sqlQuery)
+        dataGridArticulos.DataSource = dataTable
 
     End Sub
 End Class

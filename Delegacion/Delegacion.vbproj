@@ -107,13 +107,6 @@
     <Compile Include="FacturasEdit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Lineas.Designer.vb">
       <DependentUpon>Lineas.vb</DependentUpon>
     </Compile>
@@ -188,9 +181,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FacturasEdit.resx">
       <DependentUpon>FacturasEdit.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.vb</DependentUpon>

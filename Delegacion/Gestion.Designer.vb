@@ -29,12 +29,12 @@ Partial Class Gestion
         Me.btnConsultarArticulos = New System.Windows.Forms.Button()
         Me.inputBajoMinimoArticulos = New System.Windows.Forms.TextBox()
         Me.inputSobreMaximoArticulos = New System.Windows.Forms.TextBox()
-        Me.inputExistenciasArticulos = New System.Windows.Forms.TextBox()
+        Me.inputExistenciasArticulo = New System.Windows.Forms.TextBox()
         Me.inputPrCostArticulos = New System.Windows.Forms.TextBox()
         Me.inputPrVentArticulos = New System.Windows.Forms.TextBox()
-        Me.inputProveedorArticulos = New System.Windows.Forms.TextBox()
+        Me.inputProveedorArticulo = New System.Windows.Forms.TextBox()
         Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()
-        Me.inputNombreArticulos = New System.Windows.Forms.TextBox()
+        Me.inputNombreArticulo = New System.Windows.Forms.TextBox()
         Me.inputIdArticulo = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -133,12 +133,12 @@ Partial Class Gestion
         Me.articulosTab.Controls.Add(Me.btnConsultarArticulos)
         Me.articulosTab.Controls.Add(Me.inputBajoMinimoArticulos)
         Me.articulosTab.Controls.Add(Me.inputSobreMaximoArticulos)
-        Me.articulosTab.Controls.Add(Me.inputExistenciasArticulos)
+        Me.articulosTab.Controls.Add(Me.inputExistenciasArticulo)
         Me.articulosTab.Controls.Add(Me.inputPrCostArticulos)
         Me.articulosTab.Controls.Add(Me.inputPrVentArticulos)
-        Me.articulosTab.Controls.Add(Me.inputProveedorArticulos)
+        Me.articulosTab.Controls.Add(Me.inputProveedorArticulo)
         Me.articulosTab.Controls.Add(Me.inputDescripcionArticulos)
-        Me.articulosTab.Controls.Add(Me.inputNombreArticulos)
+        Me.articulosTab.Controls.Add(Me.inputNombreArticulo)
         Me.articulosTab.Controls.Add(Me.inputIdArticulo)
         Me.articulosTab.Controls.Add(Me.Label9)
         Me.articulosTab.Controls.Add(Me.Label18)
@@ -202,13 +202,13 @@ Partial Class Gestion
         Me.inputSobreMaximoArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputSobreMaximoArticulos.TabIndex = 45
         '
-        'inputExistenciasArticulos
+        'inputExistenciasArticulo
         '
-        Me.inputExistenciasArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputExistenciasArticulos.Location = New System.Drawing.Point(412, 70)
-        Me.inputExistenciasArticulos.Name = "inputExistenciasArticulos"
-        Me.inputExistenciasArticulos.Size = New System.Drawing.Size(145, 22)
-        Me.inputExistenciasArticulos.TabIndex = 44
+        Me.inputExistenciasArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputExistenciasArticulo.Location = New System.Drawing.Point(412, 70)
+        Me.inputExistenciasArticulo.Name = "inputExistenciasArticulo"
+        Me.inputExistenciasArticulo.Size = New System.Drawing.Size(145, 22)
+        Me.inputExistenciasArticulo.TabIndex = 44
         '
         'inputPrCostArticulos
         '
@@ -226,13 +226,13 @@ Partial Class Gestion
         Me.inputPrVentArticulos.Size = New System.Drawing.Size(145, 22)
         Me.inputPrVentArticulos.TabIndex = 40
         '
-        'inputProveedorArticulos
+        'inputProveedorArticulo
         '
-        Me.inputProveedorArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputProveedorArticulos.Location = New System.Drawing.Point(142, 116)
-        Me.inputProveedorArticulos.Name = "inputProveedorArticulos"
-        Me.inputProveedorArticulos.Size = New System.Drawing.Size(145, 22)
-        Me.inputProveedorArticulos.TabIndex = 38
+        Me.inputProveedorArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputProveedorArticulo.Location = New System.Drawing.Point(142, 116)
+        Me.inputProveedorArticulo.Name = "inputProveedorArticulo"
+        Me.inputProveedorArticulo.Size = New System.Drawing.Size(145, 22)
+        Me.inputProveedorArticulo.TabIndex = 38
         '
         'inputDescripcionArticulos
         '
@@ -243,13 +243,13 @@ Partial Class Gestion
         Me.inputDescripcionArticulos.Size = New System.Drawing.Size(261, 97)
         Me.inputDescripcionArticulos.TabIndex = 36
         '
-        'inputNombreArticulos
+        'inputNombreArticulo
         '
-        Me.inputNombreArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputNombreArticulos.Location = New System.Drawing.Point(142, 70)
-        Me.inputNombreArticulos.Name = "inputNombreArticulos"
-        Me.inputNombreArticulos.Size = New System.Drawing.Size(145, 22)
-        Me.inputNombreArticulos.TabIndex = 34
+        Me.inputNombreArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputNombreArticulo.Location = New System.Drawing.Point(142, 70)
+        Me.inputNombreArticulo.Name = "inputNombreArticulo"
+        Me.inputNombreArticulo.Size = New System.Drawing.Size(145, 22)
+        Me.inputNombreArticulo.TabIndex = 34
         '
         'inputIdArticulo
         '
@@ -392,7 +392,7 @@ Partial Class Gestion
         Me.partnersTab.Location = New System.Drawing.Point(4, 25)
         Me.partnersTab.Name = "partnersTab"
         Me.partnersTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.partnersTab.Size = New System.Drawing.Size(1775, 1196)
+        Me.partnersTab.Size = New System.Drawing.Size(1418, 951)
         Me.partnersTab.TabIndex = 1
         Me.partnersTab.Text = "Partners"
         Me.partnersTab.UseVisualStyleBackColor = True
@@ -600,7 +600,7 @@ Partial Class Gestion
         Me.comercialesTab.Location = New System.Drawing.Point(4, 25)
         Me.comercialesTab.Name = "comercialesTab"
         Me.comercialesTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.comercialesTab.Size = New System.Drawing.Size(1775, 1196)
+        Me.comercialesTab.Size = New System.Drawing.Size(1418, 951)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
         Me.comercialesTab.UseVisualStyleBackColor = True
@@ -822,7 +822,7 @@ Partial Class Gestion
         Me.transportistasTab.Controls.Add(Me.Label46)
         Me.transportistasTab.Location = New System.Drawing.Point(4, 25)
         Me.transportistasTab.Name = "transportistasTab"
-        Me.transportistasTab.Size = New System.Drawing.Size(1775, 1196)
+        Me.transportistasTab.Size = New System.Drawing.Size(1418, 951)
         Me.transportistasTab.TabIndex = 6
         Me.transportistasTab.Text = "Transportistas"
         Me.transportistasTab.UseVisualStyleBackColor = True
@@ -919,12 +919,12 @@ Partial Class Gestion
     Friend WithEvents articulosTab As TabPage
     Friend WithEvents inputBajoMinimoArticulos As TextBox
     Friend WithEvents inputSobreMaximoArticulos As TextBox
-    Friend WithEvents inputExistenciasArticulos As TextBox
+    Friend WithEvents inputExistenciasArticulo As TextBox
     Friend WithEvents inputPrCostArticulos As TextBox
     Friend WithEvents inputPrVentArticulos As TextBox
-    Friend WithEvents inputProveedorArticulos As TextBox
+    Friend WithEvents inputProveedorArticulo As TextBox
     Friend WithEvents inputDescripcionArticulos As TextBox
-    Friend WithEvents inputNombreArticulos As TextBox
+    Friend WithEvents inputNombreArticulo As TextBox
     Friend WithEvents inputIdArticulo As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label18 As Label

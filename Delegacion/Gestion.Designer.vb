@@ -22,8 +22,10 @@ Partial Class Gestion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.articulosTab = New System.Windows.Forms.TabPage()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnBorrarArticulos = New System.Windows.Forms.Button()
         Me.btnAltaArticulos = New System.Windows.Forms.Button()
         Me.btnConsultarArticulos = New System.Windows.Forms.Button()
@@ -33,23 +35,22 @@ Partial Class Gestion
         Me.inputPrCostArticulos = New System.Windows.Forms.TextBox()
         Me.inputPrVentArticulos = New System.Windows.Forms.TextBox()
         Me.inputProveedorArticulo = New System.Windows.Forms.TextBox()
-        Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()
-        Me.inputNombreArticulo = New System.Windows.Forms.TextBox()
+        Me.inputDescripcionArticulo = New System.Windows.Forms.TextBox()
         Me.inputIdArticulo = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.dataGridArticulos = New System.Windows.Forms.DataGridView()
         Me.comboCategoriaArticulos = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.partnersTab = New System.Windows.Forms.TabPage()
-        Me.inputFechaRegistroPartners = New System.Windows.Forms.DateTimePicker()
+        Me.inputFechaRegistroPartnersDesde = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.inputFechaRegistroPartnersHasta = New System.Windows.Forms.DateTimePicker()
         Me.btnBorrarPartners = New System.Windows.Forms.Button()
         Me.btnAltaPartners = New System.Windows.Forms.Button()
         Me.btnConsultarPartners = New System.Windows.Forms.Button()
@@ -102,6 +103,8 @@ Partial Class Gestion
         Me.inputIdTransportista = New System.Windows.Forms.TextBox()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataSet1 = New Delegacion.DataSet1()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +114,8 @@ Partial Class Gestion
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.transportistasTab.SuspendLayout()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -128,6 +133,7 @@ Partial Class Gestion
         '
         'articulosTab
         '
+        Me.articulosTab.Controls.Add(Me.Label1)
         Me.articulosTab.Controls.Add(Me.btnBorrarArticulos)
         Me.articulosTab.Controls.Add(Me.btnAltaArticulos)
         Me.articulosTab.Controls.Add(Me.btnConsultarArticulos)
@@ -137,17 +143,14 @@ Partial Class Gestion
         Me.articulosTab.Controls.Add(Me.inputPrCostArticulos)
         Me.articulosTab.Controls.Add(Me.inputPrVentArticulos)
         Me.articulosTab.Controls.Add(Me.inputProveedorArticulo)
-        Me.articulosTab.Controls.Add(Me.inputDescripcionArticulos)
-        Me.articulosTab.Controls.Add(Me.inputNombreArticulo)
+        Me.articulosTab.Controls.Add(Me.inputDescripcionArticulo)
         Me.articulosTab.Controls.Add(Me.inputIdArticulo)
         Me.articulosTab.Controls.Add(Me.Label9)
         Me.articulosTab.Controls.Add(Me.Label18)
         Me.articulosTab.Controls.Add(Me.Label12)
         Me.articulosTab.Controls.Add(Me.Label17)
         Me.articulosTab.Controls.Add(Me.Label10)
-        Me.articulosTab.Controls.Add(Me.Label3)
         Me.articulosTab.Controls.Add(Me.Label11)
-        Me.articulosTab.Controls.Add(Me.Label13)
         Me.articulosTab.Controls.Add(Me.Label14)
         Me.articulosTab.Controls.Add(Me.dataGridArticulos)
         Me.articulosTab.Controls.Add(Me.comboCategoriaArticulos)
@@ -158,6 +161,15 @@ Partial Class Gestion
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
         Me.articulosTab.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(53, 74)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(82, 16)
+        Me.Label1.TabIndex = 51
+        Me.Label1.Text = "Descripción:"
         '
         'btnBorrarArticulos
         '
@@ -234,22 +246,13 @@ Partial Class Gestion
         Me.inputProveedorArticulo.Size = New System.Drawing.Size(145, 22)
         Me.inputProveedorArticulo.TabIndex = 38
         '
-        'inputDescripcionArticulos
+        'inputDescripcionArticulo
         '
-        Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDescripcionArticulos.Location = New System.Drawing.Point(881, 43)
-        Me.inputDescripcionArticulos.Multiline = True
-        Me.inputDescripcionArticulos.Name = "inputDescripcionArticulos"
-        Me.inputDescripcionArticulos.Size = New System.Drawing.Size(261, 97)
-        Me.inputDescripcionArticulos.TabIndex = 36
-        '
-        'inputNombreArticulo
-        '
-        Me.inputNombreArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputNombreArticulo.Location = New System.Drawing.Point(142, 70)
-        Me.inputNombreArticulo.Name = "inputNombreArticulo"
-        Me.inputNombreArticulo.Size = New System.Drawing.Size(145, 22)
-        Me.inputNombreArticulo.TabIndex = 34
+        Me.inputDescripcionArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDescripcionArticulo.Location = New System.Drawing.Point(142, 70)
+        Me.inputDescripcionArticulo.Name = "inputDescripcionArticulo"
+        Me.inputDescripcionArticulo.Size = New System.Drawing.Size(145, 22)
+        Me.inputDescripcionArticulo.TabIndex = 34
         '
         'inputIdArticulo
         '
@@ -304,15 +307,6 @@ Partial Class Gestion
         Me.Label10.TabIndex = 37
         Me.Label10.Text = "Proveedor:"
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(882, 23)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(82, 16)
-        Me.Label3.TabIndex = 35
-        Me.Label3.Text = "Descripción:"
-        '
         'Label11
         '
         Me.Label11.AutoSize = True
@@ -321,15 +315,6 @@ Partial Class Gestion
         Me.Label11.Size = New System.Drawing.Size(94, 16)
         Me.Label11.TabIndex = 31
         Me.Label11.Text = "Sobre Maximo"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(77, 74)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(59, 16)
-        Me.Label13.TabIndex = 27
-        Me.Label13.Text = "Nombre:"
         '
         'Label14
         '
@@ -369,7 +354,9 @@ Partial Class Gestion
         '
         'partnersTab
         '
-        Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartners)
+        Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartnersDesde)
+        Me.partnersTab.Controls.Add(Me.Label3)
+        Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartnersHasta)
         Me.partnersTab.Controls.Add(Me.btnBorrarPartners)
         Me.partnersTab.Controls.Add(Me.btnAltaPartners)
         Me.partnersTab.Controls.Add(Me.btnConsultarPartners)
@@ -397,14 +384,34 @@ Partial Class Gestion
         Me.partnersTab.Text = "Partners"
         Me.partnersTab.UseVisualStyleBackColor = True
         '
-        'inputFechaRegistroPartners
+        'inputFechaRegistroPartnersDesde
         '
-        Me.inputFechaRegistroPartners.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.inputFechaRegistroPartners.Location = New System.Drawing.Point(429, 117)
-        Me.inputFechaRegistroPartners.Name = "inputFechaRegistroPartners"
-        Me.inputFechaRegistroPartners.Size = New System.Drawing.Size(145, 22)
-        Me.inputFechaRegistroPartners.TabIndex = 75
-        Me.inputFechaRegistroPartners.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
+        Me.inputFechaRegistroPartnersDesde.CustomFormat = ""
+        Me.inputFechaRegistroPartnersDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.inputFechaRegistroPartnersDesde.Location = New System.Drawing.Point(429, 68)
+        Me.inputFechaRegistroPartnersDesde.Name = "inputFechaRegistroPartnersDesde"
+        Me.inputFechaRegistroPartnersDesde.Size = New System.Drawing.Size(145, 22)
+        Me.inputFechaRegistroPartnersDesde.TabIndex = 77
+        Me.inputFechaRegistroPartnersDesde.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(324, 72)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(99, 16)
+        Me.Label3.TabIndex = 76
+        Me.Label3.Text = "Fecha Registro"
+        '
+        'inputFechaRegistroPartnersHasta
+        '
+        Me.inputFechaRegistroPartnersHasta.CustomFormat = ""
+        Me.inputFechaRegistroPartnersHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.inputFechaRegistroPartnersHasta.Location = New System.Drawing.Point(429, 117)
+        Me.inputFechaRegistroPartnersHasta.Name = "inputFechaRegistroPartnersHasta"
+        Me.inputFechaRegistroPartnersHasta.Size = New System.Drawing.Size(145, 22)
+        Me.inputFechaRegistroPartnersHasta.TabIndex = 75
+        Me.inputFechaRegistroPartnersHasta.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
         '
         'btnBorrarPartners
         '
@@ -496,7 +503,7 @@ Partial Class Gestion
         'inputTelefonoPartners
         '
         Me.inputTelefonoPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputTelefonoPartners.Location = New System.Drawing.Point(429, 71)
+        Me.inputTelefonoPartners.Location = New System.Drawing.Point(690, 121)
         Me.inputTelefonoPartners.Name = "inputTelefonoPartners"
         Me.inputTelefonoPartners.Size = New System.Drawing.Size(145, 22)
         Me.inputTelefonoPartners.TabIndex = 56
@@ -538,7 +545,7 @@ Partial Class Gestion
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(359, 73)
+        Me.Label22.Location = New System.Drawing.Point(620, 123)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(61, 16)
         Me.Label22.TabIndex = 55
@@ -888,6 +895,16 @@ Partial Class Gestion
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
         '
+        'BindingSource1
+        '
+        Me.BindingSource1.DataSource = Me.DataSet1
+        Me.BindingSource1.Position = 0
+        '
+        'DataSet1
+        '
+        Me.DataSet1.DataSetName = "DataSet1"
+        Me.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'Gestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -911,6 +928,8 @@ Partial Class Gestion
         Me.transportistasTab.ResumeLayout(False)
         Me.transportistasTab.PerformLayout()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -923,17 +942,14 @@ Partial Class Gestion
     Friend WithEvents inputPrCostArticulos As TextBox
     Friend WithEvents inputPrVentArticulos As TextBox
     Friend WithEvents inputProveedorArticulo As TextBox
-    Friend WithEvents inputDescripcionArticulos As TextBox
-    Friend WithEvents inputNombreArticulo As TextBox
+    Friend WithEvents inputDescripcionArticulo As TextBox
     Friend WithEvents inputIdArticulo As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label18 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents Label3 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents dataGridArticulos As DataGridView
     Friend WithEvents comboCategoriaArticulos As ComboBox
@@ -994,5 +1010,10 @@ Partial Class Gestion
     Friend WithEvents btnConsultarPartners As Button
     Friend WithEvents btnBorrarPartners As Button
     Friend WithEvents btnAltaPartners As Button
-    Friend WithEvents inputFechaRegistroPartners As DateTimePicker
+    Friend WithEvents inputFechaRegistroPartnersHasta As DateTimePicker
+    Friend WithEvents Label1 As Label
+    Friend WithEvents inputFechaRegistroPartnersDesde As DateTimePicker
+    Friend WithEvents Label3 As Label
+    Friend WithEvents BindingSource1 As BindingSource
+    Friend WithEvents DataSet1 As DataSet1
 End Class

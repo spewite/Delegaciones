@@ -22,8 +22,10 @@ Partial Class Gestion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.articulosTab = New System.Windows.Forms.TabPage()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnBorrarArticulos = New System.Windows.Forms.Button()
         Me.btnAltaArticulos = New System.Windows.Forms.Button()
         Me.btnConsultarArticulos = New System.Windows.Forms.Button()
@@ -33,23 +35,22 @@ Partial Class Gestion
         Me.inputPrCostArticulos = New System.Windows.Forms.TextBox()
         Me.inputPrVentArticulos = New System.Windows.Forms.TextBox()
         Me.inputProveedorArticulo = New System.Windows.Forms.TextBox()
-        Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()
-        Me.inputNombreArticulo = New System.Windows.Forms.TextBox()
+        Me.inputDescripcionArticulo = New System.Windows.Forms.TextBox()
         Me.inputIdArticulo = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.dataGridArticulos = New System.Windows.Forms.DataGridView()
         Me.comboCategoriaArticulos = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.partnersTab = New System.Windows.Forms.TabPage()
-        Me.inputFechaRegistroPartners = New System.Windows.Forms.DateTimePicker()
+        Me.inputFechaRegistroPartnersDesde = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.inputFechaRegistroPartnersHasta = New System.Windows.Forms.DateTimePicker()
         Me.btnBorrarPartners = New System.Windows.Forms.Button()
         Me.btnAltaPartners = New System.Windows.Forms.Button()
         Me.btnConsultarPartners = New System.Windows.Forms.Button()
@@ -70,24 +71,16 @@ Partial Class Gestion
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.comercialesTab = New System.Windows.Forms.TabPage()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
-        Me.inputBajoMinimoComercial = New System.Windows.Forms.TextBox()
-        Me.inputSobreMaximoComercial = New System.Windows.Forms.TextBox()
-        Me.inputExistenciasComercial = New System.Windows.Forms.TextBox()
-        Me.inputPrCostComercial = New System.Windows.Forms.TextBox()
-        Me.inputPrVentComercial = New System.Windows.Forms.TextBox()
-        Me.inputTelefonoComercial = New System.Windows.Forms.TextBox()
-        Me.inputApellidosComercial = New System.Windows.Forms.TextBox()
-        Me.inputNombreComercial = New System.Windows.Forms.TextBox()
-        Me.inputIdComercial = New System.Windows.Forms.TextBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label30 = New System.Windows.Forms.Label()
+        Me.btnAltaComerciales = New System.Windows.Forms.Button()
+        Me.btnBorrarComerciales = New System.Windows.Forms.Button()
+        Me.btnConsultarComerciales = New System.Windows.Forms.Button()
+        Me.dataGridComerciales = New System.Windows.Forms.DataGridView()
+        Me.inputTelefonoComerciales = New System.Windows.Forms.TextBox()
+        Me.inputApellidosComerciales = New System.Windows.Forms.TextBox()
+        Me.inputNombreComerciales = New System.Windows.Forms.TextBox()
+        Me.inputIdComerciales = New System.Windows.Forms.TextBox()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
-        Me.Label33 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.comboZona2Comerciales = New System.Windows.Forms.ComboBox()
@@ -95,22 +88,32 @@ Partial Class Gestion
         Me.comboZonaComerciales = New System.Windows.Forms.ComboBox()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.transportistasTab = New System.Windows.Forms.TabPage()
-        Me.DataGridView4 = New System.Windows.Forms.DataGridView()
+        Me.dataGridTransportistas = New System.Windows.Forms.DataGridView()
         Me.Label39 = New System.Windows.Forms.Label()
         Me.inputTelefonoTransportista = New System.Windows.Forms.TextBox()
         Me.inputNombreTransportista = New System.Windows.Forms.TextBox()
         Me.inputIdTransportista = New System.Windows.Forms.TextBox()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataSet1 = New Delegacion.DataSet1()
+        Me.inputCorreoComerciales = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.inputDireccionComerciales = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.inputDNIComerciales = New System.Windows.Forms.TextBox()
+        Me.labeldni = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.partnersTab.SuspendLayout()
         CType(Me.dataGridPartners, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.comercialesTab.SuspendLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dataGridComerciales, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.transportistasTab.SuspendLayout()
-        CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dataGridTransportistas, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -128,6 +131,8 @@ Partial Class Gestion
         '
         'articulosTab
         '
+        Me.articulosTab.BackColor = System.Drawing.SystemColors.Control
+        Me.articulosTab.Controls.Add(Me.Label1)
         Me.articulosTab.Controls.Add(Me.btnBorrarArticulos)
         Me.articulosTab.Controls.Add(Me.btnAltaArticulos)
         Me.articulosTab.Controls.Add(Me.btnConsultarArticulos)
@@ -137,17 +142,14 @@ Partial Class Gestion
         Me.articulosTab.Controls.Add(Me.inputPrCostArticulos)
         Me.articulosTab.Controls.Add(Me.inputPrVentArticulos)
         Me.articulosTab.Controls.Add(Me.inputProveedorArticulo)
-        Me.articulosTab.Controls.Add(Me.inputDescripcionArticulos)
-        Me.articulosTab.Controls.Add(Me.inputNombreArticulo)
+        Me.articulosTab.Controls.Add(Me.inputDescripcionArticulo)
         Me.articulosTab.Controls.Add(Me.inputIdArticulo)
         Me.articulosTab.Controls.Add(Me.Label9)
         Me.articulosTab.Controls.Add(Me.Label18)
         Me.articulosTab.Controls.Add(Me.Label12)
         Me.articulosTab.Controls.Add(Me.Label17)
         Me.articulosTab.Controls.Add(Me.Label10)
-        Me.articulosTab.Controls.Add(Me.Label3)
         Me.articulosTab.Controls.Add(Me.Label11)
-        Me.articulosTab.Controls.Add(Me.Label13)
         Me.articulosTab.Controls.Add(Me.Label14)
         Me.articulosTab.Controls.Add(Me.dataGridArticulos)
         Me.articulosTab.Controls.Add(Me.comboCategoriaArticulos)
@@ -157,11 +159,19 @@ Partial Class Gestion
         Me.articulosTab.Size = New System.Drawing.Size(1418, 951)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
-        Me.articulosTab.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(53, 74)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(82, 16)
+        Me.Label1.TabIndex = 51
+        Me.Label1.Text = "Descripción:"
         '
         'btnBorrarArticulos
         '
-        Me.btnBorrarArticulos.Location = New System.Drawing.Point(1184, 66)
+        Me.btnBorrarArticulos.Location = New System.Drawing.Point(1248, 65)
         Me.btnBorrarArticulos.Name = "btnBorrarArticulos"
         Me.btnBorrarArticulos.Size = New System.Drawing.Size(162, 32)
         Me.btnBorrarArticulos.TabIndex = 50
@@ -170,7 +180,7 @@ Partial Class Gestion
         '
         'btnAltaArticulos
         '
-        Me.btnAltaArticulos.Location = New System.Drawing.Point(1184, 108)
+        Me.btnAltaArticulos.Location = New System.Drawing.Point(1248, 107)
         Me.btnAltaArticulos.Name = "btnAltaArticulos"
         Me.btnAltaArticulos.Size = New System.Drawing.Size(162, 32)
         Me.btnAltaArticulos.TabIndex = 49
@@ -179,7 +189,7 @@ Partial Class Gestion
         '
         'btnConsultarArticulos
         '
-        Me.btnConsultarArticulos.Location = New System.Drawing.Point(1184, 25)
+        Me.btnConsultarArticulos.Location = New System.Drawing.Point(1248, 24)
         Me.btnConsultarArticulos.Name = "btnConsultarArticulos"
         Me.btnConsultarArticulos.Size = New System.Drawing.Size(162, 32)
         Me.btnConsultarArticulos.TabIndex = 48
@@ -189,80 +199,71 @@ Partial Class Gestion
         'inputBajoMinimoArticulos
         '
         Me.inputBajoMinimoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputBajoMinimoArticulos.Location = New System.Drawing.Point(699, 118)
+        Me.inputBajoMinimoArticulos.Location = New System.Drawing.Point(900, 117)
         Me.inputBajoMinimoArticulos.Name = "inputBajoMinimoArticulos"
-        Me.inputBajoMinimoArticulos.Size = New System.Drawing.Size(145, 22)
+        Me.inputBajoMinimoArticulos.Size = New System.Drawing.Size(252, 22)
         Me.inputBajoMinimoArticulos.TabIndex = 47
         '
         'inputSobreMaximoArticulos
         '
         Me.inputSobreMaximoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputSobreMaximoArticulos.Location = New System.Drawing.Point(412, 118)
+        Me.inputSobreMaximoArticulos.Location = New System.Drawing.Point(519, 117)
         Me.inputSobreMaximoArticulos.Name = "inputSobreMaximoArticulos"
-        Me.inputSobreMaximoArticulos.Size = New System.Drawing.Size(145, 22)
+        Me.inputSobreMaximoArticulos.Size = New System.Drawing.Size(252, 22)
         Me.inputSobreMaximoArticulos.TabIndex = 45
         '
         'inputExistenciasArticulo
         '
         Me.inputExistenciasArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputExistenciasArticulo.Location = New System.Drawing.Point(412, 70)
+        Me.inputExistenciasArticulo.Location = New System.Drawing.Point(519, 69)
         Me.inputExistenciasArticulo.Name = "inputExistenciasArticulo"
-        Me.inputExistenciasArticulo.Size = New System.Drawing.Size(145, 22)
+        Me.inputExistenciasArticulo.Size = New System.Drawing.Size(252, 22)
         Me.inputExistenciasArticulo.TabIndex = 44
         '
         'inputPrCostArticulos
         '
         Me.inputPrCostArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputPrCostArticulos.Location = New System.Drawing.Point(699, 27)
+        Me.inputPrCostArticulos.Location = New System.Drawing.Point(900, 26)
         Me.inputPrCostArticulos.Name = "inputPrCostArticulos"
-        Me.inputPrCostArticulos.Size = New System.Drawing.Size(145, 22)
+        Me.inputPrCostArticulos.Size = New System.Drawing.Size(252, 22)
         Me.inputPrCostArticulos.TabIndex = 42
         '
         'inputPrVentArticulos
         '
         Me.inputPrVentArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputPrVentArticulos.Location = New System.Drawing.Point(699, 72)
+        Me.inputPrVentArticulos.Location = New System.Drawing.Point(900, 71)
         Me.inputPrVentArticulos.Name = "inputPrVentArticulos"
-        Me.inputPrVentArticulos.Size = New System.Drawing.Size(145, 22)
+        Me.inputPrVentArticulos.Size = New System.Drawing.Size(252, 22)
         Me.inputPrVentArticulos.TabIndex = 40
         '
         'inputProveedorArticulo
         '
         Me.inputProveedorArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputProveedorArticulo.Location = New System.Drawing.Point(142, 116)
+        Me.inputProveedorArticulo.Location = New System.Drawing.Point(145, 116)
         Me.inputProveedorArticulo.Name = "inputProveedorArticulo"
-        Me.inputProveedorArticulo.Size = New System.Drawing.Size(145, 22)
+        Me.inputProveedorArticulo.Size = New System.Drawing.Size(252, 22)
         Me.inputProveedorArticulo.TabIndex = 38
         '
-        'inputDescripcionArticulos
+        'inputDescripcionArticulo
         '
-        Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDescripcionArticulos.Location = New System.Drawing.Point(881, 43)
-        Me.inputDescripcionArticulos.Multiline = True
-        Me.inputDescripcionArticulos.Name = "inputDescripcionArticulos"
-        Me.inputDescripcionArticulos.Size = New System.Drawing.Size(261, 97)
-        Me.inputDescripcionArticulos.TabIndex = 36
-        '
-        'inputNombreArticulo
-        '
-        Me.inputNombreArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputNombreArticulo.Location = New System.Drawing.Point(142, 70)
-        Me.inputNombreArticulo.Name = "inputNombreArticulo"
-        Me.inputNombreArticulo.Size = New System.Drawing.Size(145, 22)
-        Me.inputNombreArticulo.TabIndex = 34
+        Me.inputDescripcionArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDescripcionArticulo.Location = New System.Drawing.Point(145, 70)
+        Me.inputDescripcionArticulo.Name = "inputDescripcionArticulo"
+        Me.inputDescripcionArticulo.Size = New System.Drawing.Size(252, 22)
+        Me.inputDescripcionArticulo.TabIndex = 34
         '
         'inputIdArticulo
         '
         Me.inputIdArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdArticulo.Location = New System.Drawing.Point(142, 25)
+        Me.inputIdArticulo.Location = New System.Drawing.Point(145, 25)
         Me.inputIdArticulo.Name = "inputIdArticulo"
-        Me.inputIdArticulo.Size = New System.Drawing.Size(145, 22)
+        Me.inputIdArticulo.Size = New System.Drawing.Size(252, 22)
         Me.inputIdArticulo.TabIndex = 25
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(612, 121)
+        Me.Label9.Location = New System.Drawing.Point(810, 120)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(81, 16)
         Me.Label9.TabIndex = 46
@@ -271,7 +272,7 @@ Partial Class Gestion
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(331, 72)
+        Me.Label18.Location = New System.Drawing.Point(435, 71)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(75, 16)
         Me.Label18.TabIndex = 43
@@ -280,7 +281,7 @@ Partial Class Gestion
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(606, 30)
+        Me.Label12.Location = New System.Drawing.Point(804, 29)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(87, 16)
         Me.Label12.TabIndex = 41
@@ -289,7 +290,7 @@ Partial Class Gestion
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(608, 74)
+        Me.Label17.Location = New System.Drawing.Point(806, 73)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(85, 16)
         Me.Label17.TabIndex = 39
@@ -304,32 +305,14 @@ Partial Class Gestion
         Me.Label10.TabIndex = 37
         Me.Label10.Text = "Proveedor:"
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(882, 23)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(82, 16)
-        Me.Label3.TabIndex = 35
-        Me.Label3.Text = "Descripción:"
-        '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(312, 120)
+        Me.Label11.Location = New System.Drawing.Point(416, 119)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(94, 16)
         Me.Label11.TabIndex = 31
         Me.Label11.Text = "Sobre Maximo"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(77, 74)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(59, 16)
-        Me.Label13.TabIndex = 27
-        Me.Label13.Text = "Nombre:"
         '
         'Label14
         '
@@ -353,15 +336,15 @@ Partial Class Gestion
         'comboCategoriaArticulos
         '
         Me.comboCategoriaArticulos.FormattingEnabled = True
-        Me.comboCategoriaArticulos.Location = New System.Drawing.Point(412, 24)
+        Me.comboCategoriaArticulos.Location = New System.Drawing.Point(519, 23)
         Me.comboCategoriaArticulos.Name = "comboCategoriaArticulos"
-        Me.comboCategoriaArticulos.Size = New System.Drawing.Size(145, 24)
+        Me.comboCategoriaArticulos.Size = New System.Drawing.Size(252, 24)
         Me.comboCategoriaArticulos.TabIndex = 18
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(331, 26)
+        Me.Label16.Location = New System.Drawing.Point(435, 25)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(69, 16)
         Me.Label16.TabIndex = 17
@@ -369,7 +352,10 @@ Partial Class Gestion
         '
         'partnersTab
         '
-        Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartners)
+        Me.partnersTab.BackColor = System.Drawing.SystemColors.Control
+        Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartnersDesde)
+        Me.partnersTab.Controls.Add(Me.Label3)
+        Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartnersHasta)
         Me.partnersTab.Controls.Add(Me.btnBorrarPartners)
         Me.partnersTab.Controls.Add(Me.btnAltaPartners)
         Me.partnersTab.Controls.Add(Me.btnConsultarPartners)
@@ -395,20 +381,39 @@ Partial Class Gestion
         Me.partnersTab.Size = New System.Drawing.Size(1418, 951)
         Me.partnersTab.TabIndex = 1
         Me.partnersTab.Text = "Partners"
-        Me.partnersTab.UseVisualStyleBackColor = True
         '
-        'inputFechaRegistroPartners
+        'inputFechaRegistroPartnersDesde
         '
-        Me.inputFechaRegistroPartners.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.inputFechaRegistroPartners.Location = New System.Drawing.Point(429, 117)
-        Me.inputFechaRegistroPartners.Name = "inputFechaRegistroPartners"
-        Me.inputFechaRegistroPartners.Size = New System.Drawing.Size(145, 22)
-        Me.inputFechaRegistroPartners.TabIndex = 75
-        Me.inputFechaRegistroPartners.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
+        Me.inputFechaRegistroPartnersDesde.CustomFormat = ""
+        Me.inputFechaRegistroPartnersDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.inputFechaRegistroPartnersDesde.Location = New System.Drawing.Point(535, 68)
+        Me.inputFechaRegistroPartnersDesde.Name = "inputFechaRegistroPartnersDesde"
+        Me.inputFechaRegistroPartnersDesde.Size = New System.Drawing.Size(104, 22)
+        Me.inputFechaRegistroPartnersDesde.TabIndex = 77
+        Me.inputFechaRegistroPartnersDesde.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(430, 72)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(99, 16)
+        Me.Label3.TabIndex = 76
+        Me.Label3.Text = "Fecha Registro"
+        '
+        'inputFechaRegistroPartnersHasta
+        '
+        Me.inputFechaRegistroPartnersHasta.CustomFormat = ""
+        Me.inputFechaRegistroPartnersHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.inputFechaRegistroPartnersHasta.Location = New System.Drawing.Point(535, 117)
+        Me.inputFechaRegistroPartnersHasta.Name = "inputFechaRegistroPartnersHasta"
+        Me.inputFechaRegistroPartnersHasta.Size = New System.Drawing.Size(104, 22)
+        Me.inputFechaRegistroPartnersHasta.TabIndex = 75
+        Me.inputFechaRegistroPartnersHasta.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
         '
         'btnBorrarPartners
         '
-        Me.btnBorrarPartners.Location = New System.Drawing.Point(1179, 66)
+        Me.btnBorrarPartners.Location = New System.Drawing.Point(1248, 67)
         Me.btnBorrarPartners.Name = "btnBorrarPartners"
         Me.btnBorrarPartners.Size = New System.Drawing.Size(162, 32)
         Me.btnBorrarPartners.TabIndex = 74
@@ -417,7 +422,7 @@ Partial Class Gestion
         '
         'btnAltaPartners
         '
-        Me.btnAltaPartners.Location = New System.Drawing.Point(1179, 107)
+        Me.btnAltaPartners.Location = New System.Drawing.Point(1248, 108)
         Me.btnAltaPartners.Name = "btnAltaPartners"
         Me.btnAltaPartners.Size = New System.Drawing.Size(162, 32)
         Me.btnAltaPartners.TabIndex = 73
@@ -426,7 +431,7 @@ Partial Class Gestion
         '
         'btnConsultarPartners
         '
-        Me.btnConsultarPartners.Location = New System.Drawing.Point(1179, 24)
+        Me.btnConsultarPartners.Location = New System.Drawing.Point(1248, 25)
         Me.btnConsultarPartners.Name = "btnConsultarPartners"
         Me.btnConsultarPartners.Size = New System.Drawing.Size(162, 32)
         Me.btnConsultarPartners.TabIndex = 72
@@ -438,7 +443,7 @@ Partial Class Gestion
         Me.inputCorreoPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputCorreoPartners.Location = New System.Drawing.Point(142, 116)
         Me.inputCorreoPartners.Name = "inputCorreoPartners"
-        Me.inputCorreoPartners.Size = New System.Drawing.Size(145, 22)
+        Me.inputCorreoPartners.Size = New System.Drawing.Size(254, 22)
         Me.inputCorreoPartners.TabIndex = 71
         '
         'inputNombrePartners
@@ -446,7 +451,7 @@ Partial Class Gestion
         Me.inputNombrePartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputNombrePartners.Location = New System.Drawing.Point(142, 70)
         Me.inputNombrePartners.Name = "inputNombrePartners"
-        Me.inputNombrePartners.Size = New System.Drawing.Size(145, 22)
+        Me.inputNombrePartners.Size = New System.Drawing.Size(254, 22)
         Me.inputNombrePartners.TabIndex = 69
         '
         'inputIdPartner
@@ -454,7 +459,7 @@ Partial Class Gestion
         Me.inputIdPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputIdPartner.Location = New System.Drawing.Point(142, 25)
         Me.inputIdPartner.Name = "inputIdPartner"
-        Me.inputIdPartner.Size = New System.Drawing.Size(145, 22)
+        Me.inputIdPartner.Size = New System.Drawing.Size(254, 22)
         Me.inputIdPartner.TabIndex = 66
         '
         'Label2
@@ -488,39 +493,39 @@ Partial Class Gestion
         'comboZonaPartners
         '
         Me.comboZonaPartners.FormattingEnabled = True
-        Me.comboZonaPartners.Location = New System.Drawing.Point(429, 23)
+        Me.comboZonaPartners.Location = New System.Drawing.Point(535, 23)
         Me.comboZonaPartners.Name = "comboZonaPartners"
-        Me.comboZonaPartners.Size = New System.Drawing.Size(145, 24)
+        Me.comboZonaPartners.Size = New System.Drawing.Size(254, 24)
         Me.comboZonaPartners.TabIndex = 64
         '
         'inputTelefonoPartners
         '
         Me.inputTelefonoPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputTelefonoPartners.Location = New System.Drawing.Point(429, 71)
+        Me.inputTelefonoPartners.Location = New System.Drawing.Point(894, 120)
         Me.inputTelefonoPartners.Name = "inputTelefonoPartners"
-        Me.inputTelefonoPartners.Size = New System.Drawing.Size(145, 22)
+        Me.inputTelefonoPartners.Size = New System.Drawing.Size(254, 22)
         Me.inputTelefonoPartners.TabIndex = 56
         '
         'inputDireccionPartners
         '
         Me.inputDireccionPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDireccionPartners.Location = New System.Drawing.Point(688, 74)
+        Me.inputDireccionPartners.Location = New System.Drawing.Point(892, 73)
         Me.inputDireccionPartners.Name = "inputDireccionPartners"
-        Me.inputDireccionPartners.Size = New System.Drawing.Size(272, 22)
+        Me.inputDireccionPartners.Size = New System.Drawing.Size(256, 22)
         Me.inputDireccionPartners.TabIndex = 54
         '
         'inputCifPartners
         '
         Me.inputCifPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputCifPartners.Location = New System.Drawing.Point(688, 26)
+        Me.inputCifPartners.Location = New System.Drawing.Point(892, 25)
         Me.inputCifPartners.Name = "inputCifPartners"
-        Me.inputCifPartners.Size = New System.Drawing.Size(134, 22)
+        Me.inputCifPartners.Size = New System.Drawing.Size(256, 22)
         Me.inputCifPartners.TabIndex = 52
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(324, 119)
+        Me.Label20.Location = New System.Drawing.Point(430, 119)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(99, 16)
         Me.Label20.TabIndex = 59
@@ -538,7 +543,7 @@ Partial Class Gestion
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(359, 73)
+        Me.Label22.Location = New System.Drawing.Point(824, 122)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(61, 16)
         Me.Label22.TabIndex = 55
@@ -547,7 +552,7 @@ Partial Class Gestion
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(617, 77)
+        Me.Label23.Location = New System.Drawing.Point(821, 76)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(64, 16)
         Me.Label23.TabIndex = 53
@@ -556,7 +561,7 @@ Partial Class Gestion
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(651, 28)
+        Me.Label25.Location = New System.Drawing.Point(855, 27)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(30, 16)
         Me.Label25.TabIndex = 51
@@ -565,7 +570,7 @@ Partial Class Gestion
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(358, 27)
+        Me.Label27.Location = New System.Drawing.Point(464, 27)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(57, 16)
         Me.Label27.TabIndex = 35
@@ -573,24 +578,23 @@ Partial Class Gestion
         '
         'comercialesTab
         '
-        Me.comercialesTab.Controls.Add(Me.Button3)
-        Me.comercialesTab.Controls.Add(Me.DataGridView3)
-        Me.comercialesTab.Controls.Add(Me.inputBajoMinimoComercial)
-        Me.comercialesTab.Controls.Add(Me.inputSobreMaximoComercial)
-        Me.comercialesTab.Controls.Add(Me.inputExistenciasComercial)
-        Me.comercialesTab.Controls.Add(Me.inputPrCostComercial)
-        Me.comercialesTab.Controls.Add(Me.inputPrVentComercial)
-        Me.comercialesTab.Controls.Add(Me.inputTelefonoComercial)
-        Me.comercialesTab.Controls.Add(Me.inputApellidosComercial)
-        Me.comercialesTab.Controls.Add(Me.inputNombreComercial)
-        Me.comercialesTab.Controls.Add(Me.inputIdComercial)
-        Me.comercialesTab.Controls.Add(Me.Label19)
-        Me.comercialesTab.Controls.Add(Me.Label26)
-        Me.comercialesTab.Controls.Add(Me.Label29)
-        Me.comercialesTab.Controls.Add(Me.Label30)
+        Me.comercialesTab.BackColor = System.Drawing.SystemColors.Control
+        Me.comercialesTab.Controls.Add(Me.inputDNIComerciales)
+        Me.comercialesTab.Controls.Add(Me.labeldni)
+        Me.comercialesTab.Controls.Add(Me.inputDireccionComerciales)
+        Me.comercialesTab.Controls.Add(Me.Label6)
+        Me.comercialesTab.Controls.Add(Me.inputCorreoComerciales)
+        Me.comercialesTab.Controls.Add(Me.Label5)
+        Me.comercialesTab.Controls.Add(Me.btnAltaComerciales)
+        Me.comercialesTab.Controls.Add(Me.btnBorrarComerciales)
+        Me.comercialesTab.Controls.Add(Me.btnConsultarComerciales)
+        Me.comercialesTab.Controls.Add(Me.dataGridComerciales)
+        Me.comercialesTab.Controls.Add(Me.inputTelefonoComerciales)
+        Me.comercialesTab.Controls.Add(Me.inputApellidosComerciales)
+        Me.comercialesTab.Controls.Add(Me.inputNombreComerciales)
+        Me.comercialesTab.Controls.Add(Me.inputIdComerciales)
         Me.comercialesTab.Controls.Add(Me.Label31)
         Me.comercialesTab.Controls.Add(Me.Label32)
-        Me.comercialesTab.Controls.Add(Me.Label33)
         Me.comercialesTab.Controls.Add(Me.Label34)
         Me.comercialesTab.Controls.Add(Me.Label35)
         Me.comercialesTab.Controls.Add(Me.comboZona2Comerciales)
@@ -603,139 +607,80 @@ Partial Class Gestion
         Me.comercialesTab.Size = New System.Drawing.Size(1418, 951)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
-        Me.comercialesTab.UseVisualStyleBackColor = True
         '
-        'Button3
+        'btnAltaComerciales
         '
-        Me.Button3.Location = New System.Drawing.Point(1071, 65)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 72
-        Me.Button3.Text = "+"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.btnAltaComerciales.Location = New System.Drawing.Point(1248, 108)
+        Me.btnAltaComerciales.Name = "btnAltaComerciales"
+        Me.btnAltaComerciales.Size = New System.Drawing.Size(162, 31)
+        Me.btnAltaComerciales.TabIndex = 74
+        Me.btnAltaComerciales.Text = "Alta"
+        Me.btnAltaComerciales.UseVisualStyleBackColor = True
         '
-        'DataGridView3
+        'btnBorrarComerciales
         '
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Location = New System.Drawing.Point(56, 176)
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.RowHeadersWidth = 51
-        Me.DataGridView3.RowTemplate.Height = 24
-        Me.DataGridView3.Size = New System.Drawing.Size(1294, 590)
-        Me.DataGridView3.TabIndex = 71
+        Me.btnBorrarComerciales.Location = New System.Drawing.Point(1248, 67)
+        Me.btnBorrarComerciales.Name = "btnBorrarComerciales"
+        Me.btnBorrarComerciales.Size = New System.Drawing.Size(162, 31)
+        Me.btnBorrarComerciales.TabIndex = 73
+        Me.btnBorrarComerciales.Text = "Borrar"
+        Me.btnBorrarComerciales.UseVisualStyleBackColor = True
         '
-        'inputBajoMinimoComercial
+        'btnConsultarComerciales
         '
-        Me.inputBajoMinimoComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputBajoMinimoComercial.Location = New System.Drawing.Point(785, 116)
-        Me.inputBajoMinimoComercial.Name = "inputBajoMinimoComercial"
-        Me.inputBajoMinimoComercial.Size = New System.Drawing.Size(83, 22)
-        Me.inputBajoMinimoComercial.TabIndex = 70
+        Me.btnConsultarComerciales.Location = New System.Drawing.Point(1248, 25)
+        Me.btnConsultarComerciales.Name = "btnConsultarComerciales"
+        Me.btnConsultarComerciales.Size = New System.Drawing.Size(162, 31)
+        Me.btnConsultarComerciales.TabIndex = 72
+        Me.btnConsultarComerciales.Text = "Consultar"
+        Me.btnConsultarComerciales.UseVisualStyleBackColor = True
         '
-        'inputSobreMaximoComercial
+        'dataGridComerciales
         '
-        Me.inputSobreMaximoComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputSobreMaximoComercial.Location = New System.Drawing.Point(578, 116)
-        Me.inputSobreMaximoComercial.Name = "inputSobreMaximoComercial"
-        Me.inputSobreMaximoComercial.Size = New System.Drawing.Size(83, 22)
-        Me.inputSobreMaximoComercial.TabIndex = 68
+        Me.dataGridComerciales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataGridComerciales.Location = New System.Drawing.Point(56, 176)
+        Me.dataGridComerciales.Name = "dataGridComerciales"
+        Me.dataGridComerciales.RowHeadersWidth = 51
+        Me.dataGridComerciales.RowTemplate.Height = 24
+        Me.dataGridComerciales.Size = New System.Drawing.Size(1294, 590)
+        Me.dataGridComerciales.TabIndex = 71
         '
-        'inputExistenciasComercial
+        'inputTelefonoComerciales
         '
-        Me.inputExistenciasComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputExistenciasComercial.Location = New System.Drawing.Point(341, 116)
-        Me.inputExistenciasComercial.Name = "inputExistenciasComercial"
-        Me.inputExistenciasComercial.Size = New System.Drawing.Size(83, 22)
-        Me.inputExistenciasComercial.TabIndex = 67
+        Me.inputTelefonoComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputTelefonoComerciales.Location = New System.Drawing.Point(507, 120)
+        Me.inputTelefonoComerciales.Name = "inputTelefonoComerciales"
+        Me.inputTelefonoComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputTelefonoComerciales.TabIndex = 61
         '
-        'inputPrCostComercial
+        'inputApellidosComerciales
         '
-        Me.inputPrCostComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputPrCostComercial.Location = New System.Drawing.Point(148, 114)
-        Me.inputPrCostComercial.Name = "inputPrCostComercial"
-        Me.inputPrCostComercial.Size = New System.Drawing.Size(83, 22)
-        Me.inputPrCostComercial.TabIndex = 65
+        Me.inputApellidosComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputApellidosComerciales.Location = New System.Drawing.Point(148, 118)
+        Me.inputApellidosComerciales.Name = "inputApellidosComerciales"
+        Me.inputApellidosComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputApellidosComerciales.TabIndex = 59
         '
-        'inputPrVentComercial
+        'inputNombreComerciales
         '
-        Me.inputPrVentComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputPrVentComercial.Location = New System.Drawing.Point(785, 74)
-        Me.inputPrVentComercial.Name = "inputPrVentComercial"
-        Me.inputPrVentComercial.Size = New System.Drawing.Size(83, 22)
-        Me.inputPrVentComercial.TabIndex = 63
+        Me.inputNombreComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputNombreComerciales.Location = New System.Drawing.Point(148, 72)
+        Me.inputNombreComerciales.Name = "inputNombreComerciales"
+        Me.inputNombreComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputNombreComerciales.TabIndex = 57
         '
-        'inputTelefonoComercial
+        'inputIdComerciales
         '
-        Me.inputTelefonoComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputTelefonoComercial.Location = New System.Drawing.Point(578, 72)
-        Me.inputTelefonoComercial.Name = "inputTelefonoComercial"
-        Me.inputTelefonoComercial.Size = New System.Drawing.Size(83, 22)
-        Me.inputTelefonoComercial.TabIndex = 61
-        '
-        'inputApellidosComercial
-        '
-        Me.inputApellidosComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputApellidosComercial.Location = New System.Drawing.Point(341, 72)
-        Me.inputApellidosComercial.Name = "inputApellidosComercial"
-        Me.inputApellidosComercial.Size = New System.Drawing.Size(83, 22)
-        Me.inputApellidosComercial.TabIndex = 59
-        '
-        'inputNombreComercial
-        '
-        Me.inputNombreComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputNombreComercial.Location = New System.Drawing.Point(148, 72)
-        Me.inputNombreComercial.Name = "inputNombreComercial"
-        Me.inputNombreComercial.Size = New System.Drawing.Size(83, 22)
-        Me.inputNombreComercial.TabIndex = 57
-        '
-        'inputIdComercial
-        '
-        Me.inputIdComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdComercial.Location = New System.Drawing.Point(148, 27)
-        Me.inputIdComercial.Name = "inputIdComercial"
-        Me.inputIdComercial.Size = New System.Drawing.Size(79, 22)
-        Me.inputIdComercial.TabIndex = 53
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(672, 118)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(81, 16)
-        Me.Label19.TabIndex = 69
-        Me.Label19.Text = "Bajo Minimo"
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(237, 118)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(75, 16)
-        Me.Label26.TabIndex = 66
-        Me.Label26.Text = "Existencias"
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(55, 115)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(47, 16)
-        Me.Label29.TabIndex = 64
-        Me.Label29.Text = "PrCost"
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(672, 74)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(50, 16)
-        Me.Label30.TabIndex = 62
-        Me.Label30.Text = "PrVent:"
+        Me.inputIdComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputIdComerciales.Location = New System.Drawing.Point(148, 27)
+        Me.inputIdComerciales.Name = "inputIdComerciales"
+        Me.inputIdComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputIdComerciales.TabIndex = 53
         '
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(462, 74)
+        Me.Label31.Location = New System.Drawing.Point(440, 124)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(61, 16)
         Me.Label31.TabIndex = 60
@@ -744,20 +689,11 @@ Partial Class Gestion
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(237, 74)
+        Me.Label32.Location = New System.Drawing.Point(44, 120)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(67, 16)
         Me.Label32.TabIndex = 58
         Me.Label32.Text = "Apellidos:"
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(462, 118)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(94, 16)
-        Me.Label33.TabIndex = 56
-        Me.Label33.Text = "Sobre Maximo"
         '
         'Label34
         '
@@ -780,15 +716,15 @@ Partial Class Gestion
         'comboZona2Comerciales
         '
         Me.comboZona2Comerciales.FormattingEnabled = True
-        Me.comboZona2Comerciales.Location = New System.Drawing.Point(578, 26)
+        Me.comboZona2Comerciales.Location = New System.Drawing.Point(507, 72)
         Me.comboZona2Comerciales.Name = "comboZona2Comerciales"
-        Me.comboZona2Comerciales.Size = New System.Drawing.Size(116, 24)
+        Me.comboZona2Comerciales.Size = New System.Drawing.Size(278, 24)
         Me.comboZona2Comerciales.TabIndex = 52
         '
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(462, 29)
+        Me.Label36.Location = New System.Drawing.Point(454, 78)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(48, 16)
         Me.Label36.TabIndex = 51
@@ -797,15 +733,15 @@ Partial Class Gestion
         'comboZonaComerciales
         '
         Me.comboZonaComerciales.FormattingEnabled = True
-        Me.comboZonaComerciales.Location = New System.Drawing.Point(341, 25)
+        Me.comboZonaComerciales.Location = New System.Drawing.Point(507, 30)
         Me.comboZonaComerciales.Name = "comboZonaComerciales"
-        Me.comboZonaComerciales.Size = New System.Drawing.Size(100, 24)
+        Me.comboZonaComerciales.Size = New System.Drawing.Size(278, 24)
         Me.comboZonaComerciales.TabIndex = 49
         '
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(237, 30)
+        Me.Label37.Location = New System.Drawing.Point(461, 33)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(41, 16)
         Me.Label37.TabIndex = 48
@@ -813,7 +749,8 @@ Partial Class Gestion
         '
         'transportistasTab
         '
-        Me.transportistasTab.Controls.Add(Me.DataGridView4)
+        Me.transportistasTab.BackColor = System.Drawing.SystemColors.Control
+        Me.transportistasTab.Controls.Add(Me.dataGridTransportistas)
         Me.transportistasTab.Controls.Add(Me.Label39)
         Me.transportistasTab.Controls.Add(Me.inputTelefonoTransportista)
         Me.transportistasTab.Controls.Add(Me.inputNombreTransportista)
@@ -825,17 +762,16 @@ Partial Class Gestion
         Me.transportistasTab.Size = New System.Drawing.Size(1418, 951)
         Me.transportistasTab.TabIndex = 6
         Me.transportistasTab.Text = "Transportistas"
-        Me.transportistasTab.UseVisualStyleBackColor = True
         '
-        'DataGridView4
+        'dataGridTransportistas
         '
-        Me.DataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView4.Location = New System.Drawing.Point(56, 176)
-        Me.DataGridView4.Name = "DataGridView4"
-        Me.DataGridView4.RowHeadersWidth = 51
-        Me.DataGridView4.RowTemplate.Height = 24
-        Me.DataGridView4.Size = New System.Drawing.Size(1294, 590)
-        Me.DataGridView4.TabIndex = 82
+        Me.dataGridTransportistas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataGridTransportistas.Location = New System.Drawing.Point(56, 176)
+        Me.dataGridTransportistas.Name = "dataGridTransportistas"
+        Me.dataGridTransportistas.RowHeadersWidth = 51
+        Me.dataGridTransportistas.RowTemplate.Height = 24
+        Me.dataGridTransportistas.Size = New System.Drawing.Size(1294, 590)
+        Me.dataGridTransportistas.TabIndex = 82
         '
         'Label39
         '
@@ -888,6 +824,67 @@ Partial Class Gestion
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
         '
+        'BindingSource1
+        '
+        Me.BindingSource1.DataSource = Me.DataSet1
+        Me.BindingSource1.Position = 0
+        '
+        'DataSet1
+        '
+        Me.DataSet1.DataSetName = "DataSet1"
+        Me.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'inputCorreoComerciales
+        '
+        Me.inputCorreoComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputCorreoComerciales.Location = New System.Drawing.Point(898, 31)
+        Me.inputCorreoComerciales.Name = "inputCorreoComerciales"
+        Me.inputCorreoComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputCorreoComerciales.TabIndex = 76
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(841, 33)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(51, 16)
+        Me.Label5.TabIndex = 75
+        Me.Label5.Text = "Correo:"
+        '
+        'inputDireccionComerciales
+        '
+        Me.inputDireccionComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDireccionComerciales.Location = New System.Drawing.Point(898, 75)
+        Me.inputDireccionComerciales.Name = "inputDireccionComerciales"
+        Me.inputDireccionComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputDireccionComerciales.TabIndex = 78
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(825, 77)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(67, 16)
+        Me.Label6.TabIndex = 77
+        Me.Label6.Text = "Direccion:"
+        '
+        'inputDNIComerciales
+        '
+        Me.inputDNIComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDNIComerciales.Location = New System.Drawing.Point(898, 122)
+        Me.inputDNIComerciales.Name = "inputDNIComerciales"
+        Me.inputDNIComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputDNIComerciales.TabIndex = 80
+        '
+        'labeldni
+        '
+        Me.labeldni.AutoSize = True
+        Me.labeldni.Location = New System.Drawing.Point(856, 124)
+        Me.labeldni.Name = "labeldni"
+        Me.labeldni.Size = New System.Drawing.Size(33, 16)
+        Me.labeldni.TabIndex = 79
+        Me.labeldni.Text = "DNI:"
+        '
         'Gestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -907,10 +904,12 @@ Partial Class Gestion
         CType(Me.dataGridPartners, System.ComponentModel.ISupportInitialize).EndInit()
         Me.comercialesTab.ResumeLayout(False)
         Me.comercialesTab.PerformLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dataGridComerciales, System.ComponentModel.ISupportInitialize).EndInit()
         Me.transportistasTab.ResumeLayout(False)
         Me.transportistasTab.PerformLayout()
-        CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dataGridTransportistas, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -923,17 +922,14 @@ Partial Class Gestion
     Friend WithEvents inputPrCostArticulos As TextBox
     Friend WithEvents inputPrVentArticulos As TextBox
     Friend WithEvents inputProveedorArticulo As TextBox
-    Friend WithEvents inputDescripcionArticulos As TextBox
-    Friend WithEvents inputNombreArticulo As TextBox
+    Friend WithEvents inputDescripcionArticulo As TextBox
     Friend WithEvents inputIdArticulo As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label18 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents Label3 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents dataGridArticulos As DataGridView
     Friend WithEvents comboCategoriaArticulos As ComboBox
@@ -951,23 +947,13 @@ Partial Class Gestion
     Friend WithEvents Label25 As Label
     Friend WithEvents Label27 As Label
     Friend WithEvents comercialesTab As TabPage
-    Friend WithEvents DataGridView3 As DataGridView
-    Friend WithEvents inputBajoMinimoComercial As TextBox
-    Friend WithEvents inputSobreMaximoComercial As TextBox
-    Friend WithEvents inputExistenciasComercial As TextBox
-    Friend WithEvents inputPrCostComercial As TextBox
-    Friend WithEvents inputPrVentComercial As TextBox
-    Friend WithEvents inputTelefonoComercial As TextBox
-    Friend WithEvents inputApellidosComercial As TextBox
-    Friend WithEvents inputNombreComercial As TextBox
-    Friend WithEvents inputIdComercial As TextBox
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label26 As Label
-    Friend WithEvents Label29 As Label
-    Friend WithEvents Label30 As Label
+    Friend WithEvents dataGridComerciales As DataGridView
+    Friend WithEvents inputTelefonoComerciales As TextBox
+    Friend WithEvents inputApellidosComerciales As TextBox
+    Friend WithEvents inputNombreComerciales As TextBox
+    Friend WithEvents inputIdComerciales As TextBox
     Friend WithEvents Label31 As Label
     Friend WithEvents Label32 As Label
-    Friend WithEvents Label33 As Label
     Friend WithEvents Label34 As Label
     Friend WithEvents Label35 As Label
     Friend WithEvents comboZona2Comerciales As ComboBox
@@ -975,7 +961,7 @@ Partial Class Gestion
     Friend WithEvents comboZonaComerciales As ComboBox
     Friend WithEvents Label37 As Label
     Friend WithEvents transportistasTab As TabPage
-    Friend WithEvents DataGridView4 As DataGridView
+    Friend WithEvents dataGridTransportistas As DataGridView
     Friend WithEvents Label39 As Label
     Friend WithEvents inputTelefonoTransportista As TextBox
     Friend WithEvents inputNombreTransportista As TextBox
@@ -983,7 +969,7 @@ Partial Class Gestion
     Friend WithEvents Label38 As Label
     Friend WithEvents Label46 As Label
     Friend WithEvents btnConsultarArticulos As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents btnConsultarComerciales As Button
     Friend WithEvents btnBorrarArticulos As Button
     Friend WithEvents btnAltaArticulos As Button
     Friend WithEvents inputCorreoPartners As TextBox
@@ -994,5 +980,18 @@ Partial Class Gestion
     Friend WithEvents btnConsultarPartners As Button
     Friend WithEvents btnBorrarPartners As Button
     Friend WithEvents btnAltaPartners As Button
-    Friend WithEvents inputFechaRegistroPartners As DateTimePicker
+    Friend WithEvents inputFechaRegistroPartnersHasta As DateTimePicker
+    Friend WithEvents Label1 As Label
+    Friend WithEvents inputFechaRegistroPartnersDesde As DateTimePicker
+    Friend WithEvents Label3 As Label
+    Friend WithEvents BindingSource1 As BindingSource
+    Friend WithEvents DataSet1 As DataSet1
+    Friend WithEvents btnAltaComerciales As Button
+    Friend WithEvents btnBorrarComerciales As Button
+    Friend WithEvents inputDNIComerciales As TextBox
+    Friend WithEvents labeldni As Label
+    Friend WithEvents inputDireccionComerciales As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents inputCorreoComerciales As TextBox
+    Friend WithEvents Label5 As Label
 End Class

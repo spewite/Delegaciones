@@ -8,49 +8,211 @@ Public Class Gestion
     Dim dataTable As DataTable
 
     Private Sub Gestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.WindowState = FormWindowState.Maximized
+        Ajustar_Anchuras_DataGrids()
+
         Me.ControlBox = False
+
+        ' ⬇️ Combos de articulos ⬇️ ' 
+        ActualizarComboBoxCategoria()
+
+        ' ⬇️ Combos de partners ⬇️ ' 
+        ActualizarComboBoxZonas()
+
     End Sub
+
+    Private Sub Gestion_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        Ajustar_Anchuras_DataGrids()
+    End Sub
+
+    Private Sub Ajustar_Anchuras_DataGrids()
+        dataGridArticulos.Width = Me.ClientSize.Width - 100
+        dataGridPartners.Width = Me.ClientSize.Width - 100
+        dataGridComerciales.Width = Me.ClientSize.Width - 100
+        dataGridTransportistas.Width = Me.ClientSize.Width - 100
+    End Sub
+
+    '---------------------------------------------------------'
+    '                                                         '
+    '                      ARTICULOS                          '
+    '                                                         '
+    '---------------------------------------------------------'
 
     Private Sub btnConsultarArticulos_Click(sender As Object, e As EventArgs) Handles btnConsultarArticulos.Click
         ' Construir la sentencia SQL base
-        Dim sqlQuery As String = "SELECT * FROM ARTICULOS WHERE 1 = 1"
+        Dim consulta As String = "SELECT * FROM ARTICULOS WHERE 1 = 1"
 
         ' Agregar condiciones según los valores ingresados en los controles
-        If Not String.IsNullOrEmpty(inputIdArticulo.Text) Then
-            sqlQuery &= $" AND IdArticulo = {inputIdArticulo.Text}"
+        If Not String.IsNullOrEmpty(inputIdArticulo.Text.Trim) Then
+            consulta &= $" AND IdArticulo = {inputIdArticulo.Text.Trim}"
         End If
 
-        If Not String.IsNullOrEmpty(inputNombreArticulo.Text) Then
-            sqlQuery &= $" AND UPPER(NombreArticulo) LIKE %{inputNombreArticulo.Text.ToUpper}%"
+        If Not String.IsNullOrEmpty(inputDescripcionArticulo.Text.Trim) Then
+            consulta &= $" AND UPPER(Descripcion) LIKE '%{inputDescripcionArticulo.Text.ToUpper.Trim}%'"
         End If
 
-        If Not String.IsNullOrEmpty(inputProveedorArticulo.Text) Then
-            sqlQuery &= " AND ProveedorArticulo = @ProveedorArticulo"
+        If Not String.IsNullOrEmpty(inputProveedorArticulo.Text.Trim) Then
+            consulta &= $" AND UPPER(Proveedor) LIKE '%{inputProveedorArticulo.Text.ToUpper}%'"
         End If
 
-        If Not String.IsNullOrEmpty(inputExistenciasArticulo.Text) Then
-            sqlQuery &= " AND ExistenciasArticulo = @ExistenciasArticulo"
+        If Not String.IsNullOrEmpty(inputExistenciasArticulo.Text.Trim) Then
+            consulta &= $" AND Existencias = {inputExistenciasArticulo.Text.Trim}"
         End If
 
-        If Not String.IsNullOrEmpty(inputPrCostArticulos.Text) Then
-            sqlQuery &= " AND PrCostArticulos = @PrCostArticulos"
+        If Not String.IsNullOrEmpty(inputPrCostArticulos.Text.Trim) Then
+            consulta &= $" AND PrCost = {inputPrCostArticulos.Text.Trim}"
         End If
 
-        If Not String.IsNullOrEmpty(inputPrVentArticulos.Text) Then
-            sqlQuery &= " AND PrVentArticulos = @PrVentArticulos"
+        If Not String.IsNullOrEmpty(inputPrVentArticulos.Text.Trim) Then
+            consulta &= $" AND PrVent = {inputPrCostArticulos.Text.Trim}"
         End If
 
-        If Not String.IsNullOrEmpty(inputSobreMaximoArticulos.Text) Then
-            sqlQuery &= " AND SobreMaximoArticulos = @SobreMaximoArticulos"
+        If Not String.IsNullOrEmpty(inputSobreMaximoArticulos.Text.Trim) Then
+            consulta &= $" AND SobreMaximo = {inputSobreMaximoArticulos.Text.Trim}"
         End If
 
-        If Not String.IsNullOrEmpty(inputBajoMinimoArticulos.Text) Then
-            sqlQuery &= " AND BajoMinimoArticulos = @BajoMinimoArticulos"
+        If Not String.IsNullOrEmpty(inputBajoMinimoArticulos.Text.Trim) Then
+            consulta &= $" AND BajoMinimo = {inputBajoMinimoArticulos.Text.Trim}"
         End If
 
-        dataTable = ConsultaBBDD(connectionString, sqlQuery)
+        If Not String.IsNullOrEmpty(comboCategoriaArticulos.Text.Trim) Then
+            consulta &= $" AND Categoria = '{comboCategoriaArticulos.Text.Trim}'"
+        End If
+
+        dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridArticulos.DataSource = dataTable
 
     End Sub
+
+    Sub ActualizarComboBoxCategoria()
+        comboCategoriaArticulos.Items.Clear()
+        Dim consulta As String = $"SELECT DISTINCT CATEGORIA FROM ARTICULOS"
+        dataTable = ConsultaBBDD(connectionString, consulta)
+        For Each fila As DataRow In dataTable.Rows
+            comboCategoriaArticulos.Items.Add(fila("CATEGORIA"))
+        Next
+    End Sub
+
+
+    '---------------------------------------------------------'
+    '                                                         '
+    '                      PARTNERS                           '
+    '                                                         '
+    '---------------------------------------------------------'
+
+    Private Sub btnConsultarPartners_Click(sender As Object, e As EventArgs) Handles btnConsultarPartners.Click
+        ' Construir la sentencia SQL base
+        Dim consulta As String = "
+        SELECT p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro
+        FROM PARTNERS p
+        INNER JOIN ZONAS z ON z.IdZona = p.IdZona
+        WHERE 1 = 1"
+
+        ' Agregar condiciones según los valores ingresados en los controles
+        If Not String.IsNullOrEmpty(inputIdPartner.Text.Trim) Then
+            consulta &= $" AND IdPartner = {inputIdPartner.Text.Trim}"
+        End If
+
+        If Not String.IsNullOrEmpty(comboZonaPartners.Text.Trim) Then
+            consulta &= $" AND UPPER(Zona) LIKE '%{comboZonaPartners.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputCifPartners.Text.Trim) Then
+            consulta &= $" AND UPPER(CIF) LIKE '%{inputCifPartners.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputNombrePartners.Text.Trim) Then
+            consulta &= $" AND UPPER(Nombre) LIKE '%{inputNombrePartners.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputTelefonoPartners.Text.Trim) Then
+            consulta &= $" AND Telefono = {inputTelefonoPartners.Text.Trim}"
+        End If
+
+        If Not String.IsNullOrEmpty(inputDireccionPartners.Text.Trim) Then
+            consulta &= $" AND UPPER(Direccion) like '%{inputDireccionPartners.Text.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputCorreoPartners.Text.Trim) Then
+            consulta &= $" AND UPPER(Correo) LIKE '%{inputCorreoPartners.Text.Trim}%'"
+        End If
+
+        ' No hay validacion si los inputs de fechas estan llenos porque no se pueden vaciar.
+        Dim fechaDesdeFormateada As String = inputFechaRegistroPartnersDesde.Value.ToString("yyyyMMdd")
+        Dim fechaHastaFormateada As String = inputFechaRegistroPartnersHasta.Value.ToString("yyyyMMdd")
+        consulta &= $" AND CONVERT(DATE, FechaRegistro, 112) BETWEEN CONVERT(DATE, '{fechaDesdeFormateada}', 112) AND CONVERT(DATE, '{fechaHastaFormateada}', 112)"
+
+        dataTable = ConsultaBBDD(connectionString, consulta)
+        dataGridPartners.DataSource = dataTable
+    End Sub
+
+    Sub ActualizarComboBoxZonas()
+        comboZonaPartners.Items.Clear()
+        comboZonaComerciales.Items.Clear()
+        comboZona2Comerciales.Items.Clear()
+
+        Dim consulta As String = $"SELECT DISTINCT DESCRIPCION FROM ZONAS"
+        dataTable = ConsultaBBDD(connectionString, consulta)
+        For Each fila As DataRow In dataTable.Rows
+            comboZonaPartners.Items.Add(fila("DESCRIPCION"))
+            comboZonaComerciales.Items.Add(fila("DESCRIPCION"))
+            comboZona2Comerciales.Items.Add(fila("DESCRIPCION"))
+        Next
+    End Sub
+
+    Private Sub btnConsultarComerciales_Click(sender As Object, e As EventArgs) Handles btnConsultarComerciales.Click
+        Dim consulta As String = "
+        SELECT IdComercial, 
+		    (SELECT DESCRIPCION FROM ZONAS z WHERE IdZona = c.IdZona) Zona1,
+		    (SELECT DESCRIPCION FROM ZONAS z WHERE IdZona = c.IdZona2) Zona2,
+		    Nombre, Apellidos, Telefono, Correo, Direccion, DNI
+        FROM COMERCIALES c
+        WHERE 1=1"
+
+        If Not String.IsNullOrEmpty(inputIdComerciales.Text.Trim) Then
+            consulta &= $" AND IdComercial = {inputIdComerciales.Text.Trim}"
+        End If
+
+        If Not String.IsNullOrEmpty(comboZonaComerciales.Text.Trim) Then
+            consulta &= $" AND UPPER(Zona1) LIKE '%{comboZonaComerciales.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(comboZona2Comerciales.Text.Trim) Then
+            consulta &= $" AND UPPER(Zona2) LIKE '%{comboZona2Comerciales.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputNombreComerciales.Text.Trim) Then
+            consulta &= $" AND UPPER(Nombre) LIKE '%{inputNombreComerciales.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputApellidosComerciales.Text.Trim) Then
+            consulta &= $" AND UPPER(Apellidos) LIKE '%{inputApellidosComerciales.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputTelefonoComerciales.Text.Trim) Then
+            consulta &= $" AND Telefono = {inputTelefonoComerciales.Text.Trim}"
+        End If
+
+        If Not String.IsNullOrEmpty(inputCorreoComerciales.Text.Trim) Then
+            consulta &= $" AND UPPER(Correo) LIKE '%{inputCorreoComerciales.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputDireccionComerciales.Text.Trim) Then
+            consulta &= $" AND UPPER(Direccion) LIKE '%{inputDireccionComerciales.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputDNIComerciales.Text.Trim) Then
+            consulta &= $" AND UPPER(DNI) LIKE '%{inputDNIComerciales.Text.ToUpper.Trim}'%"
+        End If
+
+        dataTable = ConsultaBBDD(connectionString, consulta)
+        dataGridComerciales.DataSource = dataTable
+    End Sub
+
+
+    '---------------------------------------------------------'
+    '                                                         '
+    '                    COMERCIALES                          '
+    '                                                         '
+    '---------------------------------------------------------'
+
 End Class

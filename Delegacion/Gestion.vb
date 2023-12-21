@@ -1,10 +1,9 @@
 ﻿Imports System.Data.SqlClient
 Imports Dllgaciones.BaseDeDatos
 
-
 Public Class Gestion
 
-    Dim connectionString As String = "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@"
+    Dim connectionString As String = ConexionBD.CadenaConexion
     Dim dataTable As DataTable
 
     Private Sub Gestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -12,12 +11,9 @@ Public Class Gestion
 
         Me.ControlBox = False
 
-        ' ⬇️ Combos de articulos ⬇️ ' 
+        ' ⬇️ Insertar datos de los combobox⬇️ ' 
         ActualizarComboBoxCategoria()
-
-        ' ⬇️ Combos de partners ⬇️ ' 
         ActualizarComboBoxZonas()
-
     End Sub
 
     Private Sub Gestion_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -78,16 +74,16 @@ Public Class Gestion
             consulta &= $" AND Categoria = '{comboCategoriaArticulos.Text.Trim}'"
         End If
 
-        dataTable = ConsultaBBDD(connectionString, consulta)
-        dataGridArticulos.DataSource = dataTable
+        DataTable = ConsultaBBDD(connectionString, consulta)
+        dataGridArticulos.DataSource = DataTable
 
     End Sub
 
     Sub ActualizarComboBoxCategoria()
         comboCategoriaArticulos.Items.Clear()
         Dim consulta As String = $"SELECT DISTINCT CATEGORIA FROM ARTICULOS"
-        dataTable = ConsultaBBDD(connectionString, consulta)
-        For Each fila As DataRow In dataTable.Rows
+        DataTable = ConsultaBBDD(connectionString, consulta)
+        For Each fila As DataRow In DataTable.Rows
             comboCategoriaArticulos.Items.Add(fila("CATEGORIA"))
         Next
     End Sub
@@ -102,12 +98,13 @@ Public Class Gestion
     Private Sub btnConsultarPartners_Click(sender As Object, e As EventArgs) Handles btnConsultarPartners.Click
         ' Construir la sentencia SQL base
         Dim consulta As String = "
-        SELECT p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro
-        FROM PARTNERS p
-        INNER JOIN ZONAS z ON z.IdZona = p.IdZona
-        WHERE 1 = 1"
+        WITH TablaPartners AS (
+            SELECT p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro [Fecha Registro]
+            FROM PARTNERS p
+            INNER JOIN ZONAS z ON z.IdZona = p.IdZona)
+        SELECT * FROM TablaPartners
+        WHERE 1=1"
 
-        ' Agregar condiciones según los valores ingresados en los controles
         If Not String.IsNullOrEmpty(inputIdPartner.Text.Trim) Then
             consulta &= $" AND IdPartner = {inputIdPartner.Text.Trim}"
         End If
@@ -136,13 +133,28 @@ Public Class Gestion
             consulta &= $" AND UPPER(Correo) LIKE '%{inputCorreoPartners.Text.Trim}%'"
         End If
 
-        ' No hay validacion si los inputs de fechas estan llenos porque no se pueden vaciar.
-        Dim fechaDesdeFormateada As String = inputFechaRegistroPartnersDesde.Value.ToString("yyyyMMdd")
-        Dim fechaHastaFormateada As String = inputFechaRegistroPartnersHasta.Value.ToString("yyyyMMdd")
-        consulta &= $" AND CONVERT(DATE, FechaRegistro, 112) BETWEEN CONVERT(DATE, '{fechaDesdeFormateada}', 112) AND CONVERT(DATE, '{fechaHastaFormateada}', 112)"
+        If checkFechaRegistroDesdePartners.Checked Then
+            Dim fechaRegistroDesde As String = inputFechaRegistroPartnersDesde.Value.ToString("yyyyMMdd")
+            consulta &= $" AND CONVERT(DATE, [Fecha Registro], 112) >= CONVERT(DATE, '{fechaRegistroDesde}', 112)"
+        End If
+
+        If checkFechaRegistroHastaPartners.Checked Then
+            Dim fechaEnvioHasta As String = inputFechaRegistroPartnersHasta.Value.ToString("yyyyMMdd")
+            consulta &= $" AND CONVERT(DATE, [Fecha Registro], 112) <= CONVERT(DATE, '{fechaEnvioHasta}', 112)"
+        End If
 
         dataTable = ConsultaBBDD(connectionString, consulta)
-        dataGridPartners.DataSource = dataTable
+        dataGridPartners.DataSource = DataTable
+    End Sub
+
+
+    ' ⬇️ Habilitar/Desahabilitar Fechas ⬇️ 
+    Private Sub checkFechaRegistroDesdePartners_CheckedChanged(sender As Object, e As EventArgs) Handles checkFechaRegistroDesdePartners.CheckedChanged
+        inputFechaRegistroPartnersDesde.Enabled = checkFechaRegistroDesdePartners.Checked
+    End Sub
+
+    Private Sub checkFechaRegistroHastaPartners_CheckedChanged(sender As Object, e As EventArgs) Handles checkFechaRegistroHastaPartners.CheckedChanged
+        inputFechaRegistroPartnersHasta.Enabled = checkFechaRegistroHastaPartners.Checked
     End Sub
 
     Sub ActualizarComboBoxZonas()
@@ -151,13 +163,20 @@ Public Class Gestion
         comboZona2Comerciales.Items.Clear()
 
         Dim consulta As String = $"SELECT DISTINCT DESCRIPCION FROM ZONAS"
-        dataTable = ConsultaBBDD(connectionString, consulta)
-        For Each fila As DataRow In dataTable.Rows
+        DataTable = ConsultaBBDD(connectionString, consulta)
+        For Each fila As DataRow In DataTable.Rows
             comboZonaPartners.Items.Add(fila("DESCRIPCION"))
             comboZonaComerciales.Items.Add(fila("DESCRIPCION"))
             comboZona2Comerciales.Items.Add(fila("DESCRIPCION"))
         Next
     End Sub
+
+
+    '---------------------------------------------------------'
+    '                                                         '
+    '                       COMERCIALES                       '
+    '                                                         '
+    '---------------------------------------------------------'
 
     Private Sub btnConsultarComerciales_Click(sender As Object, e As EventArgs) Handles btnConsultarComerciales.Click
         Dim consulta As String = "
@@ -201,11 +220,11 @@ Public Class Gestion
         End If
 
         If Not String.IsNullOrEmpty(inputDNIComerciales.Text.Trim) Then
-            consulta &= $" AND UPPER(DNI) LIKE '%{inputDNIComerciales.Text.ToUpper.Trim}'%"
+            consulta &= $" AND UPPER(DNI) LIKE '%{inputDNIComerciales.Text.ToUpper.Trim}%'"
         End If
 
-        dataTable = ConsultaBBDD(connectionString, consulta)
-        dataGridComerciales.DataSource = dataTable
+        DataTable = ConsultaBBDD(connectionString, consulta)
+        dataGridComerciales.DataSource = DataTable
     End Sub
 
 
@@ -214,5 +233,23 @@ Public Class Gestion
     '                    COMERCIALES                          '
     '                                                         '
     '---------------------------------------------------------'
+    Private Sub btnConsultarTransportista_Click(sender As Object, e As EventArgs) Handles btnConsultarTransportista.Click
+        Dim consulta As String = "SELECT * FROM TRANSPORTISTAS WHERE 1=1"
+
+        If Not String.IsNullOrEmpty(inputIdTransportistas.Text.Trim) Then
+            consulta &= $" AND IdTransportista = {inputIdTransportistas.Text.Trim}"
+        End If
+
+        If Not String.IsNullOrEmpty(inputEmpresaTransportistas.Text.Trim) Then
+            consulta &= $" AND UPPER(Empresa) LIKE '%{inputEmpresaTransportistas.Text.ToUpper.Trim}%'"
+        End If
+
+        If Not String.IsNullOrEmpty(inputTelefonoTransportistas.Text.Trim) Then
+            consulta &= $" AND Telefono LIKE '%{inputTelefonoTransportistas.Text.Trim}%'"
+        End If
+
+        DataTable = ConsultaBBDD(connectionString, consulta)
+        dataGridTransportistas.DataSource = DataTable
+    End Sub
 
 End Class

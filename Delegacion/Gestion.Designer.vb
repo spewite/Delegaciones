@@ -71,6 +71,12 @@ Partial Class Gestion
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.comercialesTab = New System.Windows.Forms.TabPage()
+        Me.inputDNIComerciales = New System.Windows.Forms.TextBox()
+        Me.labeldni = New System.Windows.Forms.Label()
+        Me.inputDireccionComerciales = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.inputCorreoComerciales = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.btnAltaComerciales = New System.Windows.Forms.Button()
         Me.btnBorrarComerciales = New System.Windows.Forms.Button()
         Me.btnConsultarComerciales = New System.Windows.Forms.Button()
@@ -88,21 +94,20 @@ Partial Class Gestion
         Me.comboZonaComerciales = New System.Windows.Forms.ComboBox()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.transportistasTab = New System.Windows.Forms.TabPage()
+        Me.btnAltaTransportista = New System.Windows.Forms.Button()
+        Me.btnBorrarTransportista = New System.Windows.Forms.Button()
+        Me.btnConsultarTransportista = New System.Windows.Forms.Button()
         Me.dataGridTransportistas = New System.Windows.Forms.DataGridView()
         Me.Label39 = New System.Windows.Forms.Label()
-        Me.inputTelefonoTransportista = New System.Windows.Forms.TextBox()
-        Me.inputNombreTransportista = New System.Windows.Forms.TextBox()
-        Me.inputIdTransportista = New System.Windows.Forms.TextBox()
+        Me.inputTelefonoTransportistas = New System.Windows.Forms.TextBox()
+        Me.inputEmpresaTransportistas = New System.Windows.Forms.TextBox()
+        Me.inputIdTransportistas = New System.Windows.Forms.TextBox()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataSet1 = New Delegacion.DataSet1()
-        Me.inputCorreoComerciales = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.inputDireccionComerciales = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.inputDNIComerciales = New System.Windows.Forms.TextBox()
-        Me.labeldni = New System.Windows.Forms.Label()
+        Me.checkFechaRegistroDesdePartners = New System.Windows.Forms.CheckBox()
+        Me.checkFechaRegistroHastaPartners = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -353,6 +358,8 @@ Partial Class Gestion
         'partnersTab
         '
         Me.partnersTab.BackColor = System.Drawing.SystemColors.Control
+        Me.partnersTab.Controls.Add(Me.checkFechaRegistroHastaPartners)
+        Me.partnersTab.Controls.Add(Me.checkFechaRegistroDesdePartners)
         Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartnersDesde)
         Me.partnersTab.Controls.Add(Me.Label3)
         Me.partnersTab.Controls.Add(Me.inputFechaRegistroPartnersHasta)
@@ -385,29 +392,31 @@ Partial Class Gestion
         'inputFechaRegistroPartnersDesde
         '
         Me.inputFechaRegistroPartnersDesde.CustomFormat = ""
+        Me.inputFechaRegistroPartnersDesde.Enabled = False
         Me.inputFechaRegistroPartnersDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.inputFechaRegistroPartnersDesde.Location = New System.Drawing.Point(535, 68)
+        Me.inputFechaRegistroPartnersDesde.Location = New System.Drawing.Point(588, 71)
         Me.inputFechaRegistroPartnersDesde.Name = "inputFechaRegistroPartnersDesde"
-        Me.inputFechaRegistroPartnersDesde.Size = New System.Drawing.Size(104, 22)
+        Me.inputFechaRegistroPartnersDesde.Size = New System.Drawing.Size(157, 22)
         Me.inputFechaRegistroPartnersDesde.TabIndex = 77
         Me.inputFechaRegistroPartnersDesde.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(430, 72)
+        Me.Label3.Location = New System.Drawing.Point(434, 75)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(99, 16)
+        Me.Label3.Size = New System.Drawing.Size(149, 16)
         Me.Label3.TabIndex = 76
-        Me.Label3.Text = "Fecha Registro"
+        Me.Label3.Text = "Fecha Registro Desde: "
         '
         'inputFechaRegistroPartnersHasta
         '
         Me.inputFechaRegistroPartnersHasta.CustomFormat = ""
+        Me.inputFechaRegistroPartnersHasta.Enabled = False
         Me.inputFechaRegistroPartnersHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.inputFechaRegistroPartnersHasta.Location = New System.Drawing.Point(535, 117)
+        Me.inputFechaRegistroPartnersHasta.Location = New System.Drawing.Point(588, 117)
         Me.inputFechaRegistroPartnersHasta.Name = "inputFechaRegistroPartnersHasta"
-        Me.inputFechaRegistroPartnersHasta.Size = New System.Drawing.Size(104, 22)
+        Me.inputFechaRegistroPartnersHasta.Size = New System.Drawing.Size(157, 22)
         Me.inputFechaRegistroPartnersHasta.TabIndex = 75
         Me.inputFechaRegistroPartnersHasta.Value = New Date(2023, 12, 16, 19, 57, 19, 0)
         '
@@ -493,15 +502,15 @@ Partial Class Gestion
         'comboZonaPartners
         '
         Me.comboZonaPartners.FormattingEnabled = True
-        Me.comboZonaPartners.Location = New System.Drawing.Point(535, 23)
+        Me.comboZonaPartners.Location = New System.Drawing.Point(588, 25)
         Me.comboZonaPartners.Name = "comboZonaPartners"
-        Me.comboZonaPartners.Size = New System.Drawing.Size(254, 24)
+        Me.comboZonaPartners.Size = New System.Drawing.Size(190, 24)
         Me.comboZonaPartners.TabIndex = 64
         '
         'inputTelefonoPartners
         '
         Me.inputTelefonoPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputTelefonoPartners.Location = New System.Drawing.Point(894, 120)
+        Me.inputTelefonoPartners.Location = New System.Drawing.Point(907, 120)
         Me.inputTelefonoPartners.Name = "inputTelefonoPartners"
         Me.inputTelefonoPartners.Size = New System.Drawing.Size(254, 22)
         Me.inputTelefonoPartners.TabIndex = 56
@@ -509,7 +518,7 @@ Partial Class Gestion
         'inputDireccionPartners
         '
         Me.inputDireccionPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDireccionPartners.Location = New System.Drawing.Point(892, 73)
+        Me.inputDireccionPartners.Location = New System.Drawing.Point(905, 73)
         Me.inputDireccionPartners.Name = "inputDireccionPartners"
         Me.inputDireccionPartners.Size = New System.Drawing.Size(256, 22)
         Me.inputDireccionPartners.TabIndex = 54
@@ -517,7 +526,7 @@ Partial Class Gestion
         'inputCifPartners
         '
         Me.inputCifPartners.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputCifPartners.Location = New System.Drawing.Point(892, 25)
+        Me.inputCifPartners.Location = New System.Drawing.Point(905, 25)
         Me.inputCifPartners.Name = "inputCifPartners"
         Me.inputCifPartners.Size = New System.Drawing.Size(256, 22)
         Me.inputCifPartners.TabIndex = 52
@@ -525,11 +534,11 @@ Partial Class Gestion
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(430, 119)
+        Me.Label20.Location = New System.Drawing.Point(434, 119)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(99, 16)
+        Me.Label20.Size = New System.Drawing.Size(144, 16)
         Me.Label20.TabIndex = 59
-        Me.Label20.Text = "Fecha Registro"
+        Me.Label20.Text = "Fecha Registro Hasta: "
         '
         'Label21
         '
@@ -543,7 +552,7 @@ Partial Class Gestion
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(824, 122)
+        Me.Label22.Location = New System.Drawing.Point(837, 122)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(61, 16)
         Me.Label22.TabIndex = 55
@@ -552,7 +561,7 @@ Partial Class Gestion
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(821, 76)
+        Me.Label23.Location = New System.Drawing.Point(834, 76)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(64, 16)
         Me.Label23.TabIndex = 53
@@ -561,7 +570,7 @@ Partial Class Gestion
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(855, 27)
+        Me.Label25.Location = New System.Drawing.Point(868, 27)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(30, 16)
         Me.Label25.TabIndex = 51
@@ -570,7 +579,7 @@ Partial Class Gestion
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(464, 27)
+        Me.Label27.Location = New System.Drawing.Point(522, 30)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(57, 16)
         Me.Label27.TabIndex = 35
@@ -607,6 +616,57 @@ Partial Class Gestion
         Me.comercialesTab.Size = New System.Drawing.Size(1418, 951)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
+        '
+        'inputDNIComerciales
+        '
+        Me.inputDNIComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDNIComerciales.Location = New System.Drawing.Point(898, 122)
+        Me.inputDNIComerciales.Name = "inputDNIComerciales"
+        Me.inputDNIComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputDNIComerciales.TabIndex = 80
+        '
+        'labeldni
+        '
+        Me.labeldni.AutoSize = True
+        Me.labeldni.Location = New System.Drawing.Point(856, 124)
+        Me.labeldni.Name = "labeldni"
+        Me.labeldni.Size = New System.Drawing.Size(33, 16)
+        Me.labeldni.TabIndex = 79
+        Me.labeldni.Text = "DNI:"
+        '
+        'inputDireccionComerciales
+        '
+        Me.inputDireccionComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDireccionComerciales.Location = New System.Drawing.Point(898, 75)
+        Me.inputDireccionComerciales.Name = "inputDireccionComerciales"
+        Me.inputDireccionComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputDireccionComerciales.TabIndex = 78
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(825, 77)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(67, 16)
+        Me.Label6.TabIndex = 77
+        Me.Label6.Text = "Direccion:"
+        '
+        'inputCorreoComerciales
+        '
+        Me.inputCorreoComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputCorreoComerciales.Location = New System.Drawing.Point(898, 31)
+        Me.inputCorreoComerciales.Name = "inputCorreoComerciales"
+        Me.inputCorreoComerciales.Size = New System.Drawing.Size(278, 22)
+        Me.inputCorreoComerciales.TabIndex = 76
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(841, 33)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(51, 16)
+        Me.Label5.TabIndex = 75
+        Me.Label5.Text = "Correo:"
         '
         'btnAltaComerciales
         '
@@ -750,11 +810,14 @@ Partial Class Gestion
         'transportistasTab
         '
         Me.transportistasTab.BackColor = System.Drawing.SystemColors.Control
+        Me.transportistasTab.Controls.Add(Me.btnAltaTransportista)
+        Me.transportistasTab.Controls.Add(Me.btnBorrarTransportista)
+        Me.transportistasTab.Controls.Add(Me.btnConsultarTransportista)
         Me.transportistasTab.Controls.Add(Me.dataGridTransportistas)
         Me.transportistasTab.Controls.Add(Me.Label39)
-        Me.transportistasTab.Controls.Add(Me.inputTelefonoTransportista)
-        Me.transportistasTab.Controls.Add(Me.inputNombreTransportista)
-        Me.transportistasTab.Controls.Add(Me.inputIdTransportista)
+        Me.transportistasTab.Controls.Add(Me.inputTelefonoTransportistas)
+        Me.transportistasTab.Controls.Add(Me.inputEmpresaTransportistas)
+        Me.transportistasTab.Controls.Add(Me.inputIdTransportistas)
         Me.transportistasTab.Controls.Add(Me.Label38)
         Me.transportistasTab.Controls.Add(Me.Label46)
         Me.transportistasTab.Location = New System.Drawing.Point(4, 25)
@@ -762,6 +825,33 @@ Partial Class Gestion
         Me.transportistasTab.Size = New System.Drawing.Size(1418, 951)
         Me.transportistasTab.TabIndex = 6
         Me.transportistasTab.Text = "Transportistas"
+        '
+        'btnAltaTransportista
+        '
+        Me.btnAltaTransportista.Location = New System.Drawing.Point(537, 118)
+        Me.btnAltaTransportista.Name = "btnAltaTransportista"
+        Me.btnAltaTransportista.Size = New System.Drawing.Size(162, 31)
+        Me.btnAltaTransportista.TabIndex = 85
+        Me.btnAltaTransportista.Text = "Alta"
+        Me.btnAltaTransportista.UseVisualStyleBackColor = True
+        '
+        'btnBorrarTransportista
+        '
+        Me.btnBorrarTransportista.Location = New System.Drawing.Point(537, 74)
+        Me.btnBorrarTransportista.Name = "btnBorrarTransportista"
+        Me.btnBorrarTransportista.Size = New System.Drawing.Size(162, 31)
+        Me.btnBorrarTransportista.TabIndex = 84
+        Me.btnBorrarTransportista.Text = "Borrar"
+        Me.btnBorrarTransportista.UseVisualStyleBackColor = True
+        '
+        'btnConsultarTransportista
+        '
+        Me.btnConsultarTransportista.Location = New System.Drawing.Point(537, 29)
+        Me.btnConsultarTransportista.Name = "btnConsultarTransportista"
+        Me.btnConsultarTransportista.Size = New System.Drawing.Size(162, 31)
+        Me.btnConsultarTransportista.TabIndex = 83
+        Me.btnConsultarTransportista.Text = "Consultar"
+        Me.btnConsultarTransportista.UseVisualStyleBackColor = True
         '
         'dataGridTransportistas
         '
@@ -776,49 +866,49 @@ Partial Class Gestion
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(493, 29)
+        Me.Label39.Location = New System.Drawing.Point(97, 132)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(64, 16)
         Me.Label39.TabIndex = 81
         Me.Label39.Text = "Telefono:"
         '
-        'inputTelefonoTransportista
+        'inputTelefonoTransportistas
         '
-        Me.inputTelefonoTransportista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputTelefonoTransportista.Location = New System.Drawing.Point(574, 27)
-        Me.inputTelefonoTransportista.Name = "inputTelefonoTransportista"
-        Me.inputTelefonoTransportista.Size = New System.Drawing.Size(79, 22)
-        Me.inputTelefonoTransportista.TabIndex = 80
+        Me.inputTelefonoTransportistas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputTelefonoTransportistas.Location = New System.Drawing.Point(173, 128)
+        Me.inputTelefonoTransportistas.Name = "inputTelefonoTransportistas"
+        Me.inputTelefonoTransportistas.Size = New System.Drawing.Size(303, 22)
+        Me.inputTelefonoTransportistas.TabIndex = 80
         '
-        'inputNombreTransportista
+        'inputEmpresaTransportistas
         '
-        Me.inputNombreTransportista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputNombreTransportista.Location = New System.Drawing.Point(358, 27)
-        Me.inputNombreTransportista.Name = "inputNombreTransportista"
-        Me.inputNombreTransportista.Size = New System.Drawing.Size(79, 22)
-        Me.inputNombreTransportista.TabIndex = 78
+        Me.inputEmpresaTransportistas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputEmpresaTransportistas.Location = New System.Drawing.Point(173, 78)
+        Me.inputEmpresaTransportistas.Name = "inputEmpresaTransportistas"
+        Me.inputEmpresaTransportistas.Size = New System.Drawing.Size(303, 22)
+        Me.inputEmpresaTransportistas.TabIndex = 78
         '
-        'inputIdTransportista
+        'inputIdTransportistas
         '
-        Me.inputIdTransportista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdTransportista.Location = New System.Drawing.Point(166, 28)
-        Me.inputIdTransportista.Name = "inputIdTransportista"
-        Me.inputIdTransportista.Size = New System.Drawing.Size(79, 22)
-        Me.inputIdTransportista.TabIndex = 76
+        Me.inputIdTransportistas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputIdTransportistas.Location = New System.Drawing.Point(173, 28)
+        Me.inputIdTransportistas.Name = "inputIdTransportistas"
+        Me.inputIdTransportistas.Size = New System.Drawing.Size(303, 22)
+        Me.inputIdTransportistas.TabIndex = 76
         '
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(276, 30)
+        Me.Label38.Location = New System.Drawing.Point(101, 80)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(59, 16)
+        Me.Label38.Size = New System.Drawing.Size(65, 16)
         Me.Label38.TabIndex = 79
-        Me.Label38.Text = "Nombre:"
+        Me.Label38.Text = "Empresa:"
         '
         'Label46
         '
         Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(55, 29)
+        Me.Label46.Location = New System.Drawing.Point(59, 29)
         Me.Label46.Name = "Label46"
         Me.Label46.Size = New System.Drawing.Size(105, 16)
         Me.Label46.TabIndex = 77
@@ -834,56 +924,23 @@ Partial Class Gestion
         Me.DataSet1.DataSetName = "DataSet1"
         Me.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'inputCorreoComerciales
+        'checkFechaRegistroDesdePartners
         '
-        Me.inputCorreoComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputCorreoComerciales.Location = New System.Drawing.Point(898, 31)
-        Me.inputCorreoComerciales.Name = "inputCorreoComerciales"
-        Me.inputCorreoComerciales.Size = New System.Drawing.Size(278, 22)
-        Me.inputCorreoComerciales.TabIndex = 76
+        Me.checkFechaRegistroDesdePartners.AutoSize = True
+        Me.checkFechaRegistroDesdePartners.Location = New System.Drawing.Point(760, 73)
+        Me.checkFechaRegistroDesdePartners.Name = "checkFechaRegistroDesdePartners"
+        Me.checkFechaRegistroDesdePartners.Size = New System.Drawing.Size(18, 17)
+        Me.checkFechaRegistroDesdePartners.TabIndex = 78
+        Me.checkFechaRegistroDesdePartners.UseVisualStyleBackColor = True
         '
-        'Label5
+        'checkFechaRegistroHastaPartners
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(841, 33)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(51, 16)
-        Me.Label5.TabIndex = 75
-        Me.Label5.Text = "Correo:"
-        '
-        'inputDireccionComerciales
-        '
-        Me.inputDireccionComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDireccionComerciales.Location = New System.Drawing.Point(898, 75)
-        Me.inputDireccionComerciales.Name = "inputDireccionComerciales"
-        Me.inputDireccionComerciales.Size = New System.Drawing.Size(278, 22)
-        Me.inputDireccionComerciales.TabIndex = 78
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(825, 77)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(67, 16)
-        Me.Label6.TabIndex = 77
-        Me.Label6.Text = "Direccion:"
-        '
-        'inputDNIComerciales
-        '
-        Me.inputDNIComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDNIComerciales.Location = New System.Drawing.Point(898, 122)
-        Me.inputDNIComerciales.Name = "inputDNIComerciales"
-        Me.inputDNIComerciales.Size = New System.Drawing.Size(278, 22)
-        Me.inputDNIComerciales.TabIndex = 80
-        '
-        'labeldni
-        '
-        Me.labeldni.AutoSize = True
-        Me.labeldni.Location = New System.Drawing.Point(856, 124)
-        Me.labeldni.Name = "labeldni"
-        Me.labeldni.Size = New System.Drawing.Size(33, 16)
-        Me.labeldni.TabIndex = 79
-        Me.labeldni.Text = "DNI:"
+        Me.checkFechaRegistroHastaPartners.AutoSize = True
+        Me.checkFechaRegistroHastaPartners.Location = New System.Drawing.Point(760, 119)
+        Me.checkFechaRegistroHastaPartners.Name = "checkFechaRegistroHastaPartners"
+        Me.checkFechaRegistroHastaPartners.Size = New System.Drawing.Size(18, 17)
+        Me.checkFechaRegistroHastaPartners.TabIndex = 79
+        Me.checkFechaRegistroHastaPartners.UseVisualStyleBackColor = True
         '
         'Gestion
         '
@@ -963,9 +1020,9 @@ Partial Class Gestion
     Friend WithEvents transportistasTab As TabPage
     Friend WithEvents dataGridTransportistas As DataGridView
     Friend WithEvents Label39 As Label
-    Friend WithEvents inputTelefonoTransportista As TextBox
-    Friend WithEvents inputNombreTransportista As TextBox
-    Friend WithEvents inputIdTransportista As TextBox
+    Friend WithEvents inputTelefonoTransportistas As TextBox
+    Friend WithEvents inputEmpresaTransportistas As TextBox
+    Friend WithEvents inputIdTransportistas As TextBox
     Friend WithEvents Label38 As Label
     Friend WithEvents Label46 As Label
     Friend WithEvents btnConsultarArticulos As Button
@@ -994,4 +1051,9 @@ Partial Class Gestion
     Friend WithEvents Label6 As Label
     Friend WithEvents inputCorreoComerciales As TextBox
     Friend WithEvents Label5 As Label
+    Friend WithEvents btnAltaTransportista As Button
+    Friend WithEvents btnBorrarTransportista As Button
+    Friend WithEvents btnConsultarTransportista As Button
+    Friend WithEvents checkFechaRegistroHastaPartners As CheckBox
+    Friend WithEvents checkFechaRegistroDesdePartners As CheckBox
 End Class

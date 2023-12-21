@@ -242,7 +242,7 @@ Partial Class Consultas
         Me.comboPartnerPedidos.Size = New System.Drawing.Size(116, 24)
         Me.comboPartnerPedidos.TabIndex = 7
         '
-        'comboFacturaPedidos
+        'comboIdFacturaPedidos
         '
         Me.comboFacturaPedidos.FormattingEnabled = True
         Me.comboFacturaPedidos.Location = New System.Drawing.Point(717, 120)

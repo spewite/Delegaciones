@@ -1,13 +1,8 @@
 ﻿Imports System.Reflection.Emit
 Imports System.Windows.Forms
 
+
 Public Class Inicio
-    Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-
-
-    End Sub
-
     Private Sub GestionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GestionToolStripMenuItem.Click
         OpenOrActivateForm(Of Gestion)()
     End Sub
@@ -39,6 +34,13 @@ Public Class Inicio
         Me.Close()
     End Sub
 
-
-
 End Class
+
+Public Class ConexionBD
+    Public Shared ReadOnly Property CadenaConexion As String
+        Get
+            Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@"
+        End Get
+    End Property
+End Class
+

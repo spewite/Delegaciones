@@ -24,10 +24,6 @@ Partial Class Inicio
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.GestionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PedidosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FacturasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PedidosToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
@@ -36,6 +32,12 @@ Partial Class Inicio
         Me.ExportarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArticulosToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PartnersToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PedidosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LABEL = New System.Windows.Forms.Label()
+        Me.btnEditArticulos = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -48,6 +50,57 @@ Partial Class Inicio
         Me.MenuStrip1.Size = New System.Drawing.Size(1492, 28)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'ArchivoToolStripMenuItem
+        '
+        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportarToolStripMenuItem1, Me.ExportarToolStripMenuItem1})
+        Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
+        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(73, 24)
+        Me.ArchivoToolStripMenuItem.Text = "Archivo"
+        '
+        'ImportarToolStripMenuItem1
+        '
+        Me.ImportarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PedidosToolStripMenuItem2, Me.PartnersToolStripMenuItem2, Me.ArticulosToolStripMenuItem2})
+        Me.ImportarToolStripMenuItem1.Name = "ImportarToolStripMenuItem1"
+        Me.ImportarToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.ImportarToolStripMenuItem1.Text = "Importar"
+        '
+        'PedidosToolStripMenuItem2
+        '
+        Me.PedidosToolStripMenuItem2.Name = "PedidosToolStripMenuItem2"
+        Me.PedidosToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
+        Me.PedidosToolStripMenuItem2.Text = "Pedidos"
+        '
+        'PartnersToolStripMenuItem2
+        '
+        Me.PartnersToolStripMenuItem2.Name = "PartnersToolStripMenuItem2"
+        Me.PartnersToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
+        Me.PartnersToolStripMenuItem2.Text = "Partners"
+        '
+        'ArticulosToolStripMenuItem2
+        '
+        Me.ArticulosToolStripMenuItem2.Name = "ArticulosToolStripMenuItem2"
+        Me.ArticulosToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
+        Me.ArticulosToolStripMenuItem2.Text = "Articulos"
+        '
+        'ExportarToolStripMenuItem1
+        '
+        Me.ExportarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArticulosToolStripMenuItem3, Me.PartnersToolStripMenuItem3})
+        Me.ExportarToolStripMenuItem1.Name = "ExportarToolStripMenuItem1"
+        Me.ExportarToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.ExportarToolStripMenuItem1.Text = "Exportar"
+        '
+        'ArticulosToolStripMenuItem3
+        '
+        Me.ArticulosToolStripMenuItem3.Name = "ArticulosToolStripMenuItem3"
+        Me.ArticulosToolStripMenuItem3.Size = New System.Drawing.Size(150, 26)
+        Me.ArticulosToolStripMenuItem3.Text = "Articulos"
+        '
+        'PartnersToolStripMenuItem3
+        '
+        Me.PartnersToolStripMenuItem3.Name = "PartnersToolStripMenuItem3"
+        Me.PartnersToolStripMenuItem3.Size = New System.Drawing.Size(150, 26)
+        Me.PartnersToolStripMenuItem3.Text = "Partners"
         '
         'GestionToolStripMenuItem
         '
@@ -73,56 +126,26 @@ Partial Class Inicio
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(52, 24)
         Me.SalirToolStripMenuItem.Text = "Salir"
         '
-        'ArchivoToolStripMenuItem
+        'LABEL
         '
-        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportarToolStripMenuItem1, Me.ExportarToolStripMenuItem1})
-        Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
-        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(73, 24)
-        Me.ArchivoToolStripMenuItem.Text = "Archivo"
+        Me.LABEL.BackColor = System.Drawing.Color.Transparent
+        Me.LABEL.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LABEL.Font = New System.Drawing.Font("Samsung Sharp Sans", 30.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LABEL.Location = New System.Drawing.Point(0, 28)
+        Me.LABEL.Name = "LABEL"
+        Me.LABEL.Size = New System.Drawing.Size(1492, 863)
+        Me.LABEL.TabIndex = 11
+        Me.LABEL.Text = "G.E.M. GUIPUZCOA"
+        Me.LABEL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'ImportarToolStripMenuItem1
+        'btnEditArticulos
         '
-        Me.ImportarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PedidosToolStripMenuItem2, Me.PartnersToolStripMenuItem2, Me.ArticulosToolStripMenuItem2})
-        Me.ImportarToolStripMenuItem1.Name = "ImportarToolStripMenuItem1"
-        Me.ImportarToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
-        Me.ImportarToolStripMenuItem1.Text = "Importar"
-        '
-        'PedidosToolStripMenuItem2
-        '
-        Me.PedidosToolStripMenuItem2.Name = "PedidosToolStripMenuItem2"
-        Me.PedidosToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
-        Me.PedidosToolStripMenuItem2.Text = "Pedidos"
-        '
-        'PartnersToolStripMenuItem2
-        '
-        Me.PartnersToolStripMenuItem2.Name = "PartnersToolStripMenuItem2"
-        Me.PartnersToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
-        Me.PartnersToolStripMenuItem2.Text = "Partners"
-        '
-        'ArticulosToolStripMenuItem2
-        '
-        Me.ArticulosToolStripMenuItem2.Name = "ArticulosToolStripMenuItem2"
-        Me.ArticulosToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
-        Me.ArticulosToolStripMenuItem2.Text = "Articulos"
-        '
-        'ExportarToolStripMenuItem1
-        '
-        Me.ExportarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArticulosToolStripMenuItem3, Me.PartnersToolStripMenuItem3})
-        Me.ExportarToolStripMenuItem1.Name = "ExportarToolStripMenuItem1"
-        Me.ExportarToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
-        Me.ExportarToolStripMenuItem1.Text = "Exportar"
-        '
-        'ArticulosToolStripMenuItem3
-        '
-        Me.ArticulosToolStripMenuItem3.Name = "ArticulosToolStripMenuItem3"
-        Me.ArticulosToolStripMenuItem3.Size = New System.Drawing.Size(224, 26)
-        Me.ArticulosToolStripMenuItem3.Text = "Articulos"
-        '
-        'PartnersToolStripMenuItem3
-        '
-        Me.PartnersToolStripMenuItem3.Name = "PartnersToolStripMenuItem3"
-        Me.PartnersToolStripMenuItem3.Size = New System.Drawing.Size(224, 26)
-        Me.PartnersToolStripMenuItem3.Text = "Partners"
+        Me.btnEditArticulos.Location = New System.Drawing.Point(540, 174)
+        Me.btnEditArticulos.Name = "btnEditArticulos"
+        Me.btnEditArticulos.Size = New System.Drawing.Size(292, 95)
+        Me.btnEditArticulos.TabIndex = 13
+        Me.btnEditArticulos.Text = "EDITAR ARTICULOS"
+        Me.btnEditArticulos.UseVisualStyleBackColor = True
         '
         'Inicio
         '
@@ -130,6 +153,8 @@ Partial Class Inicio
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1492, 891)
+        Me.Controls.Add(Me.btnEditArticulos)
+        Me.Controls.Add(Me.LABEL)
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
         Me.Margin = New System.Windows.Forms.Padding(4)
@@ -156,4 +181,6 @@ Partial Class Inicio
     Friend WithEvents ExportarToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ArticulosToolStripMenuItem3 As ToolStripMenuItem
     Friend WithEvents PartnersToolStripMenuItem3 As ToolStripMenuItem
+    Friend WithEvents LABEL As Label
+    Friend WithEvents btnEditArticulos As Button
 End Class

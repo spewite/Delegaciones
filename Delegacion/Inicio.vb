@@ -35,7 +35,7 @@ Public Class Inicio
     End Sub
 
     Private Sub btnEditArticulos_Click(sender As Object, e As EventArgs) Handles btnEditArticulos.Click
-        Dim formularioArticulos As New ArticulosEdit(2, "SELECT * FROM ARTICULOS")
+        Dim formularioArticulos As New ArticulosEdit(2, "SELECT * FROM ARTICULOS", False)
         formularioArticulos.Show()
     End Sub
 End Class

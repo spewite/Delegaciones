@@ -239,7 +239,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\lapiz.bmp" />
+    <None Include="Resources\confirmar-editar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

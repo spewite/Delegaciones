@@ -22,7 +22,12 @@ Delegacion
   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
 </summary>
 </member>
-<member name="P:Delegacion.My.Resources.Resources.lapiz">
+<member name="P:Delegacion.My.Resources.Resources.confirmar_editar">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Delegacion.My.Resources.Resources.editar">
 <summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>

@@ -47,7 +47,7 @@ Partial Class Inicio
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.GestionToolStripMenuItem, Me.PedidosToolStripMenuItem, Me.FacturasToolStripMenuItem, Me.SalirToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1492, 28)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1492, 30)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -55,14 +55,14 @@ Partial Class Inicio
         '
         Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportarToolStripMenuItem1, Me.ExportarToolStripMenuItem1})
         Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
-        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(73, 24)
+        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(73, 26)
         Me.ArchivoToolStripMenuItem.Text = "Archivo"
         '
         'ImportarToolStripMenuItem1
         '
         Me.ImportarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PedidosToolStripMenuItem2, Me.PartnersToolStripMenuItem2, Me.ArticulosToolStripMenuItem2})
         Me.ImportarToolStripMenuItem1.Name = "ImportarToolStripMenuItem1"
-        Me.ImportarToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.ImportarToolStripMenuItem1.Size = New System.Drawing.Size(150, 26)
         Me.ImportarToolStripMenuItem1.Text = "Importar"
         '
         'PedidosToolStripMenuItem2
@@ -87,7 +87,7 @@ Partial Class Inicio
         '
         Me.ExportarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArticulosToolStripMenuItem3, Me.PartnersToolStripMenuItem3})
         Me.ExportarToolStripMenuItem1.Name = "ExportarToolStripMenuItem1"
-        Me.ExportarToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.ExportarToolStripMenuItem1.Size = New System.Drawing.Size(150, 26)
         Me.ExportarToolStripMenuItem1.Text = "Exportar"
         '
         'ArticulosToolStripMenuItem3
@@ -105,25 +105,25 @@ Partial Class Inicio
         'GestionToolStripMenuItem
         '
         Me.GestionToolStripMenuItem.Name = "GestionToolStripMenuItem"
-        Me.GestionToolStripMenuItem.Size = New System.Drawing.Size(73, 24)
+        Me.GestionToolStripMenuItem.Size = New System.Drawing.Size(73, 26)
         Me.GestionToolStripMenuItem.Text = "Gestion"
         '
         'PedidosToolStripMenuItem
         '
         Me.PedidosToolStripMenuItem.Name = "PedidosToolStripMenuItem"
-        Me.PedidosToolStripMenuItem.Size = New System.Drawing.Size(75, 24)
+        Me.PedidosToolStripMenuItem.Size = New System.Drawing.Size(75, 26)
         Me.PedidosToolStripMenuItem.Text = "Pedidos"
         '
         'FacturasToolStripMenuItem
         '
         Me.FacturasToolStripMenuItem.Name = "FacturasToolStripMenuItem"
-        Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(76, 24)
+        Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(76, 26)
         Me.FacturasToolStripMenuItem.Text = "Facturas"
         '
         'SalirToolStripMenuItem
         '
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(52, 24)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(52, 26)
         Me.SalirToolStripMenuItem.Text = "Salir"
         '
         'LABEL
@@ -131,9 +131,9 @@ Partial Class Inicio
         Me.LABEL.BackColor = System.Drawing.Color.Transparent
         Me.LABEL.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LABEL.Font = New System.Drawing.Font("Samsung Sharp Sans", 30.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LABEL.Location = New System.Drawing.Point(0, 28)
+        Me.LABEL.Location = New System.Drawing.Point(0, 30)
         Me.LABEL.Name = "LABEL"
-        Me.LABEL.Size = New System.Drawing.Size(1492, 863)
+        Me.LABEL.Size = New System.Drawing.Size(1492, 861)
         Me.LABEL.TabIndex = 11
         Me.LABEL.Text = "G.E.M. GUIPUZCOA"
         Me.LABEL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter

@@ -32,6 +32,11 @@ Delegacion
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:Delegacion.My.Resources.Resources.eliminar">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="T:Delegacion.DataSet1">
 <summary>
 Represents a strongly typed in-memory cache of data.

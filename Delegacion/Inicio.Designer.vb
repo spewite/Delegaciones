@@ -36,8 +36,6 @@ Partial Class Inicio
         Me.PedidosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LABEL = New System.Windows.Forms.Label()
-        Me.btnEditArticulos = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -55,7 +53,7 @@ Partial Class Inicio
         '
         Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportarToolStripMenuItem1, Me.ExportarToolStripMenuItem1})
         Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
-        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(73, 26)
+        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(73, 24)
         Me.ArchivoToolStripMenuItem.Text = "Archivo"
         '
         'ImportarToolStripMenuItem1
@@ -105,47 +103,26 @@ Partial Class Inicio
         'GestionToolStripMenuItem
         '
         Me.GestionToolStripMenuItem.Name = "GestionToolStripMenuItem"
-        Me.GestionToolStripMenuItem.Size = New System.Drawing.Size(73, 26)
+        Me.GestionToolStripMenuItem.Size = New System.Drawing.Size(73, 24)
         Me.GestionToolStripMenuItem.Text = "Gestion"
         '
         'PedidosToolStripMenuItem
         '
         Me.PedidosToolStripMenuItem.Name = "PedidosToolStripMenuItem"
-        Me.PedidosToolStripMenuItem.Size = New System.Drawing.Size(75, 26)
+        Me.PedidosToolStripMenuItem.Size = New System.Drawing.Size(75, 24)
         Me.PedidosToolStripMenuItem.Text = "Pedidos"
         '
         'FacturasToolStripMenuItem
         '
         Me.FacturasToolStripMenuItem.Name = "FacturasToolStripMenuItem"
-        Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(76, 26)
+        Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(76, 24)
         Me.FacturasToolStripMenuItem.Text = "Facturas"
         '
         'SalirToolStripMenuItem
         '
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(52, 26)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(52, 24)
         Me.SalirToolStripMenuItem.Text = "Salir"
-        '
-        'LABEL
-        '
-        Me.LABEL.BackColor = System.Drawing.Color.Transparent
-        Me.LABEL.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LABEL.Font = New System.Drawing.Font("Samsung Sharp Sans", 30.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LABEL.Location = New System.Drawing.Point(0, 30)
-        Me.LABEL.Name = "LABEL"
-        Me.LABEL.Size = New System.Drawing.Size(1492, 861)
-        Me.LABEL.TabIndex = 11
-        Me.LABEL.Text = "G.E.M. GUIPUZCOA"
-        Me.LABEL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnEditArticulos
-        '
-        Me.btnEditArticulos.Location = New System.Drawing.Point(540, 174)
-        Me.btnEditArticulos.Name = "btnEditArticulos"
-        Me.btnEditArticulos.Size = New System.Drawing.Size(292, 95)
-        Me.btnEditArticulos.TabIndex = 13
-        Me.btnEditArticulos.Text = "EDITAR ARTICULOS"
-        Me.btnEditArticulos.UseVisualStyleBackColor = True
         '
         'Inicio
         '
@@ -153,8 +130,6 @@ Partial Class Inicio
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1492, 891)
-        Me.Controls.Add(Me.btnEditArticulos)
-        Me.Controls.Add(Me.LABEL)
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
         Me.Margin = New System.Windows.Forms.Padding(4)
@@ -181,6 +156,4 @@ Partial Class Inicio
     Friend WithEvents ExportarToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ArticulosToolStripMenuItem3 As ToolStripMenuItem
     Friend WithEvents PartnersToolStripMenuItem3 As ToolStripMenuItem
-    Friend WithEvents LABEL As Label
-    Friend WithEvents btnEditArticulos As Button
 End Class

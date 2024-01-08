@@ -48,6 +48,8 @@ Partial Class Gestion
         Me.comboCategoriaArticulos = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.partnersTab = New System.Windows.Forms.TabPage()
+        Me.checkFechaRegistroHastaPartners = New System.Windows.Forms.CheckBox()
+        Me.checkFechaRegistroDesdePartners = New System.Windows.Forms.CheckBox()
         Me.inputFechaRegistroPartnersDesde = New System.Windows.Forms.DateTimePicker()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.inputFechaRegistroPartnersHasta = New System.Windows.Forms.DateTimePicker()
@@ -106,8 +108,6 @@ Partial Class Gestion
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataSet1 = New Delegacion.DataSet1()
-        Me.checkFechaRegistroDesdePartners = New System.Windows.Forms.CheckBox()
-        Me.checkFechaRegistroHastaPartners = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -198,7 +198,7 @@ Partial Class Gestion
         Me.btnConsultarArticulos.Name = "btnConsultarArticulos"
         Me.btnConsultarArticulos.Size = New System.Drawing.Size(162, 32)
         Me.btnConsultarArticulos.TabIndex = 48
-        Me.btnConsultarArticulos.Text = "Consultar"
+        Me.btnConsultarArticulos.Text = "Filtrar"
         Me.btnConsultarArticulos.UseVisualStyleBackColor = True
         '
         'inputBajoMinimoArticulos
@@ -333,6 +333,7 @@ Partial Class Gestion
         Me.dataGridArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridArticulos.Location = New System.Drawing.Point(56, 176)
         Me.dataGridArticulos.Name = "dataGridArticulos"
+        Me.dataGridArticulos.ReadOnly = True
         Me.dataGridArticulos.RowHeadersWidth = 51
         Me.dataGridArticulos.RowTemplate.Height = 24
         Me.dataGridArticulos.Size = New System.Drawing.Size(1294, 590)
@@ -389,6 +390,24 @@ Partial Class Gestion
         Me.partnersTab.TabIndex = 1
         Me.partnersTab.Text = "Partners"
         '
+        'checkFechaRegistroHastaPartners
+        '
+        Me.checkFechaRegistroHastaPartners.AutoSize = True
+        Me.checkFechaRegistroHastaPartners.Location = New System.Drawing.Point(760, 119)
+        Me.checkFechaRegistroHastaPartners.Name = "checkFechaRegistroHastaPartners"
+        Me.checkFechaRegistroHastaPartners.Size = New System.Drawing.Size(18, 17)
+        Me.checkFechaRegistroHastaPartners.TabIndex = 79
+        Me.checkFechaRegistroHastaPartners.UseVisualStyleBackColor = True
+        '
+        'checkFechaRegistroDesdePartners
+        '
+        Me.checkFechaRegistroDesdePartners.AutoSize = True
+        Me.checkFechaRegistroDesdePartners.Location = New System.Drawing.Point(760, 73)
+        Me.checkFechaRegistroDesdePartners.Name = "checkFechaRegistroDesdePartners"
+        Me.checkFechaRegistroDesdePartners.Size = New System.Drawing.Size(18, 17)
+        Me.checkFechaRegistroDesdePartners.TabIndex = 78
+        Me.checkFechaRegistroDesdePartners.UseVisualStyleBackColor = True
+        '
         'inputFechaRegistroPartnersDesde
         '
         Me.inputFechaRegistroPartnersDesde.CustomFormat = ""
@@ -444,7 +463,7 @@ Partial Class Gestion
         Me.btnConsultarPartners.Name = "btnConsultarPartners"
         Me.btnConsultarPartners.Size = New System.Drawing.Size(162, 32)
         Me.btnConsultarPartners.TabIndex = 72
-        Me.btnConsultarPartners.Text = "Consultar"
+        Me.btnConsultarPartners.Text = "Filtrar"
         Me.btnConsultarPartners.UseVisualStyleBackColor = True
         '
         'inputCorreoPartners
@@ -692,7 +711,7 @@ Partial Class Gestion
         Me.btnConsultarComerciales.Name = "btnConsultarComerciales"
         Me.btnConsultarComerciales.Size = New System.Drawing.Size(162, 31)
         Me.btnConsultarComerciales.TabIndex = 72
-        Me.btnConsultarComerciales.Text = "Consultar"
+        Me.btnConsultarComerciales.Text = "Filtrar"
         Me.btnConsultarComerciales.UseVisualStyleBackColor = True
         '
         'dataGridComerciales
@@ -850,7 +869,7 @@ Partial Class Gestion
         Me.btnConsultarTransportista.Name = "btnConsultarTransportista"
         Me.btnConsultarTransportista.Size = New System.Drawing.Size(162, 31)
         Me.btnConsultarTransportista.TabIndex = 83
-        Me.btnConsultarTransportista.Text = "Consultar"
+        Me.btnConsultarTransportista.Text = "Filtrar"
         Me.btnConsultarTransportista.UseVisualStyleBackColor = True
         '
         'dataGridTransportistas
@@ -923,24 +942,6 @@ Partial Class Gestion
         '
         Me.DataSet1.DataSetName = "DataSet1"
         Me.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'checkFechaRegistroDesdePartners
-        '
-        Me.checkFechaRegistroDesdePartners.AutoSize = True
-        Me.checkFechaRegistroDesdePartners.Location = New System.Drawing.Point(760, 73)
-        Me.checkFechaRegistroDesdePartners.Name = "checkFechaRegistroDesdePartners"
-        Me.checkFechaRegistroDesdePartners.Size = New System.Drawing.Size(18, 17)
-        Me.checkFechaRegistroDesdePartners.TabIndex = 78
-        Me.checkFechaRegistroDesdePartners.UseVisualStyleBackColor = True
-        '
-        'checkFechaRegistroHastaPartners
-        '
-        Me.checkFechaRegistroHastaPartners.AutoSize = True
-        Me.checkFechaRegistroHastaPartners.Location = New System.Drawing.Point(760, 119)
-        Me.checkFechaRegistroHastaPartners.Name = "checkFechaRegistroHastaPartners"
-        Me.checkFechaRegistroHastaPartners.Size = New System.Drawing.Size(18, 17)
-        Me.checkFechaRegistroHastaPartners.TabIndex = 79
-        Me.checkFechaRegistroHastaPartners.UseVisualStyleBackColor = True
         '
         'Gestion
         '

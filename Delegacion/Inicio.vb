@@ -1,11 +1,16 @@
 ﻿Imports System.Reflection.Emit
 Imports System.Windows.Forms
 
-
 Public Class Inicio
+
+    Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.IsMdiContainer = True
+    End Sub
     Private Sub GestionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GestionToolStripMenuItem.Click
         OpenOrActivateForm(Of Gestion)()
     End Sub
+
+
     Private Sub PedidosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PedidosToolStripMenuItem.Click
         OpenOrActivateForm(Of Pedidos)()
     End Sub
@@ -34,20 +39,16 @@ Public Class Inicio
         Me.Close()
     End Sub
 
-    Private Sub btnEditArticulos_Click(sender As Object, e As EventArgs) Handles btnEditArticulos.Click
-        Dim formularioArticulos As New ArticulosEdit(2, "SELECT * FROM ARTICULOS", False)
-        formularioArticulos.Show()
-    End Sub
 End Class
 
 Public Class ConexionBD
     Public Shared ReadOnly Property CadenaConexion As String
         Get
             ' ⬇️ Klase ⬇️
-            'Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@"
+            Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@"
 
             ' ⬇️ Julen ⬇️
-            Return "Data Source=localhost;Initial Catalog=DELEGACIONES;User ID=sa;Password=sa"
+            'Return "Data Source=localhost;Initial Catalog=DELEGACIONES;User ID=sa;Password=sa"
         End Get
     End Property
 End Class

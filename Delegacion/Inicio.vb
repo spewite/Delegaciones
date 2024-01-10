@@ -3,6 +3,10 @@ Imports System.Windows.Forms
 
 Public Class Inicio
 
+    Public Const ModoEditar As Integer = 1
+    Public Const ModoVer As Integer = 2
+    Public Const ModoAnadir As Integer = 3
+
     Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.IsMdiContainer = True
     End Sub
@@ -52,4 +56,3 @@ Public Class ConexionBD
         End Get
     End Property
 End Class
-

@@ -107,7 +107,6 @@ Partial Class Gestion
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataSet1 = New Delegacion.DataSet1()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,7 +117,6 @@ Partial Class Gestion
         Me.transportistasTab.SuspendLayout()
         CType(Me.dataGridTransportistas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -935,13 +933,10 @@ Partial Class Gestion
         '
         'BindingSource1
         '
-        Me.BindingSource1.DataSource = Me.DataSet1
         Me.BindingSource1.Position = 0
         '
         'DataSet1
         '
-        Me.DataSet1.DataSetName = "DataSet1"
-        Me.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Gestion
         '
@@ -967,7 +962,6 @@ Partial Class Gestion
         Me.transportistasTab.PerformLayout()
         CType(Me.dataGridTransportistas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1043,7 +1037,6 @@ Partial Class Gestion
     Friend WithEvents inputFechaRegistroPartnersDesde As DateTimePicker
     Friend WithEvents Label3 As Label
     Friend WithEvents BindingSource1 As BindingSource
-    Friend WithEvents DataSet1 As DataSet1
     Friend WithEvents btnAltaComerciales As Button
     Friend WithEvents btnBorrarComerciales As Button
     Friend WithEvents inputDNIComerciales As TextBox

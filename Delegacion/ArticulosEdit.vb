@@ -9,30 +9,60 @@ Public Class ArticulosEdit
     Dim dataTable As DataTable
     Dim bs As New BindingSource
 
-    Dim modoEditar As Boolean
-    Dim indiceNavigator As Integer
-    Dim sentenciaArticulos As String
+    Dim IndiceNavigator As Integer
+    Dim SentenciaArticulos As String = "SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, * FROM ARTICULOS"
 
-    Public Sub New(idRegistro As Integer, sentenciaArticulos As String, modoEditar As Boolean)
+    Dim ModoFormulario As Integer
+
+    Public Const ModoEditar As Integer = 1
+    Public Const ModoVer As Integer = 2
+    Public Const ModoAñadir As Integer = 3
+
+    Public Sub New(IdRegistro As Integer, ModoFormulario As Integer)
         InitializeComponent()
         ' Guardar las variables recibidas en variables locales 
-        Me.sentenciaArticulos = sentenciaArticulos
-        Me.modoEditar = modoEditar
-        Me.indiceNavigator = idRegistro
+        Me.ModoFormulario = ModoFormulario
+        Me.IndiceNavigator = ObtenerNumRegistro(IdRegistro)
     End Sub
 
+    Function ObtenerNumRegistro(idRegistro As Integer) As Integer
+        Dim numRegistro As Integer = 0
+        Dim consulta As String =
+        $"WITH CTE AS (
+            SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, *
+            FROM ARTICULOS
+        )
+
+        SELECT NumRegistro FROM CTE WHERE IdArticulo = {idRegistro}"
+
+        ' Assuming ConsultaBBDD is a method that executes the SQL query and returns a DataTable
+
+        Dim dataTableNumRegistro As DataTable = ConsultaBBDD(connectionString, consulta)
+
+        ' Verificar si ha retornado alguna linea
+        If dataTableNumRegistro.Rows.Count > 0 Then
+            ' Retrieve the NumRegistro value from the first row
+            numRegistro = Convert.ToInt32(dataTableNumRegistro.Rows(0)("NumRegistro"))
+        End If
+
+        Return numRegistro
+    End Function
+
+
     Private Sub ArticulosEdit_Load(sender As Object, e As EventArgs) Handles Me.Load
-        dataTable = ConsultaBBDD(connectionString, sentenciaArticulos)
+        dataTable = ConsultaBBDD(connectionString, SentenciaArticulos)
 
         'Rellenar biding navigator
         bs.DataSource = dataTable
-        bs.Position = indiceNavigator
+        bs.Position = IndiceNavigator
         bindingNavigatorArticulos.BindingSource = bs
+
+        bindingNavigatorArticulos.PositionItem.Text = IndiceNavigator
 
         'Rellenar los datos 
         ActualizarDatos()
 
-        ' Detecta el valor de la variable modoEditar y ajusta la ventana acorde al modo
+        ' Detecta el valor de la variable ModoFormulario y ajusta la ventana acorde al modo
         ActualizarModoEdicion()
     End Sub
 
@@ -43,7 +73,7 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub ActualizarBotonEdicionNavigator()
-        If modoEditar Then
+        If ModoFormulario = ModoEditar Then
             btnEditar.Image = Delegacion.My.Resources.Resources.confirmar_editar
         Else
             btnEditar.Image = Delegacion.My.Resources.Resources.editar
@@ -51,8 +81,8 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub ActivarDesactivarInputs()
-        ' Si en el recibido modoEditar es true, activa los inputs, sino, los desactiva
-        If modoEditar Then
+        ' Si en el recibido ModoFormulario es true, activa los inputs, sino, los desactiva
+        If ModoFormulario = ModoEditar Or ModoFormulario = ModoAñadir Then
             inputNombreArticulos.Enabled = True
             inputCategoriaArticulos.Enabled = True
             inputProveedorArticulos.Enabled = True
@@ -78,8 +108,10 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub ActualizarBotonAbajo()
-        If modoEditar Then
+        If ModoFormulario = ModoEditar Then
             btnAbajo.Text = "Actualizar"
+        ElseIf ModoFormulario = ModoAñadir Then
+            btnAbajo.Text = "Añadir"
         Else
             btnAbajo.Text = "Listo"
         End If
@@ -87,31 +119,42 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub ActualizarDatos()
-        Dim indiceNavigator = bindingNavigatorArticulos.PositionItem.Text
 
-        ' Si el indice del navigator es 0, es que se esta inicializando. Entonces, se sale del metodo porque no nos interesa.
-        If indiceNavigator = 0 Then
-            Return
+        If ModoFormulario = ModoEditar Or ModoFormulario = ModoVer Then
+
+            Dim indiceNavigator = bindingNavigatorArticulos.PositionItem.Text
+
+            ' Si el indice del navigator es 0, es que se esta inicializando. Entonces, se sale del metodo porque no nos interesa.
+            If indiceNavigator = 0 Then
+                Return
+            End If
+
+            Try
+                Dim dataRow As DataRow = dataTable.Select("NumRegistro = " & indiceNavigator)(0)
+
+                ' Rellenar los inputs
+                inputIdArticulo.Text = dataRow("IdArticulo")
+                inputNombreArticulos.Text = If(dataRow("Nombre") IsNot DBNull.Value, dataRow("Nombre"), "")
+                inputCategoriaArticulos.Text = If(dataRow("Categoria") IsNot DBNull.Value, dataRow("Categoria"), "")
+                inputProveedorArticulos.Text = If(dataRow("Proveedor") IsNot DBNull.Value, dataRow("Proveedor"), "")
+                inputExistenciasArticulos.Text = If(dataRow("Existencias") IsNot DBNull.Value, dataRow("Existencias"), 0)
+                inputPrCostArticulos.Text = If(dataRow("PrCost") IsNot DBNull.Value, dataRow("PrCost"), 0)
+                inputPrVentArticulos.Text = If(dataRow("PrVent") IsNot DBNull.Value, dataRow("PrVent"), 0)
+                inputBajoMinimoArticulos.Text = If(dataRow("BajoMinimo") IsNot DBNull.Value, dataRow("BajoMinimo"), 0)
+                inputSobreMaximoArticulos.Text = If(dataRow("SobreMaximo") IsNot DBNull.Value, dataRow("SobreMaximo"), 0)
+                inputDescripcionArticulos.Text = If(dataRow("Descripcion") IsNot DBNull.Value, dataRow("Descripcion"), "")
+
+                ' Poner imagen
+                'Dim rutaImagen As String = If(Not String.IsNullOrEmpty(dataRow("RutaImagen")), dataRow("RutaImagen"), "articulos/sin-imagen.jpg")
+                Dim rutaImagen As String = "articulos/articulo" + inputIdArticulo.Text + ".jpg"
+                rutaImagen = If(System.IO.File.Exists(rutaImagen), rutaImagen, "articulos/sin-imagen.jpg")
+                pictureboxArticulos.ImageLocation = rutaImagen
+
+            Catch ex As Exception
+                MsgBox("Ha habido un error: " + ex.Message, vbCritical + vbOKOnly, "Error en al leer los datos del a base de datos")
+            End Try
+
         End If
-
-        Dim dataRow As DataRow = dataTable.Select("NumRegistro = " & indiceNavigator)(0)
-        ' Rellenar los inputs
-        inputIdArticulo.Text = dataRow("IdArticulo")
-        inputNombreArticulos.Text = If(dataRow("Nombre") IsNot DBNull.Value, dataRow("Nombre"), "")
-        inputCategoriaArticulos.Text = If(dataRow("Categoria") IsNot DBNull.Value, dataRow("Categoria"), "")
-        inputProveedorArticulos.Text = If(dataRow("Proveedor") IsNot DBNull.Value, dataRow("Proveedor"), "")
-        inputExistenciasArticulos.Text = If(dataRow("Existencias") IsNot DBNull.Value, dataRow("Existencias"), 0)
-        inputPrCostArticulos.Text = If(dataRow("PrCost") IsNot DBNull.Value, dataRow("PrCost"), 0)
-        inputPrVentArticulos.Text = If(dataRow("PrVent") IsNot DBNull.Value, dataRow("PrVent"), 0)
-        inputBajoMinimoArticulos.Text = If(dataRow("BajoMinimo") IsNot DBNull.Value, dataRow("BajoMinimo"), 0)
-        inputSobreMaximoArticulos.Text = If(dataRow("SobreMaximo") IsNot DBNull.Value, dataRow("SobreMaximo"), 0)
-        inputDescripcionArticulos.Text = If(dataRow("Descripcion") IsNot DBNull.Value, dataRow("Descripcion"), "")
-
-        ' Poner imagen
-        'Dim rutaImagen As String = If(Not String.IsNullOrEmpty(dataRow("RutaImagen")), dataRow("RutaImagen"), "articulos/sin-imagen.jpg")
-        Dim rutaImagen As String = "articulos/articulo" + inputIdArticulo.Text + ".jpg"
-        rutaImagen = If(System.IO.File.Exists(rutaImagen), rutaImagen, "articulos/sin-imagen.jpg")
-        pictureboxArticulos.ImageLocation = rutaImagen
     End Sub
 
     Private Sub BindingNavigatorPositionItem_TextChanged(sender As Object, e As EventArgs) Handles BindingNavigatorPositionItem.TextChanged
@@ -120,7 +163,7 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
-        If modoEditar Then
+        If ModoFormulario Then
             ActualizarArticulo()
         Else
             InterruptorModoEdicion()
@@ -128,12 +171,16 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub InterruptorModoEdicion()
-        modoEditar = Not modoEditar
+        If ModoFormulario = ModoEditar Then
+            ModoFormulario = ModoVer
+        Else
+            ModoFormulario = ModoEditar
+        End If
         ActualizarModoEdicion()
     End Sub
 
     Private Sub btnAbajo_Click(sender As Object, e As EventArgs) Handles btnAbajo.Click
-        If modoEditar Then
+        If ModoFormulario = ModoEditar Then
             ActualizarArticulo()
         Else
             Me.Close()
@@ -143,7 +190,6 @@ Public Class ArticulosEdit
     Private Sub ActualizarArticulo()
 
         Dim basura As Integer
-
         ' Obtener valores de los inputs
         Dim idArticulo As String = inputIdArticulo.Text.Trim
         Dim nombre As String = inputNombreArticulos.Text.Trim
@@ -248,7 +294,7 @@ Public Class ArticulosEdit
         ActualizarDatos()
     End Sub
 
-    Private Sub btnEliminarFoto_Click(sender As Object, e As EventArgs) Handles btnEliminarFoto.Click
+    Private Sub BtnEliminarFoto_Click(sender As Object, e As EventArgs) Handles btnEliminarFoto.Click
 
         ' Especificar la carpeta y el nombre del archivo que deseas eliminar
         Dim rutaCarpeta As String = "articulos\"
@@ -293,23 +339,21 @@ Public Class ArticulosEdit
 
             ' If the user clicks Yes, remove the current item
             If result = DialogResult.Yes Then
-                bs.RemoveCurrent()
+
+                registrosActualizados = DeleteBBDD(connectionString, consulta)
+                dataTable = ConsultaBBDD(connectionString, SentenciaArticulos)
+
             End If
         End If
 
-        'If respuestaUsuario = DialogResult.Yes Then
-        '    registrosActualizados = DeleteBBDD(connectionString, consulta)
-        'Else
-        '    Return
-        'End If
 
-        'If registrosActualizados = 1 Then
-        '    MsgBox("Registro borrado con éxito: " + idArticulo.ToString, vbInformation + vbOKOnly, "Registro borrado")
-        'Else
-        '    MsgBox("Ha habido un error al borrar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
-        'End If
+        If registrosActualizados = 1 Then
+            MsgBox("Registro borrado con éxito: " + idArticulo.ToString, vbInformation + vbOKOnly, "Registro borrado")
+        Else
+            MsgBox("Ha habido un error al borrar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+        End If
 
-        'bindingNavigatorArticulos.MoveFirstItem.PerformClick()
+        bindingNavigatorArticulos.MoveFirstItem.PerformClick()
     End Sub
 
 End Class

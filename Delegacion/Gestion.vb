@@ -6,9 +6,12 @@ Public Class Gestion
     Dim connectionString As String = ConexionBD.CadenaConexion
     Dim dataTable As DataTable
 
+    Public Const ModoEditar As Integer = 1
+    Public Const ModoVer As Integer = 2
+    Public Const ModoAnadir As Integer = 3
+
     Private Sub Gestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Ajustar_Anchuras_DataGrids()
-
 
         Me.ControlBox = False
 
@@ -95,11 +98,9 @@ Public Class Gestion
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
             ' Obtiene el valor de la celda
             Dim idArticulo As Object = dataGridArticulos.Rows(e.RowIndex).Cells(0).Value
-            MsgBox(idArticulo)
-
 
             ' Abrir formulario del artiiculo
-            Dim formularioArticulos As New ArticulosEdit(idArticulo, "SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, * FROM ARTICULOS", False)
+            Dim formularioArticulos As New ArticulosEdit(idArticulo, False)
             formularioArticulos.Show()
         End If
     End Sub

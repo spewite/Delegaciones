@@ -45,12 +45,10 @@ Partial Class ArticulosEdit
         Me.inputBajoMinimoArticulos = New System.Windows.Forms.TextBox()
         Me.inputSobreMaximoArticulos = New System.Windows.Forms.TextBox()
         Me.inputPrVentArticulos = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.btnEliminarFoto = New System.Windows.Forms.Button()
         Me.btnEditarFoto = New System.Windows.Forms.Button()
         Me.pictureboxArticulos = New System.Windows.Forms.PictureBox()
-        Me.bindingNavigatorArticulos = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
+        Me.BindNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
@@ -60,11 +58,12 @@ Partial Class ArticulosEdit
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.btnEditar = New System.Windows.Forms.ToolStripButton()
-        Me.btnEliminar = New System.Windows.Forms.ToolStripButton()
+        Me.BtnEditar = New System.Windows.Forms.ToolStripButton()
+        Me.BtnAñadir = New System.Windows.Forms.ToolStripButton()
+        Me.BtnEliminar = New System.Windows.Forms.ToolStripButton()
         CType(Me.pictureboxArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.bindingNavigatorArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.bindingNavigatorArticulos.SuspendLayout()
+        CType(Me.BindNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.BindNavigator.SuspendLayout()
         Me.SuspendLayout()
         '
         'inputExistenciasArticulos
@@ -252,14 +251,6 @@ Partial Class ArticulosEdit
         Me.inputPrVentArticulos.Size = New System.Drawing.Size(100, 22)
         Me.inputPrVentArticulos.TabIndex = 81
         '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(497, 52)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(297, 514)
-        Me.TextBox1.TabIndex = 82
-        '
         'btnEliminarFoto
         '
         Me.btnEliminarFoto.BackgroundImage = CType(resources.GetObject("btnEliminarFoto.BackgroundImage"), System.Drawing.Image)
@@ -290,37 +281,28 @@ Partial Class ArticulosEdit
         Me.pictureboxArticulos.TabIndex = 72
         Me.pictureboxArticulos.TabStop = False
         '
-        'bindingNavigatorArticulos
+        'BindNavigator
         '
-        Me.bindingNavigatorArticulos.AddNewItem = Me.BindingNavigatorAddNewItem
-        Me.bindingNavigatorArticulos.CountItem = Me.BindingNavigatorCountItem
-        Me.bindingNavigatorArticulos.DeleteItem = Nothing
-        Me.bindingNavigatorArticulos.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.bindingNavigatorArticulos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnEditar, Me.BindingNavigatorAddNewItem, Me.btnEliminar})
-        Me.bindingNavigatorArticulos.Location = New System.Drawing.Point(0, 0)
-        Me.bindingNavigatorArticulos.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
-        Me.bindingNavigatorArticulos.MoveLastItem = Me.BindingNavigatorMoveLastItem
-        Me.bindingNavigatorArticulos.MoveNextItem = Me.BindingNavigatorMoveNextItem
-        Me.bindingNavigatorArticulos.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.bindingNavigatorArticulos.Name = "bindingNavigatorArticulos"
-        Me.bindingNavigatorArticulos.PositionItem = Me.BindingNavigatorPositionItem
-        Me.bindingNavigatorArticulos.Size = New System.Drawing.Size(830, 31)
-        Me.bindingNavigatorArticulos.TabIndex = 85
-        Me.bindingNavigatorArticulos.Text = "BindingNavigator1"
-        '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(29, 28)
-        Me.BindingNavigatorAddNewItem.Text = "Agregar nuevo"
+        Me.BindNavigator.AddNewItem = Nothing
+        Me.BindNavigator.CountItem = Me.BindingNavigatorCountItem
+        Me.BindNavigator.DeleteItem = Nothing
+        Me.BindNavigator.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.BindNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BtnEditar, Me.BtnAñadir, Me.BtnEliminar})
+        Me.BindNavigator.Location = New System.Drawing.Point(0, 0)
+        Me.BindNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
+        Me.BindNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
+        Me.BindNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
+        Me.BindNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
+        Me.BindNavigator.Name = "BindNavigator"
+        Me.BindNavigator.PositionItem = Me.BindingNavigatorPositionItem
+        Me.BindNavigator.Size = New System.Drawing.Size(501, 27)
+        Me.BindNavigator.TabIndex = 85
+        Me.BindNavigator.Text = "BindingNavigator1"
         '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(48, 28)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(48, 24)
         Me.BindingNavigatorCountItem.Text = "de {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
         '
@@ -330,7 +312,7 @@ Partial Class ArticulosEdit
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
         '
         'BindingNavigatorMovePreviousItem
@@ -339,13 +321,13 @@ Partial Class ArticulosEdit
         Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
         '
         'BindingNavigatorSeparator
         '
         Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 27)
         '
         'BindingNavigatorPositionItem
         '
@@ -360,7 +342,7 @@ Partial Class ArticulosEdit
         'BindingNavigatorSeparator1
         '
         Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'BindingNavigatorMoveNextItem
         '
@@ -368,7 +350,7 @@ Partial Class ArticulosEdit
         Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
         '
         'BindingNavigatorMoveLastItem
@@ -377,41 +359,49 @@ Partial Class ArticulosEdit
         Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMoveLastItem.Text = "Mover último"
         '
         'BindingNavigatorSeparator2
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 27)
         '
-        'btnEditar
+        'BtnEditar
         '
-        Me.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btnEditar.Image = Global.Delegacion.My.Resources.Resources.editar
-        Me.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnEditar.Name = "btnEditar"
-        Me.btnEditar.Size = New System.Drawing.Size(29, 28)
-        Me.btnEditar.Text = "Editar"
+        Me.BtnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BtnEditar.Image = Global.Delegacion.My.Resources.Resources.editar
+        Me.BtnEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BtnEditar.Name = "BtnEditar"
+        Me.BtnEditar.Size = New System.Drawing.Size(29, 24)
+        Me.BtnEditar.Text = "Editar"
         '
-        'btnEliminar
+        'BtnAñadir
         '
-        Me.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btnEliminar.Image = CType(resources.GetObject("btnEliminar.Image"), System.Drawing.Image)
-        Me.btnEliminar.Name = "btnEliminar"
-        Me.btnEliminar.RightToLeftAutoMirrorImage = True
-        Me.btnEliminar.Size = New System.Drawing.Size(29, 28)
-        Me.btnEliminar.Text = "Eliminar"
+        Me.BtnAñadir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BtnAñadir.Image = CType(resources.GetObject("BtnAñadir.Image"), System.Drawing.Image)
+        Me.BtnAñadir.Name = "BtnAñadir"
+        Me.BtnAñadir.RightToLeftAutoMirrorImage = True
+        Me.BtnAñadir.Size = New System.Drawing.Size(29, 24)
+        Me.BtnAñadir.Text = "Agregar nuevo"
+        '
+        'BtnEliminar
+        '
+        Me.BtnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BtnEliminar.Image = CType(resources.GetObject("BtnEliminar.Image"), System.Drawing.Image)
+        Me.BtnEliminar.Name = "BtnEliminar"
+        Me.BtnEliminar.RightToLeftAutoMirrorImage = True
+        Me.BtnEliminar.Size = New System.Drawing.Size(29, 24)
+        Me.BtnEliminar.Text = "Eliminar"
         '
         'ArticulosEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(830, 598)
-        Me.Controls.Add(Me.bindingNavigatorArticulos)
+        Me.ClientSize = New System.Drawing.Size(501, 598)
+        Me.Controls.Add(Me.BindNavigator)
         Me.Controls.Add(Me.btnEliminarFoto)
         Me.Controls.Add(Me.btnEditarFoto)
-        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.inputPrVentArticulos)
         Me.Controls.Add(Me.inputSobreMaximoArticulos)
         Me.Controls.Add(Me.inputBajoMinimoArticulos)
@@ -439,9 +429,9 @@ Partial Class ArticulosEdit
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = " "
         CType(Me.pictureboxArticulos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.bindingNavigatorArticulos, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.bindingNavigatorArticulos.ResumeLayout(False)
-        Me.bindingNavigatorArticulos.PerformLayout()
+        CType(Me.BindNavigator, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.BindNavigator.ResumeLayout(False)
+        Me.BindNavigator.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -468,13 +458,12 @@ Partial Class ArticulosEdit
     Friend WithEvents inputBajoMinimoArticulos As TextBox
     Friend WithEvents inputSobreMaximoArticulos As TextBox
     Friend WithEvents inputPrVentArticulos As TextBox
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents btnEditarFoto As Button
     Friend WithEvents btnEliminarFoto As Button
-    Friend WithEvents bindingNavigatorArticulos As BindingNavigator
-    Friend WithEvents BindingNavigatorAddNewItem As ToolStripButton
+    Friend WithEvents BindNavigator As BindingNavigator
+    Friend WithEvents BtnAñadir As ToolStripButton
     Friend WithEvents BindingNavigatorCountItem As ToolStripLabel
-    Friend WithEvents btnEliminar As ToolStripButton
+    Friend WithEvents BtnEliminar As ToolStripButton
     Friend WithEvents BindingNavigatorMoveFirstItem As ToolStripButton
     Friend WithEvents BindingNavigatorMovePreviousItem As ToolStripButton
     Friend WithEvents BindingNavigatorSeparator As ToolStripSeparator
@@ -483,5 +472,5 @@ Partial Class ArticulosEdit
     Friend WithEvents BindingNavigatorMoveNextItem As ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
-    Friend WithEvents btnEditar As ToolStripButton
+    Friend WithEvents BtnEditar As ToolStripButton
 End Class

@@ -35,7 +35,7 @@ Partial Class Gestion
         Me.inputPrCostArticulos = New System.Windows.Forms.TextBox()
         Me.inputPrVentArticulos = New System.Windows.Forms.TextBox()
         Me.inputProveedorArticulo = New System.Windows.Forms.TextBox()
-        Me.inputDescripcionArticulo = New System.Windows.Forms.TextBox()
+        Me.inputNombreArticulo = New System.Windows.Forms.TextBox()
         Me.inputIdArticulo = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -107,6 +107,8 @@ Partial Class Gestion
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,12 +131,14 @@ Partial Class Gestion
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1426, 980)
+        Me.TabControl1.Size = New System.Drawing.Size(1820, 980)
         Me.TabControl1.TabIndex = 2
         '
         'articulosTab
         '
         Me.articulosTab.BackColor = System.Drawing.SystemColors.Control
+        Me.articulosTab.Controls.Add(Me.Label7)
+        Me.articulosTab.Controls.Add(Me.inputDescripcionArticulos)
         Me.articulosTab.Controls.Add(Me.Label1)
         Me.articulosTab.Controls.Add(Me.btnBorrarArticulos)
         Me.articulosTab.Controls.Add(Me.btnAltaArticulos)
@@ -145,7 +149,7 @@ Partial Class Gestion
         Me.articulosTab.Controls.Add(Me.inputPrCostArticulos)
         Me.articulosTab.Controls.Add(Me.inputPrVentArticulos)
         Me.articulosTab.Controls.Add(Me.inputProveedorArticulo)
-        Me.articulosTab.Controls.Add(Me.inputDescripcionArticulo)
+        Me.articulosTab.Controls.Add(Me.inputNombreArticulo)
         Me.articulosTab.Controls.Add(Me.inputIdArticulo)
         Me.articulosTab.Controls.Add(Me.Label9)
         Me.articulosTab.Controls.Add(Me.Label18)
@@ -159,22 +163,22 @@ Partial Class Gestion
         Me.articulosTab.Controls.Add(Me.Label16)
         Me.articulosTab.Location = New System.Drawing.Point(4, 25)
         Me.articulosTab.Name = "articulosTab"
-        Me.articulosTab.Size = New System.Drawing.Size(1418, 951)
+        Me.articulosTab.Size = New System.Drawing.Size(1812, 951)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(53, 74)
+        Me.Label1.Location = New System.Drawing.Point(73, 73)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(82, 16)
+        Me.Label1.Size = New System.Drawing.Size(59, 16)
         Me.Label1.TabIndex = 51
-        Me.Label1.Text = "Descripción:"
+        Me.Label1.Text = "Nombre:"
         '
         'btnBorrarArticulos
         '
-        Me.btnBorrarArticulos.Location = New System.Drawing.Point(1248, 65)
+        Me.btnBorrarArticulos.Location = New System.Drawing.Point(1516, 59)
         Me.btnBorrarArticulos.Name = "btnBorrarArticulos"
         Me.btnBorrarArticulos.Size = New System.Drawing.Size(162, 32)
         Me.btnBorrarArticulos.TabIndex = 50
@@ -183,7 +187,7 @@ Partial Class Gestion
         '
         'btnAltaArticulos
         '
-        Me.btnAltaArticulos.Location = New System.Drawing.Point(1248, 107)
+        Me.btnAltaArticulos.Location = New System.Drawing.Point(1516, 101)
         Me.btnAltaArticulos.Name = "btnAltaArticulos"
         Me.btnAltaArticulos.Size = New System.Drawing.Size(162, 32)
         Me.btnAltaArticulos.TabIndex = 49
@@ -192,7 +196,7 @@ Partial Class Gestion
         '
         'btnConsultarArticulos
         '
-        Me.btnConsultarArticulos.Location = New System.Drawing.Point(1248, 24)
+        Me.btnConsultarArticulos.Location = New System.Drawing.Point(1516, 18)
         Me.btnConsultarArticulos.Name = "btnConsultarArticulos"
         Me.btnConsultarArticulos.Size = New System.Drawing.Size(162, 32)
         Me.btnConsultarArticulos.TabIndex = 48
@@ -247,13 +251,13 @@ Partial Class Gestion
         Me.inputProveedorArticulo.Size = New System.Drawing.Size(252, 22)
         Me.inputProveedorArticulo.TabIndex = 38
         '
-        'inputDescripcionArticulo
+        'inputNombreArticulo
         '
-        Me.inputDescripcionArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDescripcionArticulo.Location = New System.Drawing.Point(145, 70)
-        Me.inputDescripcionArticulo.Name = "inputDescripcionArticulo"
-        Me.inputDescripcionArticulo.Size = New System.Drawing.Size(252, 22)
-        Me.inputDescripcionArticulo.TabIndex = 34
+        Me.inputNombreArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputNombreArticulo.Location = New System.Drawing.Point(145, 70)
+        Me.inputNombreArticulo.Name = "inputNombreArticulo"
+        Me.inputNombreArticulo.Size = New System.Drawing.Size(252, 22)
+        Me.inputNombreArticulo.TabIndex = 34
         '
         'inputIdArticulo
         '
@@ -330,6 +334,7 @@ Partial Class Gestion
         '
         Me.dataGridArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridArticulos.Location = New System.Drawing.Point(56, 176)
+        Me.dataGridArticulos.MultiSelect = False
         Me.dataGridArticulos.Name = "dataGridArticulos"
         Me.dataGridArticulos.ReadOnly = True
         Me.dataGridArticulos.RowHeadersWidth = 51
@@ -931,18 +936,29 @@ Partial Class Gestion
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
         '
-        'BindingSource1
+        'inputDescripcionArticulos
         '
-        Me.BindingSource1.Position = 0
+        Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDescripcionArticulos.Location = New System.Drawing.Point(1205, 43)
+        Me.inputDescripcionArticulos.Multiline = True
+        Me.inputDescripcionArticulos.Name = "inputDescripcionArticulos"
+        Me.inputDescripcionArticulos.Size = New System.Drawing.Size(252, 96)
+        Me.inputDescripcionArticulos.TabIndex = 52
         '
-        'DataSet1
+        'Label7
         '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(1202, 23)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(82, 16)
+        Me.Label7.TabIndex = 53
+        Me.Label7.Text = "Descripcion:"
         '
         'Gestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1426, 980)
+        Me.ClientSize = New System.Drawing.Size(1820, 980)
         Me.ControlBox = False
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Gestion"
@@ -974,7 +990,7 @@ Partial Class Gestion
     Friend WithEvents inputPrCostArticulos As TextBox
     Friend WithEvents inputPrVentArticulos As TextBox
     Friend WithEvents inputProveedorArticulo As TextBox
-    Friend WithEvents inputDescripcionArticulo As TextBox
+    Friend WithEvents inputNombreArticulo As TextBox
     Friend WithEvents inputIdArticulo As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label18 As Label
@@ -1050,4 +1066,6 @@ Partial Class Gestion
     Friend WithEvents btnConsultarTransportista As Button
     Friend WithEvents checkFechaRegistroHastaPartners As CheckBox
     Friend WithEvents checkFechaRegistroDesdePartners As CheckBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents inputDescripcionArticulos As TextBox
 End Class

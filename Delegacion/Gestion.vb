@@ -10,10 +10,7 @@ Public Class Gestion
     Public Const ModoVer As Integer = 2
     Public Const ModoAñadir As Integer = 3
 
-    Dim SentenciaFormularioArticulos As String =
-        "SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, * 
-        FROM ARTICULOS 
-        WHERE 1=1"
+    Dim sentenciaWhereArticulos As String = ""
 
     Private Sub Gestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Ajustar_Anchuras_DataGrids()
@@ -44,57 +41,60 @@ Public Class Gestion
 
     Private Sub BtnConsultarArticulos_Click(sender As Object, e As EventArgs) Handles btnConsultarArticulos.Click
         ' Construir la sentencia SQL base
-        Dim consulta As String = "SELECT * FROM ARTICULOS WHERE 1 = 1"
+        Dim consulta As String = "
+        SELECT IdArticulo, Nombre, Descripcion, Categoria, Proveedor, Prvent, PrCost, Existencias, SobreMaximo, BajoMinimo 
+        FROM ARTICULOS 
+        WHERE 1 = 1"
 
         ' Agregar condiciones según los valores ingresados en los controles
         If Not String.IsNullOrEmpty(inputIdArticulo.Text.Trim) Then
             consulta &= $" AND IdArticulo = {inputIdArticulo.Text.Trim}"
-            SentenciaFormularioArticulos &= $" AND IdArticulo = {inputIdArticulo.Text.Trim}"
+            sentenciaWhereArticulos &= $" AND IdArticulo = {inputIdArticulo.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputNombreArticulo.Text.Trim) Then
             consulta &= $" AND UPPER(Nombre) LIKE '%{inputNombreArticulo.Text.ToUpper.Trim}%'"
-            SentenciaFormularioArticulos &= $" AND UPPER(Nombre) LIKE '%{inputNombreArticulo.Text.ToUpper.Trim}%'"
+            sentenciaWhereArticulos &= $" AND UPPER(Nombre) LIKE '%{inputNombreArticulo.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputProveedorArticulo.Text.Trim) Then
             consulta &= $" AND UPPER(Proveedor) LIKE '%{inputProveedorArticulo.Text.ToUpper}%'"
-            SentenciaFormularioArticulos &= $" AND UPPER(Proveedor) LIKE '%{inputProveedorArticulo.Text.ToUpper}%'"
+            sentenciaWhereArticulos &= $" AND UPPER(Proveedor) LIKE '%{inputProveedorArticulo.Text.ToUpper}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputExistenciasArticulo.Text.Trim) Then
             consulta &= $" AND Existencias = {inputExistenciasArticulo.Text.Trim}"
-            SentenciaFormularioArticulos &= $" AND Existencias = {inputExistenciasArticulo.Text.Trim}"
+            sentenciaWhereArticulos &= $" AND Existencias = {inputExistenciasArticulo.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputPrCostArticulos.Text.Trim) Then
             consulta &= $" AND PrCost = {inputPrCostArticulos.Text.Trim}"
-            SentenciaFormularioArticulos &= $" AND PrCost = {inputPrCostArticulos.Text.Trim}"
+            sentenciaWhereArticulos &= $" AND PrCost = {inputPrCostArticulos.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputPrVentArticulos.Text.Trim) Then
             consulta &= $" AND PrVent = {inputPrCostArticulos.Text.Trim}"
-            SentenciaFormularioArticulos &= $" AND PrVent = {inputPrCostArticulos.Text.Trim}"
+            sentenciaWhereArticulos &= $" AND PrVent = {inputPrCostArticulos.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputSobreMaximoArticulos.Text.Trim) Then
             consulta &= $" AND SobreMaximo = {inputSobreMaximoArticulos.Text.Trim}"
-            SentenciaFormularioArticulos &= $" AND SobreMaximo = {inputSobreMaximoArticulos.Text.Trim}"
+            sentenciaWhereArticulos &= $" AND SobreMaximo = {inputSobreMaximoArticulos.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputBajoMinimoArticulos.Text.Trim) Then
             consulta &= $" AND BajoMinimo = {inputBajoMinimoArticulos.Text.Trim}"
-            SentenciaFormularioArticulos &= $" AND BajoMinimo = {inputBajoMinimoArticulos.Text.Trim}"
+            sentenciaWhereArticulos &= $" AND BajoMinimo = {inputBajoMinimoArticulos.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(comboCategoriaArticulos.Text.Trim) Then
             consulta &= $" AND Categoria = '{comboCategoriaArticulos.Text.Trim}'"
-            SentenciaFormularioArticulos &= $" AND Categoria = '{comboCategoriaArticulos.Text.Trim}'"
+            sentenciaWhereArticulos &= $" AND Categoria = '{comboCategoriaArticulos.Text.Trim}'"
         End If
 
         If Not String.IsNullOrEmpty(inputDescripcionArticulos.Text.Trim) Then
             consulta &= $" AND UPPER(Descripcion) LIKE '%{inputDescripcionArticulos.Text.ToUpper}%'"
-            SentenciaFormularioArticulos &= $" AND UPPER(Descripcion) LIKE '%{inputDescripcionArticulos.Text.ToUpper}%'"
+            sentenciaWhereArticulos &= $" AND UPPER(Descripcion) LIKE '%{inputDescripcionArticulos.Text.ToUpper}%'"
         End If
 
         dataTable = ConsultaBBDD(connectionString, consulta)
@@ -121,7 +121,7 @@ Public Class Gestion
             Dim IdArticulo As Object = dataGridArticulos.Rows(e.RowIndex).Cells(0).Value
 
             ' Abrir formulario del artiiculo
-            Dim formularioArticulos As New ArticulosEdit(IdArticulo, SentenciaFormularioArticulos, ModoVer)
+            Dim formularioArticulos As New ArticulosEdit(IdArticulo, sentenciaWhereArticulos, ModoVer)
             formularioArticulos.Show()
         End If
     End Sub
@@ -188,7 +188,7 @@ Public Class Gestion
         End If
 
         dataTable = ConsultaBBDD(connectionString, consulta)
-        dataGridPartners.DataSource = DataTable
+        dataGridPartners.DataSource = dataTable
     End Sub
 
 
@@ -207,8 +207,8 @@ Public Class Gestion
         comboZona2Comerciales.Items.Clear()
 
         Dim consulta As String = $"SELECT DISTINCT DESCRIPCION FROM ZONAS"
-        DataTable = ConsultaBBDD(connectionString, consulta)
-        For Each fila As DataRow In DataTable.Rows
+        dataTable = ConsultaBBDD(connectionString, consulta)
+        For Each fila As DataRow In dataTable.Rows
             comboZonaPartners.Items.Add(fila("DESCRIPCION"))
             comboZonaComerciales.Items.Add(fila("DESCRIPCION"))
             comboZona2Comerciales.Items.Add(fila("DESCRIPCION"))

@@ -25,6 +25,8 @@ Partial Class Gestion
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.articulosTab = New System.Windows.Forms.TabPage()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnBorrarArticulos = New System.Windows.Forms.Button()
         Me.btnAltaArticulos = New System.Windows.Forms.Button()
@@ -107,8 +109,6 @@ Partial Class Gestion
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,6 +166,24 @@ Partial Class Gestion
         Me.articulosTab.Size = New System.Drawing.Size(1812, 951)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(1202, 23)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(82, 16)
+        Me.Label7.TabIndex = 53
+        Me.Label7.Text = "Descripcion:"
+        '
+        'inputDescripcionArticulos
+        '
+        Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDescripcionArticulos.Location = New System.Drawing.Point(1205, 43)
+        Me.inputDescripcionArticulos.Multiline = True
+        Me.inputDescripcionArticulos.Name = "inputDescripcionArticulos"
+        Me.inputDescripcionArticulos.Size = New System.Drawing.Size(252, 96)
+        Me.inputDescripcionArticulos.TabIndex = 52
         '
         'Label1
         '
@@ -389,7 +407,7 @@ Partial Class Gestion
         Me.partnersTab.Location = New System.Drawing.Point(4, 25)
         Me.partnersTab.Name = "partnersTab"
         Me.partnersTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.partnersTab.Size = New System.Drawing.Size(1418, 951)
+        Me.partnersTab.Size = New System.Drawing.Size(1812, 951)
         Me.partnersTab.TabIndex = 1
         Me.partnersTab.Text = "Partners"
         '
@@ -635,7 +653,7 @@ Partial Class Gestion
         Me.comercialesTab.Location = New System.Drawing.Point(4, 25)
         Me.comercialesTab.Name = "comercialesTab"
         Me.comercialesTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.comercialesTab.Size = New System.Drawing.Size(1418, 951)
+        Me.comercialesTab.Size = New System.Drawing.Size(1812, 951)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
         '
@@ -844,7 +862,7 @@ Partial Class Gestion
         Me.transportistasTab.Controls.Add(Me.Label46)
         Me.transportistasTab.Location = New System.Drawing.Point(4, 25)
         Me.transportistasTab.Name = "transportistasTab"
-        Me.transportistasTab.Size = New System.Drawing.Size(1418, 951)
+        Me.transportistasTab.Size = New System.Drawing.Size(1812, 951)
         Me.transportistasTab.TabIndex = 6
         Me.transportistasTab.Text = "Transportistas"
         '
@@ -935,24 +953,6 @@ Partial Class Gestion
         Me.Label46.Size = New System.Drawing.Size(105, 16)
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
-        '
-        'inputDescripcionArticulos
-        '
-        Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDescripcionArticulos.Location = New System.Drawing.Point(1205, 43)
-        Me.inputDescripcionArticulos.Multiline = True
-        Me.inputDescripcionArticulos.Name = "inputDescripcionArticulos"
-        Me.inputDescripcionArticulos.Size = New System.Drawing.Size(252, 96)
-        Me.inputDescripcionArticulos.TabIndex = 52
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(1202, 23)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(82, 16)
-        Me.Label7.TabIndex = 53
-        Me.Label7.Text = "Descripcion:"
         '
         'Gestion
         '

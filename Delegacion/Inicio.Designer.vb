@@ -45,7 +45,7 @@ Partial Class Inicio
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.GestionToolStripMenuItem, Me.PedidosToolStripMenuItem, Me.FacturasToolStripMenuItem, Me.SalirToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1492, 30)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1492, 28)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -60,32 +60,32 @@ Partial Class Inicio
         '
         Me.ImportarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PedidosToolStripMenuItem2, Me.PartnersToolStripMenuItem2, Me.ArticulosToolStripMenuItem2})
         Me.ImportarToolStripMenuItem1.Name = "ImportarToolStripMenuItem1"
-        Me.ImportarToolStripMenuItem1.Size = New System.Drawing.Size(150, 26)
+        Me.ImportarToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
         Me.ImportarToolStripMenuItem1.Text = "Importar"
         '
         'PedidosToolStripMenuItem2
         '
         Me.PedidosToolStripMenuItem2.Name = "PedidosToolStripMenuItem2"
-        Me.PedidosToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
+        Me.PedidosToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
         Me.PedidosToolStripMenuItem2.Text = "Pedidos"
         '
         'PartnersToolStripMenuItem2
         '
         Me.PartnersToolStripMenuItem2.Name = "PartnersToolStripMenuItem2"
-        Me.PartnersToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
+        Me.PartnersToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
         Me.PartnersToolStripMenuItem2.Text = "Partners"
         '
         'ArticulosToolStripMenuItem2
         '
         Me.ArticulosToolStripMenuItem2.Name = "ArticulosToolStripMenuItem2"
-        Me.ArticulosToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
+        Me.ArticulosToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
         Me.ArticulosToolStripMenuItem2.Text = "Articulos"
         '
         'ExportarToolStripMenuItem1
         '
         Me.ExportarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArticulosToolStripMenuItem3, Me.PartnersToolStripMenuItem3})
         Me.ExportarToolStripMenuItem1.Name = "ExportarToolStripMenuItem1"
-        Me.ExportarToolStripMenuItem1.Size = New System.Drawing.Size(150, 26)
+        Me.ExportarToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
         Me.ExportarToolStripMenuItem1.Text = "Exportar"
         '
         'ArticulosToolStripMenuItem3

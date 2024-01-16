@@ -43,6 +43,9 @@ Public Class Inicio
         Me.Close()
     End Sub
 
+    Private Sub PartnersToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PartnersToolStripMenuItem2.Click
+        Importar.Show()
+    End Sub
 End Class
 
 Public Class ConexionBD

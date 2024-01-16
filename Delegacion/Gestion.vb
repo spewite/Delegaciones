@@ -46,6 +46,8 @@ Public Class Gestion
         FROM ARTICULOS 
         WHERE 1 = 1"
 
+        sentenciaWhereArticulos = ""
+
         ' Agregar condiciones según los valores ingresados en los controles
         If Not String.IsNullOrEmpty(inputIdArticulo.Text.Trim) Then
             consulta &= $" AND IdArticulo = {inputIdArticulo.Text.Trim}"

@@ -1,53 +1,65 @@
-﻿Imports System.Data.SqlClient
-Imports System.IO
-Imports System.Windows
+﻿Imports System.IO
 Imports Dllgaciones.BaseDeDatos
 
-Public Class ArticulosEdit
+Public Class FormularioArticulos
 
     Dim ConnectionString As String = ConexionBD.CadenaConexion
     Dim DataTable As DataTable
     Dim BindingSource As New BindingSource
 
     Dim IndiceNavigator As Integer
-    Dim SentenciaArticulos As String
+    Dim SentenciaWhere As String
+    Dim SentenciaSelect As String = "SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, * 
+                                        FROM ARTICULOS 
+                                        WHERE 1=1"
 
     Dim ModoFormulario As Integer
+
+    Dim base64FormularioAñadir As String = ""
 
     Public Const ModoEditar As Integer = 1
     Public Const ModoVer As Integer = 2
     Public Const ModoAñadir As Integer = 3
 
-    Public Sub New(IdRegistro As Integer, SentenciaArticulos As String, ModoFormulario As Integer)
+    Public Sub New(IdRegistro As Integer, SentenciaWhere As String, ModoFormulario As Integer)
         InitializeComponent()
         ' Guardar las variables recibidas en variables locales 
+
         Me.ModoFormulario = ModoFormulario
-        Me.SentenciaArticulos = SentenciaArticulos
+        Me.SentenciaSelect += SentenciaWhere
+        Me.SentenciaWhere = SentenciaWhere
         Me.IndiceNavigator = ObtenerNumRegistro(IdRegistro)
+
     End Sub
 
     Public Sub New(ModoFormulario As Integer)
         InitializeComponent()
-        ' Guardar las variables recibidas en variables locales 
+
+        ' Verificar que no se le ha llamado al contructor de Añadir formulario con otro Modo.
         If ModoFormulario <> ModoAñadir Then
-            MsgBox("Se ha llamada al formulario del registro en modo editar/ver sin el ID del registro. Utilizar el otro constructor para ello",
+            MsgBox("Se ha llamada al formulario del registro en modo ver, sin el ID del registro. Utilizar el otro constructor para ello",
             vbCritical + vbOKOnly, "Error interno, contacte con el administrador.")
         End If
 
+        ' Guardar las variables recibidas en variables locales 
         Me.ModoFormulario = ModoAñadir
     End Sub
 
     Function ObtenerNumRegistro(IdRegistro As Integer) As Integer
+        ' Metodo para obtener a que indice de BindingNavigator le pertenece a al ID del registro.
+        ' Ejemplo: Un binding navigator puede tener 1-8 registros. Y el Id del registro puede ser 31, por ejemplo. 
+        ' Lo que hace es coge la consulta original, y añade una columna ordenada por el ID (seria el indice del BindingNavigator)
+
         Dim NumRegistro As Integer = 0
         Dim Consulta As String =
         $"WITH CTE AS (
             SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, *
-            FROM ARTICULOS
+            FROM ARTICULOS 
+            WHERE 1=1 {SentenciaWhere}
         )
 
         SELECT NumRegistro FROM CTE WHERE IdArticulo = {IdRegistro}"
 
-        ' Assuming ConsultaBBDD is a method that executes the SQL query and returns a DataTable
         Dim DataTableNumRegistro As DataTable = ConsultaBBDD(ConnectionString, Consulta)
 
         ' Verificar si ha retornado alguna linea
@@ -61,17 +73,21 @@ Public Class ArticulosEdit
 
 
     Private Sub ArticulosEdit_Load(sender As Object, e As EventArgs) Handles Me.Load
-        DataTable = ConsultaBBDD(ConnectionString, SentenciaArticulos)
+        ' Si el el modo del formulario es Añadir no se van a cargar los valores de los inputs.
+        If ModoFormulario <> ModoAñadir Then
+            DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
-        'Rellenar biding navigator
-        BindingSource.DataSource = DataTable
-        BindingSource.Position = IndiceNavigator - 1
-        BindNavigator.BindingSource = BindingSource
+            'Rellenar biding navigator
+            BindingSource.DataSource = DataTable
+            BindingSource.Position = IndiceNavigator - 1
+            BindNavigatorArticulo.BindingSource = BindingSource
 
-        BindNavigator.PositionItem.Text = IndiceNavigator
+            BindNavigatorArticulo.PositionItem.Text = IndiceNavigator
 
-        'Rellenar los datos 
-        ActualizarDatos()
+            'Rellenar los datos 
+            ActualizarDatos()
+
+        End If
 
         ' Detecta el valor de la variable ModoFormulario y ajusta la ventana acorde al modo
         ActualizarModo()
@@ -79,25 +95,43 @@ Public Class ArticulosEdit
 
     Private Sub ActualizarModo()
         ActualizarBotoneraNavigator()
+        ActualizarBotonerImagen()
         ActivarDesactivarInputs()
         ActualizarBotonAbajo()
     End Sub
 
     Private Sub ActualizarBotoneraNavigator()
+
         If ModoFormulario = ModoEditar Then
+            ' Si el modo del formulario es editar va a mostrar todos los botones.
             BtnEditar.Image = Delegacion.My.Resources.Resources.confirmar_editar
 
-            BindNavigator.Visible = True
+            BindNavigatorArticulo.Visible = True
             BtnEliminar.Visible = True
         Else
             BtnEditar.Image = Delegacion.My.Resources.Resources.editar
 
             If ModoFormulario = ModoAñadir Then
                 ' Si el modo del formulario es 'Añadir' oculta el binding navigator porque no tiene sentido que esté ahi
-                BindNavigator.Visible = False
+                BindNavigatorArticulo.Visible = False
             End If
 
             BtnEliminar.Visible = False
+        End If
+
+    End Sub
+
+    Private Sub ActualizarBotonerImagen()
+
+        If ModoFormulario = ModoEditar Then
+            btnEditarFoto.Visible = True
+            btnEliminarFoto.Visible = True
+        ElseIf ModoFormulario = ModoVer Then
+            btnEditarFoto.Visible = False
+            btnEliminarFoto.Visible = False
+        ElseIf ModoFormulario = ModoAñadir Then
+            btnEditarFoto.Visible = True
+            btnEliminarFoto.Visible = False
         End If
 
     End Sub
@@ -142,9 +176,12 @@ Public Class ArticulosEdit
 
     Private Sub ActualizarDatos()
 
+        ' Si el modo del formulario es Añadir no va actualizar los datos porque no se muestran
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoVer Then
 
-            Dim indiceNavigator = BindNavigator.PositionItem.Text
+            DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
+
+            Dim indiceNavigator = BindNavigatorArticulo.PositionItem.Text
 
             ' Si el indice del navigator es 0, es que se esta inicializando. Entonces, se sale del metodo porque no nos interesa.
             If indiceNavigator < 1 Then
@@ -166,11 +203,9 @@ Public Class ArticulosEdit
                 inputSobreMaximoArticulos.Text = If(dataRow("SobreMaximo") IsNot DBNull.Value, dataRow("SobreMaximo"), 0)
                 inputDescripcionArticulos.Text = If(dataRow("Descripcion") IsNot DBNull.Value, dataRow("Descripcion"), "")
 
-                ' Poner imagen
-                'Dim rutaImagen As String = If(Not String.IsNullOrEmpty(dataRow("RutaImagen")), dataRow("RutaImagen"), "articulos/sin-imagen.jpg")
-                Dim rutaImagen As String = "articulos/articulo" + inputIdArticulo.Text + ".jpg"
-                rutaImagen = If(System.IO.File.Exists(rutaImagen), rutaImagen, "articulos/sin-imagen.jpg")
-                pictureboxArticulos.ImageLocation = rutaImagen
+                ' Poner la imagen
+                Dim stringBase64 As String = If(dataRow("ImagenBase64") IsNot DBNull.Value, dataRow("ImagenBase64"), "")
+                PonerImagen(stringBase64)
 
             Catch ex As Exception
                 MsgBox("Ha habido un error: " + ex.Message, vbCritical + vbOKOnly, "Error en al leer los datos del a base de datos")
@@ -179,12 +214,43 @@ Public Class ArticulosEdit
         End If
     End Sub
 
+    Private Sub PonerImagen(imagenBase64 As String)
+
+        If imagenBase64 = "" Then
+            Dim rutaSinImagen As String = "articulos/sin-imagen.jpg"
+            pictureboxArticulos.ImageLocation = rutaSinImagen
+        Else
+            Try
+                ' Convertir la cadena base64 a un array de bytes
+                Dim bytesImagen As Byte() = Convert.FromBase64String(imagenBase64)
+
+                ' Crear un MemoryStream a partir del array de bytes
+                Using ms As New MemoryStream(bytesImagen)
+                    ' Crear una imagen desde el MemoryStream
+                    Dim imagen As Drawing.Image = Drawing.Image.FromStream(ms)
+
+                    ' Asignar la imagen al PictureBox
+                    pictureboxArticulos.Image = imagen
+                End Using
+            Catch ex As Exception
+                ' Manejar las excepciones relacionadas con la decodificación de base64
+                MessageBox.Show("Error al decodificar la imagen base64: " & ex.Message, "Error de decodificación", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                ' Si ha habido un error al asignar la imagen, se va a poner la imagen por defecto.
+                Dim rutaSinImagen As String = "articulos/sin-imagen.jpg"
+                pictureboxArticulos.ImageLocation = rutaSinImagen
+            End Try
+        End If
+    End Sub
+
+
     Private Sub BindingNavigatorPositionItem_TextChanged(sender As Object, e As EventArgs) Handles BindingNavigatorPositionItem.TextChanged
-        ' Cuando el valor del indice del bindingnavigator cambie, se actualizaran los inputs 
+        ' Cuando el valor del indice del BindingNavigator cambie, se actualizaran los datos.
         ActualizarDatos()
     End Sub
 
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles BtnEditar.Click
+        ' btnEdtiar: Boton de edicion del BindingNavitor
         If ModoFormulario = ModoEditar Then
             ActualizarArticulo()
         Else
@@ -193,6 +259,7 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub InterruptorModoEdicion()
+        ' Si el modo del forulario es editar, lo cambia a ver; y viceversa.
         If ModoFormulario = ModoEditar Then
             ModoFormulario = ModoVer
         Else
@@ -202,11 +269,12 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub btnAbajo_Click(sender As Object, e As EventArgs) Handles btnAbajo.Click
+        ' btnAbajo: el boton que está abajo del formulario. Según el modo va a cambiar lo que hace
         If ModoFormulario = ModoEditar Then
             ActualizarArticulo()
         ElseIf ModoFormulario = ModoAñadir Then
             InsertarArticulo()
-        Else
+        ElseIf ModoFormulario = ModoVer Then
             Me.Close()
         End If
     End Sub
@@ -228,12 +296,13 @@ Public Class ArticulosEdit
             Dim BajoMinimo As Integer = inputBajoMinimoArticulos.Text.Trim
             Dim SobreMaximo As Integer = inputSobreMaximoArticulos.Text.Trim
             Dim Descripcion As String = inputDescripcionArticulos.Text.Trim
+
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
 
             Dim consulta As String = $"
-            INSERT INTO ARTICULOS(Nombre, Descripcion, Categoria, Proveedor, PrVent, PrCost, Existencias, SobreMaximo, BajoMinimo)
-            VALUES ('{Nombre}', '{Descripcion}', '{Categoria}', '{Proveedor}', {PrecioVenta}, {PrecioCoste}, '{Existencias}', '{SobreMaximo}', '{BajoMinimo}')"
+            INSERT INTO ARTICULOS(Nombre, Descripcion, Categoria, Proveedor, PrVent, PrCost, Existencias, SobreMaximo, BajoMinimo, ImagenBase64)
+            VALUES ('{Nombre}', '{Descripcion}', '{Categoria}', '{Proveedor}', {PrecioVenta}, {PrecioCoste}, '{Existencias}', '{SobreMaximo}', '{BajoMinimo}', '{base64FormularioAñadir}')"
 
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
@@ -266,7 +335,6 @@ Public Class ArticulosEdit
             Dim BajoMinimo As Integer = inputBajoMinimoArticulos.Text.Trim
             Dim SobreMaximo As Integer = inputSobreMaximoArticulos.Text.Trim
             Dim Descripcion As String = inputDescripcionArticulos.Text.Trim
-            'Dim rutaImagen As String = pictureboxArticulos.ImageLocation
 
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
@@ -299,6 +367,8 @@ Public Class ArticulosEdit
     End Sub
 
     Function ValidarCampos() As Boolean
+        ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
+
         Dim basura As Integer
 
         Dim IdArticulo As String = inputIdArticulo.Text.Trim
@@ -311,8 +381,6 @@ Public Class ArticulosEdit
         Dim BajoMinimo As String = inputBajoMinimoArticulos.Text.Trim
         Dim SobreMaximo As String = inputSobreMaximoArticulos.Text.Trim
         Dim Descripcion As String = inputDescripcionArticulos.Text.Trim
-        'Dim rutaImagen As String = pictureboxArticulos.ImageLocation
-
 
         ' Validacion de los inputs
         If Not Integer.TryParse(Existencias, basura) Then
@@ -343,94 +411,105 @@ Public Class ArticulosEdit
         Return True
     End Function
 
-
-
     Private Sub btnEditarFoto_Click(sender As Object, e As EventArgs) Handles btnEditarFoto.Click
-        ' Crear una instancia de OpenFileDialog
+        ' OpenFileDialog: Ventana de Windows para elegir un archivo. Esta linea solo es para crear el objeto, se muestra despues.
         Dim openFileDialog As New OpenFileDialog()
 
-        ' Establecer el título y el filtro para archivos de imagen
+        ' Establecer el título y el filtro para la ventana de elegir un archivo
         openFileDialog.Title = "Selecciona una imagen"
-        openFileDialog.Filter = "Archivos de imagen|*.jpg;"
+        openFileDialog.Filter = "Archivos de imagen|*.jpg;*.png;"
 
         ' Mostrar el OpenFileDialog y verificar si el usuario hizo clic en OK
         If openFileDialog.ShowDialog() = DialogResult.OK Then
             ' Obtener la ruta del archivo seleccionado
             Dim rutaImagenSeleccionada As String = openFileDialog.FileName
 
-            ' Establecer la ruta deseada para guardar la imagen (cambia esta ruta según sea necesario)
-            Dim rutaDestino As String = "articulos\"
-
-            ' Crear un Nombre de archivo único utilizando la fecha y hora actual
-            Dim nombreArchivoDestino As String = "articulo" & inputIdArticulo.Text & Path.GetExtension(rutaImagenSeleccionada)
-
-            ' Combinar la ruta de destino con el nuevo Nombre del archivo
-            Dim rutaArchivoDestino As String = Path.Combine(rutaDestino, nombreArchivoDestino)
-
             Try
-                ' Copiar la imagen seleccionada a la ruta deseada con el nuevo Nombre
-                File.Copy(rutaImagenSeleccionada, rutaArchivoDestino, True)
+                ' Leer la imagen como un array de bytes
+                Dim bytesImagen As Byte() = File.ReadAllBytes(rutaImagenSeleccionada)
+
+                ' Convertir el array de bytes a una cadena base64
+                Dim imagenBase64 As String = Convert.ToBase64String(bytesImagen)
+
+                ' Si estamos en modo editar, vamos a hacer el update en la base de datos
+                If ModoFormulario = ModoEditar Then
+
+                    Dim consulta As String = $"
+                    UPDATE ARTICULOS 
+                    SET ImagenBase64 = '{imagenBase64}'
+                    WHERE IdArticulo = '{inputIdArticulo.Text}'"
+
+                    Dim registrosActualizados As Integer = UpdateBBDD(ConnectionString, consulta)
+
+                    If registrosActualizados > 0 Then
+                        MsgBox("La imagen ha sido actualizada con éxito.", vbInformation + vbOKOnly, "Imagen actualizado en la base de datos")
+                    Else
+                        MsgBox("Ha habido un error al actualizar la imagen en la base de datos.", vbAbort + vbOKOnly, "Error en la base de datos")
+                    End If
+
+                ElseIf ModoFormulario = ModoAñadir Then
+                    ' Si estamos en modo añadir, vamos a guardar en una variable la cadena base64 (luego al añadir el registro en BBDD se insertara).
+                    base64FormularioAñadir = imagenBase64
+                    PonerImagen(base64FormularioAñadir)
+                End If
+
             Catch ex As Exception
-                ' Manejar otras excepciones aquí
-                MessageBox.Show("Error al copiar la imagen: " & ex.Message, "Error de copia de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error al leer la imagen: " & ex.Message, "Error de lectura de archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
 
         ActualizarDatos()
     End Sub
 
+
     Private Sub BtnEliminarFoto_Click(sender As Object, e As EventArgs) Handles btnEliminarFoto.Click
+        ' Hacer un update en el registro actual para cambiar el campo imagen a una cadena vacia
 
-        ' Especificar la carpeta y el Nombre del archivo que deseas eliminar
-        Dim RutaCarpeta As String = "articulos\"
-        Dim NombreArchivo As String = "articulo" & inputIdArticulo.Text & ".jpg"
+        Dim sentenciaBorrarImagen = $"UPDATE ARTICULOS
+                                     SET ImagenBase64 = ''
+                                     WHERE IdArticulo = '{inputIdArticulo.Text}'"
 
-        ' Combinar la ruta de la carpeta con el Nombre del archivo
-        Dim RutaCompleta As String = Path.Combine(RutaCarpeta, NombreArchivo)
+        Dim columnasCambiadas As Integer = UpdateBBDD(ConnectionString, sentenciaBorrarImagen)
 
-        ' Verificar si el archivo existe antes de intentar eliminarlo
-        If File.Exists(RutaCompleta) Then
-            Dim RespuestaUsuario As DialogResult = MessageBox.Show("¿Seguro que deseas eliminar la foto del artículo?", "Confirmación de eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-            If RespuestaUsuario = DialogResult.Yes Then
-                Try
-                    ' Eliminar el archivo
-                    File.Delete(RutaCompleta)
-                Catch ex As Exception
-                    ' Manejar excepciones de eliminación aquí
-                    MessageBox.Show("Error al eliminar el archivo: " + ex.Message, "Error de eliminación", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End Try
-            End If
+        If columnasCambiadas > 0 Then
+            MsgBox("La imagen ha sido eliminada corréctamente.", vbInformation + vbOKOnly, "Imagen eliminada.")
         Else
-            ' Informar al usuario que el archivo no existe
-            MessageBox.Show("No se ha encontrado foto para ese artículo", "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MsgBox("Ha habido un error al eliminar la imagen.", vbAbort + vbOKOnly, "No se ha podido eliminar la imagen.")
         End If
 
         ActualizarDatos()
     End Sub
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+        ' BtnEliminar: boton de eliminar que está situado en el BindingNavigator
+
         Dim idArticulo As Integer = inputIdArticulo.Text.Trim
         Dim registrosActualizados As Integer
 
         Dim consulta As String = $"DELETE FROM ARTICULOS WHERE IdArticulo = {idArticulo}"
 
-        ' Check if there is a current item
+        ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
-            ' Ask the user for confirmation
+            ' Preguntar al usuario si quiere eliminar
             Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-            ' If the user clicks Yes, remove the current item
+            ' Si el usuario a seleccionado que si, borra el registro
             If result = DialogResult.Yes Then
                 registrosActualizados = DeleteBBDD(ConnectionString, consulta)
-                DataTable = ConsultaBBDD(ConnectionString, SentenciaArticulos)
+                DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
                 ' Actualizar el fuente de datos (BindingSource) que tiene asignado el BindingNavigator 
                 BindingSource.DataSource = DataTable
 
+                ' Mover al elemento siguiente/anterior (Para actualizar los registros)
+                If BindNavigatorArticulo.MoveNextItem.Enabled Then
+                    BindNavigatorArticulo.MoveNextItem.PerformClick()
+                Else
+                    BindNavigatorArticulo.MovePreviousItem.PerformClick()
+                End If
+                'BindNavigatorArticulo.MoveFirstItem.PerformClick()
             End If
         End If
-
 
         If registrosActualizados = 1 Then
             MsgBox("Registro borrado con éxito: " + idArticulo.ToString, vbInformation + vbOKOnly, "Registro borrado")
@@ -443,7 +522,8 @@ Public Class ArticulosEdit
     End Sub
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
-        Dim formularioArticulos As New ArticulosEdit(ModoAñadir)
+        ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator
+        Dim formularioArticulos As New FormularioArticulos(ModoAñadir)
         formularioArticulos.Show()
     End Sub
 End Class

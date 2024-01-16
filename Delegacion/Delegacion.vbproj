@@ -112,12 +112,6 @@
     <Compile Include="Facturas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FacturasEdit.Designer.vb">
-      <DependentUpon>FacturasEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FacturasEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Importar.Designer.vb">
       <DependentUpon>Importar.vb</DependentUpon>
     </Compile>

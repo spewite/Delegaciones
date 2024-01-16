@@ -283,21 +283,21 @@ Partial Class FormularioArticulos
         '
         'BindNavigatorArticulo
         '
-        Me.BindNavigator.AddNewItem = Nothing
-        Me.BindNavigator.CountItem = Me.BindingNavigatorCountItem
-        Me.BindNavigator.DeleteItem = Nothing
-        Me.BindNavigator.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.BindNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BtnEditar, Me.BtnAñadir, Me.BtnEliminar})
-        Me.BindNavigator.Location = New System.Drawing.Point(0, 0)
-        Me.BindNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
-        Me.BindNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
-        Me.BindNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
-        Me.BindNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.BindNavigator.Name = "BindNavigator"
-        Me.BindNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigator.Size = New System.Drawing.Size(501, 31)
-        Me.BindNavigator.TabIndex = 85
-        Me.BindNavigator.Text = "BindingNavigator1"
+        Me.BindNavigatorArticulo.AddNewItem = Nothing
+        Me.BindNavigatorArticulo.CountItem = Me.BindingNavigatorCountItem
+        Me.BindNavigatorArticulo.DeleteItem = Nothing
+        Me.BindNavigatorArticulo.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.BindNavigatorArticulo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BtnEditar, Me.BtnAñadir, Me.BtnEliminar})
+        Me.BindNavigatorArticulo.Location = New System.Drawing.Point(0, 0)
+        Me.BindNavigatorArticulo.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
+        Me.BindNavigatorArticulo.MoveLastItem = Me.BindingNavigatorMoveLastItem
+        Me.BindNavigatorArticulo.MoveNextItem = Me.BindingNavigatorMoveNextItem
+        Me.BindNavigatorArticulo.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
+        Me.BindNavigatorArticulo.Name = "BindNavigator"
+        Me.BindNavigatorArticulo.PositionItem = Me.BindingNavigatorPositionItem
+        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(501, 31)
+        Me.BindNavigatorArticulo.TabIndex = 85
+        Me.BindNavigatorArticulo.Text = "BindingNavigator1"
         '
         'BindingNavigatorCountItem
         '

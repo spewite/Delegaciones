@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports Dllgaciones.BaseDeDatos
 
-Public Class FormularioPartners
+Public Class FormularioArticulos
 
     Dim ConnectionString As String = ConexionBD.CadenaConexion
     Dim DataTable As DataTable

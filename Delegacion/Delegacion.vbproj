@@ -94,16 +94,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArticulosEdit.Designer.vb">
-      <DependentUpon>ArticulosEdit.vb</DependentUpon>
+    <Compile Include="FormularioArticulos.Designer.vb">
+      <DependentUpon>FormularioArticulos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ArticulosEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComercialesEdit.Designer.vb">
-      <DependentUpon>ComercialesEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ComercialesEdit.vb">
+    <Compile Include="FormularioArticulos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Consultas.Designer.vb">
@@ -118,22 +112,10 @@
     <Compile Include="Facturas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FacturasEdit.Designer.vb">
-      <DependentUpon>FacturasEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FacturasEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Lineas.Designer.vb">
       <DependentUpon>Lineas.vb</DependentUpon>
     </Compile>
     <Compile Include="Lineas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PartnersEdit.Designer.vb">
-      <DependentUpon>PartnersEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PartnersEdit.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pedidos.Designer.vb">
@@ -170,34 +152,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PedidosEdit.Designer.vb">
-      <DependentUpon>PedidosEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PedidosEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TransportistasEdit.Designer.vb">
-      <DependentUpon>TransportistasEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="TransportistasEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ArticulosEdit.resx">
-      <DependentUpon>ArticulosEdit.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ComercialesEdit.resx">
-      <DependentUpon>ComercialesEdit.vb</DependentUpon>
+    <EmbeddedResource Include="FormularioArticulos.resx">
+      <DependentUpon>FormularioArticulos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consultas.resx">
       <DependentUpon>Consultas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturas.resx">
       <DependentUpon>Facturas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FacturasEdit.resx">
-      <DependentUpon>FacturasEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.vb</DependentUpon>
@@ -214,17 +178,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartnersEdit.resx">
-      <DependentUpon>PartnersEdit.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pedidos.resx">
       <DependentUpon>Pedidos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PedidosEdit.resx">
-      <DependentUpon>PedidosEdit.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TransportistasEdit.resx">
-      <DependentUpon>TransportistasEdit.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

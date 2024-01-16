@@ -123,14 +123,14 @@ Public Class Gestion
             Dim IdArticulo As Object = dataGridArticulos.Rows(e.RowIndex).Cells(0).Value
 
             ' Abrir formulario del artiiculo
-            Dim formularioArticulos As New ArticulosEdit(IdArticulo, sentenciaWhereArticulos, ModoVer)
+            Dim formularioArticulos As New FormularioArticulos(IdArticulo, sentenciaWhereArticulos, ModoVer)
             formularioArticulos.Show()
         End If
     End Sub
 
 
     Private Sub BtnAltaArticulos_Click(sender As Object, e As EventArgs) Handles btnAltaArticulos.Click
-        Dim formularioArticulos As New ArticulosEdit(ModoAñadir)
+        Dim formularioArticulos As New FormularioArticulos(ModoAñadir)
         formularioArticulos.Show()
     End Sub
 

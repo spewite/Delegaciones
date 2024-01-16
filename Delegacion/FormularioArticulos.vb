@@ -1,14 +1,15 @@
 ﻿Imports System.IO
 Imports Dllgaciones.BaseDeDatos
 
-Public Class ArticulosEdit
+Public Class FormularioPartners
 
     Dim ConnectionString As String = ConexionBD.CadenaConexion
     Dim DataTable As DataTable
     Dim BindingSource As New BindingSource
 
     Dim IndiceNavigator As Integer
-    Dim SentenciaArticulos As String = "SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, * 
+    Dim SentenciaWhere As String
+    Dim SentenciaSelect As String = "SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, * 
                                         FROM ARTICULOS 
                                         WHERE 1=1"
 
@@ -20,12 +21,15 @@ Public Class ArticulosEdit
     Public Const ModoVer As Integer = 2
     Public Const ModoAñadir As Integer = 3
 
-    Public Sub New(IdRegistro As Integer, SentenciaWhereArticulos As String, ModoFormulario As Integer)
+    Public Sub New(IdRegistro As Integer, SentenciaWhere As String, ModoFormulario As Integer)
         InitializeComponent()
         ' Guardar las variables recibidas en variables locales 
+
         Me.ModoFormulario = ModoFormulario
-        Me.SentenciaArticulos += SentenciaWhereArticulos
+        Me.SentenciaSelect += SentenciaWhere
+        Me.SentenciaWhere = SentenciaWhere
         Me.IndiceNavigator = ObtenerNumRegistro(IdRegistro)
+
     End Sub
 
     Public Sub New(ModoFormulario As Integer)
@@ -42,15 +46,16 @@ Public Class ArticulosEdit
     End Sub
 
     Function ObtenerNumRegistro(IdRegistro As Integer) As Integer
-        ' Metodo para obtener a que indice de BindingNavigator le pertenece a al IdArticulo.
-        ' Ejemplo: Un binding navigator puede tener 1-8 registros. Y el IdArticulo de uno de los registros puede ser 31, por ejemplo. 
-        ' Lo que hace es coge la consulta original, y añade una columna ordenada por IdArticulo (seria el indice del BindingNavigator)
+        ' Metodo para obtener a que indice de BindingNavigator le pertenece a al ID del registro.
+        ' Ejemplo: Un binding navigator puede tener 1-8 registros. Y el Id del registro puede ser 31, por ejemplo. 
+        ' Lo que hace es coge la consulta original, y añade una columna ordenada por el ID (seria el indice del BindingNavigator)
 
         Dim NumRegistro As Integer = 0
         Dim Consulta As String =
         $"WITH CTE AS (
             SELECT ROW_NUMBER() OVER (ORDER BY IdArticulo) AS NumRegistro, *
-            FROM ARTICULOS
+            FROM ARTICULOS 
+            WHERE 1=1 {SentenciaWhere}
         )
 
         SELECT NumRegistro FROM CTE WHERE IdArticulo = {IdRegistro}"
@@ -70,7 +75,7 @@ Public Class ArticulosEdit
     Private Sub ArticulosEdit_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' Si el el modo del formulario es Añadir no se van a cargar los valores de los inputs.
         If ModoFormulario <> ModoAñadir Then
-            DataTable = ConsultaBBDD(ConnectionString, SentenciaArticulos)
+            DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
             'Rellenar biding navigator
             BindingSource.DataSource = DataTable
@@ -174,7 +179,7 @@ Public Class ArticulosEdit
         ' Si el modo del formulario es Añadir no va actualizar los datos porque no se muestran
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoVer Then
 
-            DataTable = ConsultaBBDD(ConnectionString, SentenciaArticulos)
+            DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
             Dim indiceNavigator = BindNavigatorArticulo.PositionItem.Text
 
@@ -491,7 +496,7 @@ Public Class ArticulosEdit
             ' Si el usuario a seleccionado que si, borra el registro
             If result = DialogResult.Yes Then
                 registrosActualizados = DeleteBBDD(ConnectionString, consulta)
-                DataTable = ConsultaBBDD(ConnectionString, SentenciaArticulos)
+                DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
                 ' Actualizar el fuente de datos (BindingSource) que tiene asignado el BindingNavigator 
                 BindingSource.DataSource = DataTable
@@ -518,7 +523,7 @@ Public Class ArticulosEdit
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
         ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator
-        Dim formularioArticulos As New ArticulosEdit(ModoAñadir)
+        Dim formularioArticulos As New FormularioArticulos(ModoAñadir)
         formularioArticulos.Show()
     End Sub
 End Class

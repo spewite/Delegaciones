@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class ArticulosEdit
+Partial Class FormularioPartners
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -23,7 +23,7 @@ Partial Class ArticulosEdit
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ArticulosEdit))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormularioPartners))
         Me.inputExistenciasArticulos = New System.Windows.Forms.TextBox()
         Me.inputProveedorArticulos = New System.Windows.Forms.TextBox()
         Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()

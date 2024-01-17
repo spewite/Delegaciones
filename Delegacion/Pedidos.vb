@@ -74,20 +74,13 @@ Public Class Pedidos
 
     Private Sub btnConsultarPedidos_Click_1(sender As Object, e As EventArgs) Handles btnConsultarPedidos.Click
 
-<<<<<<< HEAD
           Dim formularioPedidos As New FormularioPedidos(1, "", 2)
-=======
-        Dim formularioPedidos As New FormularioPedidos(1, "", 2)
->>>>>>> origin/main
         formularioPedidos.Size = New Size(1400, 700)
         formularioPedidos.StartPosition = FormStartPosition.CenterScreen
         formularioPedidos.Show()
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
         Dim consulta As String = "
         WITH Pedidos AS (
             SELECT 

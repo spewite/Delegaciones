@@ -112,7 +112,6 @@
     <Compile Include="Facturas.vb">
       <SubType>Form</SubType>
     </Compile>
-<<<<<<< HEAD
      <Compile Include="FormularioPedidos.Designer.vb">
       <DependentUpon>FormularioPedidos.vb</DependentUpon>
     </Compile>
@@ -121,12 +120,8 @@
     </Compile>
     <Compile Include="FormularioPartners.Designer.vb">
       <DependentUpon>FormularioPartners.vb</DependentUpon>
-=======
-    <Compile Include="FormularioPedidos.Designer.vb">
-      <DependentUpon>FormularioPedidos.vb</DependentUpon>
->>>>>>> origin/main
     </Compile>
-    <Compile Include="FormularioPedidos.vb">
+    <Compile Include="FormularioPartners.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Importar.Designer.vb">
@@ -186,8 +181,8 @@
     <EmbeddedResource Include="Facturas.resx">
       <DependentUpon>Facturas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormularioPedidos.resx">
-      <DependentUpon>FormularioPedidos.vb</DependentUpon>
+    <EmbeddedResource Include="FormularioPartners.resx">
+      <DependentUpon>FormularioPartners.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.vb</DependentUpon>

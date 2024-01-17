@@ -11,6 +11,7 @@ Public Class Gestion
     Public Const ModoAñadir As Integer = 3
 
     Dim sentenciaWhereArticulos As String = ""
+    Dim sentenciaWherePartners As String = ""
 
     Private Sub Gestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Ajustar_Anchuras_DataGrids()
@@ -142,6 +143,7 @@ Public Class Gestion
     '---------------------------------------------------------'
 
     Private Sub btnConsultarPartners_Click(sender As Object, e As EventArgs) Handles btnConsultarPartners.Click
+
         ' Construir la sentencia SQL base
         Dim consulta As String = "
         WITH TablaPartners AS (
@@ -150,45 +152,55 @@ Public Class Gestion
             INNER JOIN ZONAS z ON z.IdZona = p.IdZona)
         SELECT * FROM TablaPartners
         WHERE 1=1"
+        sentenciaWherePartners = ""
 
         If Not String.IsNullOrEmpty(inputIdPartner.Text.Trim) Then
             consulta &= $" AND IdPartner = {inputIdPartner.Text.Trim}"
+            sentenciaWherePartners &= $" AND IdPartner = {inputIdPartner.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(comboZonaPartners.Text.Trim) Then
             consulta &= $" AND UPPER(Zona) LIKE '%{comboZonaPartners.Text.ToUpper.Trim}%'"
+            sentenciaWherePartners &= $" AND UPPER(Zona) = {comboZonaPartners.Text.ToUpper.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputCifPartners.Text.Trim) Then
-            consulta &= $" AND UPPER(CIF) LIKE '%{inputCifPartners.Text.ToUpper.Trim}%'"
+            consulta &= $" AND UPPER(Cif) LIKE '%{inputCifPartners.Text.ToUpper.Trim}%'"
+            sentenciaWherePartners &= $" AND UPPER(Cif) = {inputCifPartners.Text.ToUpper.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputNombrePartners.Text.Trim) Then
             consulta &= $" AND UPPER(Nombre) LIKE '%{inputNombrePartners.Text.ToUpper.Trim}%'"
+            sentenciaWherePartners &= $" AND UPPER(Nombre) = {inputNombrePartners.Text.ToUpper.Trim}"
+
         End If
 
         If Not String.IsNullOrEmpty(inputTelefonoPartners.Text.Trim) Then
             consulta &= $" AND Telefono = {inputTelefonoPartners.Text.Trim}"
+            sentenciaWherePartners &= $" AND Telefono = {inputTelefonoPartners.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputDireccionPartners.Text.Trim) Then
             consulta &= $" AND UPPER(Direccion) like '%{inputDireccionPartners.Text.Trim}%'"
+            sentenciaWherePartners &= $" AND UPPER(Direccion) = {inputDireccionPartners.Text.ToUpper.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputCorreoPartners.Text.Trim) Then
             consulta &= $" AND UPPER(Correo) LIKE '%{inputCorreoPartners.Text.Trim}%'"
+            sentenciaWherePartners &= $" AND UPPER(Correo) = {inputTelefonoPartners.Text.ToUpper.Trim}"
         End If
 
         If checkFechaRegistroDesdePartners.Checked Then
             Dim fechaRegistroDesde As String = inputFechaRegistroPartnersDesde.Value.ToString("yyyyMMdd")
-            consulta &= $" AND CONVERT(DATE, [Fecha Registro], 112) >= CONVERT(DATE, '{fechaRegistroDesde}', 112)"
+            consulta &= $" AND CONVERT(DATE, FechaRegistro, 112) >= CONVERT(DATE, '{fechaRegistroDesde}', 112)"
+            sentenciaWherePartners &= $" AND FechaRegistro >= '{fechaRegistroDesde}'"
         End If
 
         If checkFechaRegistroHastaPartners.Checked Then
-            Dim fechaEnvioHasta As String = inputFechaRegistroPartnersHasta.Value.ToString("yyyyMMdd")
-            consulta &= $" AND CONVERT(DATE, [Fecha Registro], 112) <= CONVERT(DATE, '{fechaEnvioHasta}', 112)"
+            Dim fechaRegistroHasta As String = inputFechaRegistroPartnersHasta.Value.ToString("yyyyMMdd")
+            consulta &= $" AND CONVERT(DATE, FechaRegistro, 112) <= CONVERT(DATE, '{fechaRegistroHasta}', 112)"
+            sentenciaWherePartners &= $" AND FechaRegistro <= '{fechaRegistroHasta}'"
         End If
-
         dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridPartners.DataSource = dataTable
     End Sub
@@ -216,7 +228,24 @@ Public Class Gestion
             comboZona2Comerciales.Items.Add(fila("DESCRIPCION"))
         Next
     End Sub
+    Private Sub DataGridPartners_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataGridPartners.CellDoubleClick
+        ' Verifica si la celda seleccionada es válida y si es necesario realizar alguna acción específica
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            ' Obtiene el valor de la celda
+            Dim IdPartner As Object = dataGridPartners.Rows(e.RowIndex).Cells(0).Value
 
+            ' Abrir formulario del artiiculo
+            Dim formularioPartners As New FormularioPartners(IdPartner, sentenciaWherePartners, ModoVer)
+            formularioPartners.Show()
+        End If
+    End Sub
+
+    Private Sub btnAltaPartners_Click(sender As Object, e As EventArgs) Handles btnAltaPartners.Click
+        Dim formularioPartners As New FormularioPartners(ModoAñadir)
+        formularioPartners.Show()
+    End Sub
+
+    
 
     '---------------------------------------------------------'
     '                                                         '
@@ -296,5 +325,4 @@ Public Class Gestion
         DataTable = ConsultaBBDD(connectionString, consulta)
         dataGridTransportistas.DataSource = DataTable
     End Sub
-
 End Class

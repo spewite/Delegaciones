@@ -112,6 +112,12 @@
     <Compile Include="Facturas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormularioPartners.Designer.vb">
+      <DependentUpon>FormularioPartners.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPartners.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormularioPedidos.Designer.vb">
       <DependentUpon>FormularioPedidos.vb</DependentUpon>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Facturas.resx">
       <DependentUpon>Facturas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPartners.resx">
+      <DependentUpon>FormularioPartners.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioPedidos.resx">
       <DependentUpon>FormularioPedidos.vb</DependentUpon>

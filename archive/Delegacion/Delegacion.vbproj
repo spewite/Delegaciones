@@ -112,19 +112,8 @@
     <Compile Include="Facturas.vb">
       <SubType>Form</SubType>
     </Compile>
-<<<<<<< HEAD
-     <Compile Include="FormularioPedidos.Designer.vb">
-      <DependentUpon>FormularioPedidos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormularioPedidos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormularioPartners.Designer.vb">
-      <DependentUpon>FormularioPartners.vb</DependentUpon>
-=======
     <Compile Include="FormularioPedidos.Designer.vb">
       <DependentUpon>FormularioPedidos.vb</DependentUpon>
->>>>>>> origin/main
     </Compile>
     <Compile Include="FormularioPedidos.vb">
       <SubType>Form</SubType>

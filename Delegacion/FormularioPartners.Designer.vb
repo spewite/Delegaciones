@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormularioPartners
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FormularioPartners
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormularioPartners))
@@ -64,7 +64,7 @@ Partial Class FormularioPartners
         Me.BtnEliminar.Image = CType(resources.GetObject("BtnEliminar.Image"), System.Drawing.Image)
         Me.BtnEliminar.Name = "BtnEliminar"
         Me.BtnEliminar.RightToLeftAutoMirrorImage = True
-        Me.BtnEliminar.Size = New System.Drawing.Size(29, 28)
+        Me.BtnEliminar.Size = New System.Drawing.Size(29, 24)
         Me.BtnEliminar.Text = "Eliminar"
         '
         'BtnEditar
@@ -73,13 +73,13 @@ Partial Class FormularioPartners
         Me.BtnEditar.Image = Global.Delegacion.My.Resources.Resources.editar
         Me.BtnEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnEditar.Name = "BtnEditar"
-        Me.BtnEditar.Size = New System.Drawing.Size(29, 28)
+        Me.BtnEditar.Size = New System.Drawing.Size(29, 24)
         Me.BtnEditar.Text = "Editar"
         '
         'BindingNavigatorSeparator2
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 27)
         '
         'BindingNavigatorMoveLastItem
         '
@@ -87,7 +87,7 @@ Partial Class FormularioPartners
         Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMoveLastItem.Text = "Mover último"
         '
         'BindingNavigatorMoveNextItem
@@ -96,13 +96,13 @@ Partial Class FormularioPartners
         Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
         '
         'BindingNavigatorSeparator1
         '
         Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'BindingNavigatorPositionItem
         '
@@ -117,7 +117,7 @@ Partial Class FormularioPartners
         'BindingNavigatorSeparator
         '
         Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 31)
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 27)
         '
         'BindingNavigatorMovePreviousItem
         '
@@ -125,7 +125,7 @@ Partial Class FormularioPartners
         Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
         '
         'BindingNavigatorMoveFirstItem
@@ -134,13 +134,13 @@ Partial Class FormularioPartners
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
         '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(48, 28)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(48, 24)
         Me.BindingNavigatorCountItem.Text = "de {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
         '
@@ -158,7 +158,7 @@ Partial Class FormularioPartners
         Me.BindNavigatorPartner.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindNavigatorPartner.Name = "BindNavigatorPartner"
         Me.BindNavigatorPartner.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorPartner.Size = New System.Drawing.Size(484, 31)
+        Me.BindNavigatorPartner.Size = New System.Drawing.Size(344, 27)
         Me.BindNavigatorPartner.TabIndex = 105
         Me.BindNavigatorPartner.Text = "BindingNavigator1"
         '
@@ -168,54 +168,54 @@ Partial Class FormularioPartners
         Me.BtnAñadir.Image = CType(resources.GetObject("BtnAñadir.Image"), System.Drawing.Image)
         Me.BtnAñadir.Name = "BtnAñadir"
         Me.BtnAñadir.RightToLeftAutoMirrorImage = True
-        Me.BtnAñadir.Size = New System.Drawing.Size(29, 28)
+        Me.BtnAñadir.Size = New System.Drawing.Size(29, 24)
         Me.BtnAñadir.Text = "Agregar nuevo"
         '
         'inputCorreo
         '
         Me.inputCorreo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputCorreo.Location = New System.Drawing.Point(132, 295)
+        Me.inputCorreo.Location = New System.Drawing.Point(130, 304)
         Me.inputCorreo.Name = "inputCorreo"
-        Me.inputCorreo.Size = New System.Drawing.Size(148, 22)
+        Me.inputCorreo.Size = New System.Drawing.Size(163, 22)
         Me.inputCorreo.TabIndex = 96
         '
         'inputFechaRegistro
         '
         Me.inputFechaRegistro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputFechaRegistro.Location = New System.Drawing.Point(132, 337)
+        Me.inputFechaRegistro.Location = New System.Drawing.Point(130, 346)
         Me.inputFechaRegistro.Name = "inputFechaRegistro"
-        Me.inputFechaRegistro.Size = New System.Drawing.Size(148, 22)
+        Me.inputFechaRegistro.Size = New System.Drawing.Size(163, 22)
         Me.inputFechaRegistro.TabIndex = 99
         '
         'inputTelefono
         '
         Me.inputTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputTelefono.Location = New System.Drawing.Point(132, 250)
+        Me.inputTelefono.Location = New System.Drawing.Point(130, 260)
         Me.inputTelefono.Name = "inputTelefono"
-        Me.inputTelefono.Size = New System.Drawing.Size(148, 22)
+        Me.inputTelefono.Size = New System.Drawing.Size(163, 22)
         Me.inputTelefono.TabIndex = 97
         '
         'inputDireccion
         '
         Me.inputDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDireccion.Location = New System.Drawing.Point(132, 211)
+        Me.inputDireccion.Location = New System.Drawing.Point(130, 220)
         Me.inputDireccion.Name = "inputDireccion"
-        Me.inputDireccion.Size = New System.Drawing.Size(148, 22)
+        Me.inputDireccion.Size = New System.Drawing.Size(163, 22)
         Me.inputDireccion.TabIndex = 94
         '
         'inputIdZona
         '
         Me.inputIdZona.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdZona.Location = New System.Drawing.Point(132, 87)
+        Me.inputIdZona.Location = New System.Drawing.Point(130, 96)
         Me.inputIdZona.Name = "inputIdZona"
-        Me.inputIdZona.Size = New System.Drawing.Size(148, 22)
+        Me.inputIdZona.Size = New System.Drawing.Size(163, 22)
         Me.inputIdZona.TabIndex = 89
         '
         'btnAbajo
         '
-        Me.btnAbajo.Location = New System.Drawing.Point(48, 391)
+        Me.btnAbajo.Location = New System.Drawing.Point(45, 393)
         Me.btnAbajo.Name = "btnAbajo"
-        Me.btnAbajo.Size = New System.Drawing.Size(409, 36)
+        Me.btnAbajo.Size = New System.Drawing.Size(253, 36)
         Me.btnAbajo.TabIndex = 104
         Me.btnAbajo.Text = "Listo"
         Me.btnAbajo.UseVisualStyleBackColor = True
@@ -224,24 +224,24 @@ Partial Class FormularioPartners
         '
         Me.inputNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputNombre.Enabled = False
-        Me.inputNombre.Location = New System.Drawing.Point(132, 129)
+        Me.inputNombre.Location = New System.Drawing.Point(130, 138)
         Me.inputNombre.Name = "inputNombre"
-        Me.inputNombre.Size = New System.Drawing.Size(148, 22)
+        Me.inputNombre.Size = New System.Drawing.Size(163, 22)
         Me.inputNombre.TabIndex = 91
         '
         'inputIdPartner
         '
         Me.inputIdPartner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputIdPartner.Enabled = False
-        Me.inputIdPartner.Location = New System.Drawing.Point(132, 42)
+        Me.inputIdPartner.Location = New System.Drawing.Point(130, 51)
         Me.inputIdPartner.Name = "inputIdPartner"
-        Me.inputIdPartner.Size = New System.Drawing.Size(148, 22)
+        Me.inputIdPartner.Size = New System.Drawing.Size(163, 22)
         Me.inputIdPartner.TabIndex = 87
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(40, 252)
+        Me.Label9.Location = New System.Drawing.Point(54, 264)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(64, 16)
         Me.Label9.TabIndex = 103
@@ -250,7 +250,7 @@ Partial Class FormularioPartners
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(45, 172)
+        Me.Label18.Location = New System.Drawing.Point(91, 185)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(30, 16)
         Me.Label18.TabIndex = 102
@@ -259,7 +259,7 @@ Partial Class FormularioPartners
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(41, 211)
+        Me.Label12.Location = New System.Drawing.Point(53, 222)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(67, 16)
         Me.Label12.TabIndex = 101
@@ -268,7 +268,7 @@ Partial Class FormularioPartners
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(41, 297)
+        Me.Label17.Location = New System.Drawing.Point(70, 307)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(51, 16)
         Me.Label17.TabIndex = 98
@@ -277,7 +277,7 @@ Partial Class FormularioPartners
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(41, 129)
+        Me.Label10.Location = New System.Drawing.Point(63, 141)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(59, 16)
         Me.Label10.TabIndex = 95
@@ -286,7 +286,7 @@ Partial Class FormularioPartners
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(24, 337)
+        Me.Label11.Location = New System.Drawing.Point(23, 349)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(102, 16)
         Me.Label11.TabIndex = 90
@@ -295,7 +295,7 @@ Partial Class FormularioPartners
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(41, 42)
+        Me.Label13.Location = New System.Drawing.Point(54, 53)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(67, 16)
         Me.Label13.TabIndex = 88
@@ -304,7 +304,7 @@ Partial Class FormularioPartners
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(41, 87)
+        Me.Label16.Location = New System.Drawing.Point(65, 98)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(55, 16)
         Me.Label16.TabIndex = 86
@@ -314,16 +314,16 @@ Partial Class FormularioPartners
         '
         Me.inputCif.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputCif.Enabled = False
-        Me.inputCif.Location = New System.Drawing.Point(132, 170)
+        Me.inputCif.Location = New System.Drawing.Point(130, 179)
         Me.inputCif.Name = "inputCif"
-        Me.inputCif.Size = New System.Drawing.Size(148, 22)
+        Me.inputCif.Size = New System.Drawing.Size(163, 22)
         Me.inputCif.TabIndex = 93
         '
         'FormularioPartners
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(484, 456)
+        Me.ClientSize = New System.Drawing.Size(344, 456)
         Me.Controls.Add(Me.BindNavigatorPartner)
         Me.Controls.Add(Me.inputCorreo)
         Me.Controls.Add(Me.inputFechaRegistro)

@@ -21,6 +21,7 @@ Public Class Gestion
         ' ⬇️ Insertar datos de los combobox⬇️ ' 
         ActualizarComboBoxCategoria()
         ActualizarComboBoxZonas()
+        CargarDataGrids()
     End Sub
 
     Private Sub Gestion_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -34,6 +35,13 @@ Public Class Gestion
         dataGridTransportistas.Width = Me.ClientSize.Width - 100
     End Sub
 
+    Private Sub CargarDataGrids()
+        CargarDataGridArticulo()
+        CargarDataGridPartners()
+        CargarDataGridComerciales()
+        CargarDataGridTransportistas()
+    End Sub
+
     '---------------------------------------------------------'
     '                                                         '
     '                      ARTICULOS                          '
@@ -41,6 +49,10 @@ Public Class Gestion
     '---------------------------------------------------------'
 
     Private Sub BtnConsultarArticulos_Click(sender As Object, e As EventArgs) Handles btnConsultarArticulos.Click
+        CargarDataGridArticulo()
+    End Sub
+
+    Private Sub CargarDataGridArticulo()
         ' Construir la sentencia SQL base
         Dim consulta As String = "
         SELECT IdArticulo, Nombre, Descripcion, Categoria, Proveedor, Prvent, PrCost, Existencias, SobreMaximo, BajoMinimo 
@@ -104,7 +116,6 @@ Public Class Gestion
         dataGridArticulos.AllowUserToAddRows = False
 
         dataGridArticulos.DataSource = dataTable
-
     End Sub
 
     Sub ActualizarComboBoxCategoria()
@@ -143,6 +154,10 @@ Public Class Gestion
     '---------------------------------------------------------'
 
     Private Sub btnConsultarPartners_Click(sender As Object, e As EventArgs) Handles btnConsultarPartners.Click
+        CargarDataGridPartners()
+    End Sub
+
+    Private Sub CargarDataGridPartners()
 
         ' Construir la sentencia SQL base
         Dim consulta As String = "
@@ -253,6 +268,10 @@ Public Class Gestion
     '                                                         '
     '---------------------------------------------------------'
     Private Sub btnConsultarComerciales_Click(sender As Object, e As EventArgs) Handles btnConsultarComerciales.Click
+        CargarDataGridComerciales()
+    End Sub
+
+    Private Sub CargarDataGridComerciales()
         Dim consulta As String = "
         SELECT IdComercial, 
 		    (SELECT DESCRIPCION FROM ZONAS z WHERE IdZona = c.IdZona) Zona1,
@@ -301,13 +320,16 @@ Public Class Gestion
         dataGridComerciales.DataSource = dataTable
     End Sub
 
-
     '---------------------------------------------------------'
     '                                                         '
     '                    COMERCIALES                          '
     '                                                         '
     '---------------------------------------------------------'
     Private Sub btnConsultarTransportista_Click(sender As Object, e As EventArgs) Handles btnConsultarTransportista.Click
+        CargarDataGridTransportistas()
+    End Sub
+
+    Private Sub CargarDataGridTransportistas()
         Dim consulta As String = "SELECT * FROM TRANSPORTISTAS WHERE 1=1"
 
         If Not String.IsNullOrEmpty(inputIdTransportistas.Text.Trim) Then
@@ -322,7 +344,7 @@ Public Class Gestion
             consulta &= $" AND Telefono LIKE '%{inputTelefonoTransportistas.Text.Trim}%'"
         End If
 
-        DataTable = ConsultaBBDD(connectionString, consulta)
-        dataGridTransportistas.DataSource = DataTable
+        dataTable = ConsultaBBDD(connectionString, consulta)
+        dataGridTransportistas.DataSource = dataTable
     End Sub
 End Class

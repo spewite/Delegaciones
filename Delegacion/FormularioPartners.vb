@@ -8,9 +8,9 @@ Public Class FormularioPartners
     Dim IndiceNavigator As Integer
     Dim SentenciaWhere As String
     Dim SentenciaSelect As String = "WITH TablaPartners AS (
-                                        SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro [Fecha Registro]
+                                        SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro
                                         FROM PARTNERS p
-                                        INNER JOIN ZONAS z ON z.IdZona = p.IdZona)
+                                        INNER JOIN ZONAS z ON (z.IdZona = p.IdZona))
                                     SELECT * FROM TablaPartners
                                     WHERE 1=1"
     Dim ModoFormulario As Integer
@@ -51,14 +51,12 @@ Public Class FormularioPartners
         Dim NumRegistro As Integer = 0
         Dim Consulta As String =
         $"WITH CTE AS (
-            SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro [Fecha Registro]
+            SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro
             FROM PARTNERS p
-            INNER JOIN ZONAS z ON z.IdZona = p.IdZona) WHERE 1=1 {SentenciaWhere}
+            INNER JOIN ZONAS z ON (z.IdZona = p.IdZona) WHERE 1=1 {SentenciaWhere}
         )
 
         SELECT NumRegistro FROM CTE WHERE IdPartner = {IdRegistro}"
-
-        MsgBox(Consulta)
 
         Dim DataTableNumRegistro As DataTable = ConsultaBBDD(ConnectionString, Consulta)
 
@@ -176,7 +174,7 @@ Public Class FormularioPartners
 
                 ' Rellenar los inputs
                 inputIdPartner.Text = dataRow("IdPartner")
-                inputIdZona.Text = dataRow("IdZona")
+                inputIdZona.Text = dataRow("Zona")
                 inputNombre.Text = If(dataRow("Nombre") IsNot DBNull.Value, dataRow("Nombre"), "")
                 inputCif.Text = dataRow("CIF")
                 inputDireccion.Text = If(dataRow("Direccion") IsNot DBNull.Value, dataRow("Direccion"), "")
@@ -330,7 +328,7 @@ Public Class FormularioPartners
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
         ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator
-        Dim formularioArticulos As New FormularioArticulos(ModoAñadir)
-        formularioArticulos.Show()
+        Dim formularioPartners As New FormularioPartners(ModoAñadir)
+        formularioPartners.Show()
     End Sub
 End Class

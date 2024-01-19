@@ -67,6 +67,7 @@ Public Class FormularioArticulos
             ' Retrieve the NumRegistro value from the first row
             NumRegistro = Convert.ToInt32(DataTableNumRegistro.Rows(0)("NumRegistro"))
         End If
+        TextBox1.Text = (Consulta)
 
         Return NumRegistro
     End Function
@@ -86,7 +87,6 @@ Public Class FormularioArticulos
 
             'Rellenar los datos 
             ActualizarDatos()
-
         End If
 
         ' Detecta el valor de la variable ModoFormulario y ajusta la ventana acorde al modo
@@ -415,7 +415,7 @@ Public Class FormularioArticulos
         ' OpenFileDialog: Ventana de Windows para elegir un archivo. Esta linea solo es para crear el objeto, se muestra despues.
         Dim openFileDialog As New OpenFileDialog()
 
-        ' Establecer el título y el filtro para la ventana de elegir un archivo
+        ' Establecer el título y el     o para la ventana de elegir un archivo
         openFileDialog.Title = "Selecciona una imagen"
         openFileDialog.Filter = "Archivos de imagen|*.jpg;*.png;"
 

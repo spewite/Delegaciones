@@ -54,9 +54,12 @@ Public Class FormularioPartners
             SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro
             FROM PARTNERS p
             INNER JOIN ZONAS z ON (z.IdZona = p.IdZona) WHERE 1=1 {SentenciaWhere}
-        )
+            )
 
-        SELECT NumRegistro FROM CTE WHERE IdPartner = {IdRegistro}"
+            SELECT NumRegistro FROM CTE WHERE IdPartner = {IdRegistro}"
+
+        TextBox1.Text = Consulta
+
 
         Dim DataTableNumRegistro As DataTable = ConsultaBBDD(ConnectionString, Consulta)
 
@@ -84,6 +87,7 @@ Public Class FormularioPartners
 
             'Rellenar los datos 
             ActualizarDatos()
+
 
         End If
 

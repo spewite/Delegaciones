@@ -54,6 +54,7 @@ Partial Class FormularioPartners
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.inputCif = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.BindNavigatorPartner, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindNavigatorPartner.SuspendLayout()
         Me.SuspendLayout()
@@ -158,7 +159,7 @@ Partial Class FormularioPartners
         Me.BindNavigatorPartner.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindNavigatorPartner.Name = "BindNavigatorPartner"
         Me.BindNavigatorPartner.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorPartner.Size = New System.Drawing.Size(344, 27)
+        Me.BindNavigatorPartner.Size = New System.Drawing.Size(812, 27)
         Me.BindNavigatorPartner.TabIndex = 105
         Me.BindNavigatorPartner.Text = "BindingNavigator1"
         '
@@ -319,11 +320,20 @@ Partial Class FormularioPartners
         Me.inputCif.Size = New System.Drawing.Size(163, 22)
         Me.inputCif.TabIndex = 93
         '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(484, 30)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(261, 359)
+        Me.TextBox1.TabIndex = 106
+        '
         'FormularioPartners
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(344, 456)
+        Me.ClientSize = New System.Drawing.Size(812, 456)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.BindNavigatorPartner)
         Me.Controls.Add(Me.inputCorreo)
         Me.Controls.Add(Me.inputFechaRegistro)
@@ -382,4 +392,5 @@ Partial Class FormularioPartners
     Friend WithEvents Label13 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents inputCif As TextBox
+    Friend WithEvents TextBox1 As TextBox
 End Class

@@ -109,6 +109,7 @@ Partial Class Gestion
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -632,6 +633,7 @@ Partial Class Gestion
         'comercialesTab
         '
         Me.comercialesTab.BackColor = System.Drawing.SystemColors.Control
+        Me.comercialesTab.Controls.Add(Me.RichTextBox1)
         Me.comercialesTab.Controls.Add(Me.inputDNIComerciales)
         Me.comercialesTab.Controls.Add(Me.labeldni)
         Me.comercialesTab.Controls.Add(Me.inputDireccionComerciales)
@@ -962,6 +964,14 @@ Partial Class Gestion
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
         '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Location = New System.Drawing.Point(1154, 103)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(107, 67)
+        Me.RichTextBox1.TabIndex = 82
+        Me.RichTextBox1.Text = ""
+        '
         'Gestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1076,4 +1086,5 @@ Partial Class Gestion
     Friend WithEvents checkFechaRegistroDesdePartners As CheckBox
     Friend WithEvents Label7 As Label
     Friend WithEvents inputDescripcionArticulos As TextBox
+    Friend WithEvents RichTextBox1 As RichTextBox
 End Class

@@ -72,3 +72,4 @@ C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegac
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.FormularioPartners.resources
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.Importar.resources
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.FormularioPedidos.resources
+C:\Users\USER\Documents\Delegaciones\Delegacion\obj\Debug\Delegacion.FormularioPedidos.resources

@@ -350,6 +350,8 @@ Partial Class Gestion
         '
         'dataGridArticulos
         '
+        Me.dataGridArticulos.AllowUserToAddRows = False
+        Me.dataGridArticulos.AllowUserToDeleteRows = False
         Me.dataGridArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridArticulos.Location = New System.Drawing.Point(56, 176)
         Me.dataGridArticulos.MultiSelect = False
@@ -531,6 +533,8 @@ Partial Class Gestion
         '
         'dataGridPartners
         '
+        Me.dataGridPartners.AllowUserToAddRows = False
+        Me.dataGridPartners.AllowUserToDeleteRows = False
         Me.dataGridPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridPartners.Location = New System.Drawing.Point(56, 176)
         Me.dataGridPartners.Name = "dataGridPartners"
@@ -737,6 +741,8 @@ Partial Class Gestion
         '
         'dataGridComerciales
         '
+        Me.dataGridComerciales.AllowUserToAddRows = False
+        Me.dataGridComerciales.AllowUserToDeleteRows = False
         Me.dataGridComerciales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridComerciales.Location = New System.Drawing.Point(56, 176)
         Me.dataGridComerciales.Name = "dataGridComerciales"
@@ -895,6 +901,8 @@ Partial Class Gestion
         '
         'dataGridTransportistas
         '
+        Me.dataGridTransportistas.AllowUserToAddRows = False
+        Me.dataGridTransportistas.AllowUserToDeleteRows = False
         Me.dataGridTransportistas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridTransportistas.Location = New System.Drawing.Point(56, 176)
         Me.dataGridTransportistas.Name = "dataGridTransportistas"

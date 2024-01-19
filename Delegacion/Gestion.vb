@@ -113,7 +113,6 @@ Public Class Gestion
         End If
 
         dataTable = ConsultaBBDD(connectionString, consulta)
-        dataGridArticulos.AllowUserToAddRows = False
 
         dataGridArticulos.DataSource = dataTable
     End Sub

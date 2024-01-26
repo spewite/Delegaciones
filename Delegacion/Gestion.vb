@@ -6,9 +6,9 @@ Public Class Gestion
     Dim connectionString As String = ConexionBD.CadenaConexion
     Dim dataTable As DataTable
 
-    Public Const ModoEditar As Integer = 1
-    Public Const ModoVer As Integer = 2
-    Public Const ModoAñadir As Integer = 3
+    Dim ModoEditar As Integer = ModosFormulario.ModoEditar
+    Dim ModoVer As Integer = ModosFormulario.ModoVer
+    Dim ModoAñadir As Integer = ModosFormulario.ModoAñadir
 
     Dim sentenciaWhereArticulos As String = ""
     Dim sentenciaWherePartners As String = ""
@@ -346,4 +346,5 @@ Public Class Gestion
         dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridTransportistas.DataSource = dataTable
     End Sub
+
 End Class

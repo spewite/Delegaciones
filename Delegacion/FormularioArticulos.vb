@@ -17,9 +17,9 @@ Public Class FormularioArticulos
 
     Dim base64FormularioAñadir As String = ""
 
-    Public Const ModoEditar As Integer = 1
-    Public Const ModoVer As Integer = 2
-    Public Const ModoAñadir As Integer = 3
+    Dim ModoEditar As Integer = ModosFormulario.ModoEditar
+    Dim ModoVer As Integer = ModosFormulario.ModoVer
+    Dim ModoAñadir As Integer = ModosFormulario.ModoAñadir
 
     Public Sub New(IdRegistro As Integer, SentenciaWhere As String, ModoFormulario As Integer)
         InitializeComponent()

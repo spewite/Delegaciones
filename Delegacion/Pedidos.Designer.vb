@@ -56,6 +56,8 @@ Partial Class Pedidos
         Me.checkFechaEnvioDesdePedidos = New System.Windows.Forms.CheckBox()
         Me.checkFechaPagoDesdePedidos = New System.Windows.Forms.CheckBox()
         Me.checkFechaPagoHastaPedidos = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.inputIdLineas = New System.Windows.Forms.TextBox()
         CType(Me.dataGridPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -254,13 +256,16 @@ Partial Class Pedidos
         '
         'dataGridPedidos
         '
+        Me.dataGridPedidos.AllowUserToAddRows = False
+        Me.dataGridPedidos.AllowUserToDeleteRows = False
         Me.dataGridPedidos.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dataGridPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridPedidos.Location = New System.Drawing.Point(36, 177)
         Me.dataGridPedidos.Name = "dataGridPedidos"
+        Me.dataGridPedidos.ReadOnly = True
         Me.dataGridPedidos.RowHeadersWidth = 51
         Me.dataGridPedidos.RowTemplate.Height = 24
-        Me.dataGridPedidos.Size = New System.Drawing.Size(1390, 651)
+        Me.dataGridPedidos.Size = New System.Drawing.Size(1788, 651)
         Me.dataGridPedidos.TabIndex = 44
         '
         'comboComercialPedidos
@@ -282,7 +287,7 @@ Partial Class Pedidos
         '
         'btnBorrarPedidos
         '
-        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1310, 67)
+        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1564, 69)
         Me.btnBorrarPedidos.Name = "btnBorrarPedidos"
         Me.btnBorrarPedidos.Size = New System.Drawing.Size(162, 32)
         Me.btnBorrarPedidos.TabIndex = 69
@@ -291,7 +296,7 @@ Partial Class Pedidos
         '
         'btnAltaPedidos
         '
-        Me.btnAltaPedidos.Location = New System.Drawing.Point(1310, 109)
+        Me.btnAltaPedidos.Location = New System.Drawing.Point(1564, 111)
         Me.btnAltaPedidos.Name = "btnAltaPedidos"
         Me.btnAltaPedidos.Size = New System.Drawing.Size(162, 32)
         Me.btnAltaPedidos.TabIndex = 68
@@ -300,7 +305,7 @@ Partial Class Pedidos
         '
         'btnConsultarPedidos
         '
-        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1310, 26)
+        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1564, 28)
         Me.btnConsultarPedidos.Name = "btnConsultarPedidos"
         Me.btnConsultarPedidos.Size = New System.Drawing.Size(162, 32)
         Me.btnConsultarPedidos.TabIndex = 67
@@ -361,12 +366,32 @@ Partial Class Pedidos
         Me.checkFechaPagoHastaPedidos.TabIndex = 75
         Me.checkFechaPagoHastaPedidos.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(1311, 26)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(112, 16)
+        Me.Label1.TabIndex = 76
+        Me.Label1.Text = "Líneas (Ej: 1, 3, 5):"
+        '
+        'inputIdLineas
+        '
+        Me.inputIdLineas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputIdLineas.Location = New System.Drawing.Point(1314, 45)
+        Me.inputIdLineas.Multiline = True
+        Me.inputIdLineas.Name = "inputIdLineas"
+        Me.inputIdLineas.Size = New System.Drawing.Size(204, 95)
+        Me.inputIdLineas.TabIndex = 77
+        '
         'Pedidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1467, 752)
+        Me.ClientSize = New System.Drawing.Size(1865, 752)
         Me.ControlBox = False
+        Me.Controls.Add(Me.inputIdLineas)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.checkFechaPagoHastaPedidos)
         Me.Controls.Add(Me.checkFechaPagoDesdePedidos)
         Me.Controls.Add(Me.checkFechaEnvioHastaPedidos)
@@ -443,4 +468,6 @@ Partial Class Pedidos
     Friend WithEvents checkFechaEnvioDesdePedidos As CheckBox
     Friend WithEvents checkFechaPagoDesdePedidos As CheckBox
     Friend WithEvents checkFechaPagoHastaPedidos As CheckBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents inputIdLineas As TextBox
 End Class

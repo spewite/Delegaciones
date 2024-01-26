@@ -8,7 +8,8 @@ Public Class Importar
 
     Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
-            ' Mostrar el cuadro de diálogo para seleccionar un archivo XML
+            
+		' Mostrar el cuadro de diálogo para seleccionar un archivo XML IÑIGO PUTERO
             Dim openFileDialog As New OpenFileDialog()
             openFileDialog.Filter = "Archivos XML|*.xml"
             openFileDialog.Title = "Seleccionar archivo XML"

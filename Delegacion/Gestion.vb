@@ -165,12 +165,11 @@ Public Class Gestion
 
         ' Construir la sentencia SQL base
         Dim consulta As String = "
-        WITH TablaPartners AS (
-            SELECT p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro [Fecha Registro]
+            SELECT p.IdPartner, zonas.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro [Fecha Registro]
             FROM PARTNERS p
-            INNER JOIN ZONAS z ON z.IdZona = p.IdZona)
-        SELECT * FROM TablaPartners
-        WHERE 1=1"
+            INNER JOIN ZONAS ON zonas.IdZona = p.IdZona
+            WHERE 1=1 "
+
         sentenciaWherePartners = ""
 
         If Not String.IsNullOrEmpty(inputIdPartner.Text.Trim) Then
@@ -179,8 +178,8 @@ Public Class Gestion
         End If
 
         If Not String.IsNullOrEmpty(comboZonaPartners.Text.Trim) Then
-            consulta &= $" AND Zona = '{comboZonaPartners.Text.Trim}'"
-            sentenciaWhereArticulos &= $" AND Zona = '{comboZonaPartners.Text.Trim}'"
+            consulta &= $" AND zonas.Descripcion = '{comboZonaPartners.Text.Trim}'"
+            sentenciaWherePartners &= $" AND zonas.Descripcion = '{comboZonaPartners.Text.Trim}'"
         End If
 
         If Not String.IsNullOrEmpty(inputCifPartners.Text.Trim) Then

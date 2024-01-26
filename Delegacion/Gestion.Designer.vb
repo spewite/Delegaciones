@@ -75,6 +75,7 @@ Partial Class Gestion
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.comercialesTab = New System.Windows.Forms.TabPage()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.inputDNIComerciales = New System.Windows.Forms.TextBox()
         Me.labeldni = New System.Windows.Forms.Label()
         Me.inputDireccionComerciales = New System.Windows.Forms.TextBox()
@@ -109,7 +110,6 @@ Partial Class Gestion
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -663,6 +663,14 @@ Partial Class Gestion
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
         '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Location = New System.Drawing.Point(1154, 103)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(107, 67)
+        Me.RichTextBox1.TabIndex = 82
+        Me.RichTextBox1.Text = ""
+        '
         'inputDNIComerciales
         '
         Me.inputDNIComerciales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -963,14 +971,6 @@ Partial Class Gestion
         Me.Label46.Size = New System.Drawing.Size(105, 16)
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Location = New System.Drawing.Point(1154, 103)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(107, 67)
-        Me.RichTextBox1.TabIndex = 82
-        Me.RichTextBox1.Text = ""
         '
         'Gestion
         '

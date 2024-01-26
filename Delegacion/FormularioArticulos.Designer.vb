@@ -266,14 +266,14 @@ Partial Class FormularioArticulos
         Me.BindNavigatorArticulo.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindNavigatorArticulo.Name = "BindNavigatorArticulo"
         Me.BindNavigatorArticulo.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(706, 27)
+        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(706, 31)
         Me.BindNavigatorArticulo.TabIndex = 85
         Me.BindNavigatorArticulo.Text = "BindingNavigator1"
         '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(48, 24)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(48, 28)
         Me.BindingNavigatorCountItem.Text = "de {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
         '
@@ -283,7 +283,7 @@ Partial Class FormularioArticulos
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 28)
         Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
         '
         'BindingNavigatorMovePreviousItem
@@ -292,13 +292,13 @@ Partial Class FormularioArticulos
         Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(29, 28)
         Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
         '
         'BindingNavigatorSeparator
         '
         Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 31)
         '
         'BindingNavigatorPositionItem
         '
@@ -313,7 +313,7 @@ Partial Class FormularioArticulos
         'BindingNavigatorSeparator1
         '
         Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 31)
         '
         'BindingNavigatorMoveNextItem
         '
@@ -321,7 +321,7 @@ Partial Class FormularioArticulos
         Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(29, 28)
         Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
         '
         'BindingNavigatorMoveLastItem
@@ -330,13 +330,13 @@ Partial Class FormularioArticulos
         Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 24)
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(29, 28)
         Me.BindingNavigatorMoveLastItem.Text = "Mover último"
         '
         'BindingNavigatorSeparator2
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 31)
         '
         'BtnEditar
         '
@@ -344,7 +344,7 @@ Partial Class FormularioArticulos
         Me.BtnEditar.Image = Global.Delegacion.My.Resources.Resources.editar
         Me.BtnEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnEditar.Name = "BtnEditar"
-        Me.BtnEditar.Size = New System.Drawing.Size(29, 24)
+        Me.BtnEditar.Size = New System.Drawing.Size(29, 28)
         Me.BtnEditar.Text = "Editar"
         '
         'BtnAñadir
@@ -353,7 +353,7 @@ Partial Class FormularioArticulos
         Me.BtnAñadir.Image = CType(resources.GetObject("BtnAñadir.Image"), System.Drawing.Image)
         Me.BtnAñadir.Name = "BtnAñadir"
         Me.BtnAñadir.RightToLeftAutoMirrorImage = True
-        Me.BtnAñadir.Size = New System.Drawing.Size(29, 24)
+        Me.BtnAñadir.Size = New System.Drawing.Size(29, 28)
         Me.BtnAñadir.Text = "Agregar nuevo"
         '
         'BtnEliminar
@@ -362,7 +362,7 @@ Partial Class FormularioArticulos
         Me.BtnEliminar.Image = CType(resources.GetObject("BtnEliminar.Image"), System.Drawing.Image)
         Me.BtnEliminar.Name = "BtnEliminar"
         Me.BtnEliminar.RightToLeftAutoMirrorImage = True
-        Me.BtnEliminar.Size = New System.Drawing.Size(29, 24)
+        Me.BtnEliminar.Size = New System.Drawing.Size(29, 28)
         Me.BtnEliminar.Text = "Eliminar"
         '
         'btnEliminarFoto

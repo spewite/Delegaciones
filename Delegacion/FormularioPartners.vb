@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Globalization
+Imports System.IO
 Imports Dllgaciones.BaseDeDatos
 Public Class FormularioPartners
     Dim ConnectionString As String = ConexionBD.CadenaConexion
@@ -7,12 +8,18 @@ Public Class FormularioPartners
 
     Dim IndiceNavigator As Integer
     Dim SentenciaWhere As String
-    Dim SentenciaSelect As String = "WITH TablaPartners AS (
-                                        SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro
-                                        FROM PARTNERS p
-                                        INNER JOIN ZONAS z ON (z.IdZona = p.IdZona))
-                                    SELECT * FROM TablaPartners
-                                    WHERE 1=1"
+    Dim SentenciaSelect As String = "SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, 
+	                                    IdPartner, 
+	                                    zonas.Descripcion AS Zona,
+	                                    Nombre, 
+	                                    CIF, 
+	                                    Direccion, 
+	                                    Telefono, 
+	                                    Correo, 
+	                                    FechaRegistro
+                                    FROM PARTNERS p
+                                    INNER JOIN ZONAS ON (zonas.IdZona = p.IdZona)
+"
     Dim ModoFormulario As Integer
 
     Dim ModoEditar As Integer = ModosFormulario.ModoEditar
@@ -51,20 +58,20 @@ Public Class FormularioPartners
         Dim NumRegistro As Integer = 0
         Dim Consulta As String =
         $"WITH CTE AS (
-            SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro
+            SELECT ROW_NUMBER() OVER (ORDER BY IdPartner) AS NumRegistro, p.IdPartner, zonas.Descripcion As Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro
             FROM PARTNERS p
-            INNER JOIN ZONAS z ON (z.IdZona = p.IdZona) WHERE 1=1 {SentenciaWhere}
-        )
-
-        SELECT NumRegistro FROM CTE WHERE IdPartner = {IdRegistro}"
+            INNER JOIN ZONAS ON (zonas.IdZona = p.IdZona)
+            Where 1=1 {SentenciaWhere}
+            )
+            SELECT NumRegistro FROM CTE WHERE IdPartner = {IdRegistro}"
 
         Dim DataTableNumRegistro As DataTable = ConsultaBBDD(ConnectionString, Consulta)
-
         ' Verificar si ha retornado alguna linea
         If DataTableNumRegistro.Rows.Count > 0 Then
             ' Retrieve the NumRegistro value from the first row
             NumRegistro = Convert.ToInt32(DataTableNumRegistro.Rows(0)("NumRegistro"))
         End If
+        TextBox1.Text = Consulta
 
         Return NumRegistro
     End Function
@@ -73,6 +80,7 @@ Public Class FormularioPartners
     Private Sub PartnersEdit_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' Si el el modo del formulario es Añadir no se van a cargar los valores de los inputs.
         If ModoFormulario <> ModoAñadir Then
+
             DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
             'Rellenar biding navigator
@@ -85,8 +93,8 @@ Public Class FormularioPartners
             'Rellenar los datos 
             ActualizarDatos()
 
-        End If
 
+        End If
         ' Detecta el valor de la variable ModoFormulario y ajusta la ventana acorde al modo
         ActualizarModo()
     End Sub
@@ -123,23 +131,22 @@ Public Class FormularioPartners
         ' Si en el recibido ModoFormulario es true, activa los inputs, sino, los desactiva
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoAñadir Then
             inputIdPartner.Enabled = True
-            inputIdZona.Enabled = True
+            comboZonaPartners.Enabled = True
             inputNombre.Enabled = True
             inputCif.Enabled = True
             inputDireccion.Enabled = True
             inputTelefono.Enabled = True
             inputCorreo.Enabled = True
-            inputFechaRegistro.Enabled = True
 
         Else
             inputIdPartner.Enabled = False
-            inputIdZona.Enabled = False
+            comboZonaPartners.Enabled = False
             inputNombre.Enabled = False
             inputCif.Enabled = False
             inputDireccion.Enabled = False
             inputTelefono.Enabled = False
             inputCorreo.Enabled = False
-            inputFechaRegistro.Enabled = False
+
         End If
 
     End Sub
@@ -157,11 +164,11 @@ Public Class FormularioPartners
 
     Private Sub ActualizarDatos()
 
+        ActualizarComboBoxZonas()
         ' Si el modo del formulario es Añadir no va actualizar los datos porque no se muestran
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoVer Then
 
             DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
-
             Dim indiceNavigator = BindNavigatorPartner.PositionItem.Text
 
             ' Si el indice del navigator es 0, es que se esta inicializando. Entonces, se sale del metodo porque no nos interesa.
@@ -171,16 +178,14 @@ Public Class FormularioPartners
 
             Try
                 Dim dataRow As DataRow = DataTable.Select("NumRegistro = " & indiceNavigator)(0)
-
                 ' Rellenar los inputs
                 inputIdPartner.Text = dataRow("IdPartner")
-                inputIdZona.Text = dataRow("Zona")
+                comboZonaPartners.Text = If(dataRow("Zona") IsNot DBNull.Value, dataRow("Zona"), "")
                 inputNombre.Text = If(dataRow("Nombre") IsNot DBNull.Value, dataRow("Nombre"), "")
                 inputCif.Text = dataRow("CIF")
                 inputDireccion.Text = If(dataRow("Direccion") IsNot DBNull.Value, dataRow("Direccion"), "")
-                inputTelefono.Text = If(dataRow("Telefono") IsNot DBNull.Value, dataRow("Telefono"), 0)
+                inputTelefono.Text = If(dataRow("Telefono") IsNot DBNull.Value, dataRow("Telefono"), "")
                 inputCorreo.Text = If(dataRow("Correo") IsNot DBNull.Value, dataRow("Correo"), "")
-                inputFechaRegistro.Text = If(dataRow("FechaRegistro") IsNot DBNull.Value, dataRow("FechaRegistro"), "")
 
             Catch ex As Exception
                 MsgBox("Ha habido un error: " + ex.Message, vbCritical + vbOKOnly, "Error en al leer los datos del a base de datos")
@@ -192,10 +197,13 @@ Public Class FormularioPartners
     Private Sub BindingNavigatorPositionItem_TextChanged(sender As Object, e As EventArgs) Handles BindingNavigatorPositionItem.TextChanged
         ' Cuando el valor del indice del BindingNavigator cambie, se actualizaran los datos.
         ActualizarDatos()
+
     End Sub
+
 
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles BtnEditar.Click
         ' btnEdtiar: Boton de edicion del BindingNavitor
+
         If ModoFormulario = ModoEditar Then
             ActualizarPartner()
         Else
@@ -232,20 +240,23 @@ Public Class FormularioPartners
 
             ' Obtener valores de los inputs
             Dim IdPartner As String = inputIdPartner.Text.Trim
-            Dim IdZona As String = inputIdZona.Text.Trim
+            Dim zonaSeleccionada As Zona = DirectCast(comboZonaPartners.SelectedItem, Zona)
+            Dim IdZona As Integer = zonaSeleccionada.Id
             Dim Nombre As String = inputNombre.Text.Trim
             Dim Cif As String = inputCif.Text.Trim
             Dim Direccion As String = inputDireccion.Text.Trim
-            Dim Telefono As String = inputTelefono.Text.Trim
+            Dim Telefono As String = If(String.IsNullOrWhiteSpace(inputTelefono.Text), "NULL", $"'{inputTelefono.Text.Trim}'")
             Dim Correo As String = inputCorreo.Text.Trim
-            Dim FechaRegistro As String = inputFechaRegistro.Text.Trim
 
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
 
             Dim consulta As String = $"
-                INSERT INTO PARTNERS (IdPartner, IdZona, Nombre, Cif, Direccion, Telefono, Correo, FechaRegistro) 
-                VALUES ('{IdPartner}', '{IdZona}', '{Nombre}', '{Cif}', '{Direccion}', '{Telefono}', '{Correo}', '{FechaRegistro}')"
+            INSERT INTO PARTNERS (IdZona, Nombre, Cif, Direccion, Telefono, Correo, FechaRegistro) 
+            VALUES ({IdZona}, '{Nombre}', '{Cif}', '{Direccion}', {Telefono}, '{Correo}', GETDATE())"
+
+
+            registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
             If registrosActualizados = 1 Then
                 MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
@@ -259,35 +270,37 @@ Public Class FormularioPartners
     End Sub
 
     Private Sub ActualizarPartner()
-
         ' Validacion de los inputs
         Dim CamposSonValidos = ValidarCampos()
 
         If CamposSonValidos Then
-
             ' Obtener valores de los inputs
             Dim IdPartner As String = inputIdPartner.Text.Trim
-            Dim IdZona As String = inputIdZona.Text.Trim
+
+            ' Verificar si se ha seleccionado un nuevo valor en comboZonaPartners o no
+            Dim zonaSeleccionada As Zona = DirectCast(comboZonaPartners.SelectedItem, Zona)
+            Dim IdZona As Integer = zonaSeleccionada.Id
+
+
+            ' Obtener otros valores de los inputs
             Dim Nombre As String = inputNombre.Text.Trim
             Dim Cif As String = inputCif.Text.Trim
             Dim Direccion As String = inputDireccion.Text.Trim
-            Dim Telefono As String = inputTelefono.Text.Trim
+            Dim Telefono As String = If(String.IsNullOrWhiteSpace(inputTelefono.Text), "NULL", $"'{inputTelefono.Text.Trim}'")
             Dim Correo As String = inputCorreo.Text.Trim
-            Dim FechaRegistro As String = inputFechaRegistro.Text.Trim
 
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
 
             Dim consulta As String = $"
-            UPDATE PARTNERS 
-            SET IdZona = {IdZona},
-            Nombre = '{Nombre}',
-            CIF = '{Cif}',
-            Direccion = '{Direccion}',
-            Telefono = {Telefono},
-            Correo = '{Correo}',
-            FechaRegistro = '{FechaRegistro}'
-            WHERE IdPartner = {IdPartner}"
+         UPDATE PARTNERS 
+         SET IdZona = {IdZona},
+         Nombre = '{Nombre}',
+         CIF = '{Cif}',
+         Direccion = '{Direccion}',
+         Telefono = {Telefono},
+         Correo = '{Correo}'
+         WHERE IdPartner = {IdPartner}"
 
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
@@ -300,7 +313,6 @@ Public Class FormularioPartners
             InterruptorModoEdicion()
 
         End If
-
     End Sub
 
     Function ValidarCampos() As Boolean
@@ -309,26 +321,104 @@ Public Class FormularioPartners
         Dim basura As Integer
 
         Dim IdPartner As String = inputIdPartner.Text.Trim
-        Dim IdZona As String = inputIdZona.Text.Trim
+        Dim IdZona As String = comboZonaPartners.Text.Trim
         Dim Nombre As String = inputNombre.Text.Trim
         Dim Cif As String = inputCif.Text.Trim
         Dim Direccion As String = inputDireccion.Text.Trim
         Dim Telefono As String = inputTelefono.Text.Trim
         Dim Correo As String = inputCorreo.Text.Trim
-        Dim FechaRegistro As String = inputFechaRegistro.Text.Trim
+
 
         ' Validacion de los inputs
-        If Not Integer.TryParse(Telefono, basura) Then
-            MsgBox("¡Debes introducir un valor numerico en el campo de Telefono!", vbExclamation + vbOKOnly, "Error de validación")
+        If String.IsNullOrEmpty(Nombre) Then
+            MsgBox("¡El campo Nombre no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+        If IsNumeric(Nombre) Then
+            MsgBox("¡El campo Nombre no puede ser un número!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+        If Not String.IsNullOrEmpty(Telefono) AndAlso Not IsNumeric(Telefono) Then
+            MsgBox("¡El campo Teléfono solo puede contener números!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
         Return True
     End Function
 
+    Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+        ' BtnEliminar: boton de eliminar que está situado en el BindingNavigator
 
+        Dim idPartner As Integer = inputIdPartner.Text.Trim
+        Dim registrosActualizados As Integer
+
+        Dim consulta As String = $"DELETE FROM PARTNERS WHERE IdPartner = {idPartner}"
+
+        ' Verifica si hay un valor actual
+        If BindingSource.Current IsNot Nothing Then
+            ' Preguntar al usuario si quiere eliminar
+            Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            ' Si el usuario a seleccionado que si, borra el registro
+            If result = DialogResult.Yes Then
+                registrosActualizados = DeleteBBDD(ConnectionString, consulta)
+                DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
+
+                ' Actualizar el fuente de datos (BindingSource) que tiene asignado el BindingNavigator 
+                BindingSource.DataSource = DataTable
+
+                ' Mover al elemento siguiente/anterior (Para actualizar los registros)
+                If BindNavigatorPartner.MoveNextItem.Enabled Then
+                    BindNavigatorPartner.MoveNextItem.PerformClick()
+                Else
+                    BindNavigatorPartner.MovePreviousItem.PerformClick()
+                End If
+                'BindNavigatorPartner.MoveFirstItem.PerformClick()
+            End If
+        End If
+
+        If registrosActualizados = 1 Then
+            MsgBox("Registro borrado con éxito: " + idPartner.ToString, vbInformation + vbOKOnly, "Registro borrado")
+        Else
+            MsgBox("Ha habido un error al borrar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+        End If
+
+        ModoFormulario = ModoVer
+        ActualizarModo()
+    End Sub
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
         ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator
+
         Dim formularioPartners As New FormularioPartners(ModoAñadir)
+
         formularioPartners.Show()
     End Sub
+    Public Class Zona
+        Public Property Id As Integer
+        Public Property Nombre As String
+
+        Public Overrides Function ToString() As String
+            Return Nombre
+        End Function
+    End Class
+    Sub ActualizarComboBoxZonas()
+        comboZonaPartners.DataSource = Nothing
+        comboZonaPartners.Items.Clear()
+
+        Dim consulta As String = "SELECT IdZona, Descripcion FROM ZONAS"
+        Dim zonasDataTable As DataTable = ConsultaBBDD(ConnectionString, consulta)
+
+        Dim zonasList As New List(Of Zona)
+        For Each fila As DataRow In zonasDataTable.Rows
+            Dim zona = New Zona With {
+                .Id = Convert.ToInt32(fila("IdZona")),
+                .Nombre = fila("Descripcion").ToString()
+            }
+            zonasList.Add(zona)
+        Next
+
+        comboZonaPartners.DataSource = zonasList
+        comboZonaPartners.DisplayMember = "Nombre"
+        comboZonaPartners.ValueMember = "Id"
+    End Sub
+
 End Class

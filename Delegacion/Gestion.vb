@@ -131,11 +131,16 @@ Public Class Gestion
         ' Verifica si la celda seleccionada es válida y si es necesario realizar alguna acción específica
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
             ' Obtiene el valor de la celda
-            Dim IdArticulo As Object = dataGridArticulos.Rows(e.RowIndex).Cells(0).Value
-
-            ' Abrir formulario del artiiculo
-            Dim formularioArticulos As New FormularioArticulos(IdArticulo, sentenciaWhereArticulos, ModoVer)
-            formularioArticulos.Show()
+            Try
+                Dim IdArticulo As Object = dataGridArticulos.Rows(e.RowIndex).Cells(0).Value
+                ' Abrir formulario del artiiculo
+                Dim formularioArticulos As New FormularioArticulos(IdArticulo, sentenciaWhereArticulos, ModoVer)
+                formularioArticulos.Show()
+            Catch ex As Exception
+                RichTextBox1.Text = "Error: " & ex.Message
+                ' Opcional: Cambiar el color del texto para resaltar el error
+                RichTextBox1.ForeColor = Color.Red
+            End Try
         End If
     End Sub
 
@@ -160,12 +165,11 @@ Public Class Gestion
 
         ' Construir la sentencia SQL base
         Dim consulta As String = "
-        WITH TablaPartners AS (
-            SELECT p.IdPartner, z.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro [Fecha Registro]
+            SELECT p.IdPartner, zonas.Descripcion AS Zona, p.Nombre, p.CIF, p.Direccion, p.Telefono, p.Correo, p.FechaRegistro [Fecha Registro]
             FROM PARTNERS p
-            INNER JOIN ZONAS z ON z.IdZona = p.IdZona)
-        SELECT * FROM TablaPartners
-        WHERE 1=1"
+            INNER JOIN ZONAS ON zonas.IdZona = p.IdZona
+            WHERE 1=1 "
+
         sentenciaWherePartners = ""
 
         If Not String.IsNullOrEmpty(inputIdPartner.Text.Trim) Then
@@ -174,18 +178,18 @@ Public Class Gestion
         End If
 
         If Not String.IsNullOrEmpty(comboZonaPartners.Text.Trim) Then
-            consulta &= $" AND UPPER(Zona) LIKE '%{comboZonaPartners.Text.ToUpper.Trim}%'"
-            sentenciaWherePartners &= $" AND UPPER(Zona) = {comboZonaPartners.Text.ToUpper.Trim}"
+            consulta &= $" AND zonas.Descripcion = '{comboZonaPartners.Text.Trim}'"
+            sentenciaWherePartners &= $" AND zonas.Descripcion = '{comboZonaPartners.Text.Trim}'"
         End If
 
         If Not String.IsNullOrEmpty(inputCifPartners.Text.Trim) Then
             consulta &= $" AND UPPER(Cif) LIKE '%{inputCifPartners.Text.ToUpper.Trim}%'"
-            sentenciaWherePartners &= $" AND UPPER(Cif) = {inputCifPartners.Text.ToUpper.Trim}"
+            sentenciaWherePartners &= $" AND UPPER(Cif) LIKE '%{inputCifPartners.Text.ToUpper.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputNombrePartners.Text.Trim) Then
             consulta &= $" AND UPPER(Nombre) LIKE '%{inputNombrePartners.Text.ToUpper.Trim}%'"
-            sentenciaWherePartners &= $" AND UPPER(Nombre) = {inputNombrePartners.Text.ToUpper.Trim}"
+            sentenciaWherePartners &= $" AND UPPER(Nombre) LIKE '%{inputNombrePartners.Text.ToUpper.Trim}"
 
         End If
 
@@ -195,13 +199,13 @@ Public Class Gestion
         End If
 
         If Not String.IsNullOrEmpty(inputDireccionPartners.Text.Trim) Then
-            consulta &= $" AND UPPER(Direccion) like '%{inputDireccionPartners.Text.Trim}%'"
-            sentenciaWherePartners &= $" AND UPPER(Direccion) = {inputDireccionPartners.Text.ToUpper.Trim}"
+            consulta &= $" AND UPPER(Direccion) LIKE '%{inputDireccionPartners.Text.Trim}%'"
+            sentenciaWherePartners &= $" AND UPPER(Direccion) LIKE '%{inputDireccionPartners.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputCorreoPartners.Text.Trim) Then
             consulta &= $" AND UPPER(Correo) LIKE '%{inputCorreoPartners.Text.Trim}%'"
-            sentenciaWherePartners &= $" AND UPPER(Correo) = {inputTelefonoPartners.Text.ToUpper.Trim}"
+            sentenciaWherePartners &= $" AND UPPER(Correo) LIKE '%{inputCorreoPartners.Text.ToUpper.Trim}%'"
         End If
 
         If checkFechaRegistroDesdePartners.Checked Then

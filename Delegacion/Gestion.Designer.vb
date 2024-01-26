@@ -75,6 +75,7 @@ Partial Class Gestion
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.comercialesTab = New System.Windows.Forms.TabPage()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.inputDNIComerciales = New System.Windows.Forms.TextBox()
         Me.labeldni = New System.Windows.Forms.Label()
         Me.inputDireccionComerciales = New System.Windows.Forms.TextBox()
@@ -632,6 +633,7 @@ Partial Class Gestion
         'comercialesTab
         '
         Me.comercialesTab.BackColor = System.Drawing.SystemColors.Control
+        Me.comercialesTab.Controls.Add(Me.RichTextBox1)
         Me.comercialesTab.Controls.Add(Me.inputDNIComerciales)
         Me.comercialesTab.Controls.Add(Me.labeldni)
         Me.comercialesTab.Controls.Add(Me.inputDireccionComerciales)
@@ -660,6 +662,14 @@ Partial Class Gestion
         Me.comercialesTab.Size = New System.Drawing.Size(1812, 951)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Location = New System.Drawing.Point(1154, 103)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(107, 67)
+        Me.RichTextBox1.TabIndex = 82
+        Me.RichTextBox1.Text = ""
         '
         'inputDNIComerciales
         '
@@ -1076,4 +1086,5 @@ Partial Class Gestion
     Friend WithEvents checkFechaRegistroDesdePartners As CheckBox
     Friend WithEvents Label7 As Label
     Friend WithEvents inputDescripcionArticulos As TextBox
+    Friend WithEvents RichTextBox1 As RichTextBox
 End Class

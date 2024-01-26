@@ -94,6 +94,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExportarCatalogo.Designer.vb">
+      <DependentUpon>ExportarCatalogo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ExportarCatalogo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportarPartners.Designer.vb">
+      <DependentUpon>ExportarPartners.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ExportarPartners.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormularioArticulos.Designer.vb">
       <DependentUpon>FormularioArticulos.vb</DependentUpon>
     </Compile>
@@ -128,6 +140,18 @@
       <DependentUpon>Importar.vb</DependentUpon>
     </Compile>
     <Compile Include="Importar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportarArticulos.Designer.vb">
+      <DependentUpon>ImportarArticulos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarArticulos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportarPedidos.Designer.vb">
+      <DependentUpon>ImportarPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarPedidos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Lineas.Designer.vb">
@@ -172,6 +196,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ExportarCatalogo.resx">
+      <DependentUpon>ExportarCatalogo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportarPartners.resx">
+      <DependentUpon>ExportarPartners.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioArticulos.resx">
       <DependentUpon>FormularioArticulos.vb</DependentUpon>
     </EmbeddedResource>
@@ -192,6 +222,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Importar.resx">
       <DependentUpon>Importar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportarArticulos.resx">
+      <DependentUpon>ImportarArticulos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportarPedidos.resx">
+      <DependentUpon>ImportarPedidos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.vb</DependentUpon>

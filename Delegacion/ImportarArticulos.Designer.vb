@@ -22,52 +22,53 @@ Partial Class ImportarArticulos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.btnCargar = New System.Windows.Forms.Button()
+        Me.btnSubir = New System.Windows.Forms.Button()
+        Me.inputRuta = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
-        'Button1
+        'btnCargar
         '
-        Me.Button1.Location = New System.Drawing.Point(344, 103)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(146, 57)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Cargar"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnCargar.Location = New System.Drawing.Point(406, 67)
+        Me.btnCargar.Name = "btnCargar"
+        Me.btnCargar.Size = New System.Drawing.Size(146, 27)
+        Me.btnCargar.TabIndex = 0
+        Me.btnCargar.Text = "Cargar"
+        Me.btnCargar.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnSubir
         '
-        Me.Button2.Location = New System.Drawing.Point(112, 189)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(378, 56)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Subir"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnSubir.Location = New System.Drawing.Point(31, 136)
+        Me.btnSubir.Name = "btnSubir"
+        Me.btnSubir.Size = New System.Drawing.Size(506, 44)
+        Me.btnSubir.TabIndex = 1
+        Me.btnSubir.Text = "Importar"
+        Me.btnSubir.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'inputRuta
         '
-        Me.TextBox1.Location = New System.Drawing.Point(112, 120)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(163, 22)
-        Me.TextBox1.TabIndex = 2
+        Me.inputRuta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputRuta.Location = New System.Drawing.Point(31, 69)
+        Me.inputRuta.Name = "inputRuta"
+        Me.inputRuta.Size = New System.Drawing.Size(363, 22)
+        Me.inputRuta.TabIndex = 2
         '
         'ImportarArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(568, 234)
+        Me.Controls.Add(Me.inputRuta)
+        Me.Controls.Add(Me.btnSubir)
+        Me.Controls.Add(Me.btnCargar)
         Me.Name = "ImportarArticulos"
-        Me.Text = "ImportarArticulos"
+        Me.Text = "Importar Articulos"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents btnCargar As Button
+    Friend WithEvents btnSubir As Button
+    Friend WithEvents inputRuta As TextBox
 End Class

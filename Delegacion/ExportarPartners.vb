@@ -4,7 +4,7 @@ Imports System.Windows.Forms
 Imports System.Net.Mail
 
 Public Class ExportarPartners
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnPartners.Click
 
         ' Cambia la cadena de conexión según tu configuración
         Dim ConnectionString As String = ConexionBD.CadenaConexion
@@ -70,6 +70,9 @@ Public Class ExportarPartners
                     End Using
                 End Using
             End Using
+
+            Me.Close()
+
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

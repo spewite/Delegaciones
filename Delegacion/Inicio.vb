@@ -53,16 +53,20 @@ Public Class Inicio
     Private Sub PartnersToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles PartnersToolStripMenuItem3.Click
         ExportarPartners.Show()
     End Sub
+
+    Private Sub ArticulosToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ArticulosToolStripMenuItem2.Click
+        ImportarArticulos.Show()
+    End Sub
 End Class
 
 Public Class ConexionBD
     Public Shared ReadOnly Property CadenaConexion As String
         Get
             ' ⬇️ Klase ⬇️
-            Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@"
+            'Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@"
 
             ' ⬇️ Julen ⬇️
-            'Return "Data Source=localhost;Initial Catalog=DELEGACIONES;User ID=sa;Password=sa"
+            Return "Data Source=localhost;Initial Catalog=DELEGACION;User ID=sa;Password=sa"
         End Get
     End Property
 End Class

@@ -324,4 +324,9 @@ Public Class Pedidos
         End If
 
     End Sub
+
+    Private Sub btnImportarPedidos_Click(sender As Object, e As EventArgs) Handles btnImportarPedidos.Click
+        Dim formularioImportarPedidos As New ImportarPedidos()
+        formularioImportarPedidos.Show()
+    End Sub
 End Class

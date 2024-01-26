@@ -6,7 +6,7 @@ Imports System.Diagnostics
 
 Public Class ExportarCatalogo
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnCatalogo_Click(sender As Object, e As EventArgs) Handles btnCatalogo.Click
 
         ' Cambia la cadena de conexión según tu configuración
         Dim ConnectionString As String = ConexionBD.CadenaConexion
@@ -75,8 +75,13 @@ Public Class ExportarCatalogo
                     End Using
                 End Using
             End Using
+
+            Me.Close()
+
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+
+
     End Sub
 End Class

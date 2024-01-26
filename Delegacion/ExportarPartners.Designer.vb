@@ -22,29 +22,29 @@ Partial Class ExportarPartners
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnPartners = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'Button1
+        'btnPartners
         '
-        Me.Button1.Location = New System.Drawing.Point(143, 122)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(199, 85)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Exportar Partners"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnPartners.Location = New System.Drawing.Point(152, 97)
+        Me.btnPartners.Name = "btnPartners"
+        Me.btnPartners.Size = New System.Drawing.Size(259, 38)
+        Me.btnPartners.TabIndex = 0
+        Me.btnPartners.Text = "Exportar Partners"
+        Me.btnPartners.UseVisualStyleBackColor = True
         '
         'ExportarPartners
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(568, 234)
+        Me.Controls.Add(Me.btnPartners)
         Me.Name = "ExportarPartners"
-        Me.Text = "ExportarPartners"
+        Me.Text = "Exportar Partners"
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnPartners As Button
 End Class

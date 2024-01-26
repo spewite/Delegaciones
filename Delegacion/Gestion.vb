@@ -263,7 +263,7 @@ Public Class Gestion
         formularioPartners.Show()
     End Sub
 
-    
+
 
     '---------------------------------------------------------'
     '                                                         '
@@ -351,4 +351,8 @@ Public Class Gestion
         dataGridTransportistas.DataSource = dataTable
     End Sub
 
+    Private Sub btnImportarArticulos_Click(sender As Object, e As EventArgs) Handles btnImportarArticulos.Click
+        Dim formularioImportarArticulos As New ImportarArticulos()
+        formularioImportarArticulos.Show()
+    End Sub
 End Class

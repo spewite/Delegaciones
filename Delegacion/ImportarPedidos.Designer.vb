@@ -22,52 +22,53 @@ Partial Class ImportarPedidos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.inputRuta = New System.Windows.Forms.TextBox()
+        Me.btnCargar = New System.Windows.Forms.Button()
+        Me.btnImportar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'TextBox1
+        'inputRuta
         '
-        Me.TextBox1.Location = New System.Drawing.Point(68, 74)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(176, 22)
-        Me.TextBox1.TabIndex = 0
+        Me.inputRuta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputRuta.Location = New System.Drawing.Point(31, 69)
+        Me.inputRuta.Name = "inputRuta"
+        Me.inputRuta.Size = New System.Drawing.Size(363, 22)
+        Me.inputRuta.TabIndex = 0
         '
-        'Button1
+        'btnCargar
         '
-        Me.Button1.Location = New System.Drawing.Point(280, 58)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(127, 55)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "CARGAR ARCHIVO"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnCargar.Location = New System.Drawing.Point(409, 65)
+        Me.btnCargar.Name = "btnCargar"
+        Me.btnCargar.Size = New System.Drawing.Size(147, 29)
+        Me.btnCargar.TabIndex = 1
+        Me.btnCargar.Text = "Cargar"
+        Me.btnCargar.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnImportar
         '
-        Me.Button2.Location = New System.Drawing.Point(46, 135)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(361, 61)
-        Me.Button2.TabIndex = 2
-        Me.Button2.Text = "IMPORTAR"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnImportar.Location = New System.Drawing.Point(31, 136)
+        Me.btnImportar.Name = "btnImportar"
+        Me.btnImportar.Size = New System.Drawing.Size(506, 44)
+        Me.btnImportar.TabIndex = 2
+        Me.btnImportar.Text = "Importar"
+        Me.btnImportar.UseVisualStyleBackColor = True
         '
         'ImportarPedidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(568, 293)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox1)
+        Me.ClientSize = New System.Drawing.Size(568, 234)
+        Me.Controls.Add(Me.btnImportar)
+        Me.Controls.Add(Me.btnCargar)
+        Me.Controls.Add(Me.inputRuta)
         Me.Name = "ImportarPedidos"
-        Me.Text = "ImportarPedidos"
+        Me.Text = "Importar Pedidos"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents inputRuta As TextBox
+    Friend WithEvents btnCargar As Button
+    Friend WithEvents btnImportar As Button
 End Class

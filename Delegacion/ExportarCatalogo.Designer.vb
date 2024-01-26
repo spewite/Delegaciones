@@ -22,29 +22,29 @@ Partial Class ExportarCatalogo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnCatalogo = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'Button1
+        'btnCatalogo
         '
-        Me.Button1.Location = New System.Drawing.Point(66, 70)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(150, 71)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Exportar Catalogo"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnCatalogo.Location = New System.Drawing.Point(152, 97)
+        Me.btnCatalogo.Name = "btnCatalogo"
+        Me.btnCatalogo.Size = New System.Drawing.Size(259, 38)
+        Me.btnCatalogo.TabIndex = 0
+        Me.btnCatalogo.Text = "Exportar Catalogo"
+        Me.btnCatalogo.UseVisualStyleBackColor = True
         '
         'ExportarCatalogo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(568, 234)
+        Me.Controls.Add(Me.btnCatalogo)
         Me.Name = "ExportarCatalogo"
-        Me.Text = "ExportarCatalogo"
+        Me.Text = "Exportar Catalogo"
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnCatalogo As Button
 End Class

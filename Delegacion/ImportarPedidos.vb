@@ -6,7 +6,7 @@ Public Class ImportarPedidos
 
     Dim rutaXML As String
 
-    Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnCargar_Click(sender As Object, e As EventArgs) Handles btnCargar.Click
         Try
             ' Mostrar el cuadro de diálogo para seleccionar un archivo XML
             Dim openFileDialog As New OpenFileDialog()
@@ -17,7 +17,7 @@ Public Class ImportarPedidos
                 ' Obtener la ruta del archivo XML seleccionado
                 rutaXML = openFileDialog.FileName
 
-                TextBox1.Text = rutaXML
+                inputRuta.Text = rutaXML
             End If
 
         Catch ex As Exception
@@ -25,7 +25,7 @@ Public Class ImportarPedidos
         End Try
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub btnImportar_Click(sender As Object, e As EventArgs) Handles btnImportar.Click
         Try
             ' Crear un nuevo objeto XmlDocument
             Dim xmlDoc As New XmlDocument()

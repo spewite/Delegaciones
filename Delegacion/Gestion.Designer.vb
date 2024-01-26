@@ -110,6 +110,7 @@ Partial Class Gestion
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnImportarArticulos = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,12 +133,13 @@ Partial Class Gestion
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1820, 980)
+        Me.TabControl1.Size = New System.Drawing.Size(1907, 980)
         Me.TabControl1.TabIndex = 2
         '
         'articulosTab
         '
         Me.articulosTab.BackColor = System.Drawing.SystemColors.Control
+        Me.articulosTab.Controls.Add(Me.btnImportarArticulos)
         Me.articulosTab.Controls.Add(Me.Label7)
         Me.articulosTab.Controls.Add(Me.inputDescripcionArticulos)
         Me.articulosTab.Controls.Add(Me.Label1)
@@ -164,7 +166,7 @@ Partial Class Gestion
         Me.articulosTab.Controls.Add(Me.Label16)
         Me.articulosTab.Location = New System.Drawing.Point(4, 25)
         Me.articulosTab.Name = "articulosTab"
-        Me.articulosTab.Size = New System.Drawing.Size(1812, 951)
+        Me.articulosTab.Size = New System.Drawing.Size(1899, 951)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
         '
@@ -197,27 +199,27 @@ Partial Class Gestion
         '
         'btnBorrarArticulos
         '
-        Me.btnBorrarArticulos.Location = New System.Drawing.Point(1516, 59)
+        Me.btnBorrarArticulos.Location = New System.Drawing.Point(1677, 90)
         Me.btnBorrarArticulos.Name = "btnBorrarArticulos"
-        Me.btnBorrarArticulos.Size = New System.Drawing.Size(162, 32)
+        Me.btnBorrarArticulos.Size = New System.Drawing.Size(162, 50)
         Me.btnBorrarArticulos.TabIndex = 50
         Me.btnBorrarArticulos.Text = "Borrar"
         Me.btnBorrarArticulos.UseVisualStyleBackColor = True
         '
         'btnAltaArticulos
         '
-        Me.btnAltaArticulos.Location = New System.Drawing.Point(1516, 101)
+        Me.btnAltaArticulos.Location = New System.Drawing.Point(1677, 29)
         Me.btnAltaArticulos.Name = "btnAltaArticulos"
-        Me.btnAltaArticulos.Size = New System.Drawing.Size(162, 32)
+        Me.btnAltaArticulos.Size = New System.Drawing.Size(162, 50)
         Me.btnAltaArticulos.TabIndex = 49
         Me.btnAltaArticulos.Text = "Alta"
         Me.btnAltaArticulos.UseVisualStyleBackColor = True
         '
         'btnConsultarArticulos
         '
-        Me.btnConsultarArticulos.Location = New System.Drawing.Point(1516, 18)
+        Me.btnConsultarArticulos.Location = New System.Drawing.Point(1509, 28)
         Me.btnConsultarArticulos.Name = "btnConsultarArticulos"
-        Me.btnConsultarArticulos.Size = New System.Drawing.Size(162, 32)
+        Me.btnConsultarArticulos.Size = New System.Drawing.Size(162, 50)
         Me.btnConsultarArticulos.TabIndex = 48
         Me.btnConsultarArticulos.Text = "Filtrar"
         Me.btnConsultarArticulos.UseVisualStyleBackColor = True
@@ -972,11 +974,20 @@ Partial Class Gestion
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
         '
+        'btnImportarArticulos
+        '
+        Me.btnImportarArticulos.Location = New System.Drawing.Point(1509, 90)
+        Me.btnImportarArticulos.Name = "btnImportarArticulos"
+        Me.btnImportarArticulos.Size = New System.Drawing.Size(162, 50)
+        Me.btnImportarArticulos.TabIndex = 54
+        Me.btnImportarArticulos.Text = "Importar"
+        Me.btnImportarArticulos.UseVisualStyleBackColor = True
+        '
         'Gestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1820, 980)
+        Me.ClientSize = New System.Drawing.Size(1907, 980)
         Me.ControlBox = False
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Gestion"
@@ -1087,4 +1098,5 @@ Partial Class Gestion
     Friend WithEvents Label7 As Label
     Friend WithEvents inputDescripcionArticulos As TextBox
     Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents btnImportarArticulos As Button
 End Class

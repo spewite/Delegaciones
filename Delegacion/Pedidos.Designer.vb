@@ -58,6 +58,7 @@ Partial Class Pedidos
         Me.checkFechaPagoHastaPedidos = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.inputIdLineas = New System.Windows.Forms.TextBox()
+        Me.btnImportarPedidos = New System.Windows.Forms.Button()
         CType(Me.dataGridPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -265,7 +266,7 @@ Partial Class Pedidos
         Me.dataGridPedidos.ReadOnly = True
         Me.dataGridPedidos.RowHeadersWidth = 51
         Me.dataGridPedidos.RowTemplate.Height = 24
-        Me.dataGridPedidos.Size = New System.Drawing.Size(1788, 651)
+        Me.dataGridPedidos.Size = New System.Drawing.Size(1840, 651)
         Me.dataGridPedidos.TabIndex = 44
         '
         'comboComercialPedidos
@@ -287,29 +288,29 @@ Partial Class Pedidos
         '
         'btnBorrarPedidos
         '
-        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1564, 69)
+        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1721, 30)
         Me.btnBorrarPedidos.Name = "btnBorrarPedidos"
-        Me.btnBorrarPedidos.Size = New System.Drawing.Size(162, 32)
+        Me.btnBorrarPedidos.Size = New System.Drawing.Size(162, 50)
         Me.btnBorrarPedidos.TabIndex = 69
         Me.btnBorrarPedidos.Text = "Borrar"
         Me.btnBorrarPedidos.UseVisualStyleBackColor = True
         '
         'btnAltaPedidos
         '
-        Me.btnAltaPedidos.Location = New System.Drawing.Point(1564, 111)
+        Me.btnAltaPedidos.Location = New System.Drawing.Point(1721, 89)
         Me.btnAltaPedidos.Name = "btnAltaPedidos"
-        Me.btnAltaPedidos.Size = New System.Drawing.Size(162, 32)
+        Me.btnAltaPedidos.Size = New System.Drawing.Size(162, 50)
         Me.btnAltaPedidos.TabIndex = 68
         Me.btnAltaPedidos.Text = "Alta"
         Me.btnAltaPedidos.UseVisualStyleBackColor = True
         '
         'btnConsultarPedidos
         '
-        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1564, 28)
+        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1544, 30)
         Me.btnConsultarPedidos.Name = "btnConsultarPedidos"
-        Me.btnConsultarPedidos.Size = New System.Drawing.Size(162, 32)
+        Me.btnConsultarPedidos.Size = New System.Drawing.Size(162, 50)
         Me.btnConsultarPedidos.TabIndex = 67
-        Me.btnConsultarPedidos.Text = "Consultar"
+        Me.btnConsultarPedidos.Text = "Filtrar"
         Me.btnConsultarPedidos.UseVisualStyleBackColor = True
         '
         'checkFechaPedidoDesdePedidos
@@ -384,12 +385,22 @@ Partial Class Pedidos
         Me.inputIdLineas.Size = New System.Drawing.Size(204, 95)
         Me.inputIdLineas.TabIndex = 77
         '
+        'btnImportarPedidos
+        '
+        Me.btnImportarPedidos.Location = New System.Drawing.Point(1544, 89)
+        Me.btnImportarPedidos.Name = "btnImportarPedidos"
+        Me.btnImportarPedidos.Size = New System.Drawing.Size(160, 50)
+        Me.btnImportarPedidos.TabIndex = 84
+        Me.btnImportarPedidos.Text = "Importar"
+        Me.btnImportarPedidos.UseVisualStyleBackColor = True
+        '
         'Pedidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1865, 752)
+        Me.ClientSize = New System.Drawing.Size(1917, 752)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnImportarPedidos)
         Me.Controls.Add(Me.inputIdLineas)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.checkFechaPagoHastaPedidos)
@@ -470,4 +481,5 @@ Partial Class Pedidos
     Friend WithEvents checkFechaPagoHastaPedidos As CheckBox
     Friend WithEvents Label1 As Label
     Friend WithEvents inputIdLineas As TextBox
+    Friend WithEvents btnImportarPedidos As Button
 End Class

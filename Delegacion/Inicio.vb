@@ -46,6 +46,18 @@ Public Class Inicio
     Private Sub PartnersToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PartnersToolStripMenuItem2.Click
         Importar.Show()
     End Sub
+
+    Private Sub PedidosToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PedidosToolStripMenuItem2.Click
+        ImportarPedidos.Show()
+    End Sub
+
+    Private Sub ArticulosToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ArticulosToolStripMenuItem3.Click
+        ExportarCatalogo.Show()
+    End Sub
+
+    Private Sub PartnersToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles PartnersToolStripMenuItem3.Click
+        ExportarPartners.Show()
+    End Sub
 End Class
 
 Public Class ConexionBD

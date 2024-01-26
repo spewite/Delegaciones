@@ -67,7 +67,7 @@
   <ItemGroup>
     <Reference Include="Dllgaciones, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dllgaciones\Dllgaciones\Dllgaciones\bin\Debug\Dllgaciones.dll</HintPath>
+      <HintPath>Dlls\Dllgaciones\Dllgaciones.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -100,16 +100,28 @@
     <Compile Include="FormularioArticulos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Consultas.Designer.vb">
-      <DependentUpon>Consultas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Consultas.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Facturas.Designer.vb">
       <DependentUpon>Facturas.vb</DependentUpon>
     </Compile>
     <Compile Include="Facturas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioLineas.Designer.vb">
+      <DependentUpon>FormularioLineas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioLineas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioPedidos.Designer.vb">
+      <DependentUpon>FormularioPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioPartners.Designer.vb">
+      <DependentUpon>FormularioPartners.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPartners.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Importar.Designer.vb">
@@ -163,11 +175,17 @@
     <EmbeddedResource Include="FormularioArticulos.resx">
       <DependentUpon>FormularioArticulos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Consultas.resx">
-      <DependentUpon>Consultas.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Facturas.resx">
       <DependentUpon>Facturas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioLineas.resx">
+      <DependentUpon>FormularioLineas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPartners.resx">
+      <DependentUpon>FormularioPartners.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPedidos.resx">
+      <DependentUpon>FormularioPedidos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.vb</DependentUpon>

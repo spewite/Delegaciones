@@ -45,9 +45,6 @@ Partial Class FormularioArticulos
         Me.inputBajoMinimoArticulos = New System.Windows.Forms.TextBox()
         Me.inputSobreMaximoArticulos = New System.Windows.Forms.TextBox()
         Me.inputPrVentArticulos = New System.Windows.Forms.TextBox()
-        Me.btnEliminarFoto = New System.Windows.Forms.Button()
-        Me.btnEditarFoto = New System.Windows.Forms.Button()
-        Me.pictureboxArticulos = New System.Windows.Forms.PictureBox()
         Me.BindNavigatorArticulo = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
@@ -61,9 +58,13 @@ Partial Class FormularioArticulos
         Me.BtnEditar = New System.Windows.Forms.ToolStripButton()
         Me.BtnAñadir = New System.Windows.Forms.ToolStripButton()
         Me.BtnEliminar = New System.Windows.Forms.ToolStripButton()
-        CType(Me.pictureboxArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.btnEliminarFoto = New System.Windows.Forms.Button()
+        Me.btnEditarFoto = New System.Windows.Forms.Button()
+        Me.pictureboxArticulos = New System.Windows.Forms.PictureBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.BindNavigatorArticulo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindNavigatorArticulo.SuspendLayout()
+        CType(Me.pictureboxArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'inputExistenciasArticulos
@@ -251,36 +252,6 @@ Partial Class FormularioArticulos
         Me.inputPrVentArticulos.Size = New System.Drawing.Size(100, 22)
         Me.inputPrVentArticulos.TabIndex = 59
         '
-        'btnEliminarFoto
-        '
-        Me.btnEliminarFoto.BackgroundImage = CType(resources.GetObject("btnEliminarFoto.BackgroundImage"), System.Drawing.Image)
-        Me.btnEliminarFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnEliminarFoto.Location = New System.Drawing.Point(42, 56)
-        Me.btnEliminarFoto.Name = "btnEliminarFoto"
-        Me.btnEliminarFoto.Size = New System.Drawing.Size(31, 31)
-        Me.btnEliminarFoto.TabIndex = 64
-        Me.btnEliminarFoto.UseVisualStyleBackColor = True
-        '
-        'btnEditarFoto
-        '
-        Me.btnEditarFoto.BackgroundImage = Global.Delegacion.My.Resources.Resources.editar
-        Me.btnEditarFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnEditarFoto.Location = New System.Drawing.Point(154, 57)
-        Me.btnEditarFoto.Name = "btnEditarFoto"
-        Me.btnEditarFoto.Size = New System.Drawing.Size(31, 31)
-        Me.btnEditarFoto.TabIndex = 65
-        Me.btnEditarFoto.UseVisualStyleBackColor = True
-        '
-        'pictureboxArticulos
-        '
-        Me.pictureboxArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pictureboxArticulos.Location = New System.Drawing.Point(37, 52)
-        Me.pictureboxArticulos.Name = "pictureboxArticulos"
-        Me.pictureboxArticulos.Size = New System.Drawing.Size(153, 187)
-        Me.pictureboxArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pictureboxArticulos.TabIndex = 72
-        Me.pictureboxArticulos.TabStop = False
-        '
         'BindNavigatorArticulo
         '
         Me.BindNavigatorArticulo.AddNewItem = Nothing
@@ -293,9 +264,9 @@ Partial Class FormularioArticulos
         Me.BindNavigatorArticulo.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.BindNavigatorArticulo.MoveNextItem = Me.BindingNavigatorMoveNextItem
         Me.BindNavigatorArticulo.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.BindNavigatorArticulo.Name = "BindNavigator"
+        Me.BindNavigatorArticulo.Name = "BindNavigatorArticulo"
         Me.BindNavigatorArticulo.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(501, 31)
+        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(706, 31)
         Me.BindNavigatorArticulo.TabIndex = 85
         Me.BindNavigatorArticulo.Text = "BindingNavigator1"
         '
@@ -394,11 +365,50 @@ Partial Class FormularioArticulos
         Me.BtnEliminar.Size = New System.Drawing.Size(29, 28)
         Me.BtnEliminar.Text = "Eliminar"
         '
-        'ArticulosEdit
+        'btnEliminarFoto
+        '
+        Me.btnEliminarFoto.BackgroundImage = CType(resources.GetObject("btnEliminarFoto.BackgroundImage"), System.Drawing.Image)
+        Me.btnEliminarFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnEliminarFoto.Location = New System.Drawing.Point(42, 56)
+        Me.btnEliminarFoto.Name = "btnEliminarFoto"
+        Me.btnEliminarFoto.Size = New System.Drawing.Size(31, 31)
+        Me.btnEliminarFoto.TabIndex = 64
+        Me.btnEliminarFoto.UseVisualStyleBackColor = True
+        '
+        'btnEditarFoto
+        '
+        Me.btnEditarFoto.BackgroundImage = Global.Delegacion.My.Resources.Resources.editar
+        Me.btnEditarFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnEditarFoto.Location = New System.Drawing.Point(154, 57)
+        Me.btnEditarFoto.Name = "btnEditarFoto"
+        Me.btnEditarFoto.Size = New System.Drawing.Size(31, 31)
+        Me.btnEditarFoto.TabIndex = 65
+        Me.btnEditarFoto.UseVisualStyleBackColor = True
+        '
+        'pictureboxArticulos
+        '
+        Me.pictureboxArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pictureboxArticulos.Location = New System.Drawing.Point(37, 52)
+        Me.pictureboxArticulos.Name = "pictureboxArticulos"
+        Me.pictureboxArticulos.Size = New System.Drawing.Size(153, 187)
+        Me.pictureboxArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pictureboxArticulos.TabIndex = 72
+        Me.pictureboxArticulos.TabStop = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(502, 137)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(192, 292)
+        Me.TextBox1.TabIndex = 86
+        '
+        'FormularioArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(501, 598)
+        Me.ClientSize = New System.Drawing.Size(706, 598)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.BindNavigatorArticulo)
         Me.Controls.Add(Me.btnEliminarFoto)
         Me.Controls.Add(Me.btnEditarFoto)
@@ -425,13 +435,13 @@ Partial Class FormularioArticulos
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label16)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "ArticulosEdit"
+        Me.Name = "FormularioArticulos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = " "
-        CType(Me.pictureboxArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindNavigatorArticulo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BindNavigatorArticulo.ResumeLayout(False)
         Me.BindNavigatorArticulo.PerformLayout()
+        CType(Me.pictureboxArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -473,4 +483,5 @@ Partial Class FormularioArticulos
     Friend WithEvents BindingNavigatorMoveLastItem As ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
     Friend WithEvents BtnEditar As ToolStripButton
+    Friend WithEvents TextBox1 As TextBox
 End Class

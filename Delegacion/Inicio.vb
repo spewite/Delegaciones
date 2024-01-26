@@ -2,11 +2,6 @@
 Imports System.Windows.Forms
 
 Public Class Inicio
-
-    Public Const ModoEditar As Integer = 1
-    Public Const ModoVer As Integer = 2
-    Public Const ModoAnadir As Integer = 3
-
     Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.IsMdiContainer = True
     End Sub
@@ -68,6 +63,27 @@ Public Class ConexionBD
 
             ' ⬇️ Julen ⬇️
             'Return "Data Source=localhost;Initial Catalog=DELEGACIONES;User ID=sa;Password=sa"
+        End Get
+    End Property
+End Class
+
+
+Public Class ModosFormulario
+    Public Shared ReadOnly Property ModoEditar As Integer
+        Get
+            Return 1
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property ModoVer As Integer
+        Get
+            Return 2
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property ModoAñadir As Integer
+        Get
+            Return 3
         End Get
     End Property
 End Class

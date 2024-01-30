@@ -79,7 +79,7 @@ Partial Class FormularioPedidos
         Me.BindNavigatorArticulo.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindNavigatorArticulo.Name = "BindNavigatorArticulo"
         Me.BindNavigatorArticulo.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(1511, 31)
+        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(1511, 27)
         Me.BindNavigatorArticulo.TabIndex = 110
         Me.BindNavigatorArticulo.Text = "BindingNavigator1"
         '
@@ -96,7 +96,7 @@ Partial Class FormularioPedidos
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
         '
         'BindingNavigatorMovePreviousItem
@@ -284,6 +284,7 @@ Partial Class FormularioPedidos
         Me.dataGridLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridLineas.Location = New System.Drawing.Point(46, 158)
         Me.dataGridLineas.Name = "dataGridLineas"
+        Me.dataGridLineas.ReadOnly = True
         Me.dataGridLineas.RowHeadersWidth = 51
         Me.dataGridLineas.RowTemplate.Height = 24
         Me.dataGridLineas.Size = New System.Drawing.Size(1428, 493)

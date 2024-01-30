@@ -25,6 +25,7 @@ Partial Class Gestion
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.articulosTab = New System.Windows.Forms.TabPage()
+        Me.btnImportarArticulos = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -75,7 +76,6 @@ Partial Class Gestion
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.comercialesTab = New System.Windows.Forms.TabPage()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.inputDNIComerciales = New System.Windows.Forms.TextBox()
         Me.labeldni = New System.Windows.Forms.Label()
         Me.inputDireccionComerciales = New System.Windows.Forms.TextBox()
@@ -110,7 +110,6 @@ Partial Class Gestion
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.btnImportarArticulos = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
         CType(Me.dataGridArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,6 +168,15 @@ Partial Class Gestion
         Me.articulosTab.Size = New System.Drawing.Size(1899, 951)
         Me.articulosTab.TabIndex = 3
         Me.articulosTab.Text = "Articulos"
+        '
+        'btnImportarArticulos
+        '
+        Me.btnImportarArticulos.Location = New System.Drawing.Point(1509, 90)
+        Me.btnImportarArticulos.Name = "btnImportarArticulos"
+        Me.btnImportarArticulos.Size = New System.Drawing.Size(162, 50)
+        Me.btnImportarArticulos.TabIndex = 54
+        Me.btnImportarArticulos.Text = "Importar"
+        Me.btnImportarArticulos.UseVisualStyleBackColor = True
         '
         'Label7
         '
@@ -357,7 +365,6 @@ Partial Class Gestion
         Me.dataGridArticulos.AllowUserToDeleteRows = False
         Me.dataGridArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridArticulos.Location = New System.Drawing.Point(56, 176)
-        Me.dataGridArticulos.MultiSelect = False
         Me.dataGridArticulos.Name = "dataGridArticulos"
         Me.dataGridArticulos.ReadOnly = True
         Me.dataGridArticulos.RowHeadersWidth = 51
@@ -412,7 +419,7 @@ Partial Class Gestion
         Me.partnersTab.Location = New System.Drawing.Point(4, 25)
         Me.partnersTab.Name = "partnersTab"
         Me.partnersTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.partnersTab.Size = New System.Drawing.Size(1812, 951)
+        Me.partnersTab.Size = New System.Drawing.Size(1899, 951)
         Me.partnersTab.TabIndex = 1
         Me.partnersTab.Text = "Partners"
         '
@@ -541,6 +548,7 @@ Partial Class Gestion
         Me.dataGridPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridPartners.Location = New System.Drawing.Point(56, 176)
         Me.dataGridPartners.Name = "dataGridPartners"
+        Me.dataGridPartners.ReadOnly = True
         Me.dataGridPartners.RowHeadersWidth = 51
         Me.dataGridPartners.RowTemplate.Height = 24
         Me.dataGridPartners.Size = New System.Drawing.Size(1294, 590)
@@ -626,16 +634,15 @@ Partial Class Gestion
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(522, 30)
+        Me.Label27.Location = New System.Drawing.Point(542, 30)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(57, 16)
+        Me.Label27.Size = New System.Drawing.Size(41, 16)
         Me.Label27.TabIndex = 35
-        Me.Label27.Text = "ID Zona:"
+        Me.Label27.Text = "Zona:"
         '
         'comercialesTab
         '
         Me.comercialesTab.BackColor = System.Drawing.SystemColors.Control
-        Me.comercialesTab.Controls.Add(Me.RichTextBox1)
         Me.comercialesTab.Controls.Add(Me.inputDNIComerciales)
         Me.comercialesTab.Controls.Add(Me.labeldni)
         Me.comercialesTab.Controls.Add(Me.inputDireccionComerciales)
@@ -661,17 +668,9 @@ Partial Class Gestion
         Me.comercialesTab.Location = New System.Drawing.Point(4, 25)
         Me.comercialesTab.Name = "comercialesTab"
         Me.comercialesTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.comercialesTab.Size = New System.Drawing.Size(1812, 951)
+        Me.comercialesTab.Size = New System.Drawing.Size(1899, 951)
         Me.comercialesTab.TabIndex = 0
         Me.comercialesTab.Text = "Comerciales"
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Location = New System.Drawing.Point(1154, 103)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(107, 67)
-        Me.RichTextBox1.TabIndex = 82
-        Me.RichTextBox1.Text = ""
         '
         'inputDNIComerciales
         '
@@ -758,6 +757,7 @@ Partial Class Gestion
         Me.dataGridComerciales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridComerciales.Location = New System.Drawing.Point(56, 176)
         Me.dataGridComerciales.Name = "dataGridComerciales"
+        Me.dataGridComerciales.ReadOnly = True
         Me.dataGridComerciales.RowHeadersWidth = 51
         Me.dataGridComerciales.RowTemplate.Height = 24
         Me.dataGridComerciales.Size = New System.Drawing.Size(1294, 590)
@@ -880,7 +880,7 @@ Partial Class Gestion
         Me.transportistasTab.Controls.Add(Me.Label46)
         Me.transportistasTab.Location = New System.Drawing.Point(4, 25)
         Me.transportistasTab.Name = "transportistasTab"
-        Me.transportistasTab.Size = New System.Drawing.Size(1812, 951)
+        Me.transportistasTab.Size = New System.Drawing.Size(1899, 951)
         Me.transportistasTab.TabIndex = 6
         Me.transportistasTab.Text = "Transportistas"
         '
@@ -918,6 +918,7 @@ Partial Class Gestion
         Me.dataGridTransportistas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridTransportistas.Location = New System.Drawing.Point(56, 176)
         Me.dataGridTransportistas.Name = "dataGridTransportistas"
+        Me.dataGridTransportistas.ReadOnly = True
         Me.dataGridTransportistas.RowHeadersWidth = 51
         Me.dataGridTransportistas.RowTemplate.Height = 24
         Me.dataGridTransportistas.Size = New System.Drawing.Size(1294, 590)
@@ -973,15 +974,6 @@ Partial Class Gestion
         Me.Label46.Size = New System.Drawing.Size(105, 16)
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
-        '
-        'btnImportarArticulos
-        '
-        Me.btnImportarArticulos.Location = New System.Drawing.Point(1509, 90)
-        Me.btnImportarArticulos.Name = "btnImportarArticulos"
-        Me.btnImportarArticulos.Size = New System.Drawing.Size(162, 50)
-        Me.btnImportarArticulos.TabIndex = 54
-        Me.btnImportarArticulos.Text = "Importar"
-        Me.btnImportarArticulos.UseVisualStyleBackColor = True
         '
         'Gestion
         '
@@ -1097,6 +1089,5 @@ Partial Class Gestion
     Friend WithEvents checkFechaRegistroDesdePartners As CheckBox
     Friend WithEvents Label7 As Label
     Friend WithEvents inputDescripcionArticulos As TextBox
-    Friend WithEvents RichTextBox1 As RichTextBox
     Friend WithEvents btnImportarArticulos As Button
 End Class

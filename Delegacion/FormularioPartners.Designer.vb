@@ -63,7 +63,7 @@ Partial Class FormularioPartners
         Me.BtnEliminar.Image = CType(resources.GetObject("BtnEliminar.Image"), System.Drawing.Image)
         Me.BtnEliminar.Name = "BtnEliminar"
         Me.BtnEliminar.RightToLeftAutoMirrorImage = True
-        Me.BtnEliminar.Size = New System.Drawing.Size(29, 24)
+        Me.BtnEliminar.Size = New System.Drawing.Size(29, 28)
         Me.BtnEliminar.Text = "Eliminar"
         '
         'BtnEditar
@@ -157,7 +157,7 @@ Partial Class FormularioPartners
         Me.BindNavigatorPartner.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindNavigatorPartner.Name = "BindNavigatorPartner"
         Me.BindNavigatorPartner.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorPartner.Size = New System.Drawing.Size(812, 27)
+        Me.BindNavigatorPartner.Size = New System.Drawing.Size(812, 31)
         Me.BindNavigatorPartner.TabIndex = 105
         Me.BindNavigatorPartner.Text = "BindingNavigator1"
         '
@@ -175,7 +175,7 @@ Partial Class FormularioPartners
         Me.inputCorreo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputCorreo.Location = New System.Drawing.Point(130, 304)
         Me.inputCorreo.Name = "inputCorreo"
-        Me.inputCorreo.Size = New System.Drawing.Size(163, 22)
+        Me.inputCorreo.Size = New System.Drawing.Size(184, 22)
         Me.inputCorreo.TabIndex = 96
         '
         'inputTelefono
@@ -183,7 +183,7 @@ Partial Class FormularioPartners
         Me.inputTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputTelefono.Location = New System.Drawing.Point(130, 260)
         Me.inputTelefono.Name = "inputTelefono"
-        Me.inputTelefono.Size = New System.Drawing.Size(163, 22)
+        Me.inputTelefono.Size = New System.Drawing.Size(184, 22)
         Me.inputTelefono.TabIndex = 97
         '
         'inputDireccion
@@ -191,7 +191,7 @@ Partial Class FormularioPartners
         Me.inputDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputDireccion.Location = New System.Drawing.Point(130, 220)
         Me.inputDireccion.Name = "inputDireccion"
-        Me.inputDireccion.Size = New System.Drawing.Size(163, 22)
+        Me.inputDireccion.Size = New System.Drawing.Size(184, 22)
         Me.inputDireccion.TabIndex = 94
         '
         'btnAbajo
@@ -209,7 +209,7 @@ Partial Class FormularioPartners
         Me.inputNombre.Enabled = False
         Me.inputNombre.Location = New System.Drawing.Point(130, 138)
         Me.inputNombre.Name = "inputNombre"
-        Me.inputNombre.Size = New System.Drawing.Size(163, 22)
+        Me.inputNombre.Size = New System.Drawing.Size(184, 22)
         Me.inputNombre.TabIndex = 91
         '
         'inputIdPartner
@@ -219,7 +219,7 @@ Partial Class FormularioPartners
         Me.inputIdPartner.Location = New System.Drawing.Point(130, 51)
         Me.inputIdPartner.Name = "inputIdPartner"
         Me.inputIdPartner.ReadOnly = True
-        Me.inputIdPartner.Size = New System.Drawing.Size(163, 22)
+        Me.inputIdPartner.Size = New System.Drawing.Size(184, 22)
         Me.inputIdPartner.TabIndex = 87
         '
         'Label9
@@ -291,7 +291,7 @@ Partial Class FormularioPartners
         Me.inputCif.Enabled = False
         Me.inputCif.Location = New System.Drawing.Point(130, 179)
         Me.inputCif.Name = "inputCif"
-        Me.inputCif.Size = New System.Drawing.Size(163, 22)
+        Me.inputCif.Size = New System.Drawing.Size(184, 22)
         Me.inputCif.TabIndex = 93
         '
         'TextBox1
@@ -308,7 +308,7 @@ Partial Class FormularioPartners
         Me.comboZonaPartners.FormattingEnabled = True
         Me.comboZonaPartners.Location = New System.Drawing.Point(130, 90)
         Me.comboZonaPartners.Name = "comboZonaPartners"
-        Me.comboZonaPartners.Size = New System.Drawing.Size(163, 24)
+        Me.comboZonaPartners.Size = New System.Drawing.Size(184, 24)
         Me.comboZonaPartners.TabIndex = 107
         '
         'FormularioPartners

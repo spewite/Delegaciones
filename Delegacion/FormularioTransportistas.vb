@@ -1,7 +1,7 @@
-﻿Imports System.IO
+﻿Imports System.Text.RegularExpressions
 Imports Dllgaciones.BaseDeDatos
 
-Public Class FormularioPedidos
+Public Class FormularioTransportistas
 
     Dim ConnectionString As String = ConexionBD.CadenaConexion
     Dim DataTable As DataTable
@@ -9,15 +9,16 @@ Public Class FormularioPedidos
 
     Dim IndiceNavigator As Integer
     Dim SentenciaWhere As String
-    Dim SentenciaSelect As String = "SELECT ROW_NUMBER() OVER (ORDER BY IdPedido) AS NumRegistro, * 
-                                        FROM CAB_PEDIDOS 
-                                        WHERE 1=1"
+    Dim SentenciaSelect As String = "SELECT 
+                                        ROW_NUMBER() OVER (ORDER BY IdTransportista) AS NumRegistro,  * 
+                                        FROM TRANSPORTISTAS 
+                                    WHERE 1=1 "
 
     Dim ModoFormulario As Integer
 
-    Public Const ModoEditar As Integer = 1
-    Public Const ModoVer As Integer = 2
-    Public Const ModoAñadir As Integer = 3
+    Dim ModoEditar As Integer = ModosFormulario.ModoEditar
+    Dim ModoVer As Integer = ModosFormulario.ModoVer
+    Dim ModoAñadir As Integer = ModosFormulario.ModoAñadir
 
     Public Sub New(IdRegistro As Integer, SentenciaWhere As String, ModoFormulario As Integer)
         InitializeComponent()
@@ -51,12 +52,13 @@ Public Class FormularioPedidos
         Dim NumRegistro As Integer = 0
         Dim Consulta As String =
         $"WITH CTE AS (
-            SELECT ROW_NUMBER() OVER (ORDER BY IdPedido) AS NumRegistro, *
-            FROM CAB_PEDIDOS 
-            WHERE 1=1 {SentenciaWhere}
+            SELECT 
+                ROW_NUMBER() OVER (ORDER BY IdTransportista) AS NumRegistro,  * 
+                FROM TRANSPORTISTAS 
+            WHERE 1=1  {SentenciaWhere}
         )
 
-        SELECT NumRegistro FROM CTE WHERE IdPedido = {IdRegistro}"
+        SELECT NumRegistro FROM CTE WHERE IdTransportista = {IdRegistro}"
 
         Dim DataTableNumRegistro As DataTable = ConsultaBBDD(ConnectionString, Consulta)
 
@@ -70,7 +72,7 @@ Public Class FormularioPedidos
     End Function
 
 
-    Private Sub FormularioPedidos_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub FormularioTransportistas_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' Si el el modo del formulario es Añadir no se van a cargar los valores de los inputs.
         If ModoFormulario <> ModoAñadir Then
             DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
@@ -78,9 +80,9 @@ Public Class FormularioPedidos
             'Rellenar biding navigator
             BindingSource.DataSource = DataTable
             BindingSource.Position = IndiceNavigator - 1
-            BindNavigatorArticulo.BindingSource = BindingSource
+            BindNavigatorTransportistas.BindingSource = BindingSource
 
-            BindNavigatorArticulo.PositionItem.Text = IndiceNavigator
+            BindNavigatorTransportistas.PositionItem.Text = IndiceNavigator
 
             'Rellenar los datos 
             ActualizarDatos()
@@ -88,7 +90,6 @@ Public Class FormularioPedidos
 
         ' Detecta el valor de la variable ModoFormulario y ajusta la ventana acorde al modo
         ActualizarModo()
-        dataGridPedido.DataSource = DataTable
     End Sub
 
     Private Sub ActualizarModo()
@@ -103,14 +104,14 @@ Public Class FormularioPedidos
             ' Si el modo del formulario es editar va a mostrar todos los botones.
             BtnEditar.Image = Delegacion.My.Resources.Resources.confirmar_editar
 
-            BindNavigatorArticulo.Visible = True
+            BindNavigatorTransportistas.Visible = True
             BtnEliminar.Visible = True
         Else
             BtnEditar.Image = Delegacion.My.Resources.Resources.editar
 
             If ModoFormulario = ModoAñadir Then
                 ' Si el modo del formulario es 'Añadir' oculta el binding navigator porque no tiene sentido que esté ahi
-                BindNavigatorArticulo.Visible = False
+                BindNavigatorTransportistas.Visible = False
             End If
 
             BtnEliminar.Visible = False
@@ -118,27 +119,17 @@ Public Class FormularioPedidos
 
     End Sub
 
+
     Private Sub ActivarDesactivarInputs()
         ' Si en el recibido ModoFormulario es true, activa los inputs, sino, los desactiva
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoAñadir Then
-            comboFactura.Enabled = True
-            comboPartner.Enabled = True
-            comboComercial.Enabled = True
-            comboTransportista.Enabled = True
-            comboEstadoPedido.Enabled = True
-            inputFechaPago.Enabled = True
-            inputFechaPedido.Enabled = True
-            inputFechaEnvio.Enabled = True
+            inputIdTransportista.Enabled = False ' El ID siempre esta desactivado.
+            inputTelefono.Enabled = True
+            inputEmpresa.Enabled = True
         Else
-            inputIdPedido.Enabled = False
-            inputFechaPago.Enabled = False
-            inputFechaPedido.Enabled = False
-            inputFechaEnvio.Enabled = False
-            comboFactura.Enabled = False
-            comboPartner.Enabled = False
-            comboComercial.Enabled = False
-            comboTransportista.Enabled = False
-            comboEstadoPedido.Enabled = False
+            inputIdTransportista.Enabled = False
+            inputTelefono.Enabled = False
+            inputEmpresa.Enabled = False
         End If
 
     End Sub
@@ -161,7 +152,7 @@ Public Class FormularioPedidos
 
             DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
-            Dim indiceNavigator = BindNavigatorArticulo.PositionItem.Text
+            Dim indiceNavigator = BindNavigatorTransportistas.PositionItem.Text
 
             ' Si el indice del navigator es 0, es que se esta inicializando. Entonces, se sale del metodo porque no nos interesa.
             If indiceNavigator < 1 Then
@@ -172,30 +163,19 @@ Public Class FormularioPedidos
                 Dim dataRow As DataRow = DataTable.Select("NumRegistro = " & indiceNavigator)(0)
 
                 ' Rellenar los inputs
-                inputIdPedido.Text = dataRow("IdPedido")
-                comboFactura.Text = If(dataRow("IdFactura") IsNot DBNull.Value, dataRow("IdFactura"), "")
-                comboPartner.Text = If(dataRow("IdPartner") IsNot DBNull.Value, dataRow("IdPartner"), "")
-                comboComercial.Text = If(dataRow("IdComercial") IsNot DBNull.Value, dataRow("IdComercial"), "")
-                comboTransportista.Text = If(dataRow("IdTransportista") IsNot DBNull.Value, dataRow("IdTransportista"), 0)
-                comboEstadoPedido.Text = If(dataRow("IdEstadoPedido") IsNot DBNull.Value, dataRow("IdEstadoPedido"), 0)
-                inputFechaPedido.Text = If(dataRow("FechaPedido") IsNot DBNull.Value, dataRow("FechaPedido"), 0)
-                inputFechaEnvio.Text = If(dataRow("FechaEnvio") IsNot DBNull.Value, dataRow("FechaEnvio"), 0)
-                inputFechaPago.Text = If(dataRow("FechaPago") IsNot DBNull.Value, dataRow("FechaPago"), 0)
+                inputIdTransportista.Text = dataRow("IdTransportista")
+                inputEmpresa.Text = If(dataRow("Empresa") IsNot DBNull.Value, dataRow("Empresa"), "")
+                inputTelefono.Text = If(dataRow("Telefono") IsNot DBNull.Value, dataRow("Telefono"), "")
 
             Catch ex As Exception
                 MsgBox("Ha habido un error: " + ex.Message, vbCritical + vbOKOnly, "Error en al leer los datos del a base de datos")
             End Try
-
         End If
     End Sub
 
     Private Sub BindingNavigatorPositionItem_TextChanged(sender As Object, e As EventArgs) Handles BindingNavigatorPositionItem.TextChanged
         ' Cuando el valor del indice del BindingNavigator cambie, se actualizaran los datos.
         ActualizarDatos()
-    End Sub
-
-    Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles BtnEditar.Click
-
     End Sub
 
     Private Sub InterruptorModoEdicion()
@@ -208,10 +188,6 @@ Public Class FormularioPedidos
         ActualizarModo()
     End Sub
 
-    Private Sub btnAbajo_Click(sender As Object, e As EventArgs) Handles btnAbajo.Click
-
-    End Sub
-
     Private Sub InsertarRegistro()
 
         Dim CamposSonValidos = ValidarCampos()
@@ -219,30 +195,23 @@ Public Class FormularioPedidos
         If CamposSonValidos Then
 
             ' Obtener valores de los inputs
-            'Dim idPedido As Integer = inputIdPedido.Text.Trim
-            Dim factura As Integer = comboFactura.Text.Trim
-            Dim partner As Integer = comboPartner.Text.Trim
-            Dim comercial As Integer = comboComercial.Text.Trim
-            Dim transportista As Integer = comboTransportista.Text.Trim
-            Dim estadoPedido As Integer = comboEstadoPedido.Text.Trim
-            Dim fechaPedido As Date = inputFechaPedido.Text.Trim
-            Dim fechaEnvio As Date = inputFechaEnvio.Text.Trim
-            Dim fechaPago As Date = inputFechaPago.Text.Trim
+            Dim IdTransportista As String = inputIdTransportista.Text.Trim
+            Dim Empresa As String = inputEmpresa.Text.Trim
+            Dim Telefono As Integer = inputTelefono.Text.Trim
 
             ' Construccion de la Consulta
-            Dim registrosActualizados As Integer
+            Dim registrosInsertados As Integer
 
-            Dim consulta As String = $"
-            INSERT INTO CAB_PEDIDOS(IdFactura, IdPartner, IdComercial, IdTransportista, IdEstadoPedido, FechaPedido, FechaEnvio, FechaPago)
-            VALUES ('{factura}', '{partner}', '{comercial}', '{transportista}', '{estadoPedido}', '{fechaPedido}', '{fechaEnvio}', '{fechaPago}')
-            "
+            Dim consulta As String =
+                $"INSERT INTO TRANSPORTISTAS (Empresa, Telefono)
+                VALUES ('{Empresa}', '{Telefono}')"
 
-            registrosActualizados = UpdateBBDD(ConnectionString, consulta)
+            registrosInsertados = UpdateBBDD(ConnectionString, consulta)
 
-            If registrosActualizados = 1 Then
-                MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
+            If registrosInsertados = 1 Then
+                MsgBox("Registro insertado con éxito.", vbInformation + vbOKOnly, "Registro insertado")
             Else
-                MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+                MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
             End If
 
             InterruptorModoEdicion()
@@ -258,30 +227,18 @@ Public Class FormularioPedidos
         If CamposSonValidos Then
 
             ' Obtener valores de los inputs
-            Dim idPedido As Integer = inputIdPedido.Text.Trim
-            Dim factura As Integer = comboFactura.Text.Trim
-            Dim partner As Integer = comboPartner.Text.Trim
-            Dim comercial As Integer = comboComercial.Text.Trim
-            Dim transportista As Integer = comboTransportista.Text.Trim
-            Dim estadoPedido As Integer = comboEstadoPedido.Text.Trim
-            Dim fechaPedido As Date = inputFechaPedido.Text.Trim
-            Dim fechaEnvio As Date = inputFechaEnvio.Text.Trim
-            Dim fechaPago As Date = inputFechaPago.Text.Trim
+            Dim IdTransportista As String = inputIdTransportista.Text.Trim
+            Dim Empresa As String = inputEmpresa.Text.Trim
+            Dim Telefono As String = inputTelefono.Text.Trim
 
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
 
             Dim consulta As String = $"
-            UPDATE CAB_PEDIDOS 
-            SET IdFactura = '{factura}',
-            IdPartner = '{partner}',
-            IdComercial = '{comercial}',
-            IdTransportista = {transportista},
-            IdEstadoPedido = {estadoPedido},
-            FechaPedido = {fechaPedido},
-            FechaEnvio = {fechaEnvio},
-            FechaPago = {fechaPago},
-            WHERE IdPedido = {idPedido}"
+            UPDATE TRANSPORTISTAS 
+            SET Telefono = '{Telefono}',
+            Empresa = '{Empresa}'
+            WHERE IdTransportista = {IdTransportista}"
 
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
@@ -302,48 +259,110 @@ Public Class FormularioPedidos
 
         Dim basura As Integer
 
-        Dim IdArticulo As String = inputIdPedido.Text.Trim
-        Dim Nombre As String = comboFactura.Text.Trim
-        Dim Categoria As String = comboPartner.Text.Trim
-        Dim Proveedor As String = comboComercial.Text.Trim
-        Dim Existencias As String = inputFechaPago.Text.Trim
-        Dim PrecioCoste As String = comboTransportista.Text.Trim.Replace(".", "").Replace(",", ".")
-        Dim PrecioVenta As String = inputFechaPedido.Text.Trim.Replace(".", "").Replace(",", ".")
-        Dim BajoMinimo As String = comboEstadoPedido.Text.Trim
-        Dim SobreMaximo As String = inputFechaEnvio.Text.Trim
+        Dim telefono As String = inputTelefono.Text.Trim
 
-        ' Validacion de los inputs
-        If Not Integer.TryParse(Existencias, basura) Then
-            MsgBox("¡Debes introducir un valor entero en el campo de existencias!", vbExclamation + vbOKOnly, "Error de validación")
+        If String.IsNullOrEmpty(inputEmpresa.Text) Or String.IsNullOrWhiteSpace(inputEmpresa.Text) Then
+            MsgBox("¡Debes rellenar el campo Empresa!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not Double.TryParse(PrecioCoste, basura) Then
-            MsgBox("¡Debes introducir un valor numérico en el campo de precio coste!", vbExclamation + vbOKOnly, "Error de validación")
+        '' Validacion de los inputs
+        If Not Integer.TryParse(telefono, basura) Then
+            MsgBox("¡Debes introducir un valor entero en el campo de telefono!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not Double.TryParse(PrecioVenta, basura) Then
-            MsgBox("¡Debes introducir un valor numérico en el campo de precio venta!", vbExclamation + vbOKOnly, "Error de validación")
+        If telefono.Length <> 9 Then
+            MsgBox("¡El teléfono debe contener 9 números!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not Integer.TryParse(BajoMinimo, basura) Then
-            MsgBox("¡Debes introducir un valor entero en el campo de bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If Not Integer.TryParse(SobreMaximo, basura) Then
-            MsgBox("¡Debes introducir un valor entero en el campo de sobre máximo!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
 
         Return True
     End Function
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
         ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator
-        Dim formularioPedidos As New FormularioPedidos(ModoAñadir)
-        formularioPedidos.Show()
+        Dim formularioTransportistas As New FormularioTransportistas(ModoAñadir)
+        formularioTransportistas.Show()
     End Sub
+
+    Private Sub BtnEditar_Click(sender As Object, e As EventArgs) Handles BtnEditar.Click
+        ' btnEdtiar: Boton de edicion del BindingNavitor
+        If ModoFormulario = ModoEditar Then
+            ActualizarRegistro()
+        Else
+            InterruptorModoEdicion()
+        End If
+    End Sub
+
+    Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+
+        ' BtnEliminar: boton de eliminar que está situado en el BindingNavigator
+
+        Dim IdTransportista As Integer = inputIdTransportista.Text.Trim
+
+        ' Verifica si hay un valor actual
+        If BindingSource.Current IsNot Nothing Then
+            ' Preguntar al usuario si quiere eliminar
+            Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar este transportista? Si tiene pedidos asignados se va a eliminar la relación!", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            ' Si el usuario a seleccionado que sí, borra el registro
+            If result = DialogResult.Yes Then
+
+                Dim SentenciaUpdate = $"UPDATE CAB_PEDIDOS
+                                        SET IdTransportista = NULL 
+                                        WHERE IdTransportista = {IdTransportista}"
+
+                Dim pedidosActualizados As Integer = UpdateBBDD(ConnectionString, SentenciaUpdate)
+
+                MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Transportistas desvinculadas.")
+
+                Dim SentenciaDelete As String = $"DELETE FROM TRANSPORTISTAS WHERE IdTransportista = {IdTransportista}"
+
+                Dim registrosEliminados As Integer = DeleteBBDD(ConnectionString, SentenciaDelete)
+
+                If registrosEliminados > 0 Then
+                    MsgBox($"El transportista con el ID {IdTransportista} ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Registro eliminado con éxito.")
+                Else
+                    MsgBox("Ha habido un error al eliminar el registro", vbInformation + vbOKOnly, "Error.")
+                End If
+
+                DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
+
+                ' Actualizar el fuente de datos (BindingSource) que tiene asignado el BindingNavigator 
+                BindingSource.DataSource = DataTable
+
+                ' Verificar si no quedan registros después de eliminar
+                If DataTable.Rows.Count = 0 Then
+                    ' Cerrar el formulario
+                    Me.Close()
+                    Return
+                End If
+
+                ' Mover al elemento siguiente/anterior (Para actualizar los registros)
+                If BindNavigatorTransportistas.MoveNextItem.Enabled Then
+                    BindNavigatorTransportistas.MoveNextItem.PerformClick()
+                Else
+                    BindNavigatorTransportistas.MovePreviousItem.PerformClick()
+                End If
+
+            End If
+        End If
+
+        ModoFormulario = ModoVer
+        ActualizarModo()
+    End Sub
+
+    Private Sub btnAbajo_Click(sender As Object, e As EventArgs) Handles btnAbajo.Click
+        ' btnAbajo: el boton que está abajo del formulario. Según el modo va a cambiar lo que hace
+        If ModoFormulario = ModoEditar Then
+            ActualizarRegistro()
+        ElseIf ModoFormulario = ModoAñadir Then
+            InsertarRegistro()
+        ElseIf ModoFormulario = ModoVer Then
+            Me.Close()
+        End If
+    End Sub
+
 End Class

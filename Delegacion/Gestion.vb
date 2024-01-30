@@ -1,5 +1,4 @@
-﻿Imports System.Data.SqlClient
-Imports Dllgaciones.BaseDeDatos
+﻿Imports Dllgaciones.BaseDeDatos
 
 Public Class Gestion
 
@@ -12,6 +11,18 @@ Public Class Gestion
 
     Dim sentenciaWhereArticulos As String = ""
     Dim sentenciaWherePartners As String = ""
+    Dim sentenciaWhereComerciales As String = ""
+    Dim sentenciaWhereZonas As String = ""
+    Dim sentenciaWhereTransportistas As String = ""
+
+
+    ' Creamos los formularios aqui con WithEvents. Así cuando se cierre el formulario que se abre podemos actualizar el Datagrid.
+    Private WithEvents formularioArticulos As FormularioArticulos
+    Private WithEvents formularioPartners As FormularioPartners
+    Private WithEvents formularioComerciales As FormularioComerciales
+    Private WithEvents formularioTransportistas As FormularioTransportistas
+
+    Dim advertenciaSeleccionarRegistroEliminar As String = "Seleccione al menos un registro para poder eliminarla. Ten en cuenta que tienes que seleccionar el artícluo entero haciendo click en la primera columna de la tabla. Puedes seleccionar varias filas manteniendo Ctrl al hacer click, o arrastrando el raton."
 
     Private Sub Gestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Ajustar_Anchuras_DataGrids()
@@ -131,23 +142,54 @@ Public Class Gestion
         ' Verifica si la celda seleccionada es válida y si es necesario realizar alguna acción específica
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
             ' Obtiene el valor de la celda
-            Try
-                Dim IdArticulo As Object = dataGridArticulos.Rows(e.RowIndex).Cells(0).Value
-                ' Abrir formulario del artiiculo
-                Dim formularioArticulos As New FormularioArticulos(IdArticulo, sentenciaWhereArticulos, ModoVer)
-                formularioArticulos.Show()
-            Catch ex As Exception
-                RichTextBox1.Text = "Error: " & ex.Message
-                ' Opcional: Cambiar el color del texto para resaltar el error
-                RichTextBox1.ForeColor = Color.Red
-            End Try
+            Dim IdArticulo As Object = dataGridArticulos.Rows(e.RowIndex).Cells(0).Value
+            ' Abrir formulario del artiiculo
+            Dim formularioArticulos As New FormularioArticulos(IdArticulo, sentenciaWhereArticulos, ModoVer)
+            formularioArticulos.Show()
+
         End If
     End Sub
 
-
     Private Sub BtnAltaArticulos_Click(sender As Object, e As EventArgs) Handles btnAltaArticulos.Click
-        Dim formularioArticulos As New FormularioArticulos(ModoAñadir)
-        formularioArticulos.Show()
+        FormularioArticulos = New FormularioArticulos(ModoAñadir)
+        FormularioArticulos.Show()
+    End Sub
+
+    Private Sub btnBorrarArticulos_Click(sender As Object, e As EventArgs) Handles btnBorrarArticulos.Click
+        If dataGridArticulos.SelectedRows.Count > 0 Then
+            For Each fila As DataGridViewRow In dataGridArticulos.SelectedRows
+                ' Por cada registro seleccionado pregunta si quiere eliminarlo
+                Dim idArticulo As Integer = CInt(fila.Cells("IdArticulo").Value.ToString())
+                Dim nombreArticulo As String = fila.Cells("Nombre").Value.ToString()
+
+                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el artículo '{nombreArticulo}' (ID: {idArticulo})? ¡Si tiene líneas se van a eliminar! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                If respuesta = DialogResult.Yes Then
+
+                    ' Eliminar las Lineas que contienen el artículo que queremos eliminar (Si no, no se puede)
+                    Dim consultaEliminarLineas As String = $"DELETE From LINEAS_PEDIDO Where IdArticulo = {idArticulo}"
+                    Dim lineasEliminadas As Integer = DeleteBBDD(connectionString, consultaEliminarLineas)
+                    MsgBox($"Se han eliminado {lineasEliminadas} líneas.", vbInformation + vbOKOnly, "Líneas eliminadas.")
+
+                    ' Eliminar el artículo 
+                    Dim consultaEliminarArticulo As String = $"DELETE From ARTICULOS Where IdArticulo = {idArticulo}"
+                    Dim articulosEliminados As Integer = DeleteBBDD(connectionString, consultaEliminarArticulo)
+                    If (articulosEliminados > 0) Then
+                        MsgBox($"El artículo '{nombreArticulo}' ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Artículo eliminado con éxito.")
+                    Else
+                        MsgBox($"No se ha podido eliminar el artículo '{nombreArticulo}'. Intentelo de nuevo, por favor.", vbExclamation + vbOKOnly, "Error al eliminar el artículo.")
+                    End If
+
+                End If
+            Next
+            CargarDataGridArticulo()
+        Else
+            MsgBox(advertenciaSeleccionarRegistroEliminar, vbExclamation + vbOKOnly, "Seleccione artículos.")
+        End If
+    End Sub
+
+    Private Sub CerrarFormularioArticulos(sender As Object, e As FormClosedEventArgs) Handles formularioArticulos.FormClosed
+        CargarDataGridArticulo()
     End Sub
 
 
@@ -236,14 +278,12 @@ Public Class Gestion
     Sub ActualizarComboBoxZonas()
         comboZonaPartners.Items.Clear()
         comboZonaComerciales.Items.Clear()
-        comboZona2Comerciales.Items.Clear()
 
         Dim consulta As String = $"SELECT DISTINCT DESCRIPCION FROM ZONAS"
         dataTable = ConsultaBBDD(connectionString, consulta)
         For Each fila As DataRow In dataTable.Rows
             comboZonaPartners.Items.Add(fila("DESCRIPCION"))
             comboZonaComerciales.Items.Add(fila("DESCRIPCION"))
-            comboZona2Comerciales.Items.Add(fila("DESCRIPCION"))
         Next
     End Sub
     Private Sub DataGridPartners_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataGridPartners.CellDoubleClick
@@ -259,10 +299,46 @@ Public Class Gestion
     End Sub
 
     Private Sub btnAltaPartners_Click(sender As Object, e As EventArgs) Handles btnAltaPartners.Click
-        Dim formularioPartners As New FormularioPartners(ModoAñadir)
+        formularioPartners = New FormularioPartners(ModoAñadir)
         formularioPartners.Show()
     End Sub
 
+    Private Sub CerrarFormularioParnters(sender As Object, e As FormClosedEventArgs) Handles formularioPartners.FormClosed
+        CargarDataGridPartners()
+    End Sub
+
+    Private Sub btnBorrarPartners_Click(sender As Object, e As EventArgs) Handles btnBorrarPartners.Click
+        If dataGridPartners.SelectedRows.Count > 0 Then
+            For Each fila As DataGridViewRow In dataGridPartners.SelectedRows
+                Dim idPartner As Integer = CInt(fila.Cells("IdPartner").Value.ToString())
+                Dim nombrePartner As String = fila.Cells("Nombre").Value.ToString()
+
+                ' Por cada registro seleccionado pregunta si quiere eliminarlo
+                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el partner '{nombrePartner}' (ID: {idPartner})? ¡Si tiene pedidos asignados se van a desvincular! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                If respuesta = DialogResult.Yes Then
+
+                    ' Poner a IdPartner = Null todos los pedidos de este partner
+                    Dim consultaDesvincularPedidos As String = $"UPDATE CAB_PEDIDOS SET IdPartner = NULL WHERE IdPartner = {idPartner}"
+                    Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularPedidos)
+                    MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Partners desvinculados.")
+
+                    ' Eliminar el artículo 
+                    Dim consultaEliminarPartner As String = $"DELETE FROM PARTNERS Where IdPartner = {idPartner}"
+                    Dim partnersEliminados As Integer = DeleteBBDD(connectionString, consultaEliminarPartner)
+                    If (partnersEliminados > 0) Then
+                        MsgBox($"El partner '{nombrePartner}' ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Partner eliminado con éxito.")
+                    Else
+                        MsgBox($"No se ha podido eliminar el partner '{nombrePartner}'. Intentelo de nuevo, por favor.", vbExclamation + vbOKOnly, "Error al eliminar el partner.")
+                    End If
+
+                End If
+            Next
+            CargarDataGridPartners()
+        Else
+            MsgBox(advertenciaSeleccionarRegistroEliminar, vbExclamation + vbOKOnly, "Seleccione artículos.")
+        End If
+    End Sub
 
 
     '---------------------------------------------------------'
@@ -277,55 +353,116 @@ Public Class Gestion
     Private Sub CargarDataGridComerciales()
         Dim consulta As String = "
         SELECT IdComercial, 
-		    (SELECT DESCRIPCION FROM ZONAS z WHERE IdZona = c.IdZona) Zona1,
-		    (SELECT DESCRIPCION FROM ZONAS z WHERE IdZona = c.IdZona2) Zona2,
-		    Nombre, Apellidos, Telefono, Correo, Direccion, DNI
+		    ZONAS.Descripcion As Zona, Nombre, Apellidos, Telefono, Correo, Direccion, DNI
         FROM COMERCIALES c
+        INNER JOIN ZONAS ON (ZONAS.IdZona = c.IdZona)
         WHERE 1=1"
+
+        sentenciaWhereComerciales = ""
+
 
         If Not String.IsNullOrEmpty(inputIdComerciales.Text.Trim) Then
             consulta &= $" AND IdComercial = {inputIdComerciales.Text.Trim}"
+            sentenciaWhereComerciales &= $" AND IdComercial = {inputIdComerciales.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(comboZonaComerciales.Text.Trim) Then
-            consulta &= $" AND UPPER(Zona1) LIKE '%{comboZonaComerciales.Text.ToUpper.Trim}%'"
-        End If
-
-        If Not String.IsNullOrEmpty(comboZona2Comerciales.Text.Trim) Then
-            consulta &= $" AND UPPER(Zona2) LIKE '%{comboZona2Comerciales.Text.ToUpper.Trim}%'"
+            consulta &= $" AND UPPER(Zona) LIKE '%{comboZonaComerciales.Text.ToUpper.Trim}%'"
+            sentenciaWhereComerciales &= $" AND UPPER(Zona) LIKE '%{comboZonaComerciales.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputNombreComerciales.Text.Trim) Then
             consulta &= $" AND UPPER(Nombre) LIKE '%{inputNombreComerciales.Text.ToUpper.Trim}%'"
+            sentenciaWhereComerciales &= $" AND UPPER(Nombre) LIKE '%{inputNombreComerciales.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputApellidosComerciales.Text.Trim) Then
             consulta &= $" AND UPPER(Apellidos) LIKE '%{inputApellidosComerciales.Text.ToUpper.Trim}%'"
+            sentenciaWhereComerciales &= $" AND UPPER(Apellidos) LIKE '%{inputApellidosComerciales.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputTelefonoComerciales.Text.Trim) Then
             consulta &= $" AND Telefono = {inputTelefonoComerciales.Text.Trim}"
+            sentenciaWhereComerciales &= $" AND Telefono = {inputTelefonoComerciales.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputCorreoComerciales.Text.Trim) Then
             consulta &= $" AND UPPER(Correo) LIKE '%{inputCorreoComerciales.Text.ToUpper.Trim}%'"
+            sentenciaWhereComerciales &= $" AND UPPER(Correo) LIKE '%{inputCorreoComerciales.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputDireccionComerciales.Text.Trim) Then
             consulta &= $" AND UPPER(Direccion) LIKE '%{inputDireccionComerciales.Text.ToUpper.Trim}%'"
+            sentenciaWhereComerciales &= $" AND UPPER(Direccion) LIKE '%{inputDireccionComerciales.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputDNIComerciales.Text.Trim) Then
             consulta &= $" AND UPPER(DNI) LIKE '%{inputDNIComerciales.Text.ToUpper.Trim}%'"
+            sentenciaWhereComerciales &= $" AND UPPER(DNI) LIKE '%{inputDNIComerciales.Text.ToUpper.Trim}%'"
         End If
 
         dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridComerciales.DataSource = dataTable
+
+    End Sub
+
+    Private Sub DataGridComerciales_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataGridComerciales.CellDoubleClick
+        ' Verifica si la celda seleccionada es válida y si es necesario realizar alguna acción específica
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            ' Obtiene el valor de la celda
+            Dim IdComercial As Object = dataGridComerciales.Rows(e.RowIndex).Cells(0).Value
+            ' Abrir formulario del artiiculo
+            formularioComerciales = New FormularioComerciales(IdComercial, sentenciaWhereComerciales, ModoVer)
+            formularioComerciales.Show()
+        End If
+    End Sub
+
+    Private Sub btnAltaComerciales_Click(sender As Object, e As EventArgs) Handles btnAltaComerciales.Click
+        formularioComerciales = New FormularioComerciales(ModoAñadir)
+        formularioComerciales.Show()
+    End Sub
+
+    Private Sub CerrarFormularioComerciales(sender As Object, e As FormClosedEventArgs) Handles formularioComerciales.FormClosed
+        CargarDataGridComerciales()
+    End Sub
+
+    Private Sub btnBorrarComerciales_Click(sender As Object, e As EventArgs) Handles btnBorrarComerciales.Click
+        If dataGridComerciales.SelectedRows.Count > 0 Then
+            For Each fila As DataGridViewRow In dataGridComerciales.SelectedRows
+                Dim idComercial As Integer = CInt(fila.Cells("IdComercial").Value.ToString())
+                Dim nombreApellido As String = fila.Cells("Nombre").Value.ToString() + " " + fila.Cells("Apellidos").Value.ToString()
+
+                ' Por cada registro seleccionado pregunta si quiere eliminarlo
+                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el comercial '{nombreApellido}' (ID: {idComercial})? ¡Si tiene pedidos asignados se van a desvincular! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                If respuesta = DialogResult.Yes Then
+
+                    ' Poner a IdTransportista = Null todos los pedidos de este transportista
+                    Dim consultaDesvincularComercial As String = $"UPDATE CAB_PEDIDOS SET IdComercial = NULL WHERE IdComercial = {idComercial}"
+                    Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularComercial)
+                    MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
+
+                    ' Eliminar el transportista
+                    Dim consultaEliminarComercial As String = $"DELETE FROM COMERCIALES Where IdComercial = {idComercial}"
+                    Dim comercialesEliminados As Integer = DeleteBBDD(connectionString, consultaEliminarComercial)
+                    If (comercialesEliminados > 0) Then
+                        MsgBox($"El comercial '{nombreApellido}' ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Comercial eliminado con éxito.")
+                    Else
+                        MsgBox($"No se ha podido eliminar el comercial '{nombreApellido}'. Intentelo de nuevo, por favor.", vbExclamation + vbOKOnly, "Error al eliminar el comercial.")
+                    End If
+
+                End If
+            Next
+            CargarDataGridComerciales()
+        Else
+            MsgBox(advertenciaSeleccionarRegistroEliminar, vbExclamation + vbOKOnly, "Seleccione transportista.")
+        End If
+
     End Sub
 
     '---------------------------------------------------------'
     '                                                         '
-    '                    COMERCIALES                          '
+    '                     TRANSPORTISTAS                      '
     '                                                         '
     '---------------------------------------------------------'
     Private Sub btnConsultarTransportista_Click(sender As Object, e As EventArgs) Handles btnConsultarTransportista.Click
@@ -334,17 +471,21 @@ Public Class Gestion
 
     Private Sub CargarDataGridTransportistas()
         Dim consulta As String = "SELECT * FROM TRANSPORTISTAS WHERE 1=1"
+        sentenciaWhereTransportistas = ""
 
         If Not String.IsNullOrEmpty(inputIdTransportistas.Text.Trim) Then
             consulta &= $" AND IdTransportista = {inputIdTransportistas.Text.Trim}"
+            sentenciaWhereTransportistas &= $" AND IdTransportista = {inputIdTransportistas.Text.Trim}"
         End If
 
         If Not String.IsNullOrEmpty(inputEmpresaTransportistas.Text.Trim) Then
             consulta &= $" AND UPPER(Empresa) LIKE '%{inputEmpresaTransportistas.Text.ToUpper.Trim}%'"
+            sentenciaWhereTransportistas &= $" AND UPPER(Empresa) LIKE '%{inputEmpresaTransportistas.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputTelefonoTransportistas.Text.Trim) Then
             consulta &= $" AND Telefono LIKE '%{inputTelefonoTransportistas.Text.Trim}%'"
+            sentenciaWhereTransportistas &= $" AND Telefono LIKE '%{inputTelefonoTransportistas.Text.Trim}%'"
         End If
 
         dataTable = ConsultaBBDD(connectionString, consulta)
@@ -355,4 +496,61 @@ Public Class Gestion
         Dim formularioImportarArticulos As New ImportarArticulos()
         formularioImportarArticulos.Show()
     End Sub
+
+    Private Sub DataGridTransoprtistas_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataGridTransportistas.CellDoubleClick
+        ' Verifica si la celda seleccionada es válida y si es necesario realizar alguna acción específica
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            ' Obtiene el valor de la celda
+            Dim IdTransportista As Object = dataGridTransportistas.Rows(e.RowIndex).Cells(0).Value
+            ' Abrir formulario del artiiculo
+            formularioTransportistas = New FormularioTransportistas(IdTransportista, sentenciaWhereTransportistas, ModoVer)
+            formularioTransportistas.Show()
+        End If
+    End Sub
+
+    Private Sub btnBorrarTransportista_Click(sender As Object, e As EventArgs) Handles btnBorrarTransportista.Click
+        If dataGridTransportistas.SelectedRows.Count > 0 Then
+
+            For Each fila As DataGridViewRow In dataGridTransportistas.SelectedRows
+                Dim idTransportista As Integer = CInt(fila.Cells("IdTransportista").Value.ToString())
+                Dim empresa As String = fila.Cells("Empresa").Value.ToString()
+
+                ' Por cada registro seleccionado pregunta si quiere eliminarlo
+                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el transportista '{empresa}' (ID: {idTransportista})? ¡Si tiene pedidos asignados se van a desvincular! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                If respuesta = DialogResult.Yes Then
+
+                    ' Poner a IdTransportista = Null todos los pedidos de este transportista
+                    Dim consultaDesvincularTransportista As String = $"UPDATE CAB_PEDIDOS SET IdTransportista = NULL WHERE IdTransportista = {idTransportista}"
+                    Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularTransportista)
+                    MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Transportistas desvinculados.")
+
+                    ' Eliminar el transportista
+                    Dim consultaEliminarTransportista As String = $"DELETE FROM TRANSPORTISTAS Where IdTransportista = {idTransportista}"
+                    Dim transportistasEliminados As Integer = DeleteBBDD(connectionString, consultaEliminarTransportista)
+                    If (transportistasEliminados > 0) Then
+                        MsgBox($"El tranpostista '{empresa}' ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Transportista eliminado con éxito.")
+                    Else
+                        MsgBox($"No se ha podido eliminar el transportista '{empresa}'. Intentelo de nuevo, por favor.", vbExclamation + vbOKOnly, "Error al eliminar el transportista.")
+                    End If
+
+                End If
+            Next
+            CargarDataGridTransportistas()
+        Else
+            MsgBox(advertenciaSeleccionarRegistroEliminar, vbExclamation + vbOKOnly, "Seleccione transportista.")
+        End If
+
+    End Sub
+
+    Private Sub btnAltaTransportista_Click(sender As Object, e As EventArgs) Handles btnAltaTransportista.Click
+        formularioTransportistas = New FormularioTransportistas(ModoAñadir)
+        formularioTransportistas.Show()
+    End Sub
+
+    Private Sub CerrarFormularioTransportistas(sender As Object, e As FormClosedEventArgs) Handles formularioTransportistas.FormClosed
+        CargarDataGridTransportistas()
+    End Sub
+
 End Class
+

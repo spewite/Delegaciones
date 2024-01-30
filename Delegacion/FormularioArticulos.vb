@@ -304,12 +304,12 @@ Public Class FormularioArticulos
             INSERT INTO ARTICULOS(Nombre, Descripcion, Categoria, Proveedor, PrVent, PrCost, Existencias, SobreMaximo, BajoMinimo, ImagenBase64)
             VALUES ('{Nombre}', '{Descripcion}', '{Categoria}', '{Proveedor}', {PrecioVenta}, {PrecioCoste}, '{Existencias}', '{SobreMaximo}', '{BajoMinimo}', '{base64FormularioAñadir}')"
 
-            registrosActualizados = UpdateBBDD(ConnectionString, consulta)
+            registrosActualizados = InsertBBDD(ConnectionString, consulta)
 
             If registrosActualizados = 1 Then
-                MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
+                MsgBox("Registro insertado con éxito.", vbInformation + vbOKOnly, "Registro insertado")
             Else
-                MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+                MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
             End If
 
             InterruptorModoEdicion()

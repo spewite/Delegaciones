@@ -263,13 +263,13 @@ Public Class FormularioLineas
         If ModoFormulario = ModoEditar Then
             ActualizarRegistro()
         ElseIf ModoFormulario = ModoAñadir Then
-            InsertarArticulo()
+            InsertarRegistro()
         ElseIf ModoFormulario = ModoVer Then
             Me.Close()
         End If
     End Sub
 
-    Private Sub InsertarArticulo()
+    Private Sub InsertarRegistro()
 
         Dim CamposSonValidos = ValidarCampos()
 
@@ -292,9 +292,9 @@ Public Class FormularioLineas
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
             If registrosActualizados = 1 Then
-                MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
+                MsgBox("Registro insertado con éxito.", vbInformation + vbOKOnly, "Registro insertado")
             Else
-                MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+                MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
             End If
 
             InterruptorModoEdicion()

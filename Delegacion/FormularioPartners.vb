@@ -226,13 +226,13 @@ Public Class FormularioPartners
         If ModoFormulario = ModoEditar Then
             ActualizarPartner()
         ElseIf ModoFormulario = ModoAñadir Then
-            InsertarPartner()
+            InsertarRegistro()
         ElseIf ModoFormulario = ModoVer Then
             Me.Close()
         End If
     End Sub
 
-    Private Sub InsertarPartner()
+    Private Sub InsertarRegistro()
 
         Dim CamposSonValidos = ValidarCampos()
 
@@ -259,9 +259,9 @@ Public Class FormularioPartners
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
             If registrosActualizados = 1 Then
-                MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
+                MsgBox("Registro insertado con éxito.", vbInformation + vbOKOnly, "Registro insertado")
             Else
-                MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+                MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
             End If
 
             InterruptorModoEdicion()
@@ -293,14 +293,14 @@ Public Class FormularioPartners
             Dim registrosActualizados As Integer
 
             Dim consulta As String = $"
-         UPDATE PARTNERS 
-         SET IdZona = {IdZona},
-         Nombre = '{Nombre}',
-         CIF = '{Cif}',
-         Direccion = '{Direccion}',
-         Telefono = {Telefono},
-         Correo = '{Correo}'
-         WHERE IdPartner = {IdPartner}"
+             UPDATE PARTNERS 
+             SET IdZona = {IdZona},
+             Nombre = '{Nombre}',
+             CIF = '{Cif}',
+             Direccion = '{Direccion}',
+             Telefono = {Telefono},
+             Correo = '{Correo}'
+             WHERE IdPartner = {IdPartner}"
 
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 

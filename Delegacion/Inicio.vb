@@ -39,7 +39,7 @@ Public Class Inicio
     End Sub
 
     Private Sub PartnersToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PartnersToolStripMenuItem2.Click
-        Importar.Show()
+        ImportarPartners.Show()
     End Sub
 
     Private Sub PedidosToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PedidosToolStripMenuItem2.Click
@@ -63,10 +63,10 @@ Public Class ConexionBD
     Public Shared ReadOnly Property CadenaConexion As String
         Get
             ' ⬇️ Klase ⬇️
-            'Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@"
+            Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@;Connect Timeout=5;"
 
             ' ⬇️ Julen ⬇️
-            Return "Data Source=localhost;Initial Catalog=DELEGACION;User ID=sa;Password=sa"
+            'Return "Data Source=localhost;Initial Catalog=DELEGACION;User ID=sa;Password=sa;Connect Timeout=5;"
         End Get
     End Property
 End Class

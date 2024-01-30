@@ -2,7 +2,7 @@
 Imports System.Xml
 Imports Dllgaciones.BaseDeDatos
 
-Public Class Importar
+Public Class ImportarPartners
 
     Dim rutaXML As String
 

@@ -229,7 +229,6 @@ Public Class FormularioPedidos
         Else
             btnAbajo.Text = "Listo"
         End If
-
     End Sub
 
     Private Sub ActualizarDatos()
@@ -438,9 +437,9 @@ Public Class FormularioPedidos
         registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
         If registrosActualizados = 1 Then
-            MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
+            MsgBox("Registro insertado con éxito.", vbInformation + vbOKOnly, "Registro insertado")
         Else
-            MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+            MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
         End If
 
         InterruptorModoEdicion()
@@ -512,7 +511,8 @@ Public Class FormularioPedidos
     End Sub
 
     Private Sub btnImportarPedidos_Click(sender As Object, e As EventArgs) Handles btnImportarPedidos.Click
-
+        Dim formularioImportarPedidos As New ImportarPedidos()
+        formularioImportarPedidos.Show()
     End Sub
 
     Private Sub btnEliminarLinea_Click(sender As Object, e As EventArgs) Handles btnEliminarLinea.Click
@@ -524,7 +524,7 @@ Public Class FormularioPedidos
                 Dim idLinea As Integer = CInt(fila.Cells("IdLinea").Value.ToString())
                 Dim articulo As String = fila.Cells("Artículo").Value.ToString()
 
-                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el artículo {articulo} (ID: {idLinea})?", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar la línea del artículo {articulo} (Linea: {idLinea})? ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
                 If respuesta = DialogResult.Yes Then
 
@@ -541,6 +541,10 @@ Public Class FormularioPedidos
         Else
             MsgBox("Seleccione al menos una línea para poder eliminarla. Ten en cuenta que tienes que seleccionar la línea entera haciendo click en la primera columna de la tabla.", vbExclamation + vbOKOnly, "Seleccione líneas.")
         End If
+
+    End Sub
+
+    Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
 
     End Sub
 End Class

@@ -118,6 +118,12 @@
     <Compile Include="Facturas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormularioComerciales.Designer.vb">
+      <DependentUpon>FormularioComerciales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioComerciales.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormularioLineas.Designer.vb">
       <DependentUpon>FormularioLineas.vb</DependentUpon>
     </Compile>
@@ -136,10 +142,16 @@
     <Compile Include="FormularioPartners.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Importar.Designer.vb">
-      <DependentUpon>Importar.vb</DependentUpon>
+    <Compile Include="FormularioTransportistas.Designer.vb">
+      <DependentUpon>FormularioTransportistas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Importar.vb">
+    <Compile Include="FormularioTransportistas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportarPartners.Designer.vb">
+      <DependentUpon>ImportarPartners.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarPartners.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ImportarArticulos.Designer.vb">
@@ -208,6 +220,9 @@
     <EmbeddedResource Include="Facturas.resx">
       <DependentUpon>Facturas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormularioComerciales.resx">
+      <DependentUpon>FormularioComerciales.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioLineas.resx">
       <DependentUpon>FormularioLineas.vb</DependentUpon>
     </EmbeddedResource>
@@ -217,11 +232,14 @@
     <EmbeddedResource Include="FormularioPedidos.resx">
       <DependentUpon>FormularioPedidos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormularioTransportistas.resx">
+      <DependentUpon>FormularioTransportistas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Importar.resx">
-      <DependentUpon>Importar.vb</DependentUpon>
+    <EmbeddedResource Include="ImportarPartners.resx">
+      <DependentUpon>ImportarPartners.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportarArticulos.resx">
       <DependentUpon>ImportarArticulos.vb</DependentUpon>

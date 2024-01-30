@@ -2,15 +2,14 @@
 Imports System.Windows.Forms
 
 Public Class Inicio
-    Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-
-
+    Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.IsMdiContainer = True
     End Sub
-
     Private Sub GestionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GestionToolStripMenuItem.Click
         OpenOrActivateForm(Of Gestion)()
     End Sub
+
+
     Private Sub PedidosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PedidosToolStripMenuItem.Click
         OpenOrActivateForm(Of Pedidos)()
     End Sub
@@ -39,6 +38,56 @@ Public Class Inicio
         Me.Close()
     End Sub
 
+    Private Sub PartnersToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PartnersToolStripMenuItem2.Click
+        ImportarPartners.Show()
+    End Sub
+
+    Private Sub PedidosToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PedidosToolStripMenuItem2.Click
+        ImportarPedidos.Show()
+    End Sub
+
+    Private Sub ArticulosToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ArticulosToolStripMenuItem3.Click
+        ExportarCatalogo.Show()
+    End Sub
+
+    Private Sub PartnersToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles PartnersToolStripMenuItem3.Click
+        ExportarPartners.Show()
+    End Sub
+
+    Private Sub ArticulosToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ArticulosToolStripMenuItem2.Click
+        ImportarArticulos.Show()
+    End Sub
+End Class
+
+Public Class ConexionBD
+    Public Shared ReadOnly Property CadenaConexion As String
+        Get
+            ' ⬇️ Klase ⬇️
+            Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@;Connect Timeout=5;"
+
+            ' ⬇️ Julen ⬇️
+            'Return "Data Source=localhost;Initial Catalog=DELEGACION;User ID=sa;Password=sa;Connect Timeout=5;"
+        End Get
+    End Property
+End Class
 
 
+Public Class ModosFormulario
+    Public Shared ReadOnly Property ModoEditar As Integer
+        Get
+            Return 1
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property ModoVer As Integer
+        Get
+            Return 2
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property ModoAñadir As Integer
+        Get
+            Return 3
+        End Get
+    End Property
 End Class

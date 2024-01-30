@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form2
+Partial Class ExportarPartners
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,39 +22,29 @@ Partial Class Form2
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.btnPartners = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'Button1
+        'btnPartners
         '
-        Me.Button1.Location = New System.Drawing.Point(448, 284)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnPartners.Location = New System.Drawing.Point(152, 97)
+        Me.btnPartners.Name = "btnPartners"
+        Me.btnPartners.Size = New System.Drawing.Size(259, 38)
+        Me.btnPartners.TabIndex = 0
+        Me.btnPartners.Text = "Exportar Partners"
+        Me.btnPartners.UseVisualStyleBackColor = True
         '
-        'DateTimePicker1
-        '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(173, 78)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 22)
-        Me.DateTimePicker1.TabIndex = 1
-        '
-        'Form2
+        'ExportarPartners
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.DateTimePicker1)
-        Me.Controls.Add(Me.Button1)
-        Me.Name = "Form2"
-        Me.Text = "Form2"
+        Me.ClientSize = New System.Drawing.Size(568, 234)
+        Me.Controls.Add(Me.btnPartners)
+        Me.Name = "ExportarPartners"
+        Me.Text = "Exportar Partners"
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents Button1 As Button
-    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents btnPartners As Button
 End Class

@@ -14,6 +14,21 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +37,8 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Delegacion.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +48,8 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Delegacion.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -50,7 +67,7 @@
   <ItemGroup>
     <Reference Include="Dllgaciones, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dllgaciones\Dllgaciones\Dllgaciones\bin\Debug\Dllgaciones.dll</HintPath>
+      <HintPath>Dlls\Dllgaciones\Dllgaciones.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -77,22 +94,22 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArticulosEdit.Designer.vb">
-      <DependentUpon>ArticulosEdit.vb</DependentUpon>
+    <Compile Include="ExportarCatalogo.Designer.vb">
+      <DependentUpon>ExportarCatalogo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ArticulosEdit.vb">
+    <Compile Include="ExportarCatalogo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComercialesEdit.Designer.vb">
-      <DependentUpon>ComercialesEdit.vb</DependentUpon>
+    <Compile Include="ExportarPartners.Designer.vb">
+      <DependentUpon>ExportarPartners.vb</DependentUpon>
     </Compile>
-    <Compile Include="ComercialesEdit.vb">
+    <Compile Include="ExportarPartners.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Consultas.Designer.vb">
-      <DependentUpon>Consultas.vb</DependentUpon>
+    <Compile Include="FormularioArticulos.Designer.vb">
+      <DependentUpon>FormularioArticulos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Consultas.vb">
+    <Compile Include="FormularioArticulos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DataSet1.Designer.vb">
@@ -106,22 +123,58 @@
     <Compile Include="Facturas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FacturasEdit.Designer.vb">
-      <DependentUpon>FacturasEdit.vb</DependentUpon>
+    <Compile Include="FormularioComerciales.Designer.vb">
+      <DependentUpon>FormularioComerciales.vb</DependentUpon>
     </Compile>
-    <Compile Include="FacturasEdit.vb">
+    <Compile Include="FormularioComerciales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioLineas.Designer.vb">
+      <DependentUpon>FormularioLineas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioLineas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioPedidos.Designer.vb">
+      <DependentUpon>FormularioPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioPartners.Designer.vb">
+      <DependentUpon>FormularioPartners.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPartners.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioTransportistas.Designer.vb">
+      <DependentUpon>FormularioTransportistas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioTransportistas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportarPartners.Designer.vb">
+      <DependentUpon>ImportarPartners.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarPartners.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportarArticulos.Designer.vb">
+      <DependentUpon>ImportarArticulos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarArticulos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportarPedidos.Designer.vb">
+      <DependentUpon>ImportarPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarPedidos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Lineas.Designer.vb">
       <DependentUpon>Lineas.vb</DependentUpon>
     </Compile>
     <Compile Include="Lineas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PartnersEdit.Designer.vb">
-      <DependentUpon>PartnersEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PartnersEdit.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pedidos.Designer.vb">
@@ -158,37 +211,46 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PedidosEdit.Designer.vb">
-      <DependentUpon>PedidosEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PedidosEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TransportistasEdit.Designer.vb">
-      <DependentUpon>TransportistasEdit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="TransportistasEdit.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ArticulosEdit.resx">
-      <DependentUpon>ArticulosEdit.vb</DependentUpon>
+    <EmbeddedResource Include="ExportarCatalogo.resx">
+      <DependentUpon>ExportarCatalogo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComercialesEdit.resx">
-      <DependentUpon>ComercialesEdit.vb</DependentUpon>
+    <EmbeddedResource Include="ExportarPartners.resx">
+      <DependentUpon>ExportarPartners.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Consultas.resx">
-      <DependentUpon>Consultas.vb</DependentUpon>
+    <EmbeddedResource Include="FormularioArticulos.resx">
+      <DependentUpon>FormularioArticulos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturas.resx">
       <DependentUpon>Facturas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FacturasEdit.resx">
-      <DependentUpon>FacturasEdit.vb</DependentUpon>
+    <EmbeddedResource Include="FormularioComerciales.resx">
+      <DependentUpon>FormularioComerciales.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioLineas.resx">
+      <DependentUpon>FormularioLineas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPartners.resx">
+      <DependentUpon>FormularioPartners.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPedidos.resx">
+      <DependentUpon>FormularioPedidos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioTransportistas.resx">
+      <DependentUpon>FormularioTransportistas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportarPartners.resx">
+      <DependentUpon>ImportarPartners.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportarArticulos.resx">
+      <DependentUpon>ImportarArticulos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportarPedidos.resx">
+      <DependentUpon>ImportarPedidos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.vb</DependentUpon>
@@ -202,17 +264,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartnersEdit.resx">
-      <DependentUpon>PartnersEdit.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pedidos.resx">
       <DependentUpon>Pedidos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PedidosEdit.resx">
-      <DependentUpon>PedidosEdit.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TransportistasEdit.resx">
-      <DependentUpon>TransportistasEdit.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +290,27 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\confirmar-editar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

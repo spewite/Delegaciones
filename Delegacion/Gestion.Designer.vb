@@ -109,6 +109,15 @@ Partial Class Gestion
         Me.inputIdTransportistas = New System.Windows.Forms.TextBox()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
+        Me.zonasTab = New System.Windows.Forms.TabPage()
+        Me.btnAltaZona = New System.Windows.Forms.Button()
+        Me.btnBorrarZonas = New System.Windows.Forms.Button()
+        Me.btnConsultarZonas = New System.Windows.Forms.Button()
+        Me.dataGridZonas = New System.Windows.Forms.DataGridView()
+        Me.inputZonaZonas = New System.Windows.Forms.TextBox()
+        Me.inputIdZona = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.articulosTab.SuspendLayout()
@@ -119,6 +128,8 @@ Partial Class Gestion
         CType(Me.dataGridComerciales, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.transportistasTab.SuspendLayout()
         CType(Me.dataGridTransportistas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.zonasTab.SuspendLayout()
+        CType(Me.dataGridZonas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -128,6 +139,7 @@ Partial Class Gestion
         Me.TabControl1.Controls.Add(Me.partnersTab)
         Me.TabControl1.Controls.Add(Me.comercialesTab)
         Me.TabControl1.Controls.Add(Me.transportistasTab)
+        Me.TabControl1.Controls.Add(Me.zonasTab)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
@@ -975,6 +987,98 @@ Partial Class Gestion
         Me.Label46.TabIndex = 77
         Me.Label46.Text = "ID Transportista:"
         '
+        'zonasTab
+        '
+        Me.zonasTab.Controls.Add(Me.btnAltaZona)
+        Me.zonasTab.Controls.Add(Me.btnBorrarZonas)
+        Me.zonasTab.Controls.Add(Me.btnConsultarZonas)
+        Me.zonasTab.Controls.Add(Me.dataGridZonas)
+        Me.zonasTab.Controls.Add(Me.inputZonaZonas)
+        Me.zonasTab.Controls.Add(Me.inputIdZona)
+        Me.zonasTab.Controls.Add(Me.Label13)
+        Me.zonasTab.Controls.Add(Me.Label15)
+        Me.zonasTab.Location = New System.Drawing.Point(4, 25)
+        Me.zonasTab.Name = "zonasTab"
+        Me.zonasTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.zonasTab.Size = New System.Drawing.Size(1899, 951)
+        Me.zonasTab.TabIndex = 7
+        Me.zonasTab.Text = "Zonas"
+        Me.zonasTab.UseVisualStyleBackColor = True
+        '
+        'btnAltaZona
+        '
+        Me.btnAltaZona.Location = New System.Drawing.Point(549, 116)
+        Me.btnAltaZona.Name = "btnAltaZona"
+        Me.btnAltaZona.Size = New System.Drawing.Size(162, 31)
+        Me.btnAltaZona.TabIndex = 95
+        Me.btnAltaZona.Text = "Alta"
+        Me.btnAltaZona.UseVisualStyleBackColor = True
+        '
+        'btnBorrarZonas
+        '
+        Me.btnBorrarZonas.Location = New System.Drawing.Point(549, 72)
+        Me.btnBorrarZonas.Name = "btnBorrarZonas"
+        Me.btnBorrarZonas.Size = New System.Drawing.Size(162, 31)
+        Me.btnBorrarZonas.TabIndex = 94
+        Me.btnBorrarZonas.Text = "Borrar"
+        Me.btnBorrarZonas.UseVisualStyleBackColor = True
+        '
+        'btnConsultarZonas
+        '
+        Me.btnConsultarZonas.Location = New System.Drawing.Point(549, 27)
+        Me.btnConsultarZonas.Name = "btnConsultarZonas"
+        Me.btnConsultarZonas.Size = New System.Drawing.Size(162, 31)
+        Me.btnConsultarZonas.TabIndex = 93
+        Me.btnConsultarZonas.Text = "Filtrar"
+        Me.btnConsultarZonas.UseVisualStyleBackColor = True
+        '
+        'dataGridZonas
+        '
+        Me.dataGridZonas.AllowUserToAddRows = False
+        Me.dataGridZonas.AllowUserToDeleteRows = False
+        Me.dataGridZonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataGridZonas.Location = New System.Drawing.Point(56, 176)
+        Me.dataGridZonas.Name = "dataGridZonas"
+        Me.dataGridZonas.ReadOnly = True
+        Me.dataGridZonas.RowHeadersWidth = 51
+        Me.dataGridZonas.RowTemplate.Height = 24
+        Me.dataGridZonas.Size = New System.Drawing.Size(1294, 590)
+        Me.dataGridZonas.TabIndex = 92
+        '
+        'inputZonaZonas
+        '
+        Me.inputZonaZonas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputZonaZonas.Location = New System.Drawing.Point(193, 101)
+        Me.inputZonaZonas.Name = "inputZonaZonas"
+        Me.inputZonaZonas.Size = New System.Drawing.Size(303, 22)
+        Me.inputZonaZonas.TabIndex = 88
+        '
+        'inputIdZona
+        '
+        Me.inputIdZona.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputIdZona.Location = New System.Drawing.Point(193, 51)
+        Me.inputIdZona.Name = "inputIdZona"
+        Me.inputIdZona.Size = New System.Drawing.Size(303, 22)
+        Me.inputIdZona.TabIndex = 86
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(140, 103)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(41, 16)
+        Me.Label13.TabIndex = 89
+        Me.Label13.Text = "Zona:"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(121, 53)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(64, 16)
+        Me.Label15.TabIndex = 87
+        Me.Label15.Text = "ID Zonas:"
+        '
         'Gestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -998,6 +1102,9 @@ Partial Class Gestion
         Me.transportistasTab.ResumeLayout(False)
         Me.transportistasTab.PerformLayout()
         CType(Me.dataGridTransportistas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.zonasTab.ResumeLayout(False)
+        Me.zonasTab.PerformLayout()
+        CType(Me.dataGridZonas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -1090,4 +1197,13 @@ Partial Class Gestion
     Friend WithEvents Label7 As Label
     Friend WithEvents inputDescripcionArticulos As TextBox
     Friend WithEvents btnImportarArticulos As Button
+    Friend WithEvents zonasTab As TabPage
+    Friend WithEvents btnAltaZona As Button
+    Friend WithEvents btnBorrarZonas As Button
+    Friend WithEvents btnConsultarZonas As Button
+    Friend WithEvents dataGridZonas As DataGridView
+    Friend WithEvents inputZonaZonas As TextBox
+    Friend WithEvents inputIdZona As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label15 As Label
 End Class

@@ -6,10 +6,10 @@ Public Class ImportarPartners
 
     Dim rutaXML As String
 
-    Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnProcesar_Click(sender As Object, e As EventArgs)
         Try
-            
-		' Mostrar el cuadro de diálogo para seleccionar un archivo XML IÑIGO PUTERO
+
+            ' Mostrar el cuadro de diálogo para seleccionar un archivo XML
             Dim openFileDialog As New OpenFileDialog()
             openFileDialog.Filter = "Archivos XML|*.xml"
             openFileDialog.Title = "Seleccionar archivo XML"
@@ -72,4 +72,6 @@ Public Class ImportarPartners
             MessageBox.Show("Error al procesar el XML o insertar en la base de datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
 End Class

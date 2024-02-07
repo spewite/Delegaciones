@@ -493,10 +493,7 @@ Public Class Gestion
         dataGridTransportistas.DataSource = dataTable
     End Sub
 
-    Private Sub btnImportarArticulos_Click(sender As Object, e As EventArgs) Handles btnImportarArticulos.Click
-        Dim formularioImportarArticulos As New ImportarArticulos()
-        formularioImportarArticulos.Show()
-    End Sub
+
 
     Private Sub DataGridTransoprtistas_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataGridTransportistas.CellDoubleClick
         ' Verifica si la celda seleccionada es válida y si es necesario realizar alguna acción específica
@@ -656,6 +653,12 @@ Public Class Gestion
 
     Private Sub CerrarFormularioZonas(sender As Object, e As FormClosedEventArgs) Handles formularioZonas.FormClosed
         CargarDataGridZonas()
+    End Sub
+
+
+    Private Sub btnImportarArticulos_Click(sender As Object, e As EventArgs) Handles btnImportarArticulos.Click
+        Dim formularioImportarArticulos As New ImportarArticulos()
+        formularioImportarArticulos.Show()
     End Sub
 
 

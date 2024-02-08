@@ -87,6 +87,7 @@ C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegac
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.FormularioPartners.resources
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.FormularioPedidos.resources
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.FormularioTransportistas.resources
+C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.FormularioZonas.resources
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.GenerarFacturas.resources
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.Gestion.resources
 C:\Users\Izeta\source\repos\2UD\[RETO]\Delegaciones\Delegacion\obj\Debug\Delegacion.ImportarPartners.resources

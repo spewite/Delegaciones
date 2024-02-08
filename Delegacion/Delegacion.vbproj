@@ -233,6 +233,10 @@
     <Compile Include="FormularioZonas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GenerarFacturas.Designer.vb">
+      <DependentUpon>GenerarFacturas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarFacturas.vb" />
     <Compile Include="ImportarPartners.Designer.vb">
       <DependentUpon>ImportarPartners.vb</DependentUpon>
     </Compile>
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioZonas.resx">
       <DependentUpon>FormularioZonas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarFacturas.resx">
+      <DependentUpon>GenerarFacturas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.vb</DependentUpon>

@@ -21,6 +21,7 @@ Public Class Gestion
     Private WithEvents formularioPartners As FormularioPartners
     Private WithEvents formularioComerciales As FormularioComerciales
     Private WithEvents formularioTransportistas As FormularioTransportistas
+    Private WithEvents formularioZonas As FormularioZonas
 
     Dim advertenciaSeleccionarRegistroEliminar As String = "Seleccione al menos un registro para poder eliminarla. Ten en cuenta que tienes que seleccionar el artícluo entero haciendo click en la primera columna de la tabla. Puedes seleccionar varias filas manteniendo Ctrl al hacer click, o arrastrando el raton."
 
@@ -502,7 +503,7 @@ Public Class Gestion
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
             ' Obtiene el valor de la celda
             Dim IdTransportista As Object = dataGridTransportistas.Rows(e.RowIndex).Cells(0).Value
-            ' Abrir formulario del artiiculo
+            ' Abrir formulario del Transportista
             formularioTransportistas = New FormularioTransportistas(IdTransportista, sentenciaWhereTransportistas, ModoVer)
             formularioTransportistas.Show()
         End If
@@ -551,6 +552,112 @@ Public Class Gestion
     Private Sub CerrarFormularioTransportistas(sender As Object, e As FormClosedEventArgs) Handles formularioTransportistas.FormClosed
         CargarDataGridTransportistas()
     End Sub
+
+
+
+    '---------------------------------------------------------'
+    '                                                         '
+    '                         ZONAS                           '
+    '                                                         '
+    '---------------------------------------------------------'
+
+    Private Sub btnConsultarZonas_Click(sender As Object, e As EventArgs) Handles btnConsultarZonas.Click
+        CargarDataGridZonas()
+    End Sub
+
+    Private Sub CargarDataGridZonas()
+        Dim consulta As String = "SELECT * FROM ZONAS WHERE 1=1"
+        sentenciaWhereZonas = ""
+
+        If Not String.IsNullOrEmpty(inputIdZona.Text.Trim) Then
+            consulta &= $" AND IdZona = {inputIdZona.Text.Trim}"
+            sentenciaWhereZonas &= $" AND IdZona = {inputIdZona.Text.Trim}"
+        End If
+
+        If Not String.IsNullOrEmpty(inputZonaZonas.Text.Trim) Then
+            consulta &= $" AND UPPER(Descripcion) LIKE '%{inputZonaZonas.Text.ToUpper.Trim}%'"
+            sentenciaWhereZonas &= $" AND UPPER(Descripcion) LIKE '%{inputZonaZonas.Text.ToUpper.Trim}%'"
+        End If
+
+
+        dataTable = ConsultaBBDD(connectionString, consulta)
+        dataGridZonas.DataSource = dataTable
+    End Sub
+
+    Private Sub dataGridZonas_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataGridZonas.CellDoubleClick
+        ' Verifica si la celda seleccionada es válida y si es necesario realizar alguna acción específica
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            ' Obtiene el valor de la celda
+            Dim IdZona As Object = dataGridZonas.Rows(e.RowIndex).Cells(0).Value
+            ' Abrir formulario del Zonas
+            formularioZonas = New FormularioZonas(IdZona, sentenciaWhereZonas, ModoVer)
+            formularioZonas.Show()
+        End If
+    End Sub
+
+    Private Sub btnBorrarZonas_Click(sender As Object, e As EventArgs) Handles btnBorrarZonas.Click
+        If dataGridZonas.SelectedRows.Count > 0 Then
+
+            For Each fila As DataGridViewRow In dataGridZonas.SelectedRows
+                Dim idZona As Integer = CInt(fila.Cells("IdZona").Value.ToString())
+                Dim Descripcion As String = fila.Cells("Descripcion").Value.ToString()
+
+                ' Por cada registro seleccionado pregunta si quiere eliminarlo
+                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar la zona '{Descripcion}' (ID: {idZona})? ¡Si tiene Partners o Comerciales asignados se van a desvincular! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                If respuesta = DialogResult.Yes Then
+
+                    Dim SentenciaUpdateComerciales = $"UPDATE COMERCIALES
+                                        SET IdZona = NULL 
+                                        WHERE IdZona = {idZona}"
+
+                    Dim SentenciaUpdatePartners = $"UPDATE PARTNERS
+                                        SET IdZona = NULL 
+                                        WHERE IdZona = {idZona}"
+
+
+                    Dim comercialesActualizados As Integer = UpdateBBDD(connectionString, SentenciaUpdateComerciales)
+
+                    MsgBox($"Se han desvinculado {comercialesActualizados} comerciales.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
+
+
+                    Dim partnersActualizados As Integer = UpdateBBDD(connectionString, SentenciaUpdatePartners)
+
+                    MsgBox($"Se han desvinculado {partnersActualizados} partners.", vbInformation + vbOKOnly, "Partners desvinculados.")
+
+
+
+                    Dim SentenciaDelete As String = $"DELETE FROM ZONAS WHERE IdZona = {idZona}"
+
+                    Dim registrosEliminados As Integer = DeleteBBDD(connectionString, SentenciaDelete)
+
+
+                    If registrosEliminados > 0 Then
+                        MsgBox($"La Zona con ID {idZona} ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Registro eliminado con éxito.")
+                    Else
+                        MsgBox("Ha habido un error al eliminar el registro", vbInformation + vbOKOnly, "Error.")
+                    End If
+
+                End If
+            Next
+            CargarDataGridZonas()
+        Else
+            MsgBox(advertenciaSeleccionarRegistroEliminar, vbExclamation + vbOKOnly, "Seleccione transportista.")
+        End If
+
+    End Sub
+
+
+
+    Private Sub btnAltaZona_Click(sender As Object, e As EventArgs) Handles btnAltaZona.Click
+        formularioZonas = New FormularioZonas(ModoAñadir)
+        formularioZonas.Show()
+    End Sub
+
+    Private Sub CerrarFormularioZonas(sender As Object, e As FormClosedEventArgs) Handles formularioZonas.FormClosed
+        CargarDataGridZonas()
+    End Sub
+
 
 End Class
 

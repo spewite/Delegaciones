@@ -227,12 +227,10 @@
     <Compile Include="FormularioTransportistas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="..\..\..\..\..\..\Desktop\GenerarFacturas.Designer.vb">
-      <DependentUpon>GenerarFacturas.vb</DependentUpon>
-      <Link>GenerarFacturas.Designer.vb</Link>
+    <Compile Include="FormularioZonas.Designer.vb">
+      <DependentUpon>FormularioZonas.vb</DependentUpon>
     </Compile>
-    <Compile Include="..\..\..\..\..\..\Desktop\GenerarFacturas.vb">
-      <Link>GenerarFacturas.vb</Link>
+    <Compile Include="FormularioZonas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ImportarPartners.Designer.vb">
@@ -325,9 +323,8 @@
     <EmbeddedResource Include="FormularioTransportistas.resx">
       <DependentUpon>FormularioTransportistas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\..\..\..\Desktop\GenerarFacturas.resx">
-      <DependentUpon>GenerarFacturas.vb</DependentUpon>
-      <Link>GenerarFacturas.resx</Link>
+    <EmbeddedResource Include="FormularioZonas.resx">
+      <DependentUpon>FormularioZonas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.vb</DependentUpon>

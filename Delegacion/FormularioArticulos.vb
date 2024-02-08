@@ -67,7 +67,6 @@ Public Class FormularioArticulos
             ' Retrieve the NumRegistro value from the first row
             NumRegistro = Convert.ToInt32(DataTableNumRegistro.Rows(0)("NumRegistro"))
         End If
-        TextBox1.Text = (Consulta)
 
         Return NumRegistro
     End Function
@@ -139,26 +138,26 @@ Public Class FormularioArticulos
     Private Sub ActivarDesactivarInputs()
         ' Si en el recibido ModoFormulario es true, activa los inputs, sino, los desactiva
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoAñadir Then
-            inputNombreArticulos.Enabled = True
-            inputCategoriaArticulos.Enabled = True
-            inputProveedorArticulos.Enabled = True
-            inputExistenciasArticulos.Enabled = True
-            inputPrCostArticulos.Enabled = True
-            inputPrVentArticulos.Enabled = True
-            inputBajoMinimoArticulos.Enabled = True
-            inputSobreMaximoArticulos.Enabled = True
-            inputDescripcionArticulos.Enabled = True
+            inputNombre.Enabled = True
+            comboCategoria.Enabled = True
+            inputProveedor.Enabled = True
+            inputExistencias.Enabled = True
+            inputPrCost.Enabled = True
+            inputPrVent.Enabled = True
+            inputBajoMinimo.Enabled = True
+            inputSobreMaximo.Enabled = True
+            inputDescripcion.Enabled = True
         Else
             inputIdArticulo.Enabled = False
-            inputNombreArticulos.Enabled = False
-            inputCategoriaArticulos.Enabled = False
-            inputProveedorArticulos.Enabled = False
-            inputExistenciasArticulos.Enabled = False
-            inputPrCostArticulos.Enabled = False
-            inputPrVentArticulos.Enabled = False
-            inputBajoMinimoArticulos.Enabled = False
-            inputSobreMaximoArticulos.Enabled = False
-            inputDescripcionArticulos.Enabled = False
+            inputNombre.Enabled = False
+            comboCategoria.Enabled = False
+            inputProveedor.Enabled = False
+            inputExistencias.Enabled = False
+            inputPrCost.Enabled = False
+            inputPrVent.Enabled = False
+            inputBajoMinimo.Enabled = False
+            inputSobreMaximo.Enabled = False
+            inputDescripcion.Enabled = False
         End If
 
     End Sub
@@ -191,17 +190,19 @@ Public Class FormularioArticulos
             Try
                 Dim dataRow As DataRow = DataTable.Select("NumRegistro = " & indiceNavigator)(0)
 
+                CargarComboCategoria()
+
                 ' Rellenar los inputs
                 inputIdArticulo.Text = dataRow("IdArticulo")
-                inputNombreArticulos.Text = If(dataRow("Nombre") IsNot DBNull.Value, dataRow("Nombre"), "")
-                inputCategoriaArticulos.Text = If(dataRow("Categoria") IsNot DBNull.Value, dataRow("Categoria"), "")
-                inputProveedorArticulos.Text = If(dataRow("Proveedor") IsNot DBNull.Value, dataRow("Proveedor"), "")
-                inputExistenciasArticulos.Text = If(dataRow("Existencias") IsNot DBNull.Value, dataRow("Existencias"), 0)
-                inputPrCostArticulos.Text = If(dataRow("PrCost") IsNot DBNull.Value, dataRow("PrCost"), 0)
-                inputPrVentArticulos.Text = If(dataRow("PrVent") IsNot DBNull.Value, dataRow("PrVent"), 0)
-                inputBajoMinimoArticulos.Text = If(dataRow("BajoMinimo") IsNot DBNull.Value, dataRow("BajoMinimo"), 0)
-                inputSobreMaximoArticulos.Text = If(dataRow("SobreMaximo") IsNot DBNull.Value, dataRow("SobreMaximo"), 0)
-                inputDescripcionArticulos.Text = If(dataRow("Descripcion") IsNot DBNull.Value, dataRow("Descripcion"), "")
+                inputNombre.Text = If(dataRow("Nombre") IsNot DBNull.Value, dataRow("Nombre"), "")
+                comboCategoria.Text = If(dataRow("Categoria") IsNot DBNull.Value, dataRow("Categoria"), "")
+                inputProveedor.Text = If(dataRow("Proveedor") IsNot DBNull.Value, dataRow("Proveedor"), "")
+                inputExistencias.Text = If(dataRow("Existencias") IsNot DBNull.Value, dataRow("Existencias"), 0)
+                inputPrCost.Text = If(dataRow("PrCost") IsNot DBNull.Value, dataRow("PrCost"), 0)
+                inputPrVent.Text = If(dataRow("PrVent") IsNot DBNull.Value, dataRow("PrVent"), 0)
+                inputBajoMinimo.Text = If(dataRow("BajoMinimo") IsNot DBNull.Value, dataRow("BajoMinimo"), 0)
+                inputSobreMaximo.Text = If(dataRow("SobreMaximo") IsNot DBNull.Value, dataRow("SobreMaximo"), 0)
+                inputDescripcion.Text = If(dataRow("Descripcion") IsNot DBNull.Value, dataRow("Descripcion"), "")
 
                 ' Poner la imagen
                 Dim stringBase64 As String = If(dataRow("ImagenBase64") IsNot DBNull.Value, dataRow("ImagenBase64"), "")
@@ -214,10 +215,27 @@ Public Class FormularioArticulos
         End If
     End Sub
 
+    Private Sub CargarComboCategoria()
+
+        ' Borra todos los registros del combo, porque si el formulario esta en modo edicion luego se cargaran
+        ' los valores posibles y se duplicarian los datos.
+        comboCategoria.Items.Clear()
+
+        ' Rellenar la ComboBox con todas la categorias disponibles (Si el usuario teclea otro valor crearia una categoria con ese nombre)
+
+        Dim DataTableCategorias As DataTable = ConsultaBBDD(ConnectionString, "SELECT DISTINCT Categoria FROM ARTICULOS")
+        For Each fila As DataRow In DataTableCategorias.Rows
+            Dim categoria As String = fila("Categoria").ToString()
+
+            comboCategoria.Items.Add(categoria)
+        Next
+
+    End Sub
+
     Private Sub PonerImagen(imagenBase64 As String)
 
         If imagenBase64 = "" Then
-            Dim rutaSinImagen As String = "articulos/sin-imagen.jpg"
+            Dim rutaSinImagen As String = "imagenes/sin-imagen.jpg"
             pictureboxArticulos.ImageLocation = rutaSinImagen
         Else
             Try
@@ -237,7 +255,7 @@ Public Class FormularioArticulos
                 MessageBox.Show("Error al decodificar la imagen base64: " & ex.Message, "Error de decodificación", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
                 ' Si ha habido un error al asignar la imagen, se va a poner la imagen por defecto.
-                Dim rutaSinImagen As String = "articulos/sin-imagen.jpg"
+                Dim rutaSinImagen As String = "imagenes/sin-imagen.jpg"
                 pictureboxArticulos.ImageLocation = rutaSinImagen
             End Try
         End If
@@ -287,15 +305,15 @@ Public Class FormularioArticulos
 
             ' Obtener valores de los inputs
             Dim IdArticulo As String = inputIdArticulo.Text.Trim
-            Dim Nombre As String = inputNombreArticulos.Text.Trim
-            Dim Categoria As String = inputCategoriaArticulos.Text.Trim
-            Dim Proveedor As String = inputProveedorArticulos.Text.Trim
-            Dim Existencias As Integer = inputExistenciasArticulos.Text.Trim
-            Dim PrecioCoste As String = inputPrCostArticulos.Text.Trim.Replace(".", "").Replace(",", ".")
-            Dim PrecioVenta As String = inputPrVentArticulos.Text.Trim.Replace(".", "").Replace(",", ".")
-            Dim BajoMinimo As Integer = inputBajoMinimoArticulos.Text.Trim
-            Dim SobreMaximo As Integer = inputSobreMaximoArticulos.Text.Trim
-            Dim Descripcion As String = inputDescripcionArticulos.Text.Trim
+            Dim Nombre As String = inputNombre.Text.Trim
+            Dim Categoria As String = comboCategoria.Text.Trim
+            Dim Proveedor As String = inputProveedor.Text.Trim
+            Dim Existencias As String = inputExistencias.Text.Trim
+            Dim PrecioCoste As String = inputPrCost.Text.Trim.Replace(".", "").Replace(",", ".")
+            Dim PrecioVenta As String = inputPrVent.Text.Trim.Replace(".", "").Replace(",", ".")
+            Dim BajoMinimo As String = inputBajoMinimo.Text.Trim
+            Dim SobreMaximo As String = inputSobreMaximo.Text.Trim
+            Dim Descripcion As String = inputDescripcion.Text.Trim
 
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
@@ -312,7 +330,6 @@ Public Class FormularioArticulos
                 MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
             End If
 
-            InterruptorModoEdicion()
             Me.Close()
         End If
     End Sub
@@ -326,15 +343,15 @@ Public Class FormularioArticulos
 
             ' Obtener valores de los inputs
             Dim IdArticulo As String = inputIdArticulo.Text.Trim
-            Dim Nombre As String = inputNombreArticulos.Text.Trim
-            Dim Categoria As String = inputCategoriaArticulos.Text.Trim
-            Dim Proveedor As String = inputProveedorArticulos.Text.Trim
-            Dim Existencias As Integer = inputExistenciasArticulos.Text.Trim
-            Dim PrecioCoste As String = inputPrCostArticulos.Text.Trim.Replace(".", "").Replace(",", ".")
-            Dim PrecioVenta As String = inputPrVentArticulos.Text.Trim.Replace(".", "").Replace(",", ".")
-            Dim BajoMinimo As Integer = inputBajoMinimoArticulos.Text.Trim
-            Dim SobreMaximo As Integer = inputSobreMaximoArticulos.Text.Trim
-            Dim Descripcion As String = inputDescripcionArticulos.Text.Trim
+            Dim Nombre As String = inputNombre.Text.Trim
+            Dim Categoria As String = comboCategoria.Text.Trim
+            Dim Proveedor As String = inputProveedor.Text.Trim
+            Dim Existencias As String = inputExistencias.Text.Trim
+            Dim PrecioCoste As String = inputPrCost.Text.Trim.Replace(".", "").Replace(",", ".")
+            Dim PrecioVenta As String = inputPrVent.Text.Trim.Replace(".", "").Replace(",", ".")
+            Dim BajoMinimo As String = inputBajoMinimo.Text.Trim
+            Dim SobreMaximo As String = inputSobreMaximo.Text.Trim
+            Dim Descripcion As String = inputDescripcion.Text.Trim
 
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
@@ -372,19 +389,35 @@ Public Class FormularioArticulos
         Dim basura As Integer
 
         Dim IdArticulo As String = inputIdArticulo.Text.Trim
-        Dim Nombre As String = inputNombreArticulos.Text.Trim
-        Dim Categoria As String = inputCategoriaArticulos.Text.Trim
-        Dim Proveedor As String = inputProveedorArticulos.Text.Trim
-        Dim Existencias As String = inputExistenciasArticulos.Text.Trim
-        Dim PrecioCoste As String = inputPrCostArticulos.Text.Trim.Replace(".", "").Replace(",", ".")
-        Dim PrecioVenta As String = inputPrVentArticulos.Text.Trim.Replace(".", "").Replace(",", ".")
-        Dim BajoMinimo As String = inputBajoMinimoArticulos.Text.Trim
-        Dim SobreMaximo As String = inputSobreMaximoArticulos.Text.Trim
-        Dim Descripcion As String = inputDescripcionArticulos.Text.Trim
+        Dim Nombre As String = inputNombre.Text.Trim
+        Dim Categoria As String = comboCategoria.Text.Trim
+        Dim Proveedor As String = inputProveedor.Text.Trim
+        Dim Existencias As String = inputExistencias.Text.Trim
+        Dim PrecioCoste As String = inputPrCost.Text.Trim.Replace(".", "").Replace(",", ".")
+        Dim PrecioVenta As String = inputPrVent.Text.Trim.Replace(".", "").Replace(",", ".")
+        Dim BajoMinimo As String = inputBajoMinimo.Text.Trim
+        Dim SobreMaximo As String = inputSobreMaximo.Text.Trim
+        Dim Descripcion As String = inputDescripcion.Text.Trim
 
         ' Validacion de los inputs
+
+        If Nombre = "" Then
+            MsgBox("¡Debes rellenar el campo nombre!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If Proveedor = "" Then
+            MsgBox("¡Debes rellenar el campo proveedor!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
         If Not Integer.TryParse(Existencias, basura) Then
             MsgBox("¡Debes introducir un valor entero en el campo de existencias!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If (basura < 0) Then
+            MsgBox("¡Debes introducir un valor positivo en el campo de existencias!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
@@ -393,18 +426,43 @@ Public Class FormularioArticulos
             Return False
         End If
 
+        If (basura < 0) Then
+            MsgBox("¡Debes introducir un valor positivo en el campo de precio voste!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
         If Not Double.TryParse(PrecioVenta, basura) Then
             MsgBox("¡Debes introducir un valor numérico en el campo de precio venta!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not Integer.TryParse(BajoMinimo, basura) Then
+        If (basura < 0) Then
+            MsgBox("¡Debes introducir un valor positivo en el campo de precio venta!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If Not Integer.TryParse(BajoMinimo, basura) And BajoMinimo <> "" Then
             MsgBox("¡Debes introducir un valor entero en el campo de bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not Integer.TryParse(SobreMaximo, basura) Then
+        If (basura < 0) Then
+            MsgBox("¡Debes introducir un valor positivo en el campo de bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If Not Integer.TryParse(SobreMaximo, basura) And SobreMaximo <> "" Then
             MsgBox("¡Debes introducir un valor entero en el campo de sobre máximo!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If (basura < 0) Then
+            MsgBox("¡Debes introducir un valor positivo en el campo de sobre máximo!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If BajoMinimo >= SobreMaximo Then
+            MsgBox("¡El valor sobre máximo debe de ser mayor que bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
@@ -481,25 +539,45 @@ Public Class FormularioArticulos
     End Sub
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+
         ' BtnEliminar: boton de eliminar que está situado en el BindingNavigator
 
-        Dim idArticulo As Integer = inputIdArticulo.Text.Trim
-        Dim registrosActualizados As Integer
-
-        Dim consulta As String = $"DELETE FROM ARTICULOS WHERE IdArticulo = {idArticulo}"
+        Dim IdArticulo As Integer = inputIdArticulo.Text.Trim
 
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
             ' Preguntar al usuario si quiere eliminar
-            Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea el artículo '{inputNombre.Text}' (ID: {IdArticulo})? ¡Se eliminarán las lineas asociadas!", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-            ' Si el usuario a seleccionado que si, borra el registro
+            ' Si el usuario a seleccionado que sí, borra el registro
             If result = DialogResult.Yes Then
-                registrosActualizados = DeleteBBDD(ConnectionString, consulta)
+
+                Dim consulta As String = $"DELETE FROM LINEAS_PEDIDO WHERE IdArticulo = {IdArticulo}"
+                Dim lineasEliminadas = DeleteBBDD(ConnectionString, consulta)
+
+                MsgBox($"Se han eliminado {lineasEliminadas} líneas asociadas al artículo.", vbInformation + vbOKOnly, "Líneas eliminadas")
+
+                consulta = $"DELETE FROM ARTICULOS WHERE IdArticulo = {IdArticulo}"
+                Dim articulosEliminados As Integer = DeleteBBDD(ConnectionString, consulta)
+
+                If articulosEliminados > 0 Then
+                    MsgBox($"El artículo '{inputNombre.Text}' (ID: {IdArticulo})' ha sido eliminado exitosamente.", vbInformation + vbOKOnly, "Artículo eliminado")
+                Else
+                    MsgBox($"No se ha podido eliminar el artículo  '{inputNombre.Text}' (ID: {IdArticulo})'", vbInformation + vbOKOnly, "Error")
+                End If
+
+
                 DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
                 ' Actualizar el fuente de datos (BindingSource) que tiene asignado el BindingNavigator 
                 BindingSource.DataSource = DataTable
+
+                ' Verificar si no quedan registros después de eliminar
+                If DataTable.Rows.Count = 0 Then
+                    ' Cerrar el formulario
+                    Me.Close()
+                    Return
+                End If
 
                 ' Mover al elemento siguiente/anterior (Para actualizar los registros)
                 If BindNavigatorArticulo.MoveNextItem.Enabled Then
@@ -507,14 +585,8 @@ Public Class FormularioArticulos
                 Else
                     BindNavigatorArticulo.MovePreviousItem.PerformClick()
                 End If
-                'BindNavigatorArticulo.MoveFirstItem.PerformClick()
-            End If
-        End If
 
-        If registrosActualizados = 1 Then
-            MsgBox("Registro borrado con éxito: " + idArticulo.ToString, vbInformation + vbOKOnly, "Registro borrado")
-        Else
-            MsgBox("Ha habido un error al borrar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+            End If
         End If
 
         ModoFormulario = ModoVer

@@ -11,13 +11,18 @@ Public Class FormularioPedidos
 
     ' ⬇️ Se usa para actualizar este formulario cuando se cierra el de Lineas ⬇️
     Private WithEvents formularioLinea As FormularioLineas
+    Private WithEvents formularioPedidos As FormularioPedidos
+    Private WithEvents formularioFactura As FormularioFacturas
+    Private WithEvents formularioImportarPedidos As ImportarPedidos
+
 
     Dim IndiceNavigator As Integer
+
     Dim SentenciaWhere As String
     Dim SentenciaSelect As String = "SELECT ROW_NUMBER() OVER (ORDER BY IdPedido) AS 
 	                                    NumRegistro, 
 	                                    cab.IdPedido, 
-                                        IdFactura,
+		                                IdFactura,
                                         part.Nombre AS Partner,
                                         comer.Nombre + ' ' + comer.Apellidos Comercial,
                                         transp.Empresa AS Transportista, 
@@ -30,8 +35,7 @@ Public Class FormularioPedidos
                                     LEFT JOIN TRANSPORTISTAS transp ON (cab.IdTransportista = transp.IdTransportista)
                                     LEFT JOIN PARTNERS part ON (cab.IdPartner = part.IdPartner)
                                     LEFT JOIN ESTADO_PEDIDOS est_ped ON (cab.IdEstadoPedido = est_ped.IdEstadoPedido)
-                                    WHERE 1=1
-                                    "
+                                    WHERE 1=1"
 
     Dim ModoFormulario As Integer
 
@@ -71,9 +75,10 @@ Public Class FormularioPedidos
         Dim NumRegistro As Integer = 0
         Dim Consulta As String =
         $"WITH CTE AS (
-		    SELECT ROW_NUMBER() OVER (ORDER BY IdPedido) AS NumRegistro, 
+		    SELECT ROW_NUMBER() OVER (ORDER BY IdPedido) AS 
+	            NumRegistro, 
 	            cab.IdPedido, 
-                IdFactura,
+		        IdFactura,
                 part.Nombre AS Partner,
                 comer.Nombre + ' ' + comer.Apellidos Comercial,
                 transp.Empresa AS Transportista, 
@@ -81,12 +86,12 @@ Public Class FormularioPedidos
 	            FechaPedido [Fecha Pedido], 
 	            FechaEnvio [Fecha Envío],
 	            FechaPago [Fecha Pago]
-		        FROM CAB_PEDIDOS cab
-		        LEFT JOIN TRANSPORTISTAS transp ON (cab.IdTransportista = transp.IdTransportista)
-		        LEFT JOIN COMERCIALES comer ON (cab.IdComercial = comer.IdComercial)
-		        LEFT JOIN PARTNERS part ON (cab.IdPartner = part.IdPartner)
-		        LEFT JOIN ESTADO_PEDIDOS est_ped ON (cab.IdEstadoPedido = est_ped.IdEstadoPedido)
-		        WHERE 1=1  {SentenciaWhere}
+            FROM CAB_PEDIDOS cab
+            LEFT JOIN COMERCIALES comer ON (cab.IdComercial = comer.IdComercial)
+            LEFT JOIN TRANSPORTISTAS transp ON (cab.IdTransportista = transp.IdTransportista)
+            LEFT JOIN PARTNERS part ON (cab.IdPartner = part.IdPartner)
+            LEFT JOIN ESTADO_PEDIDOS est_ped ON (cab.IdEstadoPedido = est_ped.IdEstadoPedido)
+            WHERE 1=1  {SentenciaWhere}
         )
 
         SELECT NumRegistro FROM CTE WHERE IdPedido = {IdRegistro}"
@@ -122,7 +127,7 @@ Public Class FormularioPedidos
         ActualizarModo()
     End Sub
 
-    Private Sub CargarDataGridPedido()
+    Private Sub CargarDataGridLineas()
         ' Cargar el DataTableLineas con los valores del pedido actual
 
         Dim SentenciaLineas As String = $"
@@ -133,6 +138,7 @@ Public Class FormularioPedidos
 
         DataTableLineas = ConsultaBBDD(ConnectionString, SentenciaLineas)
         dataGridLineas.DataSource = DataTableLineas
+
     End Sub
 
 
@@ -199,11 +205,11 @@ Public Class FormularioPedidos
     Private Sub ActivarDesactivarInputs()
         ' Si en el recibido ModoFormulario es true, activa los inputs, sino, los desactiva
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoAñadir Then
-            comboFactura.Enabled = True
             comboPartner.Enabled = True
             comboComercial.Enabled = True
             comboTransportista.Enabled = True
             comboEstadoPedido.Enabled = True
+            comboIdFactura.Enabled = True
             inputFechaPago.Enabled = True
             inputFechaPedido.Enabled = True
             inputFechaEnvio.Enabled = True
@@ -212,7 +218,7 @@ Public Class FormularioPedidos
             inputFechaPago.Enabled = False
             inputFechaPedido.Enabled = False
             inputFechaEnvio.Enabled = False
-            comboFactura.Enabled = False
+            comboIdFactura.Enabled = False
             comboPartner.Enabled = False
             comboComercial.Enabled = False
             comboTransportista.Enabled = False
@@ -265,10 +271,10 @@ Public Class FormularioPedidos
                 inputFechaPago.Text = If(fechaPago IsNot DBNull.Value, Convert.ToDateTime(fechaPago).ToString("yyyy-MM-dd"), "")
 
                 ' Rellenar los combos con las foreign keys
-                CargarComboBoxPedidos()
+                CargarComboBoxes()
 
-                ' Poner el item correspondiente a cada comboxbox 
-                comboFactura.Text = If(dataRow("IdFactura") IsNot DBNull.Value, dataRow("IdFactura"), "")
+                ' Poner el item correspondiente a cada comboxbox comboFactura
+                comboIdFactura.Text = If(dataRow("IdFactura") IsNot DBNull.Value, dataRow("IdFactura"), "")
                 comboPartner.Text = If(dataRow("Partner") IsNot DBNull.Value, dataRow("Partner"), "")
                 comboComercial.Text = If(dataRow("Comercial") IsNot DBNull.Value, dataRow("Comercial"), "")
                 comboTransportista.Text = If(dataRow("Transportista") IsNot DBNull.Value, dataRow("Transportista"), "")
@@ -279,27 +285,22 @@ Public Class FormularioPedidos
             End Try
 
             ' Cargar el DataTableLineas con los valores del pedido actual
-            CargarDataGridPedido()
+            CargarDataGridLineas()
 
         ElseIf ModoFormulario = ModoAñadir Then
-            CargarComboBoxPedidos()
+            CargarComboBoxes()
         End If
     End Sub
 
-    Private Sub CargarComboBoxPedidos()
+    Private Sub CargarComboBoxes()
 
         ' Borra todos los registros de los combos, porque si el formulario esta en modo edicion luego se cargaran
         ' los valores posibles y se duplicarian los datos.
-        comboFactura.Items.Clear()
         comboPartner.Items.Clear()
         comboComercial.Items.Clear()
         comboTransportista.Items.Clear()
         comboEstadoPedido.Items.Clear()
-
-        ' Se le añade un campo vacio al inicio de cada combobox para que el usuario pueda poner un valor vacio en el campo
-        If Not comboFactura.Items.Contains("") Then
-            comboFactura.Items.Add("")
-        End If
+        comboIdFactura.Items.Clear()
 
         If Not comboPartner.Items.Contains("") Then
             comboPartner.Items.Add("")
@@ -317,16 +318,9 @@ Public Class FormularioPedidos
             comboEstadoPedido.Items.Add("")
         End If
 
-        ' Combo Factura
-        Dim DataTableComboFacturas As DataTable = ConsultaBBDD(ConnectionString, "SELECT IdFactura FROM FACTURAS")
-        For Each fila As DataRow In DataTableComboFacturas.Rows
-            Dim factura As String = fila("IdFactura").ToString()
-
-            ' Verificar si el elemento ya existe en el ComboBox
-            If Not comboFactura.Items.Contains(factura) Then
-                comboFactura.Items.Add(factura)
-            End If
-        Next
+        If Not comboIdFactura.Items.Contains("") Then
+            comboIdFactura.Items.Add("")
+        End If
 
         ' Combo Partners
         Dim DataTableComboPartners As DataTable = ConsultaBBDD(ConnectionString, "SELECT Nombre FROM PARTNERS")
@@ -363,6 +357,15 @@ Public Class FormularioPedidos
                 comboEstadoPedido.Items.Add(estadoPedido)
             End If
         Next
+
+        Dim DataTableFacturas As DataTable = ConsultaBBDD(ConnectionString, "SELECT IdFactura FROM FACTURAS")
+        For Each fila As DataRow In DataTableFacturas.Rows
+            Dim factura As String = fila("IdFactura").ToString()
+            If Not comboIdFactura.Items.Contains(factura) Then
+                comboIdFactura.Items.Add(factura)
+            End If
+        Next
+
     End Sub
 
     Private Sub BindingNavigatorPositionItem_TextChanged(sender As Object, e As EventArgs) Handles BindingNavigatorPositionItem.TextChanged
@@ -404,7 +407,7 @@ Public Class FormularioPedidos
 
         ' Obtener valores de los inputs
         'Dim idPedido As Integer = inputIdPedido.Text.Trim
-        Dim factura As String = comboFactura.Text.Trim
+        Dim factura As String = If(comboIdFactura.Text.Trim = "", "NULL", comboIdFactura.Text.Trim)
         Dim partner As String = comboPartner.Text.Trim
         Dim comercial As String = comboComercial.Text.Trim
         Dim transportista As String = comboTransportista.Text.Trim
@@ -416,15 +419,12 @@ Public Class FormularioPedidos
         ' Construccion de la Consulta
         Dim registrosActualizados As Integer
 
-        If factura <> "" Then
-            factura = "'" + factura + "'"
-        Else
-            factura = "Null"
-        End If
+
 
         Dim consulta As String = $"
         INSERT INTO CAB_PEDIDOS(IdFactura, IdPartner, IdComercial, IdTransportista, IdEstadoPedido, FechaPedido, FechaEnvio, FechaPago)
-        VALUES ({factura}, 
+        VALUES (
+		{factura}, 
 		(SELECT TOP 1 IdPartner FROM PARTNERS WHERE NOMBRE = '{partner}'), 
 		(SELECT TOP 1 IdComercial FROM COMERCIALES WHERE Nombre + ' ' + Apellidos = '{comercial}'), 
 		(SELECT TOP 1 IdTransportista FROM TRANSPORTISTAS WHERE Empresa = '{transportista}'), 
@@ -450,21 +450,21 @@ Public Class FormularioPedidos
 
         ' Obtener valores de los inputs
         Dim idPedido As String = inputIdPedido.Text.Trim
-        Dim factura As String = If(comboFactura.Text.Trim = "", "NULL", comboFactura.Text.Trim)
-        Dim partner As String = If(comboPartner.Text.Trim = "", "NULL", comboPartner.Text.Trim)
-        Dim comercial As String = If(comboComercial.Text.Trim = "", "NULL", comboComercial.Text.Trim)
-        Dim transportista As String = If(comboTransportista.Text.Trim = "", "NULL", comboTransportista.Text.Trim)
-        Dim estadoPedido As String = If(comboEstadoPedido.Text.Trim = "", "NULL", comboEstadoPedido.Text.Trim)
+        Dim factura As String = If(comboIdFactura.Text.Trim = "", "NULL", comboIdFactura.Text.Trim)
+        Dim partner As String = comboPartner.Text.Trim
+        Dim comercial As String = comboComercial.Text.Trim
+        Dim transportista As String = comboTransportista.Text.Trim
+        Dim estadoPedido As String = comboEstadoPedido.Text.Trim
         Dim fechaPedido As Date = inputFechaPedido.Text.Trim
         Dim fechaEnvio As Date = inputFechaEnvio.Text.Trim
         Dim fechaPago As Date = inputFechaPago.Text.Trim
 
         Dim consulta As String = $"UPDATE CAB_PEDIDOS SET 
                                 IdFactura = {factura},
-                                IdPartner = (SELECT IdPartner FROM PARTNERS WHERE Nombre LIKE '{partner}'),
-                                IdComercial = (SELECT IdComercial FROM COMERCIALES comer WHERE comer.Nombre + ' ' + comer.Apellidos LIKE '{comercial}'), 
-                                IdTransportista = (SELECT IdTransportista FROM TRANSPORTISTAS WHERE Empresa LIKE '{transportista}'),
-                                IdEstadoPedido = (SELECT IdEstadoPedido FROM ESTADO_PEDIDOS WHERE Descripcion LIKE '{estadoPedido}'),
+                                IdPartner = (SELECT IdPartner FROM PARTNERS WHERE Nombre = '{partner}'),
+                                IdComercial = (SELECT IdComercial FROM COMERCIALES comer WHERE comer.Nombre + ' ' + comer.Apellidos = '{comercial}'), 
+                                IdTransportista = (SELECT IdTransportista FROM TRANSPORTISTAS WHERE Empresa = '{transportista}'),
+                                IdEstadoPedido = (SELECT IdEstadoPedido FROM ESTADO_PEDIDOS WHERE Descripcion = '{estadoPedido}'),
                                 FechaPedido = CONVERT(date, '{fechaPedido}', 105), 
                                 FechaEnvio = CONVERT(date, '{fechaEnvio}', 105), 
                                 FechaPago = CONVERT(date, '{fechaPago}', 105)
@@ -484,7 +484,7 @@ Public Class FormularioPedidos
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
         ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator
-        Dim formularioPedidos = New FormularioPedidos(ModoAñadir)
+        formularioPedidos = New FormularioPedidos(ModoAñadir)
         formularioPedidos.Show()
     End Sub
 
@@ -500,8 +500,24 @@ Public Class FormularioPedidos
         End If
     End Sub
 
+    Private Sub CerrarFormularioImportar(sender As Object, e As FormClosedEventArgs) Handles formularioImportarPedidos.FormClosed
+        ActualizarDatos()
+    End Sub
 
     Private Sub CerrarFormularioLineas(sender As Object, e As FormClosedEventArgs) Handles formularioLinea.FormClosed
+        ActualizarDatos()
+    End Sub
+
+    Private Sub CerrarFormularioPedidos(sender As Object, e As FormClosedEventArgs) Handles formularioPedidos.FormClosed
+        DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
+
+        'Rellenar biding navigator
+        BindingSource.DataSource = DataTable
+        BindingSource.Position = IndiceNavigator - 1
+        BindNavigatorArticulo.BindingSource = BindingSource
+
+        BindNavigatorArticulo.PositionItem.Text = IndiceNavigator
+
         ActualizarDatos()
     End Sub
 
@@ -511,7 +527,7 @@ Public Class FormularioPedidos
     End Sub
 
     Private Sub btnImportarPedidos_Click(sender As Object, e As EventArgs) Handles btnImportarPedidos.Click
-        Dim formularioImportarPedidos As New ImportarPedidos()
+        formularioImportarPedidos = New ImportarPedidos()
         formularioImportarPedidos.Show()
     End Sub
 
@@ -545,6 +561,105 @@ Public Class FormularioPedidos
     End Sub
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+
+        ' BtnEliminar: boton de eliminar que está situado en el BindingNavigator
+
+        Dim IdPedido As Integer = inputIdPedido.Text.Trim
+
+        ' Verifica si hay un valor actual
+        If BindingSource.Current IsNot Nothing Then
+            ' Preguntar al usuario si quiere eliminar
+            Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar este pedido? ¡Se eliminarán las lineas asociadas!", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            ' Si el usuario a seleccionado que sí, borra el registro
+            If result = DialogResult.Yes Then
+
+                Dim consulta As String = $"DELETE FROM LINEAS_PEDIDO WHERE IdPedido = {IdPedido}"
+                Dim lineasEliminadas = DeleteBBDD(ConnectionString, consulta)
+
+                MsgBox($"Se han eliminado {lineasEliminadas} líneas asociadas al pedido.", vbInformation + vbOKOnly, "Líneas eliminadas")
+
+                consulta = $"DELETE FROM CAB_PEDIDOS WHERE IdPedido = {IdPedido}"
+                Dim pedidosEliminados As Integer = DeleteBBDD(ConnectionString, consulta)
+
+                If pedidosEliminados > 0 Then
+                    MsgBox($"El pedido con le ID {IdPedido} ha sido eliminado exitosamente.", vbInformation + vbOKOnly, "Pedido eliminado")
+                Else
+                    MsgBox($"No se ha podido eliminar el pedido con el ID {IdPedido}", vbInformation + vbOKOnly, "Error")
+                End If
+
+
+                DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
+
+                ' Actualizar el fuente de datos (BindingSource) que tiene asignado el BindingNavigator 
+                BindingSource.DataSource = DataTable
+
+                ' Verificar si no quedan registros después de eliminar
+                If DataTable.Rows.Count = 0 Then
+                    ' Cerrar el formulario
+                    Me.Close()
+                    Return
+                End If
+
+                ' Mover al elemento siguiente/anterior (Para actualizar los registros)
+                If BindNavigatorArticulo.MoveNextItem.Enabled Then
+                    BindNavigatorArticulo.MoveNextItem.PerformClick()
+                Else
+                    BindNavigatorArticulo.MovePreviousItem.PerformClick()
+                End If
+
+            End If
+        End If
+
+        ModoFormulario = ModoVer
+        ActualizarModo()
+
+    End Sub
+
+    Private Sub btnGenerarFactura_Click(sender As Object, e As EventArgs)
+
+        'Dim idPedido As String = inputIdPedido.Text
+
+        '' Validar si el pedido actual tiene lineas. Si no tiene sale del metodo
+        'If DataTableLineas.Rows.Count = 0 Then
+        '    MsgBox("¡No puedes crear una factura de un pedido que no tenga líneas!", vbExclamation + vbOKOnly, "Seleccione un pedido con líneas")
+        '    Return
+        'End If
+
+
+        '' Validar si ya existe una factura de ese pedido
+        'Dim consultaExisteFacturaDelPedido = $"SELECT COUNT(*) Cantidad FROM FACTURAS WHERE IdPedido = {idPedido}"
+
+        'Dim existeFacturaDelPedido As Integer = ConsultaBBDD(ConnectionString, consultaExisteFacturaDelPedido).Rows(0)("Cantidad")
+
+        'If existeFacturaDelPedido > 0 Then
+        '    MsgBox("¡Este pedido ya contiene una factura! Elimina la factura para volver a generarla.", vbExclamation + vbOKOnly, "Error")
+        '    Return
+        'End If
+
+        '' Preguntar al usuario si quiere crear una factura de ese pedido
+        'Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea crear la factura de este pedido (ID: {inputIdPedido.Text})?", "Confirmar crear factura", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+
+        '' Si el usuario a seleccionado que sí, crea la factura 
+        'If result = DialogResult.Yes Then
+
+
+        '    Dim consultaCrearFactura = $"INSERT INTO FACTURAS (IdFactura, IdPedido, FechaEmitida, FechaEnvio, FechaPago, Estado)
+        '                               VALUES ({idPedido}, {idPedido}, NULL, NULL, NULL, NULL)"
+
+        '    Dim registrosInsertados As Integer = InsertBBDD(ConnectionString, consultaCrearFactura)
+
+        '    If registrosInsertados > 0 Then
+        '        MsgBox("La factura se ha generado exitosamente", vbInformation + vbOKOnly, "Factura generada")
+        '        '                                                    ⬇️ Sentencia Where
+        '        formularioFactura = New FormularioFacturas(idPedido, "", ModoVer)
+        '        formularioFactura.Show()
+        '    Else
+        '        MsgBox("Ha habido un error al generar la factura", vbInformation + vbOKOnly, "Error")
+        '    End If
+
+        'End If
 
     End Sub
 End Class

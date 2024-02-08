@@ -234,6 +234,8 @@ Partial Class FormularioTransportistas
         Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label13)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MaximizeBox = False
         Me.Name = "FormularioTransportistas"
         Me.Text = "Transportistas"
         CType(Me.BindNavigatorTransportistas, System.ComponentModel.ISupportInitialize).EndInit()

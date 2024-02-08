@@ -40,7 +40,6 @@ Partial Class Facturas
         Me.comboEstadoFactura = New System.Windows.Forms.ComboBox()
         Me.Label64 = New System.Windows.Forms.Label()
         Me.btnBorrarPedidos = New System.Windows.Forms.Button()
-        Me.btnAltaPedidos = New System.Windows.Forms.Button()
         Me.btnConsultarPedidos = New System.Windows.Forms.Button()
         Me.checkFechaEmitidaDesdeFacturas = New System.Windows.Forms.CheckBox()
         Me.checkFechaEmitidaHastaFacturas = New System.Windows.Forms.CheckBox()
@@ -48,6 +47,9 @@ Partial Class Facturas
         Me.checkFechaEnvioHastaFacturas = New System.Windows.Forms.CheckBox()
         Me.checkFechaPagoDesdeFacturas = New System.Windows.Forms.CheckBox()
         Me.checkFechaPagoHastaFacturas = New System.Windows.Forms.CheckBox()
+        Me.comboIdPedido = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnGenerarFacturas = New System.Windows.Forms.Button()
         CType(Me.dataGridFacturas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -178,9 +180,13 @@ Partial Class Facturas
         '
         'dataGridFacturas
         '
+        Me.dataGridFacturas.AllowUserToAddRows = False
+        Me.dataGridFacturas.AllowUserToDeleteRows = False
+        Me.dataGridFacturas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dataGridFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridFacturas.Location = New System.Drawing.Point(27, 174)
         Me.dataGridFacturas.Name = "dataGridFacturas"
+        Me.dataGridFacturas.ReadOnly = True
         Me.dataGridFacturas.RowHeadersWidth = 51
         Me.dataGridFacturas.RowTemplate.Height = 24
         Me.dataGridFacturas.Size = New System.Drawing.Size(1288, 576)
@@ -188,6 +194,7 @@ Partial Class Facturas
         '
         'comboEstadoFactura
         '
+        Me.comboEstadoFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboEstadoFactura.FormattingEnabled = True
         Me.comboEstadoFactura.Location = New System.Drawing.Point(440, 27)
         Me.comboEstadoFactura.Name = "comboEstadoFactura"
@@ -205,25 +212,16 @@ Partial Class Facturas
         '
         'btnBorrarPedidos
         '
-        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1087, 72)
+        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1087, 109)
         Me.btnBorrarPedidos.Name = "btnBorrarPedidos"
         Me.btnBorrarPedidos.Size = New System.Drawing.Size(162, 32)
         Me.btnBorrarPedidos.TabIndex = 72
         Me.btnBorrarPedidos.Text = "Borrar"
         Me.btnBorrarPedidos.UseVisualStyleBackColor = True
         '
-        'btnAltaPedidos
-        '
-        Me.btnAltaPedidos.Location = New System.Drawing.Point(1087, 114)
-        Me.btnAltaPedidos.Name = "btnAltaPedidos"
-        Me.btnAltaPedidos.Size = New System.Drawing.Size(162, 32)
-        Me.btnAltaPedidos.TabIndex = 71
-        Me.btnAltaPedidos.Text = "Alta"
-        Me.btnAltaPedidos.UseVisualStyleBackColor = True
-        '
         'btnConsultarPedidos
         '
-        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1087, 31)
+        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1087, 66)
         Me.btnConsultarPedidos.Name = "btnConsultarPedidos"
         Me.btnConsultarPedidos.Size = New System.Drawing.Size(162, 32)
         Me.btnConsultarPedidos.TabIndex = 70
@@ -284,12 +282,41 @@ Partial Class Facturas
         Me.checkFechaPagoHastaFacturas.TabIndex = 78
         Me.checkFechaPagoHastaFacturas.UseVisualStyleBackColor = True
         '
+        'comboIdPedido
+        '
+        Me.comboIdPedido.FormattingEnabled = True
+        Me.comboIdPedido.Location = New System.Drawing.Point(815, 27)
+        Me.comboIdPedido.Name = "comboIdPedido"
+        Me.comboIdPedido.Size = New System.Drawing.Size(220, 24)
+        Me.comboIdPedido.TabIndex = 79
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(741, 31)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(68, 16)
+        Me.Label1.TabIndex = 80
+        Me.Label1.Text = "Id Pedido:"
+        '
+        'btnGenerarFacturas
+        '
+        Me.btnGenerarFacturas.Location = New System.Drawing.Point(1087, 22)
+        Me.btnGenerarFacturas.Name = "btnGenerarFacturas"
+        Me.btnGenerarFacturas.Size = New System.Drawing.Size(162, 32)
+        Me.btnGenerarFacturas.TabIndex = 81
+        Me.btnGenerarFacturas.Text = "Generar Facturas"
+        Me.btnGenerarFacturas.UseVisualStyleBackColor = True
+        '
         'Facturas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1467, 807)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnGenerarFacturas)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.comboIdPedido)
         Me.Controls.Add(Me.checkFechaPagoHastaFacturas)
         Me.Controls.Add(Me.checkFechaPagoDesdeFacturas)
         Me.Controls.Add(Me.checkFechaEnvioHastaFacturas)
@@ -297,7 +324,6 @@ Partial Class Facturas
         Me.Controls.Add(Me.checkFechaEmitidaHastaFacturas)
         Me.Controls.Add(Me.checkFechaEmitidaDesdeFacturas)
         Me.Controls.Add(Me.btnBorrarPedidos)
-        Me.Controls.Add(Me.btnAltaPedidos)
         Me.Controls.Add(Me.btnConsultarPedidos)
         Me.Controls.Add(Me.DateFechaPagoHastaFactura)
         Me.Controls.Add(Me.DateFechaPagoDesdeFactura)
@@ -342,7 +368,6 @@ Partial Class Facturas
     Friend WithEvents comboEstadoFactura As ComboBox
     Friend WithEvents Label64 As Label
     Friend WithEvents btnBorrarPedidos As Button
-    Friend WithEvents btnAltaPedidos As Button
     Friend WithEvents btnConsultarPedidos As Button
     Friend WithEvents checkFechaEmitidaDesdeFacturas As CheckBox
     Friend WithEvents checkFechaEmitidaHastaFacturas As CheckBox
@@ -350,4 +375,7 @@ Partial Class Facturas
     Friend WithEvents checkFechaEnvioHastaFacturas As CheckBox
     Friend WithEvents checkFechaPagoDesdeFacturas As CheckBox
     Friend WithEvents checkFechaPagoHastaFacturas As CheckBox
+    Friend WithEvents comboIdPedido As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents btnGenerarFacturas As Button
 End Class

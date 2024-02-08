@@ -303,7 +303,9 @@ Partial Class FormularioLineas
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label16)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "FormularioLineas"
+        Me.Text = "Linea"
         CType(Me.BindNavigatorArticulo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BindNavigatorArticulo.ResumeLayout(False)
         Me.BindNavigatorArticulo.PerformLayout()

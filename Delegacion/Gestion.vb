@@ -144,15 +144,14 @@ Public Class Gestion
             ' Obtiene el valor de la celda
             Dim IdArticulo As Object = dataGridArticulos.Rows(e.RowIndex).Cells(0).Value
             ' Abrir formulario del artiiculo
-            Dim formularioArticulos As New FormularioArticulos(IdArticulo, sentenciaWhereArticulos, ModoVer)
+            formularioArticulos = New FormularioArticulos(IdArticulo, sentenciaWhereArticulos, ModoVer)
             formularioArticulos.Show()
-
         End If
     End Sub
 
     Private Sub BtnAltaArticulos_Click(sender As Object, e As EventArgs) Handles btnAltaArticulos.Click
-        FormularioArticulos = New FormularioArticulos(ModoAñadir)
-        FormularioArticulos.Show()
+        formularioArticulos = New FormularioArticulos(ModoAñadir)
+        formularioArticulos.Show()
     End Sub
 
     Private Sub btnBorrarArticulos_Click(sender As Object, e As EventArgs) Handles btnBorrarArticulos.Click
@@ -190,6 +189,7 @@ Public Class Gestion
 
     Private Sub CerrarFormularioArticulos(sender As Object, e As FormClosedEventArgs) Handles formularioArticulos.FormClosed
         CargarDataGridArticulo()
+        ActualizarComboBoxCategoria()
     End Sub
 
 
@@ -367,8 +367,8 @@ Public Class Gestion
         End If
 
         If Not String.IsNullOrEmpty(comboZonaComerciales.Text.Trim) Then
-            consulta &= $" AND UPPER(Zona) LIKE '%{comboZonaComerciales.Text.ToUpper.Trim}%'"
-            sentenciaWhereComerciales &= $" AND UPPER(Zona) LIKE '%{comboZonaComerciales.Text.ToUpper.Trim}%'"
+            consulta &= $" AND UPPER(ZONAS.Descripcion) LIKE '%{comboZonaComerciales.Text.ToUpper.Trim}%'"
+            sentenciaWhereComerciales &= $" AND UPPER(ZONAS.Descripcion) LIKE '%{comboZonaComerciales.Text.ToUpper.Trim}%'"
         End If
 
         If Not String.IsNullOrEmpty(inputNombreComerciales.Text.Trim) Then

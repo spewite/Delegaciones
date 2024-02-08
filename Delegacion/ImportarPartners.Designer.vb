@@ -53,7 +53,7 @@ Partial Class ImportarPartners
         Me.Button2.Text = "IMPORTAR"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Importar
+        'ImportarPartners
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -61,7 +61,8 @@ Partial Class ImportarPartners
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
-        Me.Name = "Importar"
+        Me.MaximizeBox = False
+        Me.Name = "ImportarPartners"
         Me.Text = "Importar Partners"
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -40,6 +40,7 @@ Partial Class ExportarCatalogo
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(568, 234)
         Me.Controls.Add(Me.btnCatalogo)
+        Me.MaximizeBox = False
         Me.Name = "ExportarCatalogo"
         Me.Text = "Exportar Catalogo"
         Me.ResumeLayout(False)

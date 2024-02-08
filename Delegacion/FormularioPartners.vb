@@ -71,7 +71,6 @@ Public Class FormularioPartners
             ' Retrieve the NumRegistro value from the first row
             NumRegistro = Convert.ToInt32(DataTableNumRegistro.Rows(0)("NumRegistro"))
         End If
-        TextBox1.Text = Consulta
 
         Return NumRegistro
     End Function
@@ -92,7 +91,6 @@ Public Class FormularioPartners
 
             'Rellenar los datos 
             ActualizarDatos()
-
 
         End If
         ' Detecta el valor de la variable ModoFormulario y ajusta la ventana acorde al modo

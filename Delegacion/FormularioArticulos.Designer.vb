@@ -24,10 +24,10 @@ Partial Class FormularioArticulos
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormularioArticulos))
-        Me.inputExistenciasArticulos = New System.Windows.Forms.TextBox()
-        Me.inputProveedorArticulos = New System.Windows.Forms.TextBox()
-        Me.inputDescripcionArticulos = New System.Windows.Forms.TextBox()
-        Me.inputNombreArticulos = New System.Windows.Forms.TextBox()
+        Me.inputExistencias = New System.Windows.Forms.TextBox()
+        Me.inputProveedor = New System.Windows.Forms.TextBox()
+        Me.inputDescripcion = New System.Windows.Forms.TextBox()
+        Me.inputNombre = New System.Windows.Forms.TextBox()
         Me.inputIdArticulo = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -40,11 +40,10 @@ Partial Class FormularioArticulos
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.btnAbajo = New System.Windows.Forms.Button()
-        Me.inputCategoriaArticulos = New System.Windows.Forms.TextBox()
-        Me.inputPrCostArticulos = New System.Windows.Forms.TextBox()
-        Me.inputBajoMinimoArticulos = New System.Windows.Forms.TextBox()
-        Me.inputSobreMaximoArticulos = New System.Windows.Forms.TextBox()
-        Me.inputPrVentArticulos = New System.Windows.Forms.TextBox()
+        Me.inputPrCost = New System.Windows.Forms.TextBox()
+        Me.inputBajoMinimo = New System.Windows.Forms.TextBox()
+        Me.inputSobreMaximo = New System.Windows.Forms.TextBox()
+        Me.inputPrVent = New System.Windows.Forms.TextBox()
         Me.BindNavigatorArticulo = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
@@ -61,48 +60,48 @@ Partial Class FormularioArticulos
         Me.btnEliminarFoto = New System.Windows.Forms.Button()
         Me.btnEditarFoto = New System.Windows.Forms.Button()
         Me.pictureboxArticulos = New System.Windows.Forms.PictureBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.comboCategoria = New System.Windows.Forms.ComboBox()
         CType(Me.BindNavigatorArticulo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindNavigatorArticulo.SuspendLayout()
         CType(Me.pictureboxArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'inputExistenciasArticulos
+        'inputExistencias
         '
-        Me.inputExistenciasArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputExistenciasArticulos.Enabled = False
-        Me.inputExistenciasArticulos.Location = New System.Drawing.Point(297, 219)
-        Me.inputExistenciasArticulos.Name = "inputExistenciasArticulos"
-        Me.inputExistenciasArticulos.Size = New System.Drawing.Size(148, 22)
-        Me.inputExistenciasArticulos.TabIndex = 57
+        Me.inputExistencias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputExistencias.Enabled = False
+        Me.inputExistencias.Location = New System.Drawing.Point(297, 219)
+        Me.inputExistencias.Name = "inputExistencias"
+        Me.inputExistencias.Size = New System.Drawing.Size(148, 22)
+        Me.inputExistencias.TabIndex = 57
         '
-        'inputProveedorArticulos
+        'inputProveedor
         '
-        Me.inputProveedorArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputProveedorArticulos.Enabled = False
-        Me.inputProveedorArticulos.Location = New System.Drawing.Point(297, 178)
-        Me.inputProveedorArticulos.Name = "inputProveedorArticulos"
-        Me.inputProveedorArticulos.Size = New System.Drawing.Size(148, 22)
-        Me.inputProveedorArticulos.TabIndex = 56
+        Me.inputProveedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputProveedor.Enabled = False
+        Me.inputProveedor.Location = New System.Drawing.Point(297, 178)
+        Me.inputProveedor.Name = "inputProveedor"
+        Me.inputProveedor.Size = New System.Drawing.Size(148, 22)
+        Me.inputProveedor.TabIndex = 56
         '
-        'inputDescripcionArticulos
+        'inputDescripcion
         '
-        Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputDescripcionArticulos.Enabled = False
-        Me.inputDescripcionArticulos.Location = New System.Drawing.Point(36, 372)
-        Me.inputDescripcionArticulos.Multiline = True
-        Me.inputDescripcionArticulos.Name = "inputDescripcionArticulos"
-        Me.inputDescripcionArticulos.Size = New System.Drawing.Size(406, 121)
-        Me.inputDescripcionArticulos.TabIndex = 62
+        Me.inputDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputDescripcion.Enabled = False
+        Me.inputDescripcion.Location = New System.Drawing.Point(36, 372)
+        Me.inputDescripcion.Multiline = True
+        Me.inputDescripcion.Name = "inputDescripcion"
+        Me.inputDescripcion.Size = New System.Drawing.Size(406, 121)
+        Me.inputDescripcion.TabIndex = 62
         '
-        'inputNombreArticulos
+        'inputNombre
         '
-        Me.inputNombreArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputNombreArticulos.Enabled = False
-        Me.inputNombreArticulos.Location = New System.Drawing.Point(297, 91)
-        Me.inputNombreArticulos.Name = "inputNombreArticulos"
-        Me.inputNombreArticulos.Size = New System.Drawing.Size(148, 22)
-        Me.inputNombreArticulos.TabIndex = 53
+        Me.inputNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputNombre.Enabled = False
+        Me.inputNombre.Location = New System.Drawing.Point(297, 91)
+        Me.inputNombre.Name = "inputNombre"
+        Me.inputNombre.Size = New System.Drawing.Size(148, 22)
+        Me.inputNombre.TabIndex = 53
         '
         'inputIdArticulo
         '
@@ -212,45 +211,37 @@ Partial Class FormularioArticulos
         Me.btnAbajo.Text = "Listo"
         Me.btnAbajo.UseVisualStyleBackColor = True
         '
-        'inputCategoriaArticulos
+        'inputPrCost
         '
-        Me.inputCategoriaArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputCategoriaArticulos.Location = New System.Drawing.Point(297, 136)
-        Me.inputCategoriaArticulos.Name = "inputCategoriaArticulos"
-        Me.inputCategoriaArticulos.Size = New System.Drawing.Size(148, 22)
-        Me.inputCategoriaArticulos.TabIndex = 54
+        Me.inputPrCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputPrCost.Location = New System.Drawing.Point(127, 271)
+        Me.inputPrCost.Name = "inputPrCost"
+        Me.inputPrCost.Size = New System.Drawing.Size(100, 22)
+        Me.inputPrCost.TabIndex = 58
         '
-        'inputPrCostArticulos
+        'inputBajoMinimo
         '
-        Me.inputPrCostArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputPrCostArticulos.Location = New System.Drawing.Point(127, 271)
-        Me.inputPrCostArticulos.Name = "inputPrCostArticulos"
-        Me.inputPrCostArticulos.Size = New System.Drawing.Size(100, 22)
-        Me.inputPrCostArticulos.TabIndex = 58
+        Me.inputBajoMinimo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputBajoMinimo.Location = New System.Drawing.Point(127, 310)
+        Me.inputBajoMinimo.Name = "inputBajoMinimo"
+        Me.inputBajoMinimo.Size = New System.Drawing.Size(100, 22)
+        Me.inputBajoMinimo.TabIndex = 60
         '
-        'inputBajoMinimoArticulos
+        'inputSobreMaximo
         '
-        Me.inputBajoMinimoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputBajoMinimoArticulos.Location = New System.Drawing.Point(127, 310)
-        Me.inputBajoMinimoArticulos.Name = "inputBajoMinimoArticulos"
-        Me.inputBajoMinimoArticulos.Size = New System.Drawing.Size(100, 22)
-        Me.inputBajoMinimoArticulos.TabIndex = 60
+        Me.inputSobreMaximo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputSobreMaximo.Location = New System.Drawing.Point(345, 312)
+        Me.inputSobreMaximo.Name = "inputSobreMaximo"
+        Me.inputSobreMaximo.Size = New System.Drawing.Size(100, 22)
+        Me.inputSobreMaximo.TabIndex = 61
         '
-        'inputSobreMaximoArticulos
+        'inputPrVent
         '
-        Me.inputSobreMaximoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputSobreMaximoArticulos.Location = New System.Drawing.Point(345, 312)
-        Me.inputSobreMaximoArticulos.Name = "inputSobreMaximoArticulos"
-        Me.inputSobreMaximoArticulos.Size = New System.Drawing.Size(100, 22)
-        Me.inputSobreMaximoArticulos.TabIndex = 61
-        '
-        'inputPrVentArticulos
-        '
-        Me.inputPrVentArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputPrVentArticulos.Location = New System.Drawing.Point(345, 270)
-        Me.inputPrVentArticulos.Name = "inputPrVentArticulos"
-        Me.inputPrVentArticulos.Size = New System.Drawing.Size(100, 22)
-        Me.inputPrVentArticulos.TabIndex = 59
+        Me.inputPrVent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputPrVent.Location = New System.Drawing.Point(345, 270)
+        Me.inputPrVent.Name = "inputPrVent"
+        Me.inputPrVent.Size = New System.Drawing.Size(100, 22)
+        Me.inputPrVent.TabIndex = 59
         '
         'BindNavigatorArticulo
         '
@@ -266,7 +257,7 @@ Partial Class FormularioArticulos
         Me.BindNavigatorArticulo.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindNavigatorArticulo.Name = "BindNavigatorArticulo"
         Me.BindNavigatorArticulo.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(706, 27)
+        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(488, 27)
         Me.BindNavigatorArticulo.TabIndex = 85
         Me.BindNavigatorArticulo.Text = "BindingNavigator1"
         '
@@ -395,34 +386,33 @@ Partial Class FormularioArticulos
         Me.pictureboxArticulos.TabIndex = 72
         Me.pictureboxArticulos.TabStop = False
         '
-        'TextBox1
+        'comboCategoria
         '
-        Me.TextBox1.Location = New System.Drawing.Point(502, 137)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(192, 292)
-        Me.TextBox1.TabIndex = 86
+        Me.comboCategoria.FormattingEnabled = True
+        Me.comboCategoria.Location = New System.Drawing.Point(297, 134)
+        Me.comboCategoria.Name = "comboCategoria"
+        Me.comboCategoria.Size = New System.Drawing.Size(148, 24)
+        Me.comboCategoria.TabIndex = 86
         '
         'FormularioArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(706, 598)
-        Me.Controls.Add(Me.TextBox1)
+        Me.ClientSize = New System.Drawing.Size(488, 598)
+        Me.Controls.Add(Me.comboCategoria)
         Me.Controls.Add(Me.BindNavigatorArticulo)
         Me.Controls.Add(Me.btnEliminarFoto)
         Me.Controls.Add(Me.btnEditarFoto)
-        Me.Controls.Add(Me.inputPrVentArticulos)
-        Me.Controls.Add(Me.inputSobreMaximoArticulos)
-        Me.Controls.Add(Me.inputBajoMinimoArticulos)
-        Me.Controls.Add(Me.inputPrCostArticulos)
-        Me.Controls.Add(Me.inputCategoriaArticulos)
+        Me.Controls.Add(Me.inputPrVent)
+        Me.Controls.Add(Me.inputSobreMaximo)
+        Me.Controls.Add(Me.inputBajoMinimo)
+        Me.Controls.Add(Me.inputPrCost)
         Me.Controls.Add(Me.pictureboxArticulos)
         Me.Controls.Add(Me.btnAbajo)
-        Me.Controls.Add(Me.inputExistenciasArticulos)
-        Me.Controls.Add(Me.inputProveedorArticulos)
-        Me.Controls.Add(Me.inputDescripcionArticulos)
-        Me.Controls.Add(Me.inputNombreArticulos)
+        Me.Controls.Add(Me.inputExistencias)
+        Me.Controls.Add(Me.inputProveedor)
+        Me.Controls.Add(Me.inputDescripcion)
+        Me.Controls.Add(Me.inputNombre)
         Me.Controls.Add(Me.inputIdArticulo)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label18)
@@ -435,6 +425,7 @@ Partial Class FormularioArticulos
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label16)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MaximizeBox = False
         Me.Name = "FormularioArticulos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = " "
@@ -446,10 +437,10 @@ Partial Class FormularioArticulos
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents inputExistenciasArticulos As TextBox
-    Friend WithEvents inputProveedorArticulos As TextBox
-    Friend WithEvents inputDescripcionArticulos As TextBox
-    Friend WithEvents inputNombreArticulos As TextBox
+    Friend WithEvents inputExistencias As TextBox
+    Friend WithEvents inputProveedor As TextBox
+    Friend WithEvents inputDescripcion As TextBox
+    Friend WithEvents inputNombre As TextBox
     Friend WithEvents inputIdArticulo As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label18 As Label
@@ -463,11 +454,10 @@ Partial Class FormularioArticulos
     Friend WithEvents Label16 As Label
     Friend WithEvents btnAbajo As Button
     Friend WithEvents pictureboxArticulos As PictureBox
-    Friend WithEvents inputCategoriaArticulos As TextBox
-    Friend WithEvents inputPrCostArticulos As TextBox
-    Friend WithEvents inputBajoMinimoArticulos As TextBox
-    Friend WithEvents inputSobreMaximoArticulos As TextBox
-    Friend WithEvents inputPrVentArticulos As TextBox
+    Friend WithEvents inputPrCost As TextBox
+    Friend WithEvents inputBajoMinimo As TextBox
+    Friend WithEvents inputSobreMaximo As TextBox
+    Friend WithEvents inputPrVent As TextBox
     Friend WithEvents btnEditarFoto As Button
     Friend WithEvents btnEliminarFoto As Button
     Friend WithEvents BindNavigatorArticulo As BindingNavigator
@@ -483,5 +473,5 @@ Partial Class FormularioArticulos
     Friend WithEvents BindingNavigatorMoveLastItem As ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
     Friend WithEvents BtnEditar As ToolStripButton
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents comboCategoria As ComboBox
 End Class

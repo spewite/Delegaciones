@@ -61,6 +61,7 @@ Partial Class ImportarArticulos
         Me.Controls.Add(Me.inputRuta)
         Me.Controls.Add(Me.btnSubir)
         Me.Controls.Add(Me.btnCargar)
+        Me.MaximizeBox = False
         Me.Name = "ImportarArticulos"
         Me.Text = "Importar Articulos"
         Me.ResumeLayout(False)

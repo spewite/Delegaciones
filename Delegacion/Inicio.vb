@@ -57,16 +57,18 @@ Public Class Inicio
     Private Sub ArticulosToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ArticulosToolStripMenuItem2.Click
         ImportarArticulos.Show()
     End Sub
+
+
 End Class
 
 Public Class ConexionBD
     Public Shared ReadOnly Property CadenaConexion As String
         Get
             ' ⬇️ Klase ⬇️
-            Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@;Connect Timeout=5;"
+            'Return "Data Source=192.168.0.241;Initial Catalog=DELEGACION;User ID=sa;Password=Negrocabron8@;Connect Timeout=5;"
 
             ' ⬇️ Julen ⬇️
-            'Return "Data Source=localhost;Initial Catalog=DELEGACION;User ID=sa;Password=sa;Connect Timeout=5;"
+            Return "Data Source=localhost;Initial Catalog=DELEGACION;User ID=sa;Password=sa;Connect Timeout=5;"
         End Get
     End Property
 End Class

@@ -12,6 +12,9 @@ Public Class Pedidos
 
     Dim sentenciaWhere As String = ""
 
+    ' Creamos el formulario pedido aqui con WithEvents. Así cuando se cierre el formulario que se abre podemos actualizar el Datagrid.
+    Private WithEvents formularioPedidos As FormularioPedidos
+
     Private Sub Pedidos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.ControlBox = False
 
@@ -33,7 +36,7 @@ Public Class Pedidos
         comboTransportistaPedido.Items.Clear()
         comboPartnerPedidos.Items.Clear()
         comboEstadoPedidos.Items.Clear()
-        comboIdFacturaPedidos.Items.Clear()
+        comboIdFacturas.Items.Clear()
 
         Dim consulta As String = $"SELECT NOMBRE + ' ' + Apellidos As NombreApellido FROM COMERCIALES"
         dataTable = ConsultaBBDD(connectionString, consulta)
@@ -62,8 +65,9 @@ Public Class Pedidos
         consulta = $"Select IdFactura FROM FACTURAS"
         dataTable = ConsultaBBDD(connectionString, consulta)
         For Each fila As DataRow In dataTable.Rows
-            comboIdFacturaPedidos.Items.Add(fila("IdFactura"))
+            comboIdFacturas.Items.Add(fila("IdFactura"))
         Next
+
 
     End Sub
 
@@ -85,24 +89,23 @@ Public Class Pedidos
 
     Private Sub CargarDataGridPedido()
 
-        Dim consulta As String = "
-            SELECT 
-	            cab.IdPedido, 
-                (SELECT STRING_AGG (IdLinea, ', ') FROM LINEAS_PEDIDO WHERE IdPedido=cab.IdPedido) As 'Lineas',
-                IdFactura,
-                part.Nombre AS Partner, 
-                comer.Nombre + ' ' + comer.Apellidos Comercial,
-                transp.Empresa AS Transportista, 
-                est_ped.Descripcion AS [Estado Pedido],
-	            FechaPedido [Fecha Pedido], 
-	            FechaEnvio [Fecha Envío],
-	            FechaPago [Fecha Pago]
-            FROM CAB_PEDIDOS cab
-            LEFT JOIN COMERCIALES comer ON (cab.IdComercial = comer.IdComercial)
-            LEFT JOIN TRANSPORTISTAS transp ON (cab.IdTransportista = transp.IdTransportista)
-            LEFT JOIN PARTNERS part ON (cab.IdPartner = part.IdPartner)
-            LEFT JOIN ESTADO_PEDIDOS est_ped ON (cab.IdEstadoPedido = est_ped.IdEstadoPedido)
-            WHERE 1=1"
+        Dim consulta As String = "SELECT 
+	                                    cab.IdPedido, 
+	                                    IdFactura,
+                                        (SELECT STRING_AGG (IdLinea, ', ') FROM LINEAS_PEDIDO WHERE IdPedido=cab.IdPedido) As 'Lineas',
+                                        part.Nombre AS Partner, 
+                                        comer.Nombre + ' ' + comer.Apellidos Comercial,
+                                        transp.Empresa AS Transportista, 
+                                        est_ped.Descripcion AS [Estado Pedido],
+	                                    FechaPedido [Fecha Pedido], 
+	                                    FechaEnvio [Fecha Envío],
+	                                    FechaPago [Fecha Pago]
+                                    FROM CAB_PEDIDOS cab
+                                    LEFT JOIN COMERCIALES comer ON (cab.IdComercial = comer.IdComercial)
+                                    LEFT JOIN TRANSPORTISTAS transp ON (cab.IdTransportista = transp.IdTransportista)
+                                    LEFT JOIN PARTNERS part ON (cab.IdPartner = part.IdPartner)
+                                    LEFT JOIN ESTADO_PEDIDOS est_ped ON (cab.IdEstadoPedido = est_ped.IdEstadoPedido)
+                                    WHERE 1=1"
 
         sentenciaWhere = ""
 
@@ -167,10 +170,9 @@ Public Class Pedidos
             sentenciaWhere &= $" AND UPPER(est_ped.Descripcion) LIKE '%{comboEstadoPedidos.Text.ToUpper.Trim}%'"
         End If
 
-
-        If Not String.IsNullOrEmpty(comboIdFacturaPedidos.Text.Trim) Then
-            consulta &= $" AND IdFactura = '{comboIdFacturaPedidos.Text.Trim}'"
-            sentenciaWhere &= $" AND IdFactura = '{comboIdFacturaPedidos.Text.Trim}'"
+        If Not String.IsNullOrEmpty(comboIdFacturas.Text.Trim) Then
+            consulta &= $" AND IdFactura = '{comboIdFacturas.Text.Trim}'"
+            sentenciaWhere &= $" AND IdFactura = '{comboIdFacturas.Text.Trim}'"
         End If
 
 
@@ -259,15 +261,15 @@ Public Class Pedidos
             Dim IdPedido As Integer = dataGridPedidos.Rows(e.RowIndex).Cells(0).Value
 
             ' Abrir formulario del artiiculo
-            Dim formularioPedido As New FormularioPedidos(IdPedido, sentenciaWhere, ModoVer)
-            formularioPedido.Show()
+            formularioPedidos = New FormularioPedidos(IdPedido, sentenciaWhere, ModoVer)
+            formularioPedidos.Show()
         End If
     End Sub
 
     Private Sub btnAltaPedidos_Click(sender As Object, e As EventArgs) Handles btnAltaPedidos.Click
         ' Abrir formulario del artiiculo
-        Dim formularioPedido As New FormularioPedidos(ModoAñadir)
-        formularioPedido.Show()
+        formularioPedidos = New FormularioPedidos(ModoAñadir)
+        formularioPedidos.Show()
     End Sub
 
     Private Sub btnBorrarPedidos_Click(sender As Object, e As EventArgs) Handles btnBorrarPedidos.Click
@@ -329,4 +331,9 @@ Public Class Pedidos
         Dim formularioImportarPedidos As New ImportarPedidos()
         formularioImportarPedidos.Show()
     End Sub
+
+    Private Sub CerrarFormularioPedidos(sender As Object, e As FormClosedEventArgs) Handles formularioPedidos.FormClosed
+        CargarDataGridPedido()
+    End Sub
+
 End Class

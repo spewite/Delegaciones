@@ -343,7 +343,10 @@ Partial Class FormularioComerciales
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label16)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MaximizeBox = False
         Me.Name = "FormularioComerciales"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Comerciales"
         CType(Me.BindNavigatorComerciales, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BindNavigatorComerciales.ResumeLayout(False)

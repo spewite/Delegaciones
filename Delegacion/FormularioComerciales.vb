@@ -10,8 +10,7 @@ Public Class FormularioComerciales
 
     Dim IndiceNavigator As Integer
     Dim SentenciaWhere As String
-    Dim SentenciaSelect As String = "WITH COMERCIALES_CTE AS (
-                                    SELECT 
+    Dim SentenciaSelect As String = "SELECT 
 	                                    ROW_NUMBER() OVER (ORDER BY IdComercial) AS NumRegistro, 
 	                                    IdComercial,
 	                                    COMERCIALES.IdZona,
@@ -23,9 +22,7 @@ Public Class FormularioComerciales
 	                                    Direccion,
 	                                    DNI
                                     FROM COMERCIALES
-                                    INNER JOIN ZONAS ON (COMERCIALES.IdZona = ZONAS.IdZona))
-                                    SELECT * FROM COMERCIALES_CTE
-                                    WHERE 1=1 "
+                                    INNER JOIN ZONAS ON (COMERCIALES.IdZona = ZONAS.IdZona)"
 
     Dim ModoFormulario As Integer
 

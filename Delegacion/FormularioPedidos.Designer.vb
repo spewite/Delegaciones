@@ -43,12 +43,9 @@ Partial Class FormularioPedidos
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.comboFactura = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.dataGridLineas = New System.Windows.Forms.DataGridView()
         Me.comboComercial = New System.Windows.Forms.ComboBox()
         Me.comboPartner = New System.Windows.Forms.ComboBox()
         Me.comboTransportista = New System.Windows.Forms.ComboBox()
@@ -60,6 +57,9 @@ Partial Class FormularioPedidos
         Me.btnAñadirLinea = New System.Windows.Forms.Button()
         Me.btnEliminarLinea = New System.Windows.Forms.Button()
         Me.btnImportarPedidos = New System.Windows.Forms.Button()
+        Me.dataGridLineas = New System.Windows.Forms.DataGridView()
+        Me.comboIdFactura = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.BindNavigatorArticulo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindNavigatorArticulo.SuspendLayout()
         CType(Me.dataGridLineas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +79,7 @@ Partial Class FormularioPedidos
         Me.BindNavigatorArticulo.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindNavigatorArticulo.Name = "BindNavigatorArticulo"
         Me.BindNavigatorArticulo.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(1511, 27)
+        Me.BindNavigatorArticulo.Size = New System.Drawing.Size(1538, 27)
         Me.BindNavigatorArticulo.TabIndex = 110
         Me.BindNavigatorArticulo.Text = "BindingNavigator1"
         '
@@ -182,7 +182,7 @@ Partial Class FormularioPedidos
         '
         Me.inputIdPedido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputIdPedido.Enabled = False
-        Me.inputIdPedido.Location = New System.Drawing.Point(113, 49)
+        Me.inputIdPedido.Location = New System.Drawing.Point(135, 52)
         Me.inputIdPedido.Name = "inputIdPedido"
         Me.inputIdPedido.Size = New System.Drawing.Size(173, 22)
         Me.inputIdPedido.TabIndex = 87
@@ -190,7 +190,7 @@ Partial Class FormularioPedidos
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(607, 96)
+        Me.Label9.Location = New System.Drawing.Point(31, 100)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(100, 16)
         Me.Label9.TabIndex = 107
@@ -199,7 +199,7 @@ Partial Class FormularioPedidos
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(619, 48)
+        Me.Label12.Location = New System.Drawing.Point(630, 55)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(89, 16)
         Me.Label12.TabIndex = 103
@@ -208,16 +208,16 @@ Partial Class FormularioPedidos
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(926, 47)
+        Me.Label17.Location = New System.Drawing.Point(937, 55)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(85, 16)
+        Me.Label17.Size = New System.Drawing.Size(95, 16)
         Me.Label17.TabIndex = 101
-        Me.Label17.Text = "Precio venta:"
+        Me.Label17.Text = "Fecha Pedido:"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(314, 98)
+        Me.Label10.Location = New System.Drawing.Point(337, 100)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(71, 16)
         Me.Label10.TabIndex = 98
@@ -226,25 +226,16 @@ Partial Class FormularioPedidos
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(924, 95)
+        Me.Label11.Location = New System.Drawing.Point(935, 100)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(85, 16)
         Me.Label11.TabIndex = 92
         Me.Label11.Text = "Fecha Envio:"
         '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(43, 96)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(55, 16)
-        Me.Label13.TabIndex = 90
-        Me.Label13.Text = "Factura:"
-        '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(30, 51)
+        Me.Label14.Location = New System.Drawing.Point(55, 55)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(70, 16)
         Me.Label14.TabIndex = 88
@@ -253,48 +244,26 @@ Partial Class FormularioPedidos
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(332, 50)
+        Me.Label16.Location = New System.Drawing.Point(355, 55)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(53, 16)
         Me.Label16.TabIndex = 86
         Me.Label16.Text = "Partner:"
         '
-        'comboFactura
-        '
-        Me.comboFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboFactura.FormattingEnabled = True
-        Me.comboFactura.Location = New System.Drawing.Point(113, 94)
-        Me.comboFactura.Name = "comboFactura"
-        Me.comboFactura.Size = New System.Drawing.Size(173, 24)
-        Me.comboFactura.TabIndex = 111
-        '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(1210, 45)
+        Me.Label18.Location = New System.Drawing.Point(1235, 103)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(87, 16)
         Me.Label18.TabIndex = 106
         Me.Label18.Text = "Fecha Pago: "
         '
-        'dataGridLineas
-        '
-        Me.dataGridLineas.AllowUserToAddRows = False
-        Me.dataGridLineas.AllowUserToDeleteRows = False
-        Me.dataGridLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataGridLineas.Location = New System.Drawing.Point(46, 158)
-        Me.dataGridLineas.Name = "dataGridLineas"
-        Me.dataGridLineas.ReadOnly = True
-        Me.dataGridLineas.RowHeadersWidth = 51
-        Me.dataGridLineas.RowTemplate.Height = 24
-        Me.dataGridLineas.Size = New System.Drawing.Size(1428, 493)
-        Me.dataGridLineas.TabIndex = 112
-        '
         'comboComercial
         '
         Me.comboComercial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboComercial.FormattingEnabled = True
-        Me.comboComercial.Location = New System.Drawing.Point(396, 94)
+        Me.comboComercial.Location = New System.Drawing.Point(419, 96)
         Me.comboComercial.Name = "comboComercial"
         Me.comboComercial.Size = New System.Drawing.Size(173, 24)
         Me.comboComercial.TabIndex = 113
@@ -303,7 +272,7 @@ Partial Class FormularioPedidos
         '
         Me.comboPartner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboPartner.FormattingEnabled = True
-        Me.comboPartner.Location = New System.Drawing.Point(396, 46)
+        Me.comboPartner.Location = New System.Drawing.Point(419, 51)
         Me.comboPartner.Name = "comboPartner"
         Me.comboPartner.Size = New System.Drawing.Size(173, 24)
         Me.comboPartner.TabIndex = 114
@@ -312,7 +281,7 @@ Partial Class FormularioPedidos
         '
         Me.comboTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboTransportista.FormattingEnabled = True
-        Me.comboTransportista.Location = New System.Drawing.Point(713, 45)
+        Me.comboTransportista.Location = New System.Drawing.Point(724, 51)
         Me.comboTransportista.Name = "comboTransportista"
         Me.comboTransportista.Size = New System.Drawing.Size(173, 24)
         Me.comboTransportista.TabIndex = 115
@@ -321,16 +290,16 @@ Partial Class FormularioPedidos
         '
         Me.comboEstadoPedido.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboEstadoPedido.FormattingEnabled = True
-        Me.comboEstadoPedido.Location = New System.Drawing.Point(713, 91)
+        Me.comboEstadoPedido.Location = New System.Drawing.Point(135, 96)
         Me.comboEstadoPedido.Name = "comboEstadoPedido"
         Me.comboEstadoPedido.Size = New System.Drawing.Size(173, 24)
         Me.comboEstadoPedido.TabIndex = 116
         '
         'btnAbajo
         '
-        Me.btnAbajo.Location = New System.Drawing.Point(1213, 84)
+        Me.btnAbajo.Location = New System.Drawing.Point(1239, 44)
         Me.btnAbajo.Name = "btnAbajo"
-        Me.btnAbajo.Size = New System.Drawing.Size(262, 36)
+        Me.btnAbajo.Size = New System.Drawing.Size(262, 37)
         Me.btnAbajo.TabIndex = 108
         Me.btnAbajo.Text = "Listo"
         Me.btnAbajo.UseVisualStyleBackColor = True
@@ -338,7 +307,7 @@ Partial Class FormularioPedidos
         'inputFechaPedido
         '
         Me.inputFechaPedido.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.inputFechaPedido.Location = New System.Drawing.Point(1017, 45)
+        Me.inputFechaPedido.Location = New System.Drawing.Point(1038, 52)
         Me.inputFechaPedido.Name = "inputFechaPedido"
         Me.inputFechaPedido.Size = New System.Drawing.Size(173, 22)
         Me.inputFechaPedido.TabIndex = 117
@@ -346,7 +315,7 @@ Partial Class FormularioPedidos
         'inputFechaEnvio
         '
         Me.inputFechaEnvio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.inputFechaEnvio.Location = New System.Drawing.Point(1018, 93)
+        Me.inputFechaEnvio.Location = New System.Drawing.Point(1039, 97)
         Me.inputFechaEnvio.Name = "inputFechaEnvio"
         Me.inputFechaEnvio.Size = New System.Drawing.Size(173, 22)
         Me.inputFechaEnvio.TabIndex = 118
@@ -354,43 +323,77 @@ Partial Class FormularioPedidos
         'inputFechaPago
         '
         Me.inputFechaPago.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.inputFechaPago.Location = New System.Drawing.Point(1301, 44)
+        Me.inputFechaPago.Location = New System.Drawing.Point(1326, 100)
         Me.inputFechaPago.Name = "inputFechaPago"
         Me.inputFechaPago.Size = New System.Drawing.Size(173, 22)
         Me.inputFechaPago.TabIndex = 119
         '
         'btnAñadirLinea
         '
-        Me.btnAñadirLinea.Location = New System.Drawing.Point(46, 677)
+        Me.btnAñadirLinea.Location = New System.Drawing.Point(46, 678)
         Me.btnAñadirLinea.Name = "btnAñadirLinea"
-        Me.btnAñadirLinea.Size = New System.Drawing.Size(431, 36)
+        Me.btnAñadirLinea.Size = New System.Drawing.Size(447, 36)
         Me.btnAñadirLinea.TabIndex = 120
         Me.btnAñadirLinea.Text = "Añadir Línea"
         Me.btnAñadirLinea.UseVisualStyleBackColor = True
         '
         'btnEliminarLinea
         '
-        Me.btnEliminarLinea.Location = New System.Drawing.Point(544, 677)
+        Me.btnEliminarLinea.Location = New System.Drawing.Point(535, 678)
         Me.btnEliminarLinea.Name = "btnEliminarLinea"
-        Me.btnEliminarLinea.Size = New System.Drawing.Size(431, 36)
+        Me.btnEliminarLinea.Size = New System.Drawing.Size(447, 36)
         Me.btnEliminarLinea.TabIndex = 121
         Me.btnEliminarLinea.Text = "Eliminar Línea(s)"
         Me.btnEliminarLinea.UseVisualStyleBackColor = True
         '
         'btnImportarPedidos
         '
-        Me.btnImportarPedidos.Location = New System.Drawing.Point(1042, 677)
+        Me.btnImportarPedidos.Location = New System.Drawing.Point(1038, 678)
         Me.btnImportarPedidos.Name = "btnImportarPedidos"
-        Me.btnImportarPedidos.Size = New System.Drawing.Size(432, 36)
+        Me.btnImportarPedidos.Size = New System.Drawing.Size(461, 36)
         Me.btnImportarPedidos.TabIndex = 122
         Me.btnImportarPedidos.Text = "Importar Pedidos"
         Me.btnImportarPedidos.UseVisualStyleBackColor = True
+        '
+        'dataGridLineas
+        '
+        Me.dataGridLineas.AllowUserToAddRows = False
+        Me.dataGridLineas.AllowUserToDeleteRows = False
+        Me.dataGridLineas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dataGridLineas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dataGridLineas.Location = New System.Drawing.Point(46, 158)
+        Me.dataGridLineas.Name = "dataGridLineas"
+        Me.dataGridLineas.ReadOnly = True
+        Me.dataGridLineas.RowHeadersWidth = 51
+        Me.dataGridLineas.RowTemplate.Height = 24
+        Me.dataGridLineas.Size = New System.Drawing.Size(1453, 493)
+        Me.dataGridLineas.TabIndex = 112
+        '
+        'comboIdFactura
+        '
+        Me.comboIdFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboIdFactura.FormattingEnabled = True
+        Me.comboIdFactura.Location = New System.Drawing.Point(724, 95)
+        Me.comboIdFactura.Name = "comboIdFactura"
+        Me.comboIdFactura.Size = New System.Drawing.Size(173, 24)
+        Me.comboIdFactura.TabIndex = 124
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(650, 99)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(71, 16)
+        Me.Label1.TabIndex = 123
+        Me.Label1.Text = "ID Factura:"
         '
         'FormularioPedidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1511, 733)
+        Me.ClientSize = New System.Drawing.Size(1538, 733)
+        Me.Controls.Add(Me.comboIdFactura)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnImportarPedidos)
         Me.Controls.Add(Me.btnEliminarLinea)
         Me.Controls.Add(Me.btnAñadirLinea)
@@ -402,7 +405,6 @@ Partial Class FormularioPedidos
         Me.Controls.Add(Me.comboPartner)
         Me.Controls.Add(Me.comboComercial)
         Me.Controls.Add(Me.dataGridLineas)
-        Me.Controls.Add(Me.comboFactura)
         Me.Controls.Add(Me.BindNavigatorArticulo)
         Me.Controls.Add(Me.btnAbajo)
         Me.Controls.Add(Me.inputIdPedido)
@@ -412,9 +414,10 @@ Partial Class FormularioPedidos
         Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label16)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "FormularioPedidos"
         Me.Text = "Pedidos"
         CType(Me.BindNavigatorArticulo, System.ComponentModel.ISupportInitialize).EndInit()
@@ -445,12 +448,9 @@ Partial Class FormularioPedidos
     Friend WithEvents Label17 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label16 As Label
-    Friend WithEvents comboFactura As ComboBox
     Friend WithEvents Label18 As Label
-    Friend WithEvents dataGridLineas As DataGridView
     Friend WithEvents comboComercial As ComboBox
     Friend WithEvents comboPartner As ComboBox
     Friend WithEvents comboTransportista As ComboBox
@@ -462,4 +462,7 @@ Partial Class FormularioPedidos
     Friend WithEvents btnAñadirLinea As Button
     Friend WithEvents btnEliminarLinea As Button
     Friend WithEvents btnImportarPedidos As Button
+    Friend WithEvents dataGridLineas As DataGridView
+    Friend WithEvents comboIdFactura As ComboBox
+    Friend WithEvents Label1 As Label
 End Class

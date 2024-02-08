@@ -493,7 +493,7 @@ Public Class FormularioLineas
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
         ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator
-        Dim formularioArticulos As New FormularioArticulos(ModoAñadir)
+        Dim formularioArticulos As New FormularioLineas(ModoAñadir)
         formularioArticulos.Show()
     End Sub
 

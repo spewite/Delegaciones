@@ -61,6 +61,7 @@ Partial Class ImportarPedidos
         Me.Controls.Add(Me.btnImportar)
         Me.Controls.Add(Me.btnCargar)
         Me.Controls.Add(Me.inputRuta)
+        Me.MinimizeBox = False
         Me.Name = "ImportarPedidos"
         Me.Text = "Importar Pedidos"
         Me.ResumeLayout(False)

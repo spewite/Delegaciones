@@ -94,8 +94,6 @@ Partial Class Gestion
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
-        Me.comboZona2Comerciales = New System.Windows.Forms.ComboBox()
-        Me.Label36 = New System.Windows.Forms.Label()
         Me.comboZonaComerciales = New System.Windows.Forms.ComboBox()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.transportistasTab = New System.Windows.Forms.TabPage()
@@ -187,7 +185,7 @@ Partial Class Gestion
         Me.Label7.TabIndex = 53
         Me.Label7.Text = "Descripcion:"
         '
-        'inputDescripcionArticulos
+        'inputDescripcion
         '
         Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputDescripcionArticulos.Location = New System.Drawing.Point(1205, 43)
@@ -232,7 +230,7 @@ Partial Class Gestion
         Me.btnConsultarArticulos.Text = "Filtrar"
         Me.btnConsultarArticulos.UseVisualStyleBackColor = True
         '
-        'inputBajoMinimoArticulos
+        'inputBajoMinimo
         '
         Me.inputBajoMinimoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputBajoMinimoArticulos.Location = New System.Drawing.Point(900, 117)
@@ -240,7 +238,7 @@ Partial Class Gestion
         Me.inputBajoMinimoArticulos.Size = New System.Drawing.Size(252, 22)
         Me.inputBajoMinimoArticulos.TabIndex = 47
         '
-        'inputSobreMaximoArticulos
+        'inputSobreMaximo
         '
         Me.inputSobreMaximoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputSobreMaximoArticulos.Location = New System.Drawing.Point(519, 117)
@@ -256,7 +254,7 @@ Partial Class Gestion
         Me.inputExistenciasArticulo.Size = New System.Drawing.Size(252, 22)
         Me.inputExistenciasArticulo.TabIndex = 44
         '
-        'inputPrCostArticulos
+        'inputPrCost
         '
         Me.inputPrCostArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputPrCostArticulos.Location = New System.Drawing.Point(900, 26)
@@ -264,7 +262,7 @@ Partial Class Gestion
         Me.inputPrCostArticulos.Size = New System.Drawing.Size(252, 22)
         Me.inputPrCostArticulos.TabIndex = 42
         '
-        'inputPrVentArticulos
+        'inputPrVent
         '
         Me.inputPrVentArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputPrVentArticulos.Location = New System.Drawing.Point(900, 71)
@@ -363,6 +361,7 @@ Partial Class Gestion
         '
         Me.dataGridArticulos.AllowUserToAddRows = False
         Me.dataGridArticulos.AllowUserToDeleteRows = False
+        Me.dataGridArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dataGridArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridArticulos.Location = New System.Drawing.Point(56, 176)
         Me.dataGridArticulos.Name = "dataGridArticulos"
@@ -372,7 +371,7 @@ Partial Class Gestion
         Me.dataGridArticulos.Size = New System.Drawing.Size(1294, 590)
         Me.dataGridArticulos.TabIndex = 19
         '
-        'comboCategoriaArticulos
+        'comboCategoria
         '
         Me.comboCategoriaArticulos.FormattingEnabled = True
         Me.comboCategoriaArticulos.Location = New System.Drawing.Point(519, 23)
@@ -545,6 +544,7 @@ Partial Class Gestion
         '
         Me.dataGridPartners.AllowUserToAddRows = False
         Me.dataGridPartners.AllowUserToDeleteRows = False
+        Me.dataGridPartners.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dataGridPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridPartners.Location = New System.Drawing.Point(56, 176)
         Me.dataGridPartners.Name = "dataGridPartners"
@@ -661,8 +661,6 @@ Partial Class Gestion
         Me.comercialesTab.Controls.Add(Me.Label32)
         Me.comercialesTab.Controls.Add(Me.Label34)
         Me.comercialesTab.Controls.Add(Me.Label35)
-        Me.comercialesTab.Controls.Add(Me.comboZona2Comerciales)
-        Me.comercialesTab.Controls.Add(Me.Label36)
         Me.comercialesTab.Controls.Add(Me.comboZonaComerciales)
         Me.comercialesTab.Controls.Add(Me.Label37)
         Me.comercialesTab.Location = New System.Drawing.Point(4, 25)
@@ -754,6 +752,7 @@ Partial Class Gestion
         '
         Me.dataGridComerciales.AllowUserToAddRows = False
         Me.dataGridComerciales.AllowUserToDeleteRows = False
+        Me.dataGridComerciales.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dataGridComerciales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridComerciales.Location = New System.Drawing.Point(56, 176)
         Me.dataGridComerciales.Name = "dataGridComerciales"
@@ -831,23 +830,6 @@ Partial Class Gestion
         Me.Label35.TabIndex = 54
         Me.Label35.Text = "ID Comercial:"
         '
-        'comboZona2Comerciales
-        '
-        Me.comboZona2Comerciales.FormattingEnabled = True
-        Me.comboZona2Comerciales.Location = New System.Drawing.Point(507, 72)
-        Me.comboZona2Comerciales.Name = "comboZona2Comerciales"
-        Me.comboZona2Comerciales.Size = New System.Drawing.Size(278, 24)
-        Me.comboZona2Comerciales.TabIndex = 52
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(454, 78)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(48, 16)
-        Me.Label36.TabIndex = 51
-        Me.Label36.Text = "Zona2:"
-        '
         'comboZonaComerciales
         '
         Me.comboZonaComerciales.FormattingEnabled = True
@@ -915,6 +897,7 @@ Partial Class Gestion
         '
         Me.dataGridTransportistas.AllowUserToAddRows = False
         Me.dataGridTransportistas.AllowUserToDeleteRows = False
+        Me.dataGridTransportistas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dataGridTransportistas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridTransportistas.Location = New System.Drawing.Point(56, 176)
         Me.dataGridTransportistas.Name = "dataGridTransportistas"
@@ -1045,8 +1028,6 @@ Partial Class Gestion
     Friend WithEvents Label32 As Label
     Friend WithEvents Label34 As Label
     Friend WithEvents Label35 As Label
-    Friend WithEvents comboZona2Comerciales As ComboBox
-    Friend WithEvents Label36 As Label
     Friend WithEvents comboZonaComerciales As ComboBox
     Friend WithEvents Label37 As Label
     Friend WithEvents transportistasTab As TabPage

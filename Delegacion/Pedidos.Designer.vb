@@ -30,7 +30,6 @@ Partial Class Pedidos
         Me.dateFechaEnvioDesdePedidos = New System.Windows.Forms.DateTimePicker()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label50 = New System.Windows.Forms.Label()
-        Me.Label40 = New System.Windows.Forms.Label()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
         Me.dateFechaPedidoHastaPedidos = New System.Windows.Forms.DateTimePicker()
@@ -40,7 +39,6 @@ Partial Class Pedidos
         Me.Label45 = New System.Windows.Forms.Label()
         Me.inputIdPedidos = New System.Windows.Forms.TextBox()
         Me.comboPartnerPedidos = New System.Windows.Forms.ComboBox()
-        Me.comboIdFacturaPedidos = New System.Windows.Forms.ComboBox()
         Me.comboEstadoPedidos = New System.Windows.Forms.ComboBox()
         Me.comboTransportistaPedido = New System.Windows.Forms.ComboBox()
         Me.Label47 = New System.Windows.Forms.Label()
@@ -56,9 +54,9 @@ Partial Class Pedidos
         Me.checkFechaEnvioDesdePedidos = New System.Windows.Forms.CheckBox()
         Me.checkFechaPagoDesdePedidos = New System.Windows.Forms.CheckBox()
         Me.checkFechaPagoHastaPedidos = New System.Windows.Forms.CheckBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.inputIdLineas = New System.Windows.Forms.TextBox()
         Me.btnImportarPedidos = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.comboIdFacturas = New System.Windows.Forms.ComboBox()
         CType(Me.dataGridPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -66,7 +64,7 @@ Partial Class Pedidos
         '
         Me.dateFechaPagoHastaPedidos.Enabled = False
         Me.dateFechaPagoHastaPedidos.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dateFechaPagoHastaPedidos.Location = New System.Drawing.Point(784, 116)
+        Me.dateFechaPagoHastaPedidos.Location = New System.Drawing.Point(812, 116)
         Me.dateFechaPagoHastaPedidos.Name = "dateFechaPagoHastaPedidos"
         Me.dateFechaPagoHastaPedidos.Size = New System.Drawing.Size(110, 22)
         Me.dateFechaPagoHastaPedidos.TabIndex = 66
@@ -75,7 +73,7 @@ Partial Class Pedidos
         '
         Me.dateFechaPagoDesdePedidos.Enabled = False
         Me.dateFechaPagoDesdePedidos.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dateFechaPagoDesdePedidos.Location = New System.Drawing.Point(784, 73)
+        Me.dateFechaPagoDesdePedidos.Location = New System.Drawing.Point(812, 73)
         Me.dateFechaPagoDesdePedidos.Name = "dateFechaPagoDesdePedidos"
         Me.dateFechaPagoDesdePedidos.Size = New System.Drawing.Size(110, 22)
         Me.dateFechaPagoDesdePedidos.TabIndex = 65
@@ -83,7 +81,7 @@ Partial Class Pedidos
         'Label51
         '
         Me.Label51.AutoSize = True
-        Me.Label51.Location = New System.Drawing.Point(647, 121)
+        Me.Label51.Location = New System.Drawing.Point(675, 121)
         Me.Label51.Name = "Label51"
         Me.Label51.Size = New System.Drawing.Size(126, 16)
         Me.Label51.TabIndex = 64
@@ -92,7 +90,7 @@ Partial Class Pedidos
         'Label52
         '
         Me.Label52.AutoSize = True
-        Me.Label52.Location = New System.Drawing.Point(648, 76)
+        Me.Label52.Location = New System.Drawing.Point(676, 76)
         Me.Label52.Name = "Label52"
         Me.Label52.Size = New System.Drawing.Size(128, 16)
         Me.Label52.TabIndex = 63
@@ -102,7 +100,7 @@ Partial Class Pedidos
         '
         Me.dateFechaEnvioHastaPedidos.Enabled = False
         Me.dateFechaEnvioHastaPedidos.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dateFechaEnvioHastaPedidos.Location = New System.Drawing.Point(482, 118)
+        Me.dateFechaEnvioHastaPedidos.Location = New System.Drawing.Point(498, 118)
         Me.dateFechaEnvioHastaPedidos.Name = "dateFechaEnvioHastaPedidos"
         Me.dateFechaEnvioHastaPedidos.Size = New System.Drawing.Size(110, 22)
         Me.dateFechaEnvioHastaPedidos.TabIndex = 62
@@ -111,7 +109,7 @@ Partial Class Pedidos
         '
         Me.dateFechaEnvioDesdePedidos.Enabled = False
         Me.dateFechaEnvioDesdePedidos.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dateFechaEnvioDesdePedidos.Location = New System.Drawing.Point(481, 75)
+        Me.dateFechaEnvioDesdePedidos.Location = New System.Drawing.Point(497, 75)
         Me.dateFechaEnvioDesdePedidos.Name = "dateFechaEnvioDesdePedidos"
         Me.dateFechaEnvioDesdePedidos.Size = New System.Drawing.Size(110, 22)
         Me.dateFechaEnvioDesdePedidos.TabIndex = 61
@@ -119,7 +117,7 @@ Partial Class Pedidos
         'Label49
         '
         Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(344, 121)
+        Me.Label49.Location = New System.Drawing.Point(360, 121)
         Me.Label49.Name = "Label49"
         Me.Label49.Size = New System.Drawing.Size(127, 16)
         Me.Label49.TabIndex = 60
@@ -128,25 +126,16 @@ Partial Class Pedidos
         'Label50
         '
         Me.Label50.AutoSize = True
-        Me.Label50.Location = New System.Drawing.Point(342, 74)
+        Me.Label50.Location = New System.Drawing.Point(358, 74)
         Me.Label50.Name = "Label50"
         Me.Label50.Size = New System.Drawing.Size(129, 16)
         Me.Label50.TabIndex = 59
         Me.Label50.Text = "Fecha Envio Desde:"
         '
-        'Label40
-        '
-        Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(986, 118)
-        Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(71, 16)
-        Me.Label40.TabIndex = 58
-        Me.Label40.Text = "ID Factura:"
-        '
         'Label41
         '
         Me.Label41.AutoSize = True
-        Me.Label41.Location = New System.Drawing.Point(937, 75)
+        Me.Label41.Location = New System.Drawing.Point(977, 74)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(119, 16)
         Me.Label41.TabIndex = 57
@@ -155,7 +144,7 @@ Partial Class Pedidos
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(1003, 31)
+        Me.Label42.Location = New System.Drawing.Point(1039, 30)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(53, 16)
         Me.Label42.TabIndex = 56
@@ -217,23 +206,15 @@ Partial Class Pedidos
         'comboPartnerPedidos
         '
         Me.comboPartnerPedidos.FormattingEnabled = True
-        Me.comboPartnerPedidos.Location = New System.Drawing.Point(1067, 27)
+        Me.comboPartnerPedidos.Location = New System.Drawing.Point(1108, 26)
         Me.comboPartnerPedidos.Name = "comboPartnerPedidos"
         Me.comboPartnerPedidos.Size = New System.Drawing.Size(204, 24)
         Me.comboPartnerPedidos.TabIndex = 49
         '
-        'comboIdFacturaPedidos
-        '
-        Me.comboIdFacturaPedidos.FormattingEnabled = True
-        Me.comboIdFacturaPedidos.Location = New System.Drawing.Point(1067, 114)
-        Me.comboIdFacturaPedidos.Name = "comboIdFacturaPedidos"
-        Me.comboIdFacturaPedidos.Size = New System.Drawing.Size(204, 24)
-        Me.comboIdFacturaPedidos.TabIndex = 48
-        '
         'comboEstadoPedidos
         '
         Me.comboEstadoPedidos.FormattingEnabled = True
-        Me.comboEstadoPedidos.Location = New System.Drawing.Point(1067, 71)
+        Me.comboEstadoPedidos.Location = New System.Drawing.Point(1108, 70)
         Me.comboEstadoPedidos.Name = "comboEstadoPedidos"
         Me.comboEstadoPedidos.Size = New System.Drawing.Size(204, 24)
         Me.comboEstadoPedidos.TabIndex = 47
@@ -241,7 +222,7 @@ Partial Class Pedidos
         'comboTransportistaPedido
         '
         Me.comboTransportistaPedido.FormattingEnabled = True
-        Me.comboTransportistaPedido.Location = New System.Drawing.Point(748, 28)
+        Me.comboTransportistaPedido.Location = New System.Drawing.Point(776, 28)
         Me.comboTransportistaPedido.Name = "comboTransportistaPedido"
         Me.comboTransportistaPedido.Size = New System.Drawing.Size(170, 24)
         Me.comboTransportistaPedido.TabIndex = 46
@@ -249,7 +230,7 @@ Partial Class Pedidos
         'Label47
         '
         Me.Label47.AutoSize = True
-        Me.Label47.Location = New System.Drawing.Point(648, 33)
+        Me.Label47.Location = New System.Drawing.Point(676, 33)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(92, 16)
         Me.Label47.TabIndex = 45
@@ -260,6 +241,7 @@ Partial Class Pedidos
         Me.dataGridPedidos.AllowUserToAddRows = False
         Me.dataGridPedidos.AllowUserToDeleteRows = False
         Me.dataGridPedidos.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dataGridPedidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dataGridPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridPedidos.Location = New System.Drawing.Point(36, 177)
         Me.dataGridPedidos.Name = "dataGridPedidos"
@@ -272,7 +254,7 @@ Partial Class Pedidos
         'comboComercialPedidos
         '
         Me.comboComercialPedidos.FormattingEnabled = True
-        Me.comboComercialPedidos.Location = New System.Drawing.Point(419, 26)
+        Me.comboComercialPedidos.Location = New System.Drawing.Point(435, 26)
         Me.comboComercialPedidos.Name = "comboComercialPedidos"
         Me.comboComercialPedidos.Size = New System.Drawing.Size(195, 24)
         Me.comboComercialPedidos.TabIndex = 43
@@ -280,7 +262,7 @@ Partial Class Pedidos
         'Label48
         '
         Me.Label48.AutoSize = True
-        Me.Label48.Location = New System.Drawing.Point(339, 29)
+        Me.Label48.Location = New System.Drawing.Point(355, 29)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(74, 16)
         Me.Label48.TabIndex = 42
@@ -288,7 +270,7 @@ Partial Class Pedidos
         '
         'btnBorrarPedidos
         '
-        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1721, 30)
+        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1597, 30)
         Me.btnBorrarPedidos.Name = "btnBorrarPedidos"
         Me.btnBorrarPedidos.Size = New System.Drawing.Size(162, 50)
         Me.btnBorrarPedidos.TabIndex = 69
@@ -297,7 +279,7 @@ Partial Class Pedidos
         '
         'btnAltaPedidos
         '
-        Me.btnAltaPedidos.Location = New System.Drawing.Point(1721, 89)
+        Me.btnAltaPedidos.Location = New System.Drawing.Point(1597, 89)
         Me.btnAltaPedidos.Name = "btnAltaPedidos"
         Me.btnAltaPedidos.Size = New System.Drawing.Size(162, 50)
         Me.btnAltaPedidos.TabIndex = 68
@@ -306,7 +288,7 @@ Partial Class Pedidos
         '
         'btnConsultarPedidos
         '
-        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1544, 30)
+        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1420, 30)
         Me.btnConsultarPedidos.Name = "btnConsultarPedidos"
         Me.btnConsultarPedidos.Size = New System.Drawing.Size(162, 50)
         Me.btnConsultarPedidos.TabIndex = 67
@@ -334,7 +316,7 @@ Partial Class Pedidos
         'checkFechaEnvioHastaPedidos
         '
         Me.checkFechaEnvioHastaPedidos.AutoSize = True
-        Me.checkFechaEnvioHastaPedidos.Location = New System.Drawing.Point(601, 122)
+        Me.checkFechaEnvioHastaPedidos.Location = New System.Drawing.Point(617, 122)
         Me.checkFechaEnvioHastaPedidos.Name = "checkFechaEnvioHastaPedidos"
         Me.checkFechaEnvioHastaPedidos.Size = New System.Drawing.Size(18, 17)
         Me.checkFechaEnvioHastaPedidos.TabIndex = 73
@@ -343,7 +325,7 @@ Partial Class Pedidos
         'checkFechaEnvioDesdePedidos
         '
         Me.checkFechaEnvioDesdePedidos.AutoSize = True
-        Me.checkFechaEnvioDesdePedidos.Location = New System.Drawing.Point(600, 79)
+        Me.checkFechaEnvioDesdePedidos.Location = New System.Drawing.Point(616, 79)
         Me.checkFechaEnvioDesdePedidos.Name = "checkFechaEnvioDesdePedidos"
         Me.checkFechaEnvioDesdePedidos.Size = New System.Drawing.Size(18, 17)
         Me.checkFechaEnvioDesdePedidos.TabIndex = 72
@@ -352,7 +334,7 @@ Partial Class Pedidos
         'checkFechaPagoDesdePedidos
         '
         Me.checkFechaPagoDesdePedidos.AutoSize = True
-        Me.checkFechaPagoDesdePedidos.Location = New System.Drawing.Point(905, 76)
+        Me.checkFechaPagoDesdePedidos.Location = New System.Drawing.Point(933, 76)
         Me.checkFechaPagoDesdePedidos.Name = "checkFechaPagoDesdePedidos"
         Me.checkFechaPagoDesdePedidos.Size = New System.Drawing.Size(18, 17)
         Me.checkFechaPagoDesdePedidos.TabIndex = 74
@@ -361,38 +343,37 @@ Partial Class Pedidos
         'checkFechaPagoHastaPedidos
         '
         Me.checkFechaPagoHastaPedidos.AutoSize = True
-        Me.checkFechaPagoHastaPedidos.Location = New System.Drawing.Point(906, 119)
+        Me.checkFechaPagoHastaPedidos.Location = New System.Drawing.Point(934, 119)
         Me.checkFechaPagoHastaPedidos.Name = "checkFechaPagoHastaPedidos"
         Me.checkFechaPagoHastaPedidos.Size = New System.Drawing.Size(18, 17)
         Me.checkFechaPagoHastaPedidos.TabIndex = 75
         Me.checkFechaPagoHastaPedidos.UseVisualStyleBackColor = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1311, 26)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(112, 16)
-        Me.Label1.TabIndex = 76
-        Me.Label1.Text = "Líneas (Ej: 1, 3, 5):"
-        '
-        'inputIdLineas
-        '
-        Me.inputIdLineas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdLineas.Location = New System.Drawing.Point(1314, 45)
-        Me.inputIdLineas.Multiline = True
-        Me.inputIdLineas.Name = "inputIdLineas"
-        Me.inputIdLineas.Size = New System.Drawing.Size(204, 95)
-        Me.inputIdLineas.TabIndex = 77
-        '
         'btnImportarPedidos
         '
-        Me.btnImportarPedidos.Location = New System.Drawing.Point(1544, 89)
+        Me.btnImportarPedidos.Location = New System.Drawing.Point(1420, 89)
         Me.btnImportarPedidos.Name = "btnImportarPedidos"
         Me.btnImportarPedidos.Size = New System.Drawing.Size(160, 50)
         Me.btnImportarPedidos.TabIndex = 84
         Me.btnImportarPedidos.Text = "Importar"
         Me.btnImportarPedidos.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(1023, 119)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(69, 16)
+        Me.Label2.TabIndex = 86
+        Me.Label2.Text = "Id Factura:"
+        '
+        'comboIdFacturas
+        '
+        Me.comboIdFacturas.FormattingEnabled = True
+        Me.comboIdFacturas.Location = New System.Drawing.Point(1108, 114)
+        Me.comboIdFacturas.Name = "comboIdFacturas"
+        Me.comboIdFacturas.Size = New System.Drawing.Size(204, 24)
+        Me.comboIdFacturas.TabIndex = 85
         '
         'Pedidos
         '
@@ -400,9 +381,9 @@ Partial Class Pedidos
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1917, 752)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.comboIdFacturas)
         Me.Controls.Add(Me.btnImportarPedidos)
-        Me.Controls.Add(Me.inputIdLineas)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.checkFechaPagoHastaPedidos)
         Me.Controls.Add(Me.checkFechaPagoDesdePedidos)
         Me.Controls.Add(Me.checkFechaEnvioHastaPedidos)
@@ -420,7 +401,6 @@ Partial Class Pedidos
         Me.Controls.Add(Me.dateFechaEnvioDesdePedidos)
         Me.Controls.Add(Me.Label49)
         Me.Controls.Add(Me.Label50)
-        Me.Controls.Add(Me.Label40)
         Me.Controls.Add(Me.Label41)
         Me.Controls.Add(Me.Label42)
         Me.Controls.Add(Me.dateFechaPedidoHastaPedidos)
@@ -430,7 +410,6 @@ Partial Class Pedidos
         Me.Controls.Add(Me.Label45)
         Me.Controls.Add(Me.inputIdPedidos)
         Me.Controls.Add(Me.comboPartnerPedidos)
-        Me.Controls.Add(Me.comboIdFacturaPedidos)
         Me.Controls.Add(Me.comboEstadoPedidos)
         Me.Controls.Add(Me.comboTransportistaPedido)
         Me.Controls.Add(Me.Label47)
@@ -453,7 +432,6 @@ Partial Class Pedidos
     Friend WithEvents dateFechaEnvioDesdePedidos As DateTimePicker
     Friend WithEvents Label49 As Label
     Friend WithEvents Label50 As Label
-    Friend WithEvents Label40 As Label
     Friend WithEvents Label41 As Label
     Friend WithEvents Label42 As Label
     Friend WithEvents dateFechaPedidoHastaPedidos As DateTimePicker
@@ -463,7 +441,6 @@ Partial Class Pedidos
     Friend WithEvents Label45 As Label
     Friend WithEvents inputIdPedidos As TextBox
     Friend WithEvents comboPartnerPedidos As ComboBox
-    Friend WithEvents comboIdFacturaPedidos As ComboBox
     Friend WithEvents comboEstadoPedidos As ComboBox
     Friend WithEvents comboTransportistaPedido As ComboBox
     Friend WithEvents Label47 As Label
@@ -479,7 +456,7 @@ Partial Class Pedidos
     Friend WithEvents checkFechaEnvioDesdePedidos As CheckBox
     Friend WithEvents checkFechaPagoDesdePedidos As CheckBox
     Friend WithEvents checkFechaPagoHastaPedidos As CheckBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents inputIdLineas As TextBox
     Friend WithEvents btnImportarPedidos As Button
+    Friend WithEvents Label2 As Label
+    Friend WithEvents comboIdFacturas As ComboBox
 End Class

@@ -38,7 +38,6 @@ Partial Class FormularioFacturas
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.BtnEditar = New System.Windows.Forms.ToolStripButton()
-        Me.BtnAñadir = New System.Windows.Forms.ToolStripButton()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.inputFechaEmitida = New System.Windows.Forms.DateTimePicker()
         Me.inputFechaEnvio = New System.Windows.Forms.DateTimePicker()
@@ -116,7 +115,7 @@ Partial Class FormularioFacturas
         Me.BindNavigatorFacturas.CountItem = Me.BindingNavigatorCountItem
         Me.BindNavigatorFacturas.DeleteItem = Nothing
         Me.BindNavigatorFacturas.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.BindNavigatorFacturas.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BtnEditar, Me.BtnAñadir})
+        Me.BindNavigatorFacturas.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BtnEditar})
         Me.BindNavigatorFacturas.Location = New System.Drawing.Point(0, 0)
         Me.BindNavigatorFacturas.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindNavigatorFacturas.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -177,15 +176,6 @@ Partial Class FormularioFacturas
         Me.BtnEditar.Name = "BtnEditar"
         Me.BtnEditar.Size = New System.Drawing.Size(29, 24)
         Me.BtnEditar.Text = "Editar"
-        '
-        'BtnAñadir
-        '
-        Me.BtnAñadir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BtnAñadir.Image = CType(resources.GetObject("BtnAñadir.Image"), System.Drawing.Image)
-        Me.BtnAñadir.Name = "BtnAñadir"
-        Me.BtnAñadir.RightToLeftAutoMirrorImage = True
-        Me.BtnAñadir.Size = New System.Drawing.Size(29, 24)
-        Me.BtnAñadir.Text = "Agregar nuevo"
         '
         'Label13
         '
@@ -343,7 +333,6 @@ Partial Class FormularioFacturas
     Friend WithEvents inputIdFactura As TextBox
     Friend WithEvents btnAbajo As Button
     Private WithEvents Label11 As Label
-    Friend WithEvents BtnAñadir As ToolStripButton
     Friend WithEvents BtnEditar As ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As ToolStripButton
     Friend WithEvents BindingNavigatorMoveNextItem As ToolStripButton

@@ -197,7 +197,7 @@ Partial Class Gestion
         Me.Label7.TabIndex = 53
         Me.Label7.Text = "Descripcion:"
         '
-        'inputDescripcion
+        'inputDescripcionArticulos
         '
         Me.inputDescripcionArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputDescripcionArticulos.Location = New System.Drawing.Point(1205, 43)
@@ -242,7 +242,7 @@ Partial Class Gestion
         Me.btnConsultarArticulos.Text = "Filtrar"
         Me.btnConsultarArticulos.UseVisualStyleBackColor = True
         '
-        'inputBajoMinimo
+        'inputBajoMinimoArticulos
         '
         Me.inputBajoMinimoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputBajoMinimoArticulos.Location = New System.Drawing.Point(900, 117)
@@ -250,7 +250,7 @@ Partial Class Gestion
         Me.inputBajoMinimoArticulos.Size = New System.Drawing.Size(252, 22)
         Me.inputBajoMinimoArticulos.TabIndex = 47
         '
-        'inputSobreMaximo
+        'inputSobreMaximoArticulos
         '
         Me.inputSobreMaximoArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputSobreMaximoArticulos.Location = New System.Drawing.Point(519, 117)
@@ -266,7 +266,7 @@ Partial Class Gestion
         Me.inputExistenciasArticulo.Size = New System.Drawing.Size(252, 22)
         Me.inputExistenciasArticulo.TabIndex = 44
         '
-        'inputPrCost
+        'inputPrCostArticulos
         '
         Me.inputPrCostArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputPrCostArticulos.Location = New System.Drawing.Point(900, 26)
@@ -274,7 +274,7 @@ Partial Class Gestion
         Me.inputPrCostArticulos.Size = New System.Drawing.Size(252, 22)
         Me.inputPrCostArticulos.TabIndex = 42
         '
-        'inputPrVent
+        'inputPrVentArticulos
         '
         Me.inputPrVentArticulos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.inputPrVentArticulos.Location = New System.Drawing.Point(900, 71)
@@ -383,7 +383,7 @@ Partial Class Gestion
         Me.dataGridArticulos.Size = New System.Drawing.Size(1294, 590)
         Me.dataGridArticulos.TabIndex = 19
         '
-        'comboCategoria
+        'comboCategoriaArticulos
         '
         Me.comboCategoriaArticulos.FormattingEnabled = True
         Me.comboCategoriaArticulos.Location = New System.Drawing.Point(519, 23)
@@ -1019,6 +1019,7 @@ Partial Class Gestion
         '
         Me.dataGridZonas.AllowUserToAddRows = False
         Me.dataGridZonas.AllowUserToDeleteRows = False
+        Me.dataGridZonas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dataGridZonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dataGridZonas.Location = New System.Drawing.Point(56, 176)
         Me.dataGridZonas.Name = "dataGridZonas"

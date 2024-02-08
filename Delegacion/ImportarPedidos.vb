@@ -5,6 +5,7 @@ Imports System.Xml
 Public Class ImportarPedidos
 
     Dim rutaXML As String
+    Dim RegistrosInsertados As Integer = 0
 
     Private Sub btnCargar_Click(sender As Object, e As EventArgs) Handles btnCargar.Click
         Try
@@ -12,6 +13,11 @@ Public Class ImportarPedidos
             Dim openFileDialog As New OpenFileDialog()
             openFileDialog.Filter = "Archivos XML|*.xml"
             openFileDialog.Title = "Seleccionar archivo XML"
+
+            ' Convertir la ruta relativa en una ruta absoluta
+            Dim rutaRelativa As String = "importaciones\comerciales\pedidos"
+            Dim rutaAbsoluta As String = System.IO.Path.Combine(Application.StartupPath, rutaRelativa)
+            openFileDialog.InitialDirectory = rutaAbsoluta ' Utilizar la ruta absoluta como directorio inicial
 
             If openFileDialog.ShowDialog() = DialogResult.OK Then
                 ' Obtener la ruta del archivo XML seleccionado
@@ -71,6 +77,8 @@ Public Class ImportarPedidos
                         insertPedidoCommand.Parameters.AddWithValue("@FechaPago", fechaPago)
 
                         insertPedidoCommand.ExecuteNonQuery()
+
+                        RegistrosInsertados += 1
                     End Using
 
                     ' Obtener la lista de nodos "linea" dentro de cada "pedido"
@@ -97,7 +105,7 @@ Public Class ImportarPedidos
                     Next
                 Next
 
-                MessageBox.Show("Datos insertados correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show($"Se han insertado {RegistrosInsertados} pedidos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End Using
         Catch ex As Exception
             MessageBox.Show("Error al procesar el XML o insertar en la base de datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

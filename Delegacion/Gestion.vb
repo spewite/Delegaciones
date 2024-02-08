@@ -45,6 +45,7 @@ Public Class Gestion
         dataGridPartners.Width = Me.ClientSize.Width - 100
         dataGridComerciales.Width = Me.ClientSize.Width - 100
         dataGridTransportistas.Width = Me.ClientSize.Width - 100
+        dataGridZonas.Width = Me.ClientSize.Width - 100
     End Sub
 
     Private Sub CargarDataGrids()
@@ -52,6 +53,8 @@ Public Class Gestion
         CargarDataGridPartners()
         CargarDataGridComerciales()
         CargarDataGridTransportistas()
+        CargarDataGridZonas()
+
     End Sub
 
     '---------------------------------------------------------'
@@ -191,6 +194,11 @@ Public Class Gestion
     Private Sub CerrarFormularioArticulos(sender As Object, e As FormClosedEventArgs) Handles formularioArticulos.FormClosed
         CargarDataGridArticulo()
         ActualizarComboBoxCategoria()
+    End Sub
+
+    Private Sub btnImportarArticulos_Click(sender As Object, e As EventArgs) Handles btnImportarArticulos.Click
+        Dim formularioImportarArticulos As New ImportarArticulos()
+        formularioImportarArticulos.Show()
     End Sub
 
 
@@ -655,11 +663,6 @@ Public Class Gestion
         CargarDataGridZonas()
     End Sub
 
-
-    Private Sub btnImportarArticulos_Click(sender As Object, e As EventArgs) Handles btnImportarArticulos.Click
-        Dim formularioImportarArticulos As New ImportarArticulos()
-        formularioImportarArticulos.Show()
-    End Sub
 
 
 End Class

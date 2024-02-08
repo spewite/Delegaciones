@@ -320,16 +320,6 @@ Public Class FormularioFacturas
 
     End Sub
 
-    'Private Sub CargarComboEstados()
-    '    comboEstado.Items.Clear()
-
-    '    Dim consulta As String = $"SELECT Distinct Estado FROM FACTURAS"
-    '    DataTable = ConsultaBBDD(ConnectionString, consulta)
-    '    For Each fila As DataRow In DataTable.Rows
-    '        comboEstado.Items.Add(fila("Estado"))
-    '    Next
-    'End Sub
-
     Private Sub CargarDataGridPedidos()
 
         Dim consultaObtenerPedidos = $"SELECT * FROM CAB_PEDIDOS WHERE IdFactura = {inputIdFactura.Text}"
@@ -483,31 +473,12 @@ Public Class FormularioFacturas
     Function ValidarCampos() As Boolean
         ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
 
-        'Dim basura As Integer
-
-        'Dim telefono As String = inputTelefono.Text.Trim
-
-        'If String.IsNullOrEmpty(inputPedidoAsociado.Text) Or String.IsNullOrWhiteSpace(inputPedidoAsociado.Text) Then
-        '    MsgBox("¡Debes rellenar el campo Empresa!", vbExclamation + vbOKOnly, "Error de validación")
-        '    Return False
-        'End If
-
-        ''' Validacion de los inputs
-        'If Not Integer.TryParse(telefono, basura) Then
-        '    MsgBox("¡Debes introducir un valor entero en el campo de telefono!", vbExclamation + vbOKOnly, "Error de validación")
-        '    Return False
-        'End If
-
-        'If telefono.Length <> 9 Then
-        '    MsgBox("¡El teléfono debe contener 9 números!", vbExclamation + vbOKOnly, "Error de validación")
-        '    Return False
-        'End If
-
 
         Return True
+
     End Function
 
-    Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
+    Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs)
         ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator
         Dim formularioTransportistas As New FormularioTransportistas(ModoAñadir)
         formularioTransportistas.Show()

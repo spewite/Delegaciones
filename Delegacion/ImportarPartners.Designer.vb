@@ -22,18 +22,18 @@ Partial Class ImportarPartners
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.inputRuta = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.btnCargar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'TextBox1
+        'inputRuta
         '
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(52, 67)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(345, 22)
-        Me.TextBox1.TabIndex = 2
+        Me.inputRuta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputRuta.Location = New System.Drawing.Point(52, 67)
+        Me.inputRuta.Name = "inputRuta"
+        Me.inputRuta.Size = New System.Drawing.Size(345, 22)
+        Me.inputRuta.TabIndex = 2
         '
         'Button2
         '
@@ -59,7 +59,7 @@ Partial Class ImportarPartners
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(581, 241)
         Me.Controls.Add(Me.btnCargar)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.inputRuta)
         Me.Controls.Add(Me.Button2)
         Me.Name = "ImportarPartners"
         Me.Text = "Importar Partners"
@@ -67,7 +67,7 @@ Partial Class ImportarPartners
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents inputRuta As TextBox
     Friend WithEvents Button2 As Button
     Friend WithEvents btnCargar As Button
 End Class

@@ -236,7 +236,9 @@
     <Compile Include="GenerarFacturas.Designer.vb">
       <DependentUpon>GenerarFacturas.vb</DependentUpon>
     </Compile>
-    <Compile Include="GenerarFacturas.vb" />
+    <Compile Include="GenerarFacturas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ImportarPartners.Designer.vb">
       <DependentUpon>ImportarPartners.vb</DependentUpon>
     </Compile>

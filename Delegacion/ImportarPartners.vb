@@ -5,6 +5,7 @@ Imports Dllgaciones.BaseDeDatos
 Public Class ImportarPartners
 
     Dim rutaXML As String
+    Dim RegistrosInsertados As Integer = 0
 
     Private Sub btnCargar_Click(sender As Object, e As EventArgs) Handles btnCargar.Click
         Try
@@ -13,10 +14,15 @@ Public Class ImportarPartners
             openFileDialog.Filter = "Archivos XML|*.xml"
             openFileDialog.Title = "Seleccionar archivo XML"
 
+            ' Convertir la ruta relativa en una ruta absoluta
+            Dim rutaRelativa As String = "importaciones\comerciales\partners"
+            Dim rutaAbsoluta As String = System.IO.Path.Combine(Application.StartupPath, rutaRelativa)
+            openFileDialog.InitialDirectory = rutaAbsoluta ' Utilizar la ruta absoluta como directorio inicial
+
             If openFileDialog.ShowDialog() = DialogResult.OK Then
                 ' Obtener la ruta del archivo XML seleccionado
                 rutaXML = openFileDialog.FileName
-                TextBox1.Text = rutaXML
+                inputRuta.Text = rutaXML
             End If
 
         Catch ex As Exception
@@ -63,10 +69,12 @@ Public Class ImportarPartners
                         insertCommand.Parameters.AddWithValue("@FechaRegistro", fechaRegistro)
 
                         insertCommand.ExecuteNonQuery()
+
+                        RegistrosInsertados += 1
                     End Using
                 Next
 
-                MessageBox.Show("Datos insertados correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show($"Se han insertado {RegistrosInsertados} partners.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End Using
         Catch ex As Exception
             MessageBox.Show("Error al procesar el XML o insertar en la base de datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -23,6 +23,7 @@ Partial Class Inicio
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Inicio))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -66,19 +67,19 @@ Partial Class Inicio
         'PedidosToolStripMenuItem2
         '
         Me.PedidosToolStripMenuItem2.Name = "PedidosToolStripMenuItem2"
-        Me.PedidosToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
+        Me.PedidosToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
         Me.PedidosToolStripMenuItem2.Text = "Pedidos"
         '
         'PartnersToolStripMenuItem2
         '
         Me.PartnersToolStripMenuItem2.Name = "PartnersToolStripMenuItem2"
-        Me.PartnersToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
+        Me.PartnersToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
         Me.PartnersToolStripMenuItem2.Text = "Partners"
         '
         'ArticulosToolStripMenuItem2
         '
         Me.ArticulosToolStripMenuItem2.Name = "ArticulosToolStripMenuItem2"
-        Me.ArticulosToolStripMenuItem2.Size = New System.Drawing.Size(224, 26)
+        Me.ArticulosToolStripMenuItem2.Size = New System.Drawing.Size(150, 26)
         Me.ArticulosToolStripMenuItem2.Text = "Articulos"
         '
         'ExportarToolStripMenuItem1
@@ -91,13 +92,13 @@ Partial Class Inicio
         'ArticulosToolStripMenuItem3
         '
         Me.ArticulosToolStripMenuItem3.Name = "ArticulosToolStripMenuItem3"
-        Me.ArticulosToolStripMenuItem3.Size = New System.Drawing.Size(150, 26)
-        Me.ArticulosToolStripMenuItem3.Text = "Articulos"
+        Me.ArticulosToolStripMenuItem3.Size = New System.Drawing.Size(224, 26)
+        Me.ArticulosToolStripMenuItem3.Text = "Catálogo"
         '
         'PartnersToolStripMenuItem3
         '
         Me.PartnersToolStripMenuItem3.Name = "PartnersToolStripMenuItem3"
-        Me.PartnersToolStripMenuItem3.Size = New System.Drawing.Size(150, 26)
+        Me.PartnersToolStripMenuItem3.Size = New System.Drawing.Size(224, 26)
         Me.PartnersToolStripMenuItem3.Text = "Partners"
         '
         'GestionToolStripMenuItem
@@ -129,6 +130,8 @@ Partial Class Inicio
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1492, 891)
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True

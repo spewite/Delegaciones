@@ -175,6 +175,8 @@ Public Class FormularioArticulos
 
     Private Sub ActualizarDatos()
 
+        CargarComboCategoria()
+
         ' Si el modo del formulario es Añadir no va actualizar los datos porque no se muestran
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoVer Then
 
@@ -190,7 +192,6 @@ Public Class FormularioArticulos
             Try
                 Dim dataRow As DataRow = DataTable.Select("NumRegistro = " & indiceNavigator)(0)
 
-                CargarComboCategoria()
 
                 ' Rellenar los inputs
                 inputIdArticulo.Text = dataRow("IdArticulo")
@@ -200,8 +201,8 @@ Public Class FormularioArticulos
                 inputExistencias.Text = If(dataRow("Existencias") IsNot DBNull.Value, dataRow("Existencias"), 0)
                 inputPrCost.Text = If(dataRow("PrCost") IsNot DBNull.Value, dataRow("PrCost"), 0)
                 inputPrVent.Text = If(dataRow("PrVent") IsNot DBNull.Value, dataRow("PrVent"), 0)
-                inputBajoMinimo.Text = If(dataRow("BajoMinimo") IsNot DBNull.Value, dataRow("BajoMinimo"), 0)
-                inputSobreMaximo.Text = If(dataRow("SobreMaximo") IsNot DBNull.Value, dataRow("SobreMaximo"), 0)
+                inputBajoMinimo.Text = If(dataRow("BajoMinimo") IsNot DBNull.Value, dataRow("BajoMinimo"), "")
+                inputSobreMaximo.Text = If(dataRow("SobreMaximo") IsNot DBNull.Value, dataRow("SobreMaximo"), "")
                 inputDescripcion.Text = If(dataRow("Descripcion") IsNot DBNull.Value, dataRow("Descripcion"), "")
 
                 ' Poner la imagen
@@ -315,12 +316,20 @@ Public Class FormularioArticulos
             Dim SobreMaximo As String = inputSobreMaximo.Text.Trim
             Dim Descripcion As String = inputDescripcion.Text.Trim
 
+            If BajoMinimo = "" Then
+                BajoMinimo = "NULL"
+            End If
+
+            If SobreMaximo = "" Then
+                SobreMaximo = "NULL"
+            End If
+
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
 
             Dim consulta As String = $"
             INSERT INTO ARTICULOS(Nombre, Descripcion, Categoria, Proveedor, PrVent, PrCost, Existencias, SobreMaximo, BajoMinimo, ImagenBase64)
-            VALUES ('{Nombre}', '{Descripcion}', '{Categoria}', '{Proveedor}', {PrecioVenta}, {PrecioCoste}, '{Existencias}', '{SobreMaximo}', '{BajoMinimo}', '{base64FormularioAñadir}')"
+            VALUES ('{Nombre}', '{Descripcion}', '{Categoria}', '{Proveedor}', {PrecioVenta}, {PrecioCoste}, '{Existencias}', {SobreMaximo}, {BajoMinimo}, '{base64FormularioAñadir}')"
 
             registrosActualizados = InsertBBDD(ConnectionString, consulta)
 
@@ -353,6 +362,15 @@ Public Class FormularioArticulos
             Dim SobreMaximo As String = inputSobreMaximo.Text.Trim
             Dim Descripcion As String = inputDescripcion.Text.Trim
 
+            If BajoMinimo = "" Then
+                BajoMinimo = "NULL"
+            End If
+
+            If SobreMaximo = "" Then
+                SobreMaximo = "NULL"
+            End If
+
+
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
 
@@ -372,14 +390,14 @@ Public Class FormularioArticulos
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
             If registrosActualizados = 1 Then
-                MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
-            Else
-                MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+                    MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
+                Else
+                    MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+                End If
+
+                InterruptorModoEdicion()
+
             End If
-
-            InterruptorModoEdicion()
-
-        End If
 
     End Sub
 
@@ -461,9 +479,11 @@ Public Class FormularioArticulos
             Return False
         End If
 
-        If BajoMinimo >= SobreMaximo Then
-            MsgBox("¡El valor sobre máximo debe de ser mayor que bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
+        If BajoMinimo <> "" And SobreMaximo <> "" Then
+            If BajoMinimo >= SobreMaximo Then
+                MsgBox("¡El valor sobre máximo debe de ser mayor que bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
+                Return False
+            End If
         End If
 
         Return True

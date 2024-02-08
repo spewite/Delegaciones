@@ -27,7 +27,7 @@ Partial Class ExportarPartners
         '
         'btnPartners
         '
-        Me.btnPartners.Location = New System.Drawing.Point(152, 97)
+        Me.btnPartners.Location = New System.Drawing.Point(152, 92)
         Me.btnPartners.Name = "btnPartners"
         Me.btnPartners.Size = New System.Drawing.Size(259, 38)
         Me.btnPartners.TabIndex = 0

@@ -48,7 +48,6 @@ Partial Class ImportarArticulos
         'inputRuta
         '
         Me.inputRuta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputRuta.Enabled = False
         Me.inputRuta.Location = New System.Drawing.Point(31, 69)
         Me.inputRuta.Name = "inputRuta"
         Me.inputRuta.Size = New System.Drawing.Size(363, 22)

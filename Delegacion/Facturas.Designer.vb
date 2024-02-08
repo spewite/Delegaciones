@@ -39,7 +39,6 @@ Partial Class Facturas
         Me.dataGridFacturas = New System.Windows.Forms.DataGridView()
         Me.comboEstadoFactura = New System.Windows.Forms.ComboBox()
         Me.Label64 = New System.Windows.Forms.Label()
-        Me.btnBorrarPedidos = New System.Windows.Forms.Button()
         Me.btnConsultarPedidos = New System.Windows.Forms.Button()
         Me.checkFechaEmitidaDesdeFacturas = New System.Windows.Forms.CheckBox()
         Me.checkFechaEmitidaHastaFacturas = New System.Windows.Forms.CheckBox()
@@ -210,18 +209,9 @@ Partial Class Facturas
         Me.Label64.TabIndex = 42
         Me.Label64.Text = "Estado: "
         '
-        'btnBorrarPedidos
-        '
-        Me.btnBorrarPedidos.Location = New System.Drawing.Point(1087, 109)
-        Me.btnBorrarPedidos.Name = "btnBorrarPedidos"
-        Me.btnBorrarPedidos.Size = New System.Drawing.Size(162, 32)
-        Me.btnBorrarPedidos.TabIndex = 72
-        Me.btnBorrarPedidos.Text = "Borrar"
-        Me.btnBorrarPedidos.UseVisualStyleBackColor = True
-        '
         'btnConsultarPedidos
         '
-        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1087, 66)
+        Me.btnConsultarPedidos.Location = New System.Drawing.Point(1078, 100)
         Me.btnConsultarPedidos.Name = "btnConsultarPedidos"
         Me.btnConsultarPedidos.Size = New System.Drawing.Size(162, 32)
         Me.btnConsultarPedidos.TabIndex = 70
@@ -301,7 +291,7 @@ Partial Class Facturas
         '
         'btnGenerarFacturas
         '
-        Me.btnGenerarFacturas.Location = New System.Drawing.Point(1087, 22)
+        Me.btnGenerarFacturas.Location = New System.Drawing.Point(1078, 43)
         Me.btnGenerarFacturas.Name = "btnGenerarFacturas"
         Me.btnGenerarFacturas.Size = New System.Drawing.Size(162, 32)
         Me.btnGenerarFacturas.TabIndex = 81
@@ -323,7 +313,6 @@ Partial Class Facturas
         Me.Controls.Add(Me.checkFechaEnvioDesdeFacturas)
         Me.Controls.Add(Me.checkFechaEmitidaHastaFacturas)
         Me.Controls.Add(Me.checkFechaEmitidaDesdeFacturas)
-        Me.Controls.Add(Me.btnBorrarPedidos)
         Me.Controls.Add(Me.btnConsultarPedidos)
         Me.Controls.Add(Me.DateFechaPagoHastaFactura)
         Me.Controls.Add(Me.DateFechaPagoDesdeFactura)
@@ -367,7 +356,6 @@ Partial Class Facturas
     Friend WithEvents dataGridFacturas As DataGridView
     Friend WithEvents comboEstadoFactura As ComboBox
     Friend WithEvents Label64 As Label
-    Friend WithEvents btnBorrarPedidos As Button
     Friend WithEvents btnConsultarPedidos As Button
     Friend WithEvents checkFechaEmitidaDesdeFacturas As CheckBox
     Friend WithEvents checkFechaEmitidaHastaFacturas As CheckBox

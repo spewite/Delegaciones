@@ -27,7 +27,7 @@ Partial Class ExportarCatalogo
         '
         'btnCatalogo
         '
-        Me.btnCatalogo.Location = New System.Drawing.Point(152, 97)
+        Me.btnCatalogo.Location = New System.Drawing.Point(152, 91)
         Me.btnCatalogo.Name = "btnCatalogo"
         Me.btnCatalogo.Size = New System.Drawing.Size(259, 38)
         Me.btnCatalogo.TabIndex = 0

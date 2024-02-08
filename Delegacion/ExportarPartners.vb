@@ -18,54 +18,45 @@ Public Class ExportarPartners
 
                 Using command As New SqlCommand(query, connection)
                     Using reader As SqlDataReader = command.ExecuteReader()
-                        ' Crear un cuadro de diálogo para guardar archivo
-                        Dim saveFileDialog As New SaveFileDialog()
-                        saveFileDialog.Filter = "Archivos XML (*.xml)|*.xml"
-                        saveFileDialog.Title = "Guardar archivo XML"
+                        ' Crear un elemento raíz XML
+                        Dim root As New XElement("Partners")
 
-                        If saveFileDialog.ShowDialog() = DialogResult.OK Then
-                            ' Crear un elemento raíz XML
-                            Dim root As New XElement("Partners")
+                        ' Leer cada fila y agregarla como un elemento al XML
+                        While reader.Read()
+                            Dim partner As New XElement("Partner",
+                            New XElement("IdPartner", reader("IdPartner").ToString()),
+                            New XElement("IdZona", reader("IdZona").ToString()),
+                            New XElement("Nombre", reader("Nombre").ToString()),
+                            New XElement("CIF", reader("CIF").ToString()),
+                            New XElement("Direccion", reader("Direccion").ToString()),
+                            New XElement("Telefono", reader("Telefono").ToString()),
+                            New XElement("Correo", reader("Correo").ToString()),
+                            New XElement("FechaRegistro", reader("FechaRegistro").ToString())
+        )
 
-                            ' Leer cada fila y agregarla como un elemento al XML
-                            While reader.Read()
-                                Dim partner As New XElement("Partner",
-                                    New XElement("IdPartner", reader("IdPartner").ToString()),
-                                    New XElement("IdZona", reader("IdZona").ToString()),
-                                    New XElement("Nombre", reader("Nombre").ToString()),
-                                    New XElement("CIF", reader("CIF").ToString()),
-                                    New XElement("Direccion", reader("Direccion").ToString()),
-                                    New XElement("Telefono", reader("Telefono").ToString()),
-                                    New XElement("Correo", reader("Correo").ToString()),
-                                    New XElement("FechaRegistro", reader("FechaRegistro").ToString())
-                                )
+                            ' Agregar el partner al elemento raíz
+                            root.Add(partner)
+                        End While
 
-                                ' Agregar el partner al elemento raíz
-                                root.Add(partner)
-                            End While
+                        ' Definir la ruta y el nombre del archivo donde se guardará el XML
+                        Dim directorio As String = "exportaciones\partners" ' Asegúrate de que este directorio exista o crea el directorio antes de guardar el archivo
 
-                            ' Guardar el XML en el archivo seleccionado por el usuario
-                            root.Save(saveFileDialog.FileName)
+                        Dim fechaHoraFormateada As String = DateTime.Now.ToString("yyyy-MM-dd-(HH_mm)")
+                        Dim nombreArchivo As String = $"Partners_{fechaHoraFormateada}.xml"
 
-                            MessageBox.Show($"Datos de PARTNERS exportados exitosamente a XML ({saveFileDialog.FileName}).", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Dim rutaArchivo As String = System.IO.Path.Combine(Application.StartupPath, directorio, nombreArchivo)
 
-                            ' Preguntar al usuario si desea abrir el cliente de correo electrónico
-                            Dim result As DialogResult = MessageBox.Show("¿Desea enviar el archivo por correo electrónico?", "Enviar por correo", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                        ' Guardar el XML en la ruta especificada
+                        root.Save(rutaArchivo)
 
-                            If result = DialogResult.Yes Then
-                                ' Abrir el cliente de correo electrónico con el archivo adjunto
-                                Try
-                                    Dim processInfo As New ProcessStartInfo()
-                                    processInfo.UseShellExecute = True
-                                    processInfo.FileName = $"mailto:destinatario@example.com?subject=Datos%20de%20PARTNERS&body=Adjunto%20encontrarás%20el%20archivo%20XML%20con%20los%20datos%20de%20PARTNERS&attach={saveFileDialog.FileName}"
+                        MessageBox.Show($"Datos de PARTNERS exportados exitosamente a XML ({nombreArchivo}).", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                                    Process.Start(processInfo)
+                        ' Preguntar al usuario si desea abrir la carpeta
+                        Dim respuesta As DialogResult = MessageBox.Show("¿Desea abrir la carpeta donde se guardó el archivo?", "Abrir Carpeta", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-                                    MessageBox.Show("Cliente de correo electrónico abierto con el archivo adjunto.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                Catch ex As Exception
-                                    MessageBox.Show("Error al intentar abrir el cliente de correo electrónico: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                End Try
-                            End If
+                        If respuesta = DialogResult.Yes Then
+                            ' Abrir la carpeta
+                            Process.Start("explorer.exe", $"/select, ""{rutaArchivo}""")
                         End If
                     End Using
                 End Using

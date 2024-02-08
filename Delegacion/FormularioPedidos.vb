@@ -209,7 +209,6 @@ Public Class FormularioPedidos
             comboComercial.Enabled = True
             comboTransportista.Enabled = True
             comboEstadoPedido.Enabled = True
-            comboIdFactura.Enabled = True
             inputFechaPago.Enabled = True
             inputFechaPedido.Enabled = True
             inputFechaEnvio.Enabled = True
@@ -218,7 +217,6 @@ Public Class FormularioPedidos
             inputFechaPago.Enabled = False
             inputFechaPedido.Enabled = False
             inputFechaEnvio.Enabled = False
-            comboIdFactura.Enabled = False
             comboPartner.Enabled = False
             comboComercial.Enabled = False
             comboTransportista.Enabled = False
@@ -274,7 +272,6 @@ Public Class FormularioPedidos
                 CargarComboBoxes()
 
                 ' Poner el item correspondiente a cada comboxbox comboFactura
-                comboIdFactura.Text = If(dataRow("IdFactura") IsNot DBNull.Value, dataRow("IdFactura"), "")
                 comboPartner.Text = If(dataRow("Partner") IsNot DBNull.Value, dataRow("Partner"), "")
                 comboComercial.Text = If(dataRow("Comercial") IsNot DBNull.Value, dataRow("Comercial"), "")
                 comboTransportista.Text = If(dataRow("Transportista") IsNot DBNull.Value, dataRow("Transportista"), "")
@@ -300,7 +297,6 @@ Public Class FormularioPedidos
         comboComercial.Items.Clear()
         comboTransportista.Items.Clear()
         comboEstadoPedido.Items.Clear()
-        comboIdFactura.Items.Clear()
 
         If Not comboPartner.Items.Contains("") Then
             comboPartner.Items.Add("")
@@ -316,10 +312,6 @@ Public Class FormularioPedidos
 
         If Not comboEstadoPedido.Items.Contains("") Then
             comboEstadoPedido.Items.Add("")
-        End If
-
-        If Not comboIdFactura.Items.Contains("") Then
-            comboIdFactura.Items.Add("")
         End If
 
         ' Combo Partners
@@ -358,13 +350,6 @@ Public Class FormularioPedidos
             End If
         Next
 
-        Dim DataTableFacturas As DataTable = ConsultaBBDD(ConnectionString, "SELECT IdFactura FROM FACTURAS")
-        For Each fila As DataRow In DataTableFacturas.Rows
-            Dim factura As String = fila("IdFactura").ToString()
-            If Not comboIdFactura.Items.Contains(factura) Then
-                comboIdFactura.Items.Add(factura)
-            End If
-        Next
 
     End Sub
 
@@ -407,7 +392,6 @@ Public Class FormularioPedidos
 
         ' Obtener valores de los inputs
         'Dim idPedido As Integer = inputIdPedido.Text.Trim
-        Dim factura As String = If(comboIdFactura.Text.Trim = "", "NULL", comboIdFactura.Text.Trim)
         Dim partner As String = comboPartner.Text.Trim
         Dim comercial As String = comboComercial.Text.Trim
         Dim transportista As String = comboTransportista.Text.Trim
@@ -422,9 +406,8 @@ Public Class FormularioPedidos
 
 
         Dim consulta As String = $"
-        INSERT INTO CAB_PEDIDOS(IdFactura, IdPartner, IdComercial, IdTransportista, IdEstadoPedido, FechaPedido, FechaEnvio, FechaPago)
+        INSERT INTO CAB_PEDIDOS(IdPartner, IdComercial, IdTransportista, IdEstadoPedido, FechaPedido, FechaEnvio, FechaPago)
         VALUES (
-		{factura}, 
 		(SELECT TOP 1 IdPartner FROM PARTNERS WHERE NOMBRE = '{partner}'), 
 		(SELECT TOP 1 IdComercial FROM COMERCIALES WHERE Nombre + ' ' + Apellidos = '{comercial}'), 
 		(SELECT TOP 1 IdTransportista FROM TRANSPORTISTAS WHERE Empresa = '{transportista}'), 
@@ -450,7 +433,6 @@ Public Class FormularioPedidos
 
         ' Obtener valores de los inputs
         Dim idPedido As String = inputIdPedido.Text.Trim
-        Dim factura As String = If(comboIdFactura.Text.Trim = "", "NULL", comboIdFactura.Text.Trim)
         Dim partner As String = comboPartner.Text.Trim
         Dim comercial As String = comboComercial.Text.Trim
         Dim transportista As String = comboTransportista.Text.Trim
@@ -460,7 +442,6 @@ Public Class FormularioPedidos
         Dim fechaPago As Date = inputFechaPago.Text.Trim
 
         Dim consulta As String = $"UPDATE CAB_PEDIDOS SET 
-                                IdFactura = {factura},
                                 IdPartner = (SELECT IdPartner FROM PARTNERS WHERE Nombre = '{partner}'),
                                 IdComercial = (SELECT IdComercial FROM COMERCIALES comer WHERE comer.Nombre + ' ' + comer.Apellidos = '{comercial}'), 
                                 IdTransportista = (SELECT IdTransportista FROM TRANSPORTISTAS WHERE Empresa = '{transportista}'),

@@ -390,21 +390,22 @@ Public Class FormularioArticulos
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
             If registrosActualizados = 1 Then
-                    MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
-                Else
-                    MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
-                End If
+                MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
+            Else
+                MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+            End If
 
-                InterruptorModoEdicion()
+            InterruptorModoEdicion()
 
             End If
 
     End Sub
 
     Function ValidarCampos() As Boolean
-        ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
+        ' Funciona para validar el formulario entero. La funcion retornará un boolean sobre si es válido o no.
 
-        Dim basura As Integer
+        Dim valorEntero As Integer
+        Dim valorDouble As Double
 
         Dim IdArticulo As String = inputIdArticulo.Text.Trim
         Dim Nombre As String = inputNombre.Text.Trim
@@ -417,7 +418,7 @@ Public Class FormularioArticulos
         Dim SobreMaximo As String = inputSobreMaximo.Text.Trim
         Dim Descripcion As String = inputDescripcion.Text.Trim
 
-        ' Validacion de los inputs
+        ' Validación de los inputs
 
         If Nombre = "" Then
             MsgBox("¡Debes rellenar el campo nombre!", vbExclamation + vbOKOnly, "Error de validación")
@@ -429,58 +430,35 @@ Public Class FormularioArticulos
             Return False
         End If
 
-        If Not Integer.TryParse(Existencias, basura) Then
-            MsgBox("¡Debes introducir un valor entero en el campo de existencias!", vbExclamation + vbOKOnly, "Error de validación")
+        If Not Integer.TryParse(Existencias, valorEntero) OrElse valorEntero < 0 Then
+            MsgBox("¡Debes introducir un valor entero positivo en el campo de existencias!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If (basura < 0) Then
-            MsgBox("¡Debes introducir un valor positivo en el campo de existencias!", vbExclamation + vbOKOnly, "Error de validación")
+        If Not Double.TryParse(PrecioCoste, valorDouble) OrElse valorDouble < 0 Then
+            MsgBox("¡Debes introducir un valor numérico positivo en el campo de precio coste!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not Double.TryParse(PrecioCoste, basura) Then
-            MsgBox("¡Debes introducir un valor numérico en el campo de precio coste!", vbExclamation + vbOKOnly, "Error de validación")
+        If Not Double.TryParse(PrecioVenta, valorDouble) OrElse valorDouble < 0 Then
+            MsgBox("¡Debes introducir un valor numérico positivo en el campo de precio venta!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If (basura < 0) Then
-            MsgBox("¡Debes introducir un valor positivo en el campo de precio voste!", vbExclamation + vbOKOnly, "Error de validación")
+        If BajoMinimo <> "" AndAlso (Not Integer.TryParse(BajoMinimo, valorEntero) OrElse valorEntero < 0) Then
+            MsgBox("¡Debes introducir un valor entero positivo en el campo de bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not Double.TryParse(PrecioVenta, basura) Then
-            MsgBox("¡Debes introducir un valor numérico en el campo de precio venta!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If (basura < 0) Then
-            MsgBox("¡Debes introducir un valor positivo en el campo de precio venta!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If Not Integer.TryParse(BajoMinimo, basura) And BajoMinimo <> "" Then
-            MsgBox("¡Debes introducir un valor entero en el campo de bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If (basura < 0) Then
-            MsgBox("¡Debes introducir un valor positivo en el campo de bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If Not Integer.TryParse(SobreMaximo, basura) And SobreMaximo <> "" Then
-            MsgBox("¡Debes introducir un valor entero en el campo de sobre máximo!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If (basura < 0) Then
-            MsgBox("¡Debes introducir un valor positivo en el campo de sobre máximo!", vbExclamation + vbOKOnly, "Error de validación")
+        If SobreMaximo <> "" AndAlso (Not Integer.TryParse(SobreMaximo, valorEntero) OrElse valorEntero < 0) Then
+            MsgBox("¡Debes introducir un valor entero positivo en el campo de sobre máximo!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
         If BajoMinimo <> "" And SobreMaximo <> "" Then
-            If BajoMinimo >= SobreMaximo Then
+            Dim bajoMin As Integer = Integer.Parse(BajoMinimo)
+            Dim sobreMax As Integer = Integer.Parse(SobreMaximo)
+            If bajoMin >= sobreMax Then
                 MsgBox("¡El valor sobre máximo debe de ser mayor que bajo mínimo!", vbExclamation + vbOKOnly, "Error de validación")
                 Return False
             End If

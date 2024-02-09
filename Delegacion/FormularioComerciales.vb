@@ -341,34 +341,39 @@ Public Class FormularioComerciales
     End Sub
 
     Function ValidarCampos() As Boolean
-        ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
+        ' Obtener valores de los inputs
+        Dim IdComercial As String = comboIdComercial.Text.Trim
+        Dim Zona As String = comboZona.Text.Trim
+        Dim Nombre As String = inputNombre.Text.Trim
+        Dim Apellidos As String = inputApellidos.Text.Trim
+        Dim Telefono As String = inputTelefono.Text.Trim
+        Dim Direccion As String = inputDireccion.Text.Trim
+        Dim Correo As String = inputCorreo.Text.Trim
+        Dim DNI As String = inputDNI.Text.Trim
 
-        Dim basura As Integer
-
-        Dim telefono As String = inputTelefono.Text.Trim
-
-
-        '' Validacion de los inputs
-        If Not Integer.TryParse(telefono, basura) Then
-            MsgBox("¡Debes introducir un valor entero en el campo de telefono!", vbExclamation + vbOKOnly, "Error de validación")
+        ' Validación de campos no vacíos
+        If String.IsNullOrEmpty(IdComercial) OrElse String.IsNullOrEmpty(Zona) OrElse String.IsNullOrEmpty(Nombre) OrElse String.IsNullOrEmpty(Apellidos) OrElse String.IsNullOrEmpty(Telefono) OrElse String.IsNullOrEmpty(Direccion) OrElse String.IsNullOrEmpty(Correo) OrElse String.IsNullOrEmpty(DNI) Then
+            MsgBox("Todos los campos son obligatorios.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If telefono.Length <> 9 Then
-            MsgBox("¡El teléfono debe contener 9 números!", vbExclamation + vbOKOnly, "Error de validación")
+        ' Validación de formato de correo electrónico
+        If Not Regex.IsMatch(Correo, "^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b$") Then
+            MsgBox("El formato del correo electrónico no es válido.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not EsCorreoValido(inputCorreo.Text.Trim) Then
-            MsgBox("¡El correo electrónico no es válido!", vbExclamation + vbOKOnly, "Error de validación")
+        ' Validación de número de teléfono
+        If Not Telefono.All(AddressOf Char.IsDigit) OrElse Telefono.Length < 7 Then ' Asumiendo un mínimo de 7 dígitos para el teléfono
+            MsgBox("El teléfono debe ser numérico y de al menos 7 dígitos.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If Not EsDNIValido(inputDNI.Text.Trim) Then
-            MsgBox("¡Inserte un DNI válido!", vbExclamation + vbOKOnly, "Error de validación")
+        ' Validación de DNI
+        If Not DNI.All(AddressOf Char.IsDigit) OrElse DNI.Length <> 8 Then ' Asumiendo que el DNI debe tener 8 dígitos
+            MsgBox("El DNI debe ser numérico y de 8 dígitos.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
-
 
         Return True
     End Function

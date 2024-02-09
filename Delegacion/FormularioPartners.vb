@@ -314,9 +314,7 @@ Public Class FormularioPartners
     End Sub
 
     Function ValidarCampos() As Boolean
-        ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
-
-        Dim basura As Integer
+        ' Función para validar el formulario entero. La función retornará un booleano sobre si es válido o no.
 
         Dim IdPartner As String = inputIdPartner.Text.Trim
         Dim IdZona As String = comboZonaPartners.Text.Trim
@@ -326,20 +324,59 @@ Public Class FormularioPartners
         Dim Telefono As String = inputTelefono.Text.Trim
         Dim Correo As String = inputCorreo.Text.Trim
 
+        ' Validación de los inputs
 
-        ' Validacion de los inputs
+        ' Validación de IdPartner -
+        If String.IsNullOrEmpty(IdPartner) Then
+            MsgBox("¡Debe seleccionar un Partner!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validación de IdZona - Asegurarse de que se haya seleccionado una opción
+        If String.IsNullOrEmpty(IdZona) Then
+            MsgBox("¡Debe seleccionar una zona!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validación de Nombre
         If String.IsNullOrEmpty(Nombre) Then
             MsgBox("¡El campo Nombre no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
-        End If
-        If IsNumeric(Nombre) Then
+        ElseIf IsNumeric(Nombre) Then
             MsgBox("¡El campo Nombre no puede ser un número!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
+
+        ' Validación de CIF
+        If String.IsNullOrEmpty(Cif) Then
+            MsgBox("¡El campo CIF no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        ElseIf Not System.Text.RegularExpressions.Regex.IsMatch(Cif, "^[ABCDEFGHJKLMNPQRSUVW][0-9]{7}[A-J0-9]$") Then
+            MsgBox("¡El formato del CIF no es válido!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validación de Dirección - Asegurarse de que no esté vacía
+        If String.IsNullOrEmpty(Direccion) Then
+            MsgBox("¡El campo Dirección no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validación de Teléfono
         If Not String.IsNullOrEmpty(Telefono) AndAlso Not IsNumeric(Telefono) Then
             MsgBox("¡El campo Teléfono solo puede contener números!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
+        ElseIf Telefono.Length < 7 Or Telefono.Length > 10 Then ' Asumiendo longitud válida entre 7 y 10 dígitos
+            MsgBox("¡El teléfono debe tener entre 7 y 10 dígitos!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
         End If
+
+        ' Validación de Correo Electrónico
+        If Not String.IsNullOrEmpty(Correo) AndAlso Not System.Text.RegularExpressions.Regex.IsMatch(Correo, "^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b$") Then
+            MsgBox("¡El formato del correo electrónico no es válido!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
         Return True
     End Function
 

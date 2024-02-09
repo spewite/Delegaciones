@@ -255,28 +255,34 @@ Public Class FormularioTransportistas
     End Sub
 
     Function ValidarCampos() As Boolean
-        ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
+        ' Función para validar el formulario entero. La función retornará un booleano sobre si es válido o no.
 
-        Dim basura As Integer
+        Dim IdTransportista As String = inputIdTransportista.Text.Trim
+        Dim Empresa As String = inputEmpresa.Text.Trim
+        Dim Telefono As String = inputTelefono.Text.Trim
 
-        Dim telefono As String = inputTelefono.Text.Trim
-
-        If String.IsNullOrEmpty(inputEmpresa.Text) Or String.IsNullOrWhiteSpace(inputEmpresa.Text) Then
-            MsgBox("¡Debes rellenar el campo Empresa!", vbExclamation + vbOKOnly, "Error de validación")
+        ' Validación de campos no vacíos
+        If String.IsNullOrEmpty(IdTransportista) Then
+            MsgBox("¡El campo ID del Transportista no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        '' Validacion de los inputs
-        If Not Integer.TryParse(telefono, basura) Then
-            MsgBox("¡Debes introducir un valor entero en el campo de telefono!", vbExclamation + vbOKOnly, "Error de validación")
+        If String.IsNullOrEmpty(Empresa) Then
+            MsgBox("¡El campo Empresa no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If telefono.Length <> 9 Then
-            MsgBox("¡El teléfono debe contener 9 números!", vbExclamation + vbOKOnly, "Error de validación")
+        ' Validación de Teléfono
+        If String.IsNullOrEmpty(Telefono) Then
+            MsgBox("¡El campo Teléfono no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        ElseIf Not IsNumeric(Telefono) Then
+            MsgBox("¡El campo Teléfono solo puede contener números!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        ElseIf Telefono.Length < 7 OrElse Telefono.Length > 10 Then
+            MsgBox("¡El teléfono debe tener entre 7 y 10 dígitos!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
-
 
         Return True
     End Function

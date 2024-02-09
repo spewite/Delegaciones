@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Partners>
+  <Partner>
+    <IdPartner>1001</IdPartner>
+    <IdZona>5</IdZona>
+    <Nombre>Julen</Nombre>
+    <CIF>Cif</CIF>
+    <Direccion>Zarautz</Direccion>
+    <Telefono>675473456</Telefono>
+    <Correo>ASDF@AS.COM</Correo>
+    <FechaRegistro>08/02/2024 0:00:00</FechaRegistro>
+  </Partner>
+</Partners>

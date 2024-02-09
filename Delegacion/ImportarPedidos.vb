@@ -54,6 +54,7 @@ Public Class ImportarPedidos
                 Dim insertLineaQuery As String = "INSERT INTO LINEAS_PEDIDO (IdPedido, IdArticulo, Cantidad, Descuento, Precio) VALUES (@IdPedido, @IdArticulo, @Cantidad, @Descuento, @Precio)"
 
                 ' Crear y ejecutar el comando SQL para cada nodo "pedido"
+
                 For Each pedidoNode As XmlNode In pedidoNodes
                     Dim idPedido As Integer = Convert.ToInt32(pedidoNode.SelectSingleNode("cabecera/IdPedido").InnerText)
                     Dim idFactura As Integer = Convert.ToInt32(pedidoNode.SelectSingleNode("cabecera/IdFactura").InnerText)

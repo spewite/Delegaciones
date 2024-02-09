@@ -389,23 +389,25 @@ Public Class FormularioPedidos
     End Sub
 
     Private Sub InsertarRegistro()
-
-        ' Obtener valores de los inputs
-        'Dim idPedido As Integer = inputIdPedido.Text.Trim
-        Dim partner As String = comboPartner.Text.Trim
-        Dim comercial As String = comboComercial.Text.Trim
-        Dim transportista As String = comboTransportista.Text.Trim
-        Dim estadoPedido As String = comboEstadoPedido.Text.Trim
-        Dim fechaPedido As Date = inputFechaPedido.Text.Trim
-        Dim fechaEnvio As Date = inputFechaEnvio.Text.Trim
-        Dim fechaPago As Date = inputFechaPago.Text.Trim
-
-        ' Construccion de la Consulta
-        Dim registrosActualizados As Integer
+        If ValidarCampos() = True Then
 
 
+            ' Obtener valores de los inputs
+            'Dim idPedido As Integer = inputIdPedido.Text.Trim
+            Dim partner As String = comboPartner.Text.Trim
+            Dim comercial As String = comboComercial.Text.Trim
+            Dim transportista As String = comboTransportista.Text.Trim
+            Dim estadoPedido As String = comboEstadoPedido.Text.Trim
+            Dim fechaPedido As Date = inputFechaPedido.Text.Trim
+            Dim fechaEnvio As Date = inputFechaEnvio.Text.Trim
+            Dim fechaPago As Date = inputFechaPago.Text.Trim
 
-        Dim consulta As String = $"
+            ' Construccion de la Consulta
+            Dim registrosActualizados As Integer
+
+
+
+            Dim consulta As String = $"
         INSERT INTO CAB_PEDIDOS(IdPartner, IdComercial, IdTransportista, IdEstadoPedido, FechaPedido, FechaEnvio, FechaPago)
         VALUES (
 		(SELECT TOP 1 IdPartner FROM PARTNERS WHERE NOMBRE = '{partner}'), 
@@ -417,31 +419,34 @@ Public Class FormularioPedidos
 		CONVERT(DATETIME, '{fechaPago}', 103))
         "
 
-        registrosActualizados = UpdateBBDD(ConnectionString, consulta)
+            registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
-        If registrosActualizados = 1 Then
-            MsgBox("Registro insertado con éxito.", vbInformation + vbOKOnly, "Registro insertado")
-        Else
-            MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+            If registrosActualizados = 1 Then
+                MsgBox("Registro insertado con éxito.", vbInformation + vbOKOnly, "Registro insertado")
+            Else
+                MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+            End If
+
+            InterruptorModoEdicion()
+            Me.Close()
         End If
-
-        InterruptorModoEdicion()
-        Me.Close()
     End Sub
 
     Private Sub ActualizarRegistro()
 
-        ' Obtener valores de los inputs
-        Dim idPedido As String = inputIdPedido.Text.Trim
-        Dim partner As String = comboPartner.Text.Trim
-        Dim comercial As String = comboComercial.Text.Trim
-        Dim transportista As String = comboTransportista.Text.Trim
-        Dim estadoPedido As String = comboEstadoPedido.Text.Trim
-        Dim fechaPedido As Date = inputFechaPedido.Text.Trim
-        Dim fechaEnvio As Date = inputFechaEnvio.Text.Trim
-        Dim fechaPago As Date = inputFechaPago.Text.Trim
+        If ValidarCampos() = True Then
 
-        Dim consulta As String = $"UPDATE CAB_PEDIDOS SET 
+            ' Obtener valores de los inputs
+            Dim idPedido As String = inputIdPedido.Text.Trim
+            Dim partner As String = comboPartner.Text.Trim
+            Dim comercial As String = comboComercial.Text.Trim
+            Dim transportista As String = comboTransportista.Text.Trim
+            Dim estadoPedido As String = comboEstadoPedido.Text.Trim
+            Dim fechaPedido As Date = inputFechaPedido.Text.Trim
+            Dim fechaEnvio As Date = inputFechaEnvio.Text.Trim
+            Dim fechaPago As Date = inputFechaPago.Text.Trim
+
+            Dim consulta As String = $"UPDATE CAB_PEDIDOS SET 
                                 IdPartner = (SELECT IdPartner FROM PARTNERS WHERE Nombre = '{partner}'),
                                 IdComercial = (SELECT IdComercial FROM COMERCIALES comer WHERE comer.Nombre + ' ' + comer.Apellidos = '{comercial}'), 
                                 IdTransportista = (SELECT IdTransportista FROM TRANSPORTISTAS WHERE Empresa = '{transportista}'),
@@ -452,15 +457,16 @@ Public Class FormularioPedidos
                                 WHERE IdPedido = '{idPedido}'"
 
 
-        Dim registrosActualizados As Integer = UpdateBBDD(ConnectionString, consulta)
+            Dim registrosActualizados As Integer = UpdateBBDD(ConnectionString, consulta)
 
-        If registrosActualizados = 1 Then
-            MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
-        Else
-            MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+            If registrosActualizados = 1 Then
+                MsgBox("Registro actualizado con éxito.", vbInformation + vbOKOnly, "Registro actualizado")
+            Else
+                MsgBox("Ha habido un error al actualizar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
+            End If
+
+            InterruptorModoEdicion()
         End If
-
-        InterruptorModoEdicion()
     End Sub
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
@@ -596,6 +602,75 @@ Public Class FormularioPedidos
         ActualizarModo()
 
     End Sub
+    Function ValidarCampos() As Boolean
+        ' Función para validar el formulario entero. La función retornará un booleano sobre si es válido o no.
+
+        Dim idPedido As String = inputIdPedido.Text.Trim
+        Dim partner As String = comboPartner.Text.Trim
+        Dim comercial As String = comboComercial.Text.Trim
+        Dim transportista As String = comboTransportista.Text.Trim
+        Dim estadoPedido As String = comboEstadoPedido.Text.Trim
+        Dim fechaPedido As String = inputFechaPedido.Text.Trim
+        Dim fechaEnvio As String = inputFechaEnvio.Text.Trim
+        Dim fechaPago As String = inputFechaPago.Text.Trim
+        Dim fechaPedidoDate, fechaEnvioDate, fechaPagoDate As Date
+
+        ' Validación de campos no vacíos
+        If String.IsNullOrEmpty(idPedido) Then
+            MsgBox("¡El campo ID del Pedido no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If String.IsNullOrEmpty(partner) Then
+            MsgBox("¡Debe seleccionar un partner!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If String.IsNullOrEmpty(comercial) Then
+            MsgBox("¡Debe seleccionar un comercial!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If String.IsNullOrEmpty(transportista) Then
+            MsgBox("¡Debe seleccionar un transportista!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If String.IsNullOrEmpty(estadoPedido) Then
+            MsgBox("¡Debe seleccionar el estado del pedido!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validación de fechas
+        If Not Date.TryParse(fechaPedido, fechaPedidoDate) Then
+            MsgBox("¡La fecha del pedido no tiene un formato válido o está vacía!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If Not String.IsNullOrEmpty(fechaEnvio) AndAlso Not Date.TryParse(fechaEnvio, fechaEnvioDate) Then
+            MsgBox("¡La fecha de envío no tiene un formato válido!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If Not String.IsNullOrEmpty(fechaPago) AndAlso Not Date.TryParse(fechaPago, fechaPagoDate) Then
+            MsgBox("¡La fecha de pago no tiene un formato válido!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validación de lógica de fechas (opcional según reglas de negocio)
+        ' Por ejemplo, la fecha de envío debe ser después de la fecha del pedido y la fecha de pago igual o posterior a la fecha de envío
+        If fechaEnvioDate <> Date.MinValue AndAlso fechaPedidoDate > fechaEnvioDate Then
+            MsgBox("¡La fecha de envío debe ser igual o posterior a la fecha del pedido!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        If fechaPagoDate <> Date.MinValue AndAlso fechaEnvioDate > fechaPagoDate Then
+            MsgBox("¡La fecha de pago debe ser igual o posterior a la fecha de envío!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        Return True
+    End Function
 
     Private Sub btnGenerarFactura_Click(sender As Object, e As EventArgs)
 

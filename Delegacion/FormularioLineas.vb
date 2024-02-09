@@ -414,28 +414,37 @@ Public Class FormularioLineas
     End Sub
 
     Function ValidarCampos() As Boolean
-        ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
+        ' Función para validar el formulario entero. La función retornará un booleano indicando si es válido o no.
 
-        If comboIdPedido.Text = "" Then
+        ' Validación de selección del ID del pedido
+        If comboIdPedido.Text.Trim = "" Then
             MsgBox("Seleccione el ID del pedido.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If comboArticulo.Text = "" Then
+        ' Validación de selección de artículo
+        If comboArticulo.Text.Trim = "" Then
             MsgBox("Seleccione un artículo.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        If inputCantidad.Text = "" Then
+        ' Validación del campo Cantidad
+        If inputCantidad.Text.Trim = "" Then
             MsgBox("Rellene el campo Cantidad.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        Dim basura As Integer
+        Dim cantidad As Integer
 
-        ' Validacion de los inputs
-        If Not Integer.TryParse(inputCantidad.Text, basura) Then
-            MsgBox("¡Debes introducir un valor entero en el campo de existencias!", vbExclamation + vbOKOnly, "Error de validación")
+        ' Validación de que la Cantidad sea un número entero
+        If Not Integer.TryParse(inputCantidad.Text.Trim, cantidad) Then
+            MsgBox("¡Debe introducir un valor entero en el campo de Cantidad!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validación de que la Cantidad sea un valor positivo
+        If cantidad <= 0 Then
+            MsgBox("¡La Cantidad debe ser un valor positivo mayor a cero!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 

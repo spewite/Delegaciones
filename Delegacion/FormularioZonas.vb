@@ -257,16 +257,32 @@ Public Class FormularioZonas
     End Sub
 
     Function ValidarCampos() As Boolean
-        ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
+        ' Función para validar el formulario entero. La función retornará un booleano sobre si es válido o no.
 
+        Dim IdZona As String = inputIdZona.Text.Trim
+        Dim Descripcion As String = inputZona.Text.Trim
 
-        If String.IsNullOrEmpty(inputZona.Text) Or String.IsNullOrWhiteSpace(inputZona.Text) Then
-            MsgBox("¡Debes rellenar el campo Empresa!", vbExclamation + vbOKOnly, "Error de validación")
+        ' Validación de campo no vacío para IdZona
+        If String.IsNullOrEmpty(IdZona) Then
+            MsgBox("¡El campo ID de Zona no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validación de campo no vacío para Descripcion
+        If String.IsNullOrEmpty(Descripcion) Then
+            MsgBox("¡El campo Descripción no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
+            Return False
+        End If
+
+        ' Validaciones adicionales para Descripcion si es necesario, por ejemplo, longitud mínima o máxima
+        If Descripcion.Length < 3 Then ' Ejemplo de validación de longitud mínima
+            MsgBox("¡La descripción debe tener al menos 3 caracteres!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
         Return True
     End Function
+
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAñadir.Click
         ' BindingNavigatorAddNewItem: boton añadir del BindingNavigator

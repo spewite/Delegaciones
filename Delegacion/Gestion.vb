@@ -330,7 +330,10 @@ Public Class Gestion
                     ' Poner a IdPartner = Null todos los pedidos de este partner
                     Dim consultaDesvincularPedidos As String = $"UPDATE CAB_PEDIDOS SET IdPartner = NULL WHERE IdPartner = {idPartner}"
                     Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularPedidos)
-                    MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Partners desvinculados.")
+
+                    If pedidosActualizados > 0 Then
+                        MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Partners desvinculados.")
+                    End If
 
                     ' Eliminar el artículo 
                     Dim consultaEliminarPartner As String = $"DELETE FROM PARTNERS Where IdPartner = {idPartner}"
@@ -449,7 +452,11 @@ Public Class Gestion
                     ' Poner a IdTransportista = Null todos los pedidos de este transportista
                     Dim consultaDesvincularComercial As String = $"UPDATE CAB_PEDIDOS SET IdComercial = NULL WHERE IdComercial = {idComercial}"
                     Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularComercial)
-                    MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
+
+                    If pedidosActualizados > 0 Then
+                        MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
+
+                    End If
 
                     ' Eliminar el transportista
                     Dim consultaEliminarComercial As String = $"DELETE FROM COMERCIALES Where IdComercial = {idComercial}"
@@ -529,7 +536,10 @@ Public Class Gestion
                     ' Poner a IdTransportista = Null todos los pedidos de este transportista
                     Dim consultaDesvincularTransportista As String = $"UPDATE CAB_PEDIDOS SET IdTransportista = NULL WHERE IdTransportista = {idTransportista}"
                     Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularTransportista)
-                    MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Transportistas desvinculados.")
+
+                    If pedidosActualizados > 0 Then
+                        MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Transportistas desvinculados.")
+                    End If
 
                     ' Eliminar el transportista
                     Dim consultaEliminarTransportista As String = $"DELETE FROM TRANSPORTISTAS Where IdTransportista = {idTransportista}"
@@ -623,14 +633,16 @@ Public Class Gestion
 
                     Dim comercialesActualizados As Integer = UpdateBBDD(connectionString, SentenciaUpdateComerciales)
 
-                    MsgBox($"Se han desvinculado {comercialesActualizados} comerciales.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
+                    If comercialesActualizados > 0 Then
+                        MsgBox($"Se han desvinculado {comercialesActualizados} comerciales.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
+                    End If
 
 
                     Dim partnersActualizados As Integer = UpdateBBDD(connectionString, SentenciaUpdatePartners)
 
-                    MsgBox($"Se han desvinculado {partnersActualizados} partners.", vbInformation + vbOKOnly, "Partners desvinculados.")
-
-
+                    If partnersActualizados > 0 Then
+                        MsgBox($"Se han desvinculado {partnersActualizados} partners.", vbInformation + vbOKOnly, "Partners desvinculados.")
+                    End If
 
                     Dim SentenciaDelete As String = $"DELETE FROM ZONAS WHERE IdZona = {idZona}"
 
@@ -663,6 +675,64 @@ Public Class Gestion
         CargarDataGridZonas()
     End Sub
 
+
+    '---------------------------------------------------------'
+    '                                                         '
+    '           HABILITAR / DESHABILITAR BOTON ELIMINAR       '
+    '              CUANDO SE SELECCIONA UNA LINEA             '
+    '                                                         '
+    '---------------------------------------------------------'
+
+
+    Private Sub dataGridArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridArticulos.SelectionChanged
+        If dataGridArticulos.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnBorrarArticulos.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnBorrarArticulos.Enabled = False
+        End If
+    End Sub
+
+    Private Sub dataGridPartners_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridPartners.SelectionChanged
+        If dataGridPartners.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnBorrarPartners.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnBorrarPartners.Enabled = False
+        End If
+    End Sub
+
+    Private Sub dataGridComerciales_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridComerciales.SelectionChanged
+        If dataGridComerciales.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnBorrarComerciales.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnBorrarComerciales.Enabled = False
+        End If
+    End Sub
+
+    Private Sub dataGridTransportistas_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridTransportistas.SelectionChanged
+        If dataGridTransportistas.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnBorrarTransportista.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnBorrarTransportista.Enabled = False
+        End If
+    End Sub
+
+    Private Sub dataGridZonas_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridZonas.SelectionChanged
+        If dataGridZonas.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnBorrarZonas.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnBorrarZonas.Enabled = False
+        End If
+    End Sub
 
 
 End Class

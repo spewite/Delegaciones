@@ -175,42 +175,6 @@ Public Class Pedidos
             sentenciaWhere &= $" AND IdFactura = '{comboIdFacturas.Text.Trim}'"
         End If
 
-
-        'If Not String.IsNullOrEmpty(inputIdLineas.Text.Trim) Then
-        '    ' COGE EL VALOR DEL INPUT LINEAS (Ej: 1, 3, 5) Y POR CADA NUMERO AÑADE UNA SENTENCIA OR A LA CONSULTA
-        '    Dim primeraConsulta As Boolean = True
-
-        '    Dim cadenaIdLineas As String = inputIdLineas.Text.Replace(" ", "")
-
-        '    Dim arrayIdLineas As String() = cadenaIdLineas.Split(","c)
-
-        '    ' Hacer un bucle por cada numero en el array 'arrayIdLineas'
-        '    For Each stringIdLinea As String In arrayIdLineas
-        '        ' Convertir cada representación de cadena de un número a un entero real
-        '        Dim idPedido As Integer
-        '        If Integer.TryParse(stringIdLinea, idPedido) Then
-        '            ' Ahora 'number' contiene el valor entero, y puedes usarlo según sea necesario
-
-        '            Dim conector As String = IIf(primeraConsulta, "OR", "AND")
-
-        '            consulta &= $" {conector} IdPedido IN (SELECT cab.IdPedido 
-        '                                        FROM cab_pedidos cab
-        '                                        INNER JOIN LINEAS_PEDIDO lineas ON (cab.IdPedido = lineas.IdPedido)
-        '                                        AND IdLinea = {idPedido})"
-
-        '            'sentenciaWhere &= $" AND {idPedido} IN Lineas"
-
-        '            primeraConsulta = False
-        '        Else
-        '            ' Ha habido un error al pasar a int
-        '            MsgBox("No se ha podido convertir el IdLinea a un valor numérico. Verifica el formato del campo. No se va a tomar en cuenta el IdLinea para la consulta." + vbExclamation + vbOKOnly, "Error al leer los valores IdLinea")
-        '        End If
-        '    Next
-
-        '    'consulta &= $" AND IdLinea IN {arrayIdLinea}"
-        '    'sentenciaWhere &= $" AND IdLinea IN {arrayIdLinea}"
-        'End If
-
         consulta &= $" ORDER BY IdPedido"
 
         dataTable = ConsultaBBDD(connectionString, consulta)
@@ -335,5 +299,16 @@ Public Class Pedidos
     Private Sub CerrarFormularioPedidos(sender As Object, e As FormClosedEventArgs) Handles formularioPedidos.FormClosed
         CargarDataGridPedido()
     End Sub
+
+    Private Sub dataGridPedidos_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridPedidos.SelectionChanged
+        If dataGridPedidos.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnBorrarPedidos.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnBorrarPedidos.Enabled = False
+        End If
+    End Sub
+
 
 End Class

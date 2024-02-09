@@ -328,8 +328,8 @@ Public Class FormularioArticulos
             Dim registrosActualizados As Integer
 
             Dim consulta As String = $"
-            INSERT INTO ARTICULOS(Nombre, Descripcion, Categoria, Proveedor, PrVent, PrCost, Existencias, SobreMaximo, BajoMinimo, ImagenBase64)
-            VALUES ('{Nombre}', '{Descripcion}', '{Categoria}', '{Proveedor}', {PrecioVenta}, {PrecioCoste}, '{Existencias}', {SobreMaximo}, {BajoMinimo}, '{base64FormularioAñadir}')"
+            INSERT INTO ARTICULOS(IdArticulo, Nombre, Descripcion, Categoria, Proveedor, PrVent, PrCost, Existencias, SobreMaximo, BajoMinimo, ImagenBase64)
+            VALUES ((SELECT Max(IdArticulo)+1 FROM ARTICULOS), '{Nombre}', '{Descripcion}', '{Categoria}', '{Proveedor}', {PrecioVenta}, {PrecioCoste}, '{Existencias}', {SobreMaximo}, {BajoMinimo}, '{base64FormularioAñadir}')"
 
             registrosActualizados = InsertBBDD(ConnectionString, consulta)
 

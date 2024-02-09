@@ -22,6 +22,7 @@ Public Class Gestion
     Private WithEvents formularioComerciales As FormularioComerciales
     Private WithEvents formularioTransportistas As FormularioTransportistas
     Private WithEvents formularioZonas As FormularioZonas
+    Private WithEvents formularioImportarArticulos As ImportarArticulos
 
     Dim advertenciaSeleccionarRegistroEliminar As String = "Seleccione al menos un registro para poder eliminarla. Ten en cuenta que tienes que seleccionar el artícluo entero haciendo click en la primera columna de la tabla. Puedes seleccionar varias filas manteniendo Ctrl al hacer click, o arrastrando el raton."
 
@@ -197,9 +198,14 @@ Public Class Gestion
     End Sub
 
     Private Sub btnImportarArticulos_Click(sender As Object, e As EventArgs) Handles btnImportarArticulos.Click
-        Dim formularioImportarArticulos As New ImportarArticulos()
+        formularioImportarArticulos = New ImportarArticulos()
         formularioImportarArticulos.Show()
     End Sub
+
+    Private Sub CerrarFormularioImportar(sender As Object, e As FormClosedEventArgs) Handles formularioImportarArticulos.FormClosed
+        CargarDataGridArticulo()
+    End Sub
+
 
 
     '---------------------------------------------------------'

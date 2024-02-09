@@ -1,10 +1,12 @@
 ﻿Imports Microsoft.VisualBasic.FileIO
 Imports System.Data.SqlClient
-
+Imports Dllgaciones.BaseDeDatos
 Public Class ImportarArticulos
 
     Dim rutaCSV As String
     Dim RegistrosInsertados As Integer = 0
+    Dim RegistrosActualizados As Integer = 0
+    Dim ConnectionString As String = ConexionBD.CadenaConexion
 
     Private Sub btnCargar_Click(sender As Object, e As EventArgs) Handles btnCargar.Click
         Try
@@ -32,7 +34,6 @@ Public Class ImportarArticulos
 
     Private Sub btnSubir_Click(sender As Object, e As EventArgs) Handles btnSubir.Click
         Dim cadenaConexion As String = ConexionBD.CadenaConexion
-        Dim nombreTabla As String = "ARTICULOS"
 
         Try
             Using cn As New SqlConnection(cadenaConexion)
@@ -53,33 +54,54 @@ Public Class ImportarArticulos
                             Dim campos As String() = tfp.ReadFields()
 
                             ' Accede a cada campo según su posición en el archivo CSV
-                            Dim nombre As String = campos(0)
-                            Dim descripcion As String = campos(1)
-                            Dim proveedor As String = campos(2)
+                            Dim IdArticulo As String = campos(0)
+                            Dim nombre As String = campos(1)
+                            Dim descripcion As String = campos(2)
+                            Dim proveedor As String = campos(3)
 
                             ' Convertir el precio de venta y el coste a Decimal
                             Dim precioVenta As Decimal
                             Dim coste As Decimal
 
-                            If Decimal.TryParse(campos(3), Globalization.NumberStyles.AllowDecimalPoint, Globalization.CultureInfo.InvariantCulture, precioVenta) AndAlso
-                                Decimal.TryParse(campos(4), Globalization.NumberStyles.AllowDecimalPoint, Globalization.CultureInfo.InvariantCulture, coste) Then
-                                ' Ambas conversiones fueron exitosas
+                            If Decimal.TryParse(campos(4), Globalization.NumberStyles.AllowDecimalPoint, Globalization.CultureInfo.InvariantCulture, precioVenta) AndAlso
+                                Decimal.TryParse(campos(5), Globalization.NumberStyles.AllowDecimalPoint, Globalization.CultureInfo.InvariantCulture, coste) Then
 
-                                ' Puedes manejar el campo de imagen si es necesario
+                                ' Si SE METE EN ESTE PUNTO ES QUE LOS PRECIOS SON VALIDOS.
 
-                                ' Inserta los datos en la base de datos
-                                cmd.CommandText = $"INSERT INTO {nombreTabla} (Nombre, Descripcion, Proveedor, PrVent, PrCost) VALUES (@Nombre, @Descripcion, @Proveedor, @PrecioVenta, @Coste)"
-                                cmd.Parameters.Clear()
+                                ' Cambiamos los decmiales de formato para poder meterlos en la base de datos
 
-                                cmd.Parameters.AddWithValue("@Nombre", nombre)
-                                cmd.Parameters.AddWithValue("@Descripcion", descripcion)
-                                cmd.Parameters.AddWithValue("@Proveedor", proveedor)
-                                cmd.Parameters.AddWithValue("@PrecioVenta", precioVenta)
-                                cmd.Parameters.AddWithValue("@Coste", coste)
+                                Dim precioVenta2 = precioVenta.ToString.Replace(".", "").Replace(",", ".")
+                                Dim coste2 = coste.ToString.Replace(".", "").Replace(",", ".")
 
-                                cmd.ExecuteNonQuery()
+                                ' Vamos a ver si el ID del articulo ya existe en la base de datos.
+                                ' Si ya existe el articulo, lo actualizamos. 
+                                ' Si no existe, lo insertamos
 
-                                RegistrosInsertados += 1
+
+                                ' Si esta consulta no retorna ninguna linea, es que no exite el pedido en nuestra base de datos.
+                                Dim ConsultaExisteArticulo As String = $"SELECT * FROM ARTICULOS WHERE IdArticulo={IdArticulo}"
+                                Dim TablaExisteArticulo As DataTable = ConsultaBBDD(ConnectionString, ConsultaExisteArticulo)
+                                Dim Filas As Integer = TablaExisteArticulo.Rows.Count
+
+                                If (Filas = 0) Then
+                                    ' Insertar el articulo 
+                                    Dim consultaInsert = $"INSERT INTO ARTICULOS (IdArticulo, Nombre, Descripcion, Proveedor, PrVent, PrCost) 
+                                                           VALUES ('{IdArticulo}', '{nombre}', '{descripcion}', '{proveedor}', '{precioVenta2}', '{coste2}')"
+
+                                    RegistrosInsertados += InsertBBDD(ConnectionString, consultaInsert)
+                                Else
+                                    ' Actualizar los datos del articulo
+                                    Dim consultaUpdate = $"UPDATE ARTICULOS 
+                                                          SET Nombre = '{nombre}',
+                                                          Descripcion = '{descripcion}',
+                                                          Proveedor = '{proveedor}',
+                                                          PrVent = '{precioVenta2}', 
+                                                          PrCost = '{coste2}'
+                                                          WHERE IdArticulo = '{IdArticulo}'"
+
+                                    RegistrosActualizados += UpdateBBDD(ConnectionString, consultaUpdate)
+                                End If
+
                             Else
                                 ' Hubo un problema al convertir el precio de venta o el coste
                                 MessageBox.Show($"Error al convertir el precio de venta o el coste en la línea {tfp.LineNumber}.", "Error de conversión", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -89,7 +111,7 @@ Public Class ImportarArticulos
                 End Using
             End Using
 
-            MessageBox.Show($"Se han insertado {RegistrosInsertados} artículos.", "Importación Terminada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show($"Se han insertado {RegistrosInsertados} y  actualizado {RegistrosActualizados } artículos.", "Importación Terminada", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
             MessageBox.Show("Error al procesar el CSV o insertar en la base de datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

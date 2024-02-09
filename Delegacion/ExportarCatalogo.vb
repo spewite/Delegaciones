@@ -26,15 +26,15 @@ Public Class ExportarCatalogo
                         ' Leer cada fila y agregarla como un elemento al XML
                         While reader.Read()
                             Dim articulo As New XElement("Articulo",
-                            New XElement("IdArticulo", reader("IdArticulo").ToString()),
-                            New XElement("Nombre", reader("Nombre").ToString()),
-                            New XElement("Descripcion", reader("Descripcion").ToString()),
-                            New XElement("Proveedor", reader("Proveedor").ToString()),
-                            New XElement("PrVent", reader("PrVent").ToString()),
-                            New XElement("PrCost", reader("PrCost").ToString()),
-                            New XElement("Existencias", reader("Existencias").ToString()),
-                            New XElement("ImagenBase64", reader("ImagenBase64").ToString())
-            )
+                                New XElement("IdArticulo", reader("IdArticulo").ToString()),
+                                New XElement("Nombre", reader("Nombre").ToString()),
+                                New XElement("Descripcion", reader("Descripcion").ToString()),
+                                New XElement("Proveedor", reader("Proveedor").ToString()),
+                                New XElement("PrVent", reader("PrVent").ToString()),
+                                New XElement("PrCost", reader("PrCost").ToString()),
+                                New XElement("Existencias", reader("Existencias").ToString()),
+                                New XElement("ImagenBase64", reader("ImagenBase64").ToString())
+                            )
 
                             ' Agregar el artículo al elemento raíz
                             root.Add(articulo)

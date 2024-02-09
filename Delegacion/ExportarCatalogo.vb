@@ -12,7 +12,7 @@ Public Class ExportarCatalogo
         Dim ConnectionString As String = ConexionBD.CadenaConexion
 
         ' Cambia la consulta SQL según tus necesidades
-        Dim query As String = "SELECT IdArticulo, Nombre, Descripcion, Categoria, Proveedor, PrVent, PrCost, Existencias, SobreMaximo, BajoMinimo, ImagenBase64 FROM ARTICULOS"
+        Dim query As String = "SELECT IdArticulo, Nombre, Descripcion, Proveedor, PrVent, PrCost, Existencias, ImagenBase64 FROM ARTICULOS"
 
         Try
             Using connection As New SqlConnection(ConnectionString)
@@ -29,13 +29,10 @@ Public Class ExportarCatalogo
                             New XElement("IdArticulo", reader("IdArticulo").ToString()),
                             New XElement("Nombre", reader("Nombre").ToString()),
                             New XElement("Descripcion", reader("Descripcion").ToString()),
-                            New XElement("Categoria", reader("Categoria").ToString()),
                             New XElement("Proveedor", reader("Proveedor").ToString()),
                             New XElement("PrVent", reader("PrVent").ToString()),
                             New XElement("PrCost", reader("PrCost").ToString()),
                             New XElement("Existencias", reader("Existencias").ToString()),
-                            New XElement("SobreMaximo", reader("SobreMaximo").ToString()),
-                            New XElement("BajoMinimo", reader("BajoMinimo").ToString()),
                             New XElement("ImagenBase64", reader("ImagenBase64").ToString())
             )
 
@@ -73,4 +70,6 @@ Public Class ExportarCatalogo
 
 
     End Sub
+
+
 End Class

@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_084A536146554E4C922D036248F3B6FD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_26F28AAF8D3536850C588A3C7BE51E65"
         "OwnerKey" = "8:_7A4C3436966946078382C7D9E75282D1"
         "MsmSig" = "8:_UNDEFINED"
@@ -263,6 +269,12 @@
         {
         "MsmKey" = "8:_BDCFD0235745471C35C63579AE5D94BF"
         "OwnerKey" = "8:_7A4C3436966946078382C7D9E75282D1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CC41B935CD024B03BACE107C4DAC1BE9"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -561,6 +573,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_084A536146554E4C922D036248F3B6FD"
+            {
+            "SourcePath" = "8:..\\Delegacion\\bin\\Debug\\imagenes\\sin-imagen.jpg"
+            "TargetName" = "8:sin-imagen.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_249B26D0397D4172A048C90E1BD7447B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_26F28AAF8D3536850C588A3C7BE51E65"
@@ -1172,6 +1204,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC41B935CD024B03BACE107C4DAC1BE9"
+            {
+            "SourcePath" = "8:..\\Delegacion\\bin\\Debug\\imagenes\\fondo.png"
+            "TargetName" = "8:fondo.png"
+            "Tag" = "8:"
+            "Folder" = "8:_249B26D0397D4172A048C90E1BD7447B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E2412A7B64EA90B3D3B329B716BB7EE7"
             {
             "AssemblyRegister" = "3:1"
@@ -1346,7 +1398,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_249B26D0397D4172A048C90E1BD7447B"
                     {
                     "Name" = "8:imagenes"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_5CE633C2862C4566BBB02F60EF0775B3"
@@ -1357,7 +1409,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_4744FEC56AB74D39B05CA2441153EA64"
                     {
                     "Name" = "8:facturas"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_0DA083EE29474F9A85D5D6867AF4D53A"
@@ -1368,18 +1420,40 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_D04FF55EA5E7473DB71A6640A2BD46FE"
                     {
                     "Name" = "8:exportaciones"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_295B9882BACC4FB79C0A30B7382DB9CF"
                         "Folders"
                         {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_61E37549473843D49AD44D7F83C5A1C5"
+                            {
+                            "Name" = "8:partners"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_FCAE1160D3994D40A9857D5D2EC113A9"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_BB78EC6C60B14200BA1BE42268D2F30E"
+                            {
+                            "Name" = "8:catalogo"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_2B4F68E6993F4A6696F2FE3CB96CBD95"
+                                "Folders"
+                                {
+                                }
+                            }
                         }
                     }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_F234523485F54A04BECEE12DE958BC51"
                     {
                     "Name" = "8:importaciones"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_E1981B47AC9A4760ADEC42E2B4EBB524"
@@ -1428,7 +1502,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ERP GEM"
         "ProductCode" = "8:{15B1F3FE-820B-44E5-BD9B-2612F2790CB1}"
-        "PackageCode" = "8:{A43E8BBD-C8CD-485C-853D-51DF1AB1A9B5}"
+        "PackageCode" = "8:{94639C25-B0EA-4645-8A8F-50782EEF3770}"
         "UpgradeCode" = "8:{34DBF2B6-C82E-40AD-A207-4C756F76B0B4}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

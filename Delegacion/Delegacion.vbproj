@@ -365,6 +365,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.manifest" />
     <None Include="bin\Debug\facturas\FACTURA_10_2-2024.pdf" />
     <None Include="bin\Debug\facturas\FACTURA_11_2-2024.pdf" />
     <None Include="bin\Debug\facturas\JULEN\FACTURA JULEN 2-2024 %284%29.pdf" />

@@ -18,8 +18,7 @@ Public Class FormularioPartners
 	                                    Correo, 
 	                                    FechaRegistro
                                     FROM PARTNERS p
-                                    INNER JOIN ZONAS ON (zonas.IdZona = p.IdZona)
-"
+                                    INNER JOIN ZONAS ON (zonas.IdZona = p.IdZona)"
     Dim ModoFormulario As Integer
 
     Dim ModoEditar As Integer = ModosFormulario.ModoEditar
@@ -315,8 +314,6 @@ Public Class FormularioPartners
 
     Function ValidarCampos() As Boolean
         ' Función para validar el formulario entero. La función retornará un booleano sobre si es válido o no.
-
-        Dim IdPartner As String = inputIdPartner.Text.Trim
         Dim IdZona As String = comboZonaPartners.Text.Trim
         Dim Nombre As String = inputNombre.Text.Trim
         Dim Cif As String = inputCif.Text.Trim
@@ -325,12 +322,6 @@ Public Class FormularioPartners
         Dim Correo As String = inputCorreo.Text.Trim
 
         ' Validación de los inputs
-
-        ' Validación de IdPartner -
-        If String.IsNullOrEmpty(IdPartner) Then
-            MsgBox("¡Debe seleccionar un Partner!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
 
         ' Validación de IdZona - Asegurarse de que se haya seleccionado una opción
         If String.IsNullOrEmpty(IdZona) Then
@@ -366,8 +357,8 @@ Public Class FormularioPartners
         If Not String.IsNullOrEmpty(Telefono) AndAlso Not IsNumeric(Telefono) Then
             MsgBox("¡El campo Teléfono solo puede contener números!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
-        ElseIf Telefono.Length < 7 Or Telefono.Length > 10 Then ' Asumiendo longitud válida entre 7 y 10 dígitos
-            MsgBox("¡El teléfono debe tener entre 7 y 10 dígitos!", vbExclamation + vbOKOnly, "Error de validación")
+        ElseIf Telefono.Length <> 9 Then ' Asumiendo longitud válida entre 7 y 10 dígitos
+            MsgBox("¡El teléfono debe tener 9 dígitos!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 

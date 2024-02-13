@@ -257,15 +257,8 @@ Public Class FormularioTransportistas
     Function ValidarCampos() As Boolean
         ' Función para validar el formulario entero. La función retornará un booleano sobre si es válido o no.
 
-        Dim IdTransportista As String = inputIdTransportista.Text.Trim
         Dim Empresa As String = inputEmpresa.Text.Trim
         Dim Telefono As String = inputTelefono.Text.Trim
-
-        ' Validación de campos no vacíos
-        If String.IsNullOrEmpty(IdTransportista) Then
-            MsgBox("¡El campo ID del Transportista no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
 
         If String.IsNullOrEmpty(Empresa) Then
             MsgBox("¡El campo Empresa no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
@@ -279,8 +272,8 @@ Public Class FormularioTransportistas
         ElseIf Not IsNumeric(Telefono) Then
             MsgBox("¡El campo Teléfono solo puede contener números!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
-        ElseIf Telefono.Length < 7 OrElse Telefono.Length > 10 Then
-            MsgBox("¡El teléfono debe tener entre 7 y 10 dígitos!", vbExclamation + vbOKOnly, "Error de validación")
+        ElseIf Telefono.Length < 9 Then
+            MsgBox("¡El teléfono debe tener 9 dígitos!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 

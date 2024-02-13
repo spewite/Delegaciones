@@ -52,8 +52,8 @@ Partial Class FormularioComerciales
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.comboIdComercial = New System.Windows.Forms.ComboBox()
         Me.comboZona = New System.Windows.Forms.ComboBox()
+        Me.inputIdComercial = New System.Windows.Forms.TextBox()
         CType(Me.BindNavigatorComerciales, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindNavigatorComerciales.SuspendLayout()
         Me.SuspendLayout()
@@ -302,15 +302,6 @@ Partial Class FormularioComerciales
         Me.Label16.TabIndex = 87
         Me.Label16.Text = "Zona:"
         '
-        'comboIdComercial
-        '
-        Me.comboIdComercial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboIdComercial.FormattingEnabled = True
-        Me.comboIdComercial.Location = New System.Drawing.Point(147, 61)
-        Me.comboIdComercial.Name = "comboIdComercial"
-        Me.comboIdComercial.Size = New System.Drawing.Size(184, 24)
-        Me.comboIdComercial.TabIndex = 112
-        '
         'comboZona
         '
         Me.comboZona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -320,13 +311,22 @@ Partial Class FormularioComerciales
         Me.comboZona.Size = New System.Drawing.Size(184, 24)
         Me.comboZona.TabIndex = 113
         '
+        'inputIdComercial
+        '
+        Me.inputIdComercial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.inputIdComercial.Enabled = False
+        Me.inputIdComercial.Location = New System.Drawing.Point(147, 62)
+        Me.inputIdComercial.Name = "inputIdComercial"
+        Me.inputIdComercial.Size = New System.Drawing.Size(184, 22)
+        Me.inputIdComercial.TabIndex = 114
+        '
         'FormularioComerciales
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(408, 492)
+        Me.Controls.Add(Me.inputIdComercial)
         Me.Controls.Add(Me.comboZona)
-        Me.Controls.Add(Me.comboIdComercial)
         Me.Controls.Add(Me.BindNavigatorComerciales)
         Me.Controls.Add(Me.inputDNI)
         Me.Controls.Add(Me.inputDireccion)
@@ -384,6 +384,6 @@ Partial Class FormularioComerciales
     Friend WithEvents Label11 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label16 As Label
-    Friend WithEvents comboIdComercial As ComboBox
     Friend WithEvents comboZona As ComboBox
+    Friend WithEvents inputIdComercial As TextBox
 End Class

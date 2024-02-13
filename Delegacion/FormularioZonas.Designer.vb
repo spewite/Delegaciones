@@ -49,7 +49,7 @@ Partial Class FormularioZonas
         'inputIdZona
         '
         Me.inputIdZona.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputIdZona.Location = New System.Drawing.Point(150, 86)
+        Me.inputIdZona.Location = New System.Drawing.Point(150, 80)
         Me.inputIdZona.Name = "inputIdZona"
         Me.inputIdZona.Size = New System.Drawing.Size(184, 22)
         Me.inputIdZona.TabIndex = 140
@@ -68,7 +68,7 @@ Partial Class FormularioZonas
         Me.BindNavigatorZonas.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindNavigatorZonas.Name = "BindNavigatorZonas"
         Me.BindNavigatorZonas.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindNavigatorZonas.Size = New System.Drawing.Size(428, 31)
+        Me.BindNavigatorZonas.Size = New System.Drawing.Size(428, 27)
         Me.BindNavigatorZonas.TabIndex = 139
         Me.BindNavigatorZonas.Text = "BindingNavigator1"
         '
@@ -85,7 +85,7 @@ Partial Class FormularioZonas
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 28)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(29, 24)
         Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
         '
         'BindingNavigatorMovePreviousItem
@@ -170,14 +170,14 @@ Partial Class FormularioZonas
         'inputZona
         '
         Me.inputZona.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.inputZona.Location = New System.Drawing.Point(150, 145)
+        Me.inputZona.Location = New System.Drawing.Point(150, 139)
         Me.inputZona.Name = "inputZona"
         Me.inputZona.Size = New System.Drawing.Size(184, 22)
         Me.inputZona.TabIndex = 135
         '
         'btnAbajo
         '
-        Me.btnAbajo.Location = New System.Drawing.Point(62, 229)
+        Me.btnAbajo.Location = New System.Drawing.Point(66, 204)
         Me.btnAbajo.Name = "btnAbajo"
         Me.btnAbajo.Size = New System.Drawing.Size(272, 36)
         Me.btnAbajo.TabIndex = 138
@@ -187,7 +187,7 @@ Partial Class FormularioZonas
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(77, 147)
+        Me.Label17.Location = New System.Drawing.Point(77, 141)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(41, 16)
         Me.Label17.TabIndex = 137
@@ -196,7 +196,7 @@ Partial Class FormularioZonas
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(63, 88)
+        Me.Label13.Location = New System.Drawing.Point(63, 82)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(55, 16)
         Me.Label13.TabIndex = 133
@@ -206,7 +206,7 @@ Partial Class FormularioZonas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(428, 374)
+        Me.ClientSize = New System.Drawing.Size(428, 291)
         Me.Controls.Add(Me.inputIdZona)
         Me.Controls.Add(Me.BindNavigatorZonas)
         Me.Controls.Add(Me.inputZona)

@@ -259,14 +259,7 @@ Public Class FormularioZonas
     Function ValidarCampos() As Boolean
         ' Función para validar el formulario entero. La función retornará un booleano sobre si es válido o no.
 
-        Dim IdZona As String = inputIdZona.Text.Trim
         Dim Descripcion As String = inputZona.Text.Trim
-
-        ' Validación de campo no vacío para IdZona
-        If String.IsNullOrEmpty(IdZona) Then
-            MsgBox("¡El campo ID de Zona no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
 
         ' Validación de campo no vacío para Descripcion
         If String.IsNullOrEmpty(Descripcion) Then
@@ -274,11 +267,6 @@ Public Class FormularioZonas
             Return False
         End If
 
-        ' Validaciones adicionales para Descripcion si es necesario, por ejemplo, longitud mínima o máxima
-        If Descripcion.Length < 3 Then ' Ejemplo de validación de longitud mínima
-            MsgBox("¡La descripción debe tener al menos 3 caracteres!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
 
         Return True
     End Function
@@ -308,30 +296,26 @@ Public Class FormularioZonas
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
             ' Preguntar al usuario si quiere eliminar
-            Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar esta Zona? Si tiene Clientes o Comerciales asignados se va a eliminar la relación!", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar esta zona? (ID: {inputIdZona.Text})", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             ' Si el usuario a seleccionado que sí, borra el registro
             If result = DialogResult.Yes Then
 
-                Dim SentenciaUpdateComerciales = $"UPDATE COMERCIALES
-                                        SET IdZona = NULL 
-                                        WHERE IdZona = {IdZona}"
+                Dim ConsultaCantidadComercialesAsociados As String = $"SELECT COUNT(*) cantidad FROM COMERCIALES WHERE IdZona = {inputIdZona.Text}"
+                Dim ConsultaCantidadPartnersAsociados As String = $"SELECT COUNT(*) cantidad FROM PARTNERS WHERE IdZona = {inputIdZona.Text}"
 
-                Dim SentenciaUpdatePartners = $"UPDATE PARTNERS
-                                        SET IdZona = NULL 
-                                        WHERE IdZona = {IdZona}"
+                Dim CantidadComerciales As Integer = ConsultaBBDD(ConnectionString, ConsultaCantidadComercialesAsociados).Rows(0)("cantidad")
+                Dim CantidadPartners As Integer = ConsultaBBDD(ConnectionString, ConsultaCantidadPartnersAsociados).Rows(0)("cantidad")
 
+                If CantidadComerciales = 0 Then
+                    MsgBox($"¡La zona (ID: {inputIdZona.Text}) tiene comerciales asignados! No puedes eliminar zonas que están asociados a comerciales.", vbExclamation + vbOKOnly, "Error")
+                    Return
+                End If
 
-                Dim comercialesActualizados As Integer = UpdateBBDD(ConnectionString, SentenciaUpdateComerciales)
-
-                MsgBox($"Se han desvinculado {comercialesActualizados} comerciales.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
-
-
-                Dim partnersActualizados As Integer = UpdateBBDD(ConnectionString, SentenciaUpdatePartners)
-
-                MsgBox($"Se han desvinculado {partnersActualizados} partners.", vbInformation + vbOKOnly, "Partners desvinculados.")
-
-
+                If CantidadPartners = 0 Then
+                    MsgBox($"¡La zona (ID: {inputIdZona.Text}) tiene partners asignados! No puedes eliminar zonas que están asociados a partners", vbExclamation + vbOKOnly, "Error")
+                    Return
+                End If
 
                 Dim SentenciaDelete As String = $"DELETE FROM ZONAS WHERE IdZona = {IdZona}"
 

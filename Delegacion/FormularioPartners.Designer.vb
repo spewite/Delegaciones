@@ -197,7 +197,7 @@ Partial Class FormularioPartners
         '
         Me.btnAbajo.Location = New System.Drawing.Point(45, 393)
         Me.btnAbajo.Name = "btnAbajo"
-        Me.btnAbajo.Size = New System.Drawing.Size(253, 36)
+        Me.btnAbajo.Size = New System.Drawing.Size(269, 36)
         Me.btnAbajo.TabIndex = 104
         Me.btnAbajo.Text = "Listo"
         Me.btnAbajo.UseVisualStyleBackColor = True

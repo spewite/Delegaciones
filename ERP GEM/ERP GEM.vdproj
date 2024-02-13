@@ -334,12 +334,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7A64ED91795B855CAF923FF5604858C4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_7A4C3436966946078382C7D9E75282D1"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -481,6 +475,12 @@
         "OwnerKey" = "8:_F6DF98605D4659F8E73D9F6043703198"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7A64ED91795B855CAF923FF5604858C4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -499,6 +499,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -515,6 +523,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -1648,6 +1664,48 @@
             "Folder" = "8:_EA2D7575C37441DEAE44A4B9C10392D7"
             "WorkingFolder" = "8:_6AC4ADAF422F43F190D8897CEF32EAA3"
             "Icon" = "8:_4CE514048BA0459BA885A2F3E72ECA2B"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3E2AAC3066AA4C8C8BAD36265F0D5C8A"
+            {
+            "Name" = "8:Facturas ERP"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_4744FEC56AB74D39B05CA2441153EA64"
+            "Folder" = "8:_93C2AB5CD05E491889176A68344F82DE"
+            "WorkingFolder" = "8:_6AC4ADAF422F43F190D8897CEF32EAA3"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_86508D7E00A74E52917494A95029905A"
+            {
+            "Name" = "8:Importaciones ERP"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_F234523485F54A04BECEE12DE958BC51"
+            "Folder" = "8:_93C2AB5CD05E491889176A68344F82DE"
+            "WorkingFolder" = "8:_6AC4ADAF422F43F190D8897CEF32EAA3"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A9CC66EEB1484135B8C5EB2E46F277B8"
+            {
+            "Name" = "8:Exportaciones ERP"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_D04FF55EA5E7473DB71A6640A2BD46FE"
+            "Folder" = "8:_93C2AB5CD05E491889176A68344F82DE"
+            "WorkingFolder" = "8:_6AC4ADAF422F43F190D8897CEF32EAA3"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }

@@ -131,6 +131,15 @@ Public Class Gestion
         dataTable = ConsultaBBDD(connectionString, consulta)
 
         dataGridArticulos.DataSource = dataTable
+
+        ' ACTIVAR / DESACTIVAR BOTON DE ELIMINAR DEPENDIENDO SI HAY FILAS O NO
+        If dataGridArticulos.RowCount = 0 Then
+            ' Deshabilitar el botón si no tiene filas
+            btnBorrarArticulos.Enabled = False
+        Else
+            ' Habilitar el botón cuando haya almenos una fila
+            btnBorrarArticulos.Enabled = True
+        End If
     End Sub
 
     Sub ActualizarComboBoxCategoria()
@@ -355,6 +364,16 @@ Public Class Gestion
             CargarDataGridPartners()
         Else
             MsgBox(advertenciaSeleccionarRegistroEliminar, vbExclamation + vbOKOnly, "Seleccione artículos.")
+        End If
+
+
+        ' ACTIVAR / DESACTIVAR BOTON DE ELIMINAR DEPENDIENDO SI HAY FILAS O NO
+        If dataGridPartners.RowCount = 0 Then
+            ' Deshabilitar el botón si no tiene filas
+            btnBorrarPartners.Enabled = False
+        Else
+            ' Habilitar el botón cuando haya almenos una fila
+            btnBorrarPartners.Enabled = True
         End If
     End Sub
 

@@ -104,9 +104,10 @@ Public Class FormularioComerciales
 
             BindNavigatorComerciales.PositionItem.Text = IndiceNavigator
 
-            'Rellenar los datos 
-            ActualizarDatos()
         End If
+
+        'Rellenar los datos. Si es modo ver solo añadira los foreign keys
+        ActualizarDatos()
 
         ' Detecta el valor de la variable ModoFormulario y ajusta la ventana acorde al modo
         ActualizarModo()
@@ -143,7 +144,6 @@ Public Class FormularioComerciales
     Private Sub ActivarDesactivarInputs()
         ' Si en el recibido ModoFormulario es true, activa los inputs, sino, los desactiva
         If ModoFormulario = ModoEditar Or ModoFormulario = ModoAñadir Then
-            comboIdComercial.Enabled = False ' El ID siempre esta desactivado.
             comboZona.Enabled = True
             inputNombre.Enabled = True
             inputApellidos.Enabled = True
@@ -152,7 +152,6 @@ Public Class FormularioComerciales
             inputCorreo.Enabled = True
             inputDNI.Enabled = True
         Else
-            comboIdComercial.Enabled = False
             comboZona.Enabled = False
             inputNombre.Enabled = False
             inputApellidos.Enabled = False
@@ -182,7 +181,6 @@ Public Class FormularioComerciales
 
             DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
-
             Dim indiceNavigator = BindNavigatorComerciales.PositionItem.Text
 
             ' Si el indice del navigator es 0, es que se esta inicializando. Entonces, se sale del metodo porque no nos interesa.
@@ -197,7 +195,7 @@ Public Class FormularioComerciales
                 CargarCombos()
 
                 ' Rellenar los inputs
-                comboIdComercial.Text = dataRow("IdComercial")
+                inputIdComercial.Text = dataRow("IdComercial")
                 inputNombre.Text = If(dataRow("Nombre") IsNot DBNull.Value, dataRow("Nombre"), "")
                 inputApellidos.Text = If(dataRow("Apellidos") IsNot DBNull.Value, dataRow("Apellidos"), "")
                 inputTelefono.Text = If(dataRow("Telefono") IsNot DBNull.Value, dataRow("Telefono"), "")
@@ -221,20 +219,10 @@ Public Class FormularioComerciales
 
         ' Borra todos los registros de los combos, porque si el formulario esta en modo edicion luego se cargaran
         ' los valores posibles y se duplicarian los datos.
-        comboIdComercial.Items.Clear()
         comboZona.Items.Clear()
 
         ' Rellenar los combos con las foreign keys ⬇️
 
-        ' Combo IdComercial
-        Dim DataTablecomboIdComercial As DataTable = ConsultaBBDD(ConnectionString, "SELECT IdComercial FROM COMERCIALES")
-        For Each fila As DataRow In DataTablecomboIdComercial.Rows
-            Dim idComercial As String = fila("IdComercial").ToString()
-
-            comboIdComercial.Items.Add(idComercial)
-        Next
-
-        ' Combo Zona
         Dim DataTablecomboZona As DataTable = ConsultaBBDD(ConnectionString, "SELECT Descripcion FROM ZONAS")
         For Each fila As DataRow In DataTablecomboZona.Rows
             Dim zona As String = fila("Descripcion").ToString()
@@ -266,21 +254,21 @@ Public Class FormularioComerciales
         If CamposSonValidos Then
 
             ' Obtener valores de los inputs
-            Dim IdComercial As String = comboIdComercial.Text.Trim
+            Dim IdComercial As String = inputIdComercial.Text.Trim
             Dim Zona As String = comboZona.Text.Trim
             Dim Nombre As String = inputNombre.Text.Trim
             Dim Apellidos As String = inputApellidos.Text.Trim
             Dim Telefono As Integer = inputTelefono.Text.Trim
             Dim Direccion As String = inputDireccion.Text.Trim
             Dim Correo As String = inputCorreo.Text.Trim
-            Dim DNI As Integer = inputDNI.Text.Trim
+            Dim DNI As String = inputDNI.Text.Trim
 
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
 
             Dim consulta As String =
-                $"INSERT INTO COMERCIALES (IdComercial, IdZona, Nombre, Apellidos, Telefono, Correo, Direccion, DNI)
-                VALUES ('{IdComercial}', (SELECT TOP 1 IdZona FROM ZONAS WHERE Descripcion = '{Zona}'), '{Nombre}', '{Apellidos}', '{Telefono}', '{Correo}', '{Direccion}', '{DNI}')"
+                $"INSERT INTO COMERCIALES (IdZona, Nombre, Apellidos, Telefono, Correo, Direccion, DNI)
+                VALUES ((SELECT TOP 1 IdZona FROM ZONAS WHERE Descripcion = '{Zona}'), '{Nombre}', '{Apellidos}', '{Telefono}', '{Correo}', '{Direccion}', '{DNI}')"
 
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
@@ -303,7 +291,7 @@ Public Class FormularioComerciales
         If CamposSonValidos Then
 
             ' Obtener valores de los inputs
-            Dim IdComercial As String = comboIdComercial.Text.Trim
+            Dim IdComercial As String = inputIdComercial.Text.Trim
             Dim Zona As String = comboZona.Text.Trim
             Dim Nombre As String = inputNombre.Text.Trim
             Dim Apellidos As String = inputApellidos.Text.Trim
@@ -342,7 +330,7 @@ Public Class FormularioComerciales
 
     Function ValidarCampos() As Boolean
         ' Obtener valores de los inputs
-        Dim IdComercial As String = comboIdComercial.Text.Trim
+        Dim IdComercial As String = inputIdComercial.Text.Trim
         Dim Zona As String = comboZona.Text.Trim
         Dim Nombre As String = inputNombre.Text.Trim
         Dim Apellidos As String = inputApellidos.Text.Trim
@@ -352,7 +340,7 @@ Public Class FormularioComerciales
         Dim DNI As String = inputDNI.Text.Trim
 
         ' Validación de campos no vacíos
-        If String.IsNullOrEmpty(IdComercial) OrElse String.IsNullOrEmpty(Zona) OrElse String.IsNullOrEmpty(Nombre) OrElse String.IsNullOrEmpty(Apellidos) OrElse String.IsNullOrEmpty(Telefono) OrElse String.IsNullOrEmpty(Direccion) OrElse String.IsNullOrEmpty(Correo) OrElse String.IsNullOrEmpty(DNI) Then
+        If String.IsNullOrEmpty(Zona) OrElse String.IsNullOrEmpty(Nombre) OrElse String.IsNullOrEmpty(Apellidos) OrElse String.IsNullOrEmpty(Telefono) OrElse String.IsNullOrEmpty(Direccion) OrElse String.IsNullOrEmpty(Correo) OrElse String.IsNullOrEmpty(DNI) Then
             MsgBox("Todos los campos son obligatorios.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
@@ -370,7 +358,7 @@ Public Class FormularioComerciales
         End If
 
         ' Validación de DNI
-        If Not DNI.All(AddressOf Char.IsDigit) OrElse DNI.Length <> 8 Then ' Asumiendo que el DNI debe tener 8 dígitos
+        If Not EsDNIValido(DNI) Then
             MsgBox("El DNI debe ser numérico y de 8 dígitos.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
@@ -378,17 +366,6 @@ Public Class FormularioComerciales
         Return True
     End Function
 
-    ' Function to validate email using regular expression
-    Private Function EsCorreoValido(email As String) As Boolean
-        ' Expresion regular para correo
-        Dim pattern As String = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-
-        ' Crea el objeto Regex con la expresion regular
-        Dim regex As New Regex(pattern)
-
-        ' Usar el metodo IsMatch para verificar si el correo es correcto 
-        Return regex.IsMatch(email)
-    End Function
 
     ' Función para validar un DNI español
     Private Function EsDNIValido(dni As String) As Boolean
@@ -442,7 +419,7 @@ Public Class FormularioComerciales
 
         ' BtnEliminar: boton de eliminar que está situado en el BindingNavigator
 
-        Dim IdComercial As Integer = comboIdComercial.Text.Trim
+        Dim IdComercial As Integer = inputIdComercial.Text.Trim
 
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then

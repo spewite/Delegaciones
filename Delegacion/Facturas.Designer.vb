@@ -272,7 +272,7 @@ Partial Class Facturas
         Me.checkFechaPagoHastaFacturas.TabIndex = 78
         Me.checkFechaPagoHastaFacturas.UseVisualStyleBackColor = True
         '
-        'comboIdPedido
+        'inputIdPedido
         '
         Me.comboIdPedido.FormattingEnabled = True
         Me.comboIdPedido.Location = New System.Drawing.Point(815, 27)

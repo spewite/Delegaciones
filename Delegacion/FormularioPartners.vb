@@ -323,7 +323,7 @@ Public Class FormularioPartners
 
         ' Validación de los inputs
 
-        ' Validación de IdZona - Asegurarse de que se haya seleccionado una opción
+        ' Validación de IdZona 
         If String.IsNullOrEmpty(IdZona) Then
             MsgBox("¡Debe seleccionar una zona!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
@@ -357,7 +357,7 @@ Public Class FormularioPartners
         If Not String.IsNullOrEmpty(Telefono) AndAlso Not IsNumeric(Telefono) Then
             MsgBox("¡El campo Teléfono solo puede contener números!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
-        ElseIf Telefono.Length <> 9 Then ' Asumiendo longitud válida entre 7 y 10 dígitos
+        ElseIf Telefono.Length <> 9 Then
             MsgBox("¡El teléfono debe tener 9 dígitos!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If

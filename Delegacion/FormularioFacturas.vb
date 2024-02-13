@@ -345,67 +345,6 @@ Public Class FormularioFacturas
         ActualizarModo()
     End Sub
 
-    Private Sub InsertarRegistro()
-
-        Dim CamposSonValidos = ValidarCampos()
-
-        If CamposSonValidos Then
-
-            ' Obtener valores de los inputs
-            Dim IdFactura As String = inputIdFactura.Text.Trim
-            Dim Estado As String = comboEstado.Text
-
-            Dim FechaEmitida As String
-            Dim FechaEnvio As String
-            Dim FechaPago As String
-
-            If (checkFechaEmitida.Checked) Then
-                FechaEmitida = $"CONVERT(DATE, '{inputFechaEmitida.Text}', 103)"
-            Else
-                FechaEmitida = "NULL"
-            End If
-
-            If (checkFechaEnvio.Checked) Then
-                FechaEnvio = $"CONVERT(DATE, '{inputFechaEnvio.Text}', 103)"
-            Else
-                FechaEnvio = "NULL"
-            End If
-
-            If (checkFechaPago.Checked) Then
-                FechaPago = $"CONVERT(DATE, '{inputFechaPago.Text}', 103)"
-            Else
-                FechaPago = "NULL"
-            End If
-
-            If comboEstado.Text = "" Then
-                Estado = "NULL"
-            End If
-
-            ' Construccion de la Consulta
-            Dim registrosInsertados As Integer
-
-            ' El convert de la consulta es para cambiar del formato Dia/Mes/Año (Formato que usamos en español) a Año/Mes/Dia (Formato que utiliza SQLSERVER)
-            Dim consulta As String =
-                $"INSERT INTO FACTURAS (FechaEmitida, FechaEnvio, FechaPago, Estado)
-                VALUES ({FechaEmitida}, 
-		                {FechaEnvio}, 
-		                {FechaPago}, 
-		                '{Estado}'"
-
-            registrosInsertados = InsertBBDD(ConnectionString, consulta)
-
-            If registrosInsertados = 1 Then
-                MsgBox("Registro insertado con éxito.", vbInformation + vbOKOnly, "Registro insertado")
-            Else
-                MsgBox("Ha habido un error al insertar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
-            End If
-
-            'InterruptorModoEdicion()
-            Me.Close()
-        End If
-    End Sub
-
-
 
     Private Sub ActualizarRegistro()
 
@@ -453,7 +392,7 @@ Public Class FormularioFacturas
                 SET FechaEmitida= {FechaEmitida}, 
                 FechaEnvio = {FechaEnvio}, 
                 FechaPago = {FechaPago}, 
-                Estado = '{Estado}'
+                Estado = {Estado}
                 WHERE IdFactura = {IdFactura}"
 
             registrosInsertados = UpdateBBDD(ConnectionString, consulta)
@@ -472,7 +411,6 @@ Public Class FormularioFacturas
 
     Function ValidarCampos() As Boolean
         ' Funciona para validar el formulario entero. La funciona retorara un boolean sobre si es valido o no.  
-
 
         Return True
 
@@ -497,8 +435,6 @@ Public Class FormularioFacturas
         ' btnAbajo: el boton que está abajo del formulario. Según el modo va a cambiar lo que hace
         If ModoFormulario = ModoEditar Then
             ActualizarRegistro()
-        ElseIf ModoFormulario = ModoAñadir Then
-            InsertarRegistro()
         ElseIf ModoFormulario = ModoVer Then
             Me.Close()
         End If

@@ -5,7 +5,6 @@ Imports iTextSharp.text
 Imports iTextSharp.text.pdf
 Imports iTextSharp.text.Font
 Imports System.IO
-Imports System.Deployment.Application
 
 Public Class GenerarFacturas
 
@@ -104,7 +103,7 @@ Public Class GenerarFacturas
                                                 AND DATEPART(YEAR, FechaPedido) = {año}"
 
             ' Obtenemos un Id Factura que no exista 
-            Dim ConsultaIdFacturaNueva = "SELECT Max(IdFactura)+1 IdFacturaNueva FROM FACTURAS"
+            Dim ConsultaIdFacturaNueva = "SELECT ISNULL(Max(IdFactura), 0)+1 IdFacturaNueva FROM FACTURAS"
             Dim IdFacturaNueva = ConsultaBBDD(ConnectionString, ConsultaIdFacturaNueva).Rows(0)("IdFacturaNueva")
 
             ' Insertamos una nueva factura en la base de datos (Los datos de la factura estarán vacios (Fechas...), pero cuando se crea la factura se le abre el formulario para editarlo).

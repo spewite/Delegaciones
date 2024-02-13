@@ -286,8 +286,8 @@ Public Class FormularioLineas
             ' Construccion de la Consulta
             Dim registrosActualizados As Integer
 
-            Dim consulta As String = $"INSERT INTO LINEAS_PEDIDO(IdPedido, IdArticulo, Cantidad, Descuento, Precio) 
-                                      VALUES ('{IdPedido}', (SELECT IdArticulo FROM ARTICULOS WHERE Nombre = '{Articulo}'), '{Cantidad}', '{Descuento}', '{Precio}')"
+            Dim consulta As String = $"INSERT INTO LINEAS_PEDIDO(IdLinea, IdPedido, IdArticulo, Cantidad, Descuento, Precio) 
+                                      VALUES ((SELECT ISNULL(MAX(IdLinea),0)+1 FROM LINEAS_PEDIDO WHERE IdPedido='{IdPedido}'), '{IdPedido}', (SELECT IdArticulo FROM ARTICULOS WHERE Nombre = '{Articulo}'), '{Cantidad}', '{Descuento}', '{Precio}')"
 
             registrosActualizados = UpdateBBDD(ConnectionString, consulta)
 
@@ -416,39 +416,39 @@ Public Class FormularioLineas
     Function ValidarCampos() As Boolean
         ' Función para validar el formulario entero. La función retornará un booleano indicando si es válido o no.
 
-        ' Validación de selección del ID del pedido
-        If comboIdPedido.Text.Trim = "" Then
-            MsgBox("Seleccione el ID del pedido.", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
+        Dim IdPedido As String = comboIdPedido.Text
+        Dim Articulo As String = comboArticulo.Text
+        Dim Cantidad As String = inputCantidad.Text.Trim
+        Dim Descuento As String = inputDescuento.Text.Trim
+        Dim Precio As String = inputPrecio.Text.Trim
 
         ' Validación de selección de artículo
-        If comboArticulo.Text.Trim = "" Then
+        If Articulo = "" Then
             MsgBox("Seleccione un artículo.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
         ' Validación del campo Cantidad
-        If inputCantidad.Text.Trim = "" Then
-            MsgBox("Rellene el campo Cantidad.", vbExclamation + vbOKOnly, "Error de validación")
+        If Cantidad = "" Then
+            MsgBox("Inserte la cantidad.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
-        Dim cantidad As Integer
-
         ' Validación de que la Cantidad sea un número entero
-        If Not Integer.TryParse(inputCantidad.Text.Trim, cantidad) Then
-            MsgBox("¡Debe introducir un valor entero en el campo de Cantidad!", vbExclamation + vbOKOnly, "Error de validación")
+        If Not Integer.TryParse(inputCantidad.Text.Trim, Cantidad) Then
+            MsgBox("¡Debe introducir un valor numérico en el campo Cantidad!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
         ' Validación de que la Cantidad sea un valor positivo
-        If cantidad <= 0 Then
-            MsgBox("¡La Cantidad debe ser un valor positivo mayor a cero!", vbExclamation + vbOKOnly, "Error de validación")
+        If Cantidad <= 0 Then
+            MsgBox("¡La Cantidad debe ser un valor positivo!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
+
         Return True
+
     End Function
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click

@@ -352,18 +352,23 @@ Public Class FormularioComerciales
         End If
 
         ' Validación de número de teléfono
-        If Not Telefono.All(AddressOf Char.IsDigit) OrElse Telefono.Length < 7 Then ' Asumiendo un mínimo de 7 dígitos para el teléfono
-            MsgBox("El teléfono debe ser numérico y de al menos 7 dígitos.", vbExclamation + vbOKOnly, "Error de validación")
+        If Not EsNumerico(Telefono) Or Telefono.Length <> 9 Then
+            MsgBox("El teléfono debe ser numérico y debe contener 9 dígitos.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
         ' Validación de DNI
         If Not EsDNIValido(DNI) Then
-            MsgBox("El DNI debe ser numérico y de 8 dígitos.", vbExclamation + vbOKOnly, "Error de validación")
+            MsgBox("El DNI es incorrecto. Debe contener 8 dígitos y su correspondiente letra.", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
 
         Return True
+    End Function
+
+    Public Function EsNumerico(text As String) As Boolean
+        Dim number As Integer
+        Return Integer.TryParse(text, number)
     End Function
 
 

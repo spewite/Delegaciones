@@ -132,14 +132,7 @@ Public Class Gestion
 
         dataGridArticulos.DataSource = dataTable
 
-        ' ACTIVAR / DESACTIVAR BOTON DE ELIMINAR DEPENDIENDO SI HAY FILAS O NO
-        If dataGridArticulos.RowCount = 0 Then
-            ' Deshabilitar el botón si no tiene filas
-            btnBorrarArticulos.Enabled = False
-        Else
-            ' Habilitar el botón cuando haya almenos una fila
-            btnBorrarArticulos.Enabled = True
-        End If
+        ActualizarBotonEliminarArticulos()
     End Sub
 
     Sub ActualizarComboBoxCategoria()
@@ -287,6 +280,8 @@ Public Class Gestion
         End If
         dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridPartners.DataSource = dataTable
+
+        ActualizarBotonEliminarPartners()
     End Sub
 
 
@@ -366,15 +361,6 @@ Public Class Gestion
             MsgBox(advertenciaSeleccionarRegistroEliminar, vbExclamation + vbOKOnly, "Seleccione artículos.")
         End If
 
-
-        ' ACTIVAR / DESACTIVAR BOTON DE ELIMINAR DEPENDIENDO SI HAY FILAS O NO
-        If dataGridPartners.RowCount = 0 Then
-            ' Deshabilitar el botón si no tiene filas
-            btnBorrarPartners.Enabled = False
-        Else
-            ' Habilitar el botón cuando haya almenos una fila
-            btnBorrarPartners.Enabled = True
-        End If
     End Sub
 
 
@@ -441,6 +427,7 @@ Public Class Gestion
         dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridComerciales.DataSource = dataTable
 
+        ActualizarBotonEliminarComerciales()
     End Sub
 
     Private Sub DataGridComerciales_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataGridComerciales.CellDoubleClick
@@ -531,6 +518,8 @@ Public Class Gestion
 
         dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridTransportistas.DataSource = dataTable
+
+        ActualizarBotonEliminarTransportistas()
     End Sub
 
 
@@ -547,6 +536,7 @@ Public Class Gestion
     End Sub
 
     Private Sub btnBorrarTransportista_Click(sender As Object, e As EventArgs) Handles btnBorrarTransportista.Click
+
         If dataGridTransportistas.SelectedRows.Count > 0 Then
 
             For Each fila As DataGridViewRow In dataGridTransportistas.SelectedRows
@@ -554,16 +544,17 @@ Public Class Gestion
                 Dim empresa As String = fila.Cells("Empresa").Value.ToString()
 
                 ' Por cada registro seleccionado pregunta si quiere eliminarlo
-                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el transportista '{empresa}' (ID: {idTransportista})? ¡Si tiene pedidos asignados se van a desvincular! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el transportista '{empresa}' (ID: {idTransportista})? ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
                 If respuesta = DialogResult.Yes Then
 
-                    ' Poner a IdTransportista = Null todos los pedidos de este transportista
-                    Dim consultaDesvincularTransportista As String = $"UPDATE CAB_PEDIDOS SET IdTransportista = NULL WHERE IdTransportista = {idTransportista}"
-                    Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularTransportista)
+                    Dim ConsultaCantidadPedidosAsociados As String = $"SELECT COUNT(*) cantidad FROM CAB_PEDIDOS WHERE IdTransportista = {inputIdTransportistas.Text}"
 
-                    If pedidosActualizados > 0 Then
-                        MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Transportistas desvinculados.")
+                    Dim CantidadPedidos As Integer = ConsultaBBDD(connectionString, ConsultaCantidadPedidosAsociados).Rows(0)("cantidad")
+
+                    If CantidadPedidos <> 0 Then
+                        MsgBox($"¡El transportista '{empresa}' tiene pedidos asignados! No puedes eliminar transportistas que tienen pedidos asignados.", vbExclamation + vbOKOnly, "Error")
+                        Return
                     End If
 
                     ' Eliminar el transportista
@@ -622,6 +613,8 @@ Public Class Gestion
 
         dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridZonas.DataSource = dataTable
+
+        ActualizarBotonEliminarZonas()
     End Sub
 
     Private Sub dataGridZonas_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataGridZonas.CellDoubleClick
@@ -636,43 +629,39 @@ Public Class Gestion
     End Sub
 
     Private Sub btnBorrarZonas_Click(sender As Object, e As EventArgs) Handles btnBorrarZonas.Click
+
         If dataGridZonas.SelectedRows.Count > 0 Then
 
             For Each fila As DataGridViewRow In dataGridZonas.SelectedRows
+
                 Dim idZona As Integer = CInt(fila.Cells("IdZona").Value.ToString())
                 Dim Descripcion As String = fila.Cells("Descripcion").Value.ToString()
 
-                ' Por cada registro seleccionado pregunta si quiere eliminarlo
-                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar la zona '{Descripcion}' (ID: {idZona})? ¡Si tiene Partners o Comerciales asignados se van a desvincular! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                ' Preguntar al usuario si quiere eliminar
+                Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar la zona '{Descripcion}'? (ID: {inputIdZona.Text})", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-                If respuesta = DialogResult.Yes Then
+                ' Si el usuario a seleccionado que sí, borra el registro
+                If result = DialogResult.Yes Then
 
-                    Dim SentenciaUpdateComerciales = $"UPDATE COMERCIALES
-                                        SET IdZona = NULL 
-                                        WHERE IdZona = {idZona}"
+                    Dim ConsultaCantidadComercialesAsociados As String = $"SELECT COUNT(*) cantidad FROM COMERCIALES WHERE IdZona = {inputIdZona.Text}"
+                    Dim ConsultaCantidadPartnersAsociados As String = $"SELECT COUNT(*) cantidad FROM PARTNERS WHERE IdZona = {inputIdZona.Text}"
 
-                    Dim SentenciaUpdatePartners = $"UPDATE PARTNERS
-                                        SET IdZona = NULL 
-                                        WHERE IdZona = {idZona}"
+                    Dim CantidadComerciales As Integer = ConsultaBBDD(connectionString, ConsultaCantidadComercialesAsociados).Rows(0)("cantidad")
+                    Dim CantidadPartners As Integer = ConsultaBBDD(connectionString, ConsultaCantidadPartnersAsociados).Rows(0)("cantidad")
 
-
-                    Dim comercialesActualizados As Integer = UpdateBBDD(connectionString, SentenciaUpdateComerciales)
-
-                    If comercialesActualizados > 0 Then
-                        MsgBox($"Se han desvinculado {comercialesActualizados} comerciales.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
+                    If CantidadComerciales <> 0 Then
+                        MsgBox($"¡La zona '{Descripcion}' tiene comerciales asignados! No puedes eliminar zonas que están asociados a comerciales.", vbExclamation + vbOKOnly, "Error")
+                        Return
                     End If
 
-
-                    Dim partnersActualizados As Integer = UpdateBBDD(connectionString, SentenciaUpdatePartners)
-
-                    If partnersActualizados > 0 Then
-                        MsgBox($"Se han desvinculado {partnersActualizados} partners.", vbInformation + vbOKOnly, "Partners desvinculados.")
+                    If CantidadPartners <> 0 Then
+                        MsgBox($"¡La zona '{Descripcion}' tiene partners asignados! No puedes eliminar zonas que están asociados a partners", vbExclamation + vbOKOnly, "Error")
+                        Return
                     End If
 
                     Dim SentenciaDelete As String = $"DELETE FROM ZONAS WHERE IdZona = {idZona}"
 
                     Dim registrosEliminados As Integer = DeleteBBDD(connectionString, SentenciaDelete)
-
 
                     If registrosEliminados > 0 Then
                         MsgBox($"La Zona con ID {idZona} ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Registro eliminado con éxito.")
@@ -682,6 +671,7 @@ Public Class Gestion
 
                 End If
             Next
+
             CargarDataGridZonas()
         Else
             MsgBox(advertenciaSeleccionarRegistroEliminar, vbExclamation + vbOKOnly, "Seleccione transportista.")
@@ -709,7 +699,7 @@ Public Class Gestion
     '---------------------------------------------------------'
 
 
-    Private Sub dataGridArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridArticulos.SelectionChanged
+    Private Sub ActualizarBotonEliminarArticulos()
         If dataGridArticulos.SelectedRows.Count > 0 Then
             ' Habilitar el botón cuando al menos una fila está seleccionada
             btnBorrarArticulos.Enabled = True
@@ -719,17 +709,7 @@ Public Class Gestion
         End If
     End Sub
 
-    Private Sub dataGridPartners_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridPartners.SelectionChanged
-        If dataGridPartners.SelectedRows.Count > 0 Then
-            ' Habilitar el botón cuando al menos una fila está seleccionada
-            btnBorrarPartners.Enabled = True
-        Else
-            ' Deshabilitar el botón si no hay filas seleccionadas
-            btnBorrarPartners.Enabled = False
-        End If
-    End Sub
-
-    Private Sub dataGridComerciales_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridComerciales.SelectionChanged
+    Private Sub ActualizarBotonEliminarComerciales()
         If dataGridComerciales.SelectedRows.Count > 0 Then
             ' Habilitar el botón cuando al menos una fila está seleccionada
             btnBorrarComerciales.Enabled = True
@@ -739,7 +719,17 @@ Public Class Gestion
         End If
     End Sub
 
-    Private Sub dataGridTransportistas_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridTransportistas.SelectionChanged
+    Private Sub ActualizarBotonEliminarPartners()
+        If dataGridPartners.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnBorrarPartners.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnBorrarPartners.Enabled = False
+        End If
+    End Sub
+
+    Private Sub ActualizarBotonEliminarTransportistas()
         If dataGridTransportistas.SelectedRows.Count > 0 Then
             ' Habilitar el botón cuando al menos una fila está seleccionada
             btnBorrarTransportista.Enabled = True
@@ -749,7 +739,7 @@ Public Class Gestion
         End If
     End Sub
 
-    Private Sub dataGridZonas_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridZonas.SelectionChanged
+    Private Sub ActualizarBotonEliminarZonas()
         If dataGridZonas.SelectedRows.Count > 0 Then
             ' Habilitar el botón cuando al menos una fila está seleccionada
             btnBorrarZonas.Enabled = True
@@ -757,6 +747,27 @@ Public Class Gestion
             ' Deshabilitar el botón si no hay filas seleccionadas
             btnBorrarZonas.Enabled = False
         End If
+    End Sub
+
+
+    Private Sub dataGridArticulos_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridArticulos.SelectionChanged
+        ActualizarBotonEliminarArticulos()
+    End Sub
+
+    Private Sub dataGridPartners_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridPartners.SelectionChanged
+        ActualizarBotonEliminarPartners()
+    End Sub
+
+    Private Sub dataGridComerciales_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridComerciales.SelectionChanged
+        ActualizarBotonEliminarComerciales()
+    End Sub
+
+    Private Sub dataGridTransportistas_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridTransportistas.SelectionChanged
+        ActualizarBotonEliminarTransportistas()
+    End Sub
+
+    Private Sub dataGridZonas_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridZonas.SelectionChanged
+        ActualizarBotonEliminarZonas()
     End Sub
 
 

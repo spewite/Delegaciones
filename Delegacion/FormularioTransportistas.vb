@@ -272,7 +272,7 @@ Public Class FormularioTransportistas
         ElseIf Not IsNumeric(Telefono) Then
             MsgBox("¡El campo Teléfono solo puede contener números!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
-        ElseIf Telefono.Length < 9 Then
+        ElseIf Telefono.Length <> 9 Then
             MsgBox("¡El teléfono debe tener 9 dígitos!", vbExclamation + vbOKOnly, "Error de validación")
             Return False
         End If
@@ -304,18 +304,19 @@ Public Class FormularioTransportistas
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
             ' Preguntar al usuario si quiere eliminar
-            Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar este transportista? Si tiene pedidos asignados se va a eliminar la relación!", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar este transportista? (ID: {IdTransportista})", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             ' Si el usuario a seleccionado que sí, borra el registro
             If result = DialogResult.Yes Then
 
-                Dim SentenciaUpdate = $"UPDATE CAB_PEDIDOS
-                                        SET IdTransportista = NULL 
-                                        WHERE IdTransportista = {IdTransportista}"
+                Dim ConsultaCantidadPedidosAsociados As String = $"SELECT COUNT(*) cantidad FROM CAB_PEDIDOS WHERE IdTransportista = {IdTransportista}"
 
-                Dim pedidosActualizados As Integer = UpdateBBDD(ConnectionString, SentenciaUpdate)
+                Dim CantidadPedidos As Integer = ConsultaBBDD(ConnectionString, ConsultaCantidadPedidosAsociados).Rows(0)("cantidad")
 
-                MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Transportistas desvinculadas.")
+                If CantidadPedidos <> 0 Then
+                    MsgBox($"¡El transportista '(ID: {IdTransportista})' tiene pedidos asignados! No puedes eliminar transportistas que tienen pedidos asignados.", vbExclamation + vbOKOnly, "Error")
+                    Return
+                End If
 
                 Dim SentenciaDelete As String = $"DELETE FROM TRANSPORTISTAS WHERE IdTransportista = {IdTransportista}"
 

@@ -1,7 +1,6 @@
 ﻿Imports System.Text.RegularExpressions
 Imports Dllgaciones.BaseDeDatos
 
-
 Public Class FormularioZonas
 
     Dim ConnectionString As String = ConexionBD.CadenaConexion
@@ -289,12 +288,12 @@ Public Class FormularioZonas
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
 
-        ' BtnEliminar: boton de eliminar que está situado en el BindingNavigator
 
         Dim IdZona As Integer = inputIdZona.Text.Trim
 
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
+
             ' Preguntar al usuario si quiere eliminar
             Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar esta zona? (ID: {inputIdZona.Text})", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
@@ -307,12 +306,12 @@ Public Class FormularioZonas
                 Dim CantidadComerciales As Integer = ConsultaBBDD(ConnectionString, ConsultaCantidadComercialesAsociados).Rows(0)("cantidad")
                 Dim CantidadPartners As Integer = ConsultaBBDD(ConnectionString, ConsultaCantidadPartnersAsociados).Rows(0)("cantidad")
 
-                If CantidadComerciales = 0 Then
+                If CantidadComerciales <> 0 Then
                     MsgBox($"¡La zona (ID: {inputIdZona.Text}) tiene comerciales asignados! No puedes eliminar zonas que están asociados a comerciales.", vbExclamation + vbOKOnly, "Error")
                     Return
                 End If
 
-                If CantidadPartners = 0 Then
+                If CantidadPartners <> 0 Then
                     MsgBox($"¡La zona (ID: {inputIdZona.Text}) tiene partners asignados! No puedes eliminar zonas que están asociados a partners", vbExclamation + vbOKOnly, "Error")
                     Return
                 End If

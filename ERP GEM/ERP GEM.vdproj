@@ -506,6 +506,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -530,6 +538,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -1488,6 +1504,17 @@
             "Property" = "8:DesktopFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_17E81C5206544DB78EF014D4E1AE5054"
+                    {
+                    "Name" = "8:Documentos ERP"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_F1769A36731B432092A10C69AB5DCAE3"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_EA2D7575C37441DEAE44A4B9C10392D7"
@@ -1675,7 +1702,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_4744FEC56AB74D39B05CA2441153EA64"
-            "Folder" = "8:_93C2AB5CD05E491889176A68344F82DE"
+            "Folder" = "8:_17E81C5206544DB78EF014D4E1AE5054"
             "WorkingFolder" = "8:_6AC4ADAF422F43F190D8897CEF32EAA3"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -1689,7 +1716,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_F234523485F54A04BECEE12DE958BC51"
-            "Folder" = "8:_93C2AB5CD05E491889176A68344F82DE"
+            "Folder" = "8:_17E81C5206544DB78EF014D4E1AE5054"
             "WorkingFolder" = "8:_6AC4ADAF422F43F190D8897CEF32EAA3"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -1703,7 +1730,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_D04FF55EA5E7473DB71A6640A2BD46FE"
-            "Folder" = "8:_93C2AB5CD05E491889176A68344F82DE"
+            "Folder" = "8:_17E81C5206544DB78EF014D4E1AE5054"
             "WorkingFolder" = "8:_6AC4ADAF422F43F190D8897CEF32EAA3"
             "Icon" = "8:"
             "Feature" = "8:"

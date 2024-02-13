@@ -179,6 +179,28 @@ Public Class Pedidos
 
         dataTable = ConsultaBBDD(connectionString, consulta)
         dataGridPedidos.DataSource = dataTable
+
+        ActualizarBotonEliminar()
+    End Sub
+
+    '---------------------------------------------------------'
+    '                                                         '
+    '           HABILITAR/DESHABILITAR BOTON BORRAR           '
+    '                                                         '
+    '---------------------------------------------------------'
+
+    Private Sub ActualizarBotonEliminar()
+        If dataGridPedidos.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnBorrarPedidos.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnBorrarPedidos.Enabled = False
+        End If
+    End Sub
+
+    Private Sub dataGridPedidos_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridPedidos.SelectionChanged
+        ActualizarBotonEliminar()
     End Sub
 
 
@@ -298,16 +320,6 @@ Public Class Pedidos
 
     Private Sub CerrarFormularioPedidos(sender As Object, e As FormClosedEventArgs) Handles formularioPedidos.FormClosed
         CargarDataGridPedido()
-    End Sub
-
-    Private Sub dataGridPedidos_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridPedidos.SelectionChanged
-        If dataGridPedidos.SelectedRows.Count > 0 Then
-            ' Habilitar el botón cuando al menos una fila está seleccionada
-            btnBorrarPedidos.Enabled = True
-        Else
-            ' Deshabilitar el botón si no hay filas seleccionadas
-            btnBorrarPedidos.Enabled = False
-        End If
     End Sub
 
 

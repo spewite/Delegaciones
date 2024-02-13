@@ -125,6 +125,7 @@ Public Class FormularioPedidos
 
         ' Detecta el valor de la variable ModoFormulario y ajusta la ventana acorde al modo
         ActualizarModo()
+        ActualizarBotonEliminarLineas()
     End Sub
 
     Private Sub CargarDataGridLineas()
@@ -138,6 +139,8 @@ Public Class FormularioPedidos
 
         DataTableLineas = ConsultaBBDD(ConnectionString, SentenciaLineas)
         dataGridLineas.DataSource = DataTableLineas
+
+        ActualizarBotonEliminarLineas()
 
     End Sub
 
@@ -297,22 +300,6 @@ Public Class FormularioPedidos
         comboComercial.Items.Clear()
         comboTransportista.Items.Clear()
         comboEstadoPedido.Items.Clear()
-
-        If Not comboPartner.Items.Contains("") Then
-            comboPartner.Items.Add("")
-        End If
-
-        If Not comboComercial.Items.Contains("") Then
-            comboComercial.Items.Add("")
-        End If
-
-        If Not comboTransportista.Items.Contains("") Then
-            comboTransportista.Items.Add("")
-        End If
-
-        If Not comboEstadoPedido.Items.Contains("") Then
-            comboEstadoPedido.Items.Add("")
-        End If
 
         ' Combo Partners
         Dim DataTableComboPartners As DataTable = ConsultaBBDD(ConnectionString, "SELECT Nombre FROM PARTNERS")
@@ -605,7 +592,6 @@ Public Class FormularioPedidos
     Function ValidarCampos() As Boolean
         ' Función para validar el formulario entero. La función retornará un booleano sobre si es válido o no.
 
-        Dim idPedido As String = inputIdPedido.Text.Trim
         Dim partner As String = comboPartner.Text.Trim
         Dim comercial As String = comboComercial.Text.Trim
         Dim transportista As String = comboTransportista.Text.Trim
@@ -614,12 +600,6 @@ Public Class FormularioPedidos
         Dim fechaEnvio As String = inputFechaEnvio.Text.Trim
         Dim fechaPago As String = inputFechaPago.Text.Trim
         Dim fechaPedidoDate, fechaEnvioDate, fechaPagoDate As Date
-
-        ' Validación de campos no vacíos
-        If String.IsNullOrEmpty(idPedido) Then
-            MsgBox("¡El campo ID del Pedido no puede estar vacío!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
 
         If String.IsNullOrEmpty(partner) Then
             MsgBox("¡Debe seleccionar un partner!", vbExclamation + vbOKOnly, "Error de validación")
@@ -641,81 +621,31 @@ Public Class FormularioPedidos
             Return False
         End If
 
-        ' Validación de fechas
-        If Not Date.TryParse(fechaPedido, fechaPedidoDate) Then
-            MsgBox("¡La fecha del pedido no tiene un formato válido o está vacía!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If Not String.IsNullOrEmpty(fechaEnvio) AndAlso Not Date.TryParse(fechaEnvio, fechaEnvioDate) Then
-            MsgBox("¡La fecha de envío no tiene un formato válido!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If Not String.IsNullOrEmpty(fechaPago) AndAlso Not Date.TryParse(fechaPago, fechaPagoDate) Then
-            MsgBox("¡La fecha de pago no tiene un formato válido!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        ' Validación de lógica de fechas (opcional según reglas de negocio)
-        ' Por ejemplo, la fecha de envío debe ser después de la fecha del pedido y la fecha de pago igual o posterior a la fecha de envío
-        If fechaEnvioDate <> Date.MinValue AndAlso fechaPedidoDate > fechaEnvioDate Then
-            MsgBox("¡La fecha de envío debe ser igual o posterior a la fecha del pedido!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
-        If fechaPagoDate <> Date.MinValue AndAlso fechaEnvioDate > fechaPagoDate Then
-            MsgBox("¡La fecha de pago debe ser igual o posterior a la fecha de envío!", vbExclamation + vbOKOnly, "Error de validación")
-            Return False
-        End If
-
         Return True
+
     End Function
 
-    Private Sub btnGenerarFactura_Click(sender As Object, e As EventArgs)
 
-        'Dim idPedido As String = inputIdPedido.Text
+    '---------------------------------------------------------'
+    '                                                         '
+    '           HABILITAR / DESHABILITAR BOTON ELIMINAR       '
+    '              CUANDO SE SELECCIONA UNA LINEA             '
+    '                                                         '
+    '---------------------------------------------------------'
 
-        '' Validar si el pedido actual tiene lineas. Si no tiene sale del metodo
-        'If DataTableLineas.Rows.Count = 0 Then
-        '    MsgBox("¡No puedes crear una factura de un pedido que no tenga líneas!", vbExclamation + vbOKOnly, "Seleccione un pedido con líneas")
-        '    Return
-        'End If
-
-
-        '' Validar si ya existe una factura de ese pedido
-        'Dim consultaExisteFacturaDelPedido = $"SELECT COUNT(*) Cantidad FROM FACTURAS WHERE IdPedido = {idPedido}"
-
-        'Dim existeFacturaDelPedido As Integer = ConsultaBBDD(ConnectionString, consultaExisteFacturaDelPedido).Rows(0)("Cantidad")
-
-        'If existeFacturaDelPedido > 0 Then
-        '    MsgBox("¡Este pedido ya contiene una factura! Elimina la factura para volver a generarla.", vbExclamation + vbOKOnly, "Error")
-        '    Return
-        'End If
-
-        '' Preguntar al usuario si quiere crear una factura de ese pedido
-        'Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea crear la factura de este pedido (ID: {inputIdPedido.Text})?", "Confirmar crear factura", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-
-        '' Si el usuario a seleccionado que sí, crea la factura 
-        'If result = DialogResult.Yes Then
-
-
-        '    Dim consultaCrearFactura = $"INSERT INTO FACTURAS (IdFactura, IdPedido, FechaEmitida, FechaEnvio, FechaPago, Estado)
-        '                               VALUES ({idPedido}, {idPedido}, NULL, NULL, NULL, NULL)"
-
-        '    Dim registrosInsertados As Integer = InsertBBDD(ConnectionString, consultaCrearFactura)
-
-        '    If registrosInsertados > 0 Then
-        '        MsgBox("La factura se ha generado exitosamente", vbInformation + vbOKOnly, "Factura generada")
-        '        '                                                    ⬇️ Sentencia Where
-        '        formularioFactura = New FormularioFacturas(idPedido, "", ModoVer)
-        '        formularioFactura.Show()
-        '    Else
-        '        MsgBox("Ha habido un error al generar la factura", vbInformation + vbOKOnly, "Error")
-        '    End If
-
-        'End If
-
+    Private Sub ActualizarBotonEliminarLineas()
+        If dataGridLineas.SelectedRows.Count > 0 Then
+            ' Habilitar el botón cuando al menos una fila está seleccionada
+            btnEliminarLinea.Enabled = True
+        Else
+            ' Deshabilitar el botón si no hay filas seleccionadas
+            btnEliminarLinea.Enabled = False
+        End If
     End Sub
+
+    Private Sub dataGridLineas_SelectionChanged(sender As Object, e As EventArgs) Handles dataGridLineas.SelectionChanged
+        ActualizarBotonEliminarLineas()
+    End Sub
+
+
 End Class

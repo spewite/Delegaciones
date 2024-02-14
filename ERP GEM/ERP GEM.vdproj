@@ -1491,6 +1491,28 @@
                     "Property" = "8:_E1981B47AC9A4760ADEC42E2B4EBB524"
                         "Folders"
                         {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_07B02A8435354D60BDCED681036B2478"
+                            {
+                            "Name" = "8:sede-central"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_CF34B006503B4FFA96E1B035842D82F2"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_FB80BADBD5E74E4EB8196350D8A88BC8"
+                            {
+                            "Name" = "8:comerciales"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_07272203DF974CFCBE88CEB9CB73076B"
+                                "Folders"
+                                {
+                                }
+                            }
                         }
                     }
                 }
@@ -1545,7 +1567,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ERP GEM"
         "ProductCode" = "8:{15B1F3FE-820B-44E5-BD9B-2612F2790CB1}"
-        "PackageCode" = "8:{94639C25-B0EA-4645-8A8F-50782EEF3770}"
+        "PackageCode" = "8:{96E54421-2EF5-425D-885F-9494B0B6A0D8}"
         "UpgradeCode" = "8:{34DBF2B6-C82E-40AD-A207-4C756F76B0B4}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

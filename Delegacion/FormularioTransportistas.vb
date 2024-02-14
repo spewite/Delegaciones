@@ -303,6 +303,7 @@ Public Class FormularioTransportistas
 
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
+
             ' Preguntar al usuario si quiere eliminar
             Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar este transportista? (ID: {IdTransportista})", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
@@ -317,6 +318,8 @@ Public Class FormularioTransportistas
                     MsgBox($"¡El transportista '(ID: {IdTransportista})' tiene pedidos asignados! No puedes eliminar transportistas que tienen pedidos asignados.", vbExclamation + vbOKOnly, "Error")
                     Return
                 End If
+
+                ' -- ⬇️ ELIMINAR ⬇️ -- 
 
                 Dim SentenciaDelete As String = $"DELETE FROM TRANSPORTISTAS WHERE IdTransportista = {IdTransportista}"
 

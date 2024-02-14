@@ -429,21 +429,24 @@ Public Class FormularioComerciales
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
             ' Preguntar al usuario si quiere eliminar
-            Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar este comercial? Si tiene pedidos asignados se va a eliminar la relación!", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar este comercial? (ID: {IdComercial}) ", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             ' Si el usuario a seleccionado que sí, borra el registro
             If result = DialogResult.Yes Then
 
-                Dim SentenciaUpdate = $"UPDATE CAB_PEDIDOS
-                                        SET IdComercial = NULL 
-                                        WHERE IdComercial = {IdComercial}"
+                Dim ConsultaCantidadPedidosAsociados As String = $"SELECT COUNT(*) cantidad FROM CAB_PEDIDOS WHERE IdComercial = {IdComercial}"
 
-                Dim pedidosActualizados As Integer = UpdateBBDD(ConnectionString, SentenciaUpdate)
+                Dim CantidadPedidos As Integer = ConsultaBBDD(ConnectionString, ConsultaCantidadPedidosAsociados).Rows(0)("cantidad")
 
-                MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Líneas desvinculadas.")
+                If CantidadPedidos <> 0 Then
+                    MsgBox($"¡El comercial '(ID: {IdComercial})' tiene pedidos asignados! No puedes eliminar comerciales que tienen pedidos asignados.", vbExclamation + vbOKOnly, "Error")
+                    Return
+                End If
+
+
+                ' -- ⬇️ ELIMINAR ⬇️ -- 
 
                 Dim SentenciaDelete As String = $"DELETE FROM COMERCIALES WHERE IdComercial = {IdComercial}"
-
 
                 Dim registrosEliminados As Integer = DeleteBBDD(ConnectionString, SentenciaDelete)
 

@@ -374,18 +374,31 @@ Public Class FormularioPartners
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
         ' BtnEliminar: boton de eliminar que está situado en el BindingNavigator
 
-        Dim idPartner As Integer = inputIdPartner.Text.Trim
+        Dim IdPartner As Integer = inputIdPartner.Text.Trim
         Dim registrosActualizados As Integer
 
-        Dim consulta As String = $"DELETE FROM PARTNERS WHERE IdPartner = {idPartner}"
 
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
-            ' Preguntar al usuario si quiere eliminar
-            Dim result As DialogResult = MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-            ' Si el usuario a seleccionado que si, borra el registro
+            ' Preguntar al usuario si quiere eliminar
+            Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar este partner? (ID: {IdPartner})", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            ' Si el usuario a seleccionado que sí, borra el registro
             If result = DialogResult.Yes Then
+
+                Dim ConsultaCantidadPedidosAsociados As String = $"SELECT COUNT(*) cantidad FROM CAB_PEDIDOS WHERE IdPartner = {IdPartner}"
+
+                Dim CantidadPedidos As Integer = ConsultaBBDD(ConnectionString, ConsultaCantidadPedidosAsociados).Rows(0)("cantidad")
+
+                If CantidadPedidos <> 0 Then
+                    MsgBox($"¡El partner '(ID: {IdPartner})' tiene pedidos asignados! No puedes eliminar transportistas que tienen pedidos asignados.", vbExclamation + vbOKOnly, "Error")
+                    Return
+                End If
+
+                ' -- ⬇️ ELIMINAR ⬇️ -- 
+
+                Dim consulta As String = $"DELETE FROM PARTNERS WHERE IdPartner = {IdPartner}"
                 registrosActualizados = DeleteBBDD(ConnectionString, consulta)
                 DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
@@ -403,7 +416,7 @@ Public Class FormularioPartners
         End If
 
         If registrosActualizados = 1 Then
-            MsgBox("Registro borrado con éxito: " + idPartner.ToString, vbInformation + vbOKOnly, "Registro borrado")
+            MsgBox("Registro borrado con éxito: " + IdPartner.ToString, vbInformation + vbOKOnly, "Registro borrado")
         Else
             MsgBox("Ha habido un error al borrar el registro.", vbExclamation + vbOKOnly, "Error de base de datos")
         End If

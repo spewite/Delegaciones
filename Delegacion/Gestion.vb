@@ -329,24 +329,28 @@ Public Class Gestion
     Private Sub btnBorrarPartners_Click(sender As Object, e As EventArgs) Handles btnBorrarPartners.Click
         If dataGridPartners.SelectedRows.Count > 0 Then
             For Each fila As DataGridViewRow In dataGridPartners.SelectedRows
-                Dim idPartner As Integer = CInt(fila.Cells("IdPartner").Value.ToString())
+                Dim IdPartner As Integer = CInt(fila.Cells("IdPartner").Value.ToString())
                 Dim nombrePartner As String = fila.Cells("Nombre").Value.ToString()
 
-                ' Por cada registro seleccionado pregunta si quiere eliminarlo
-                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el partner '{nombrePartner}' (ID: {idPartner})? ¡Si tiene pedidos asignados se van a desvincular! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                ' Preguntar al usuario si quiere eliminar
+                Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar este partner? (ID: {IdPartner})", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-                If respuesta = DialogResult.Yes Then
+                ' Si el usuario a seleccionado que sí, borra el registro
+                If result = DialogResult.Yes Then
 
-                    ' Poner a IdPartner = Null todos los pedidos de este partner
-                    Dim consultaDesvincularPedidos As String = $"UPDATE CAB_PEDIDOS SET IdPartner = NULL WHERE IdPartner = {idPartner}"
-                    Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularPedidos)
+                    Dim ConsultaCantidadPedidosAsociados As String = $"SELECT COUNT(*) cantidad FROM CAB_PEDIDOS WHERE IdPartner = {IdPartner}"
 
-                    If pedidosActualizados > 0 Then
-                        MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Partners desvinculados.")
+                    Dim CantidadPedidos As Integer = ConsultaBBDD(connectionString, ConsultaCantidadPedidosAsociados).Rows(0)("cantidad")
+
+                    If CantidadPedidos <> 0 Then
+                        MsgBox($"¡El partner '(ID: {IdPartner})' tiene pedidos asignados! No puedes eliminar partners que tienen pedidos asignados.", vbExclamation + vbOKOnly, "Error")
+                        Return
                     End If
 
+                    ' -- ⬇️ ELIMINAR ⬇️ -- 
+
                     ' Eliminar el artículo 
-                    Dim consultaEliminarPartner As String = $"DELETE FROM PARTNERS Where IdPartner = {idPartner}"
+                    Dim consultaEliminarPartner As String = $"DELETE FROM PARTNERS Where IdPartner = {IdPartner}"
                     Dim partnersEliminados As Integer = DeleteBBDD(connectionString, consultaEliminarPartner)
                     If (partnersEliminados > 0) Then
                         MsgBox($"El partner '{nombrePartner}' ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Partner eliminado con éxito.")
@@ -453,25 +457,28 @@ Public Class Gestion
     Private Sub btnBorrarComerciales_Click(sender As Object, e As EventArgs) Handles btnBorrarComerciales.Click
         If dataGridComerciales.SelectedRows.Count > 0 Then
             For Each fila As DataGridViewRow In dataGridComerciales.SelectedRows
-                Dim idComercial As Integer = CInt(fila.Cells("IdComercial").Value.ToString())
+                Dim IdComercial As Integer = CInt(fila.Cells("IdComercial").Value.ToString())
                 Dim nombreApellido As String = fila.Cells("Nombre").Value.ToString() + " " + fila.Cells("Apellidos").Value.ToString()
 
                 ' Por cada registro seleccionado pregunta si quiere eliminarlo
-                Dim respuesta As DialogResult = MessageBox.Show($"¿Quieres eliminar el comercial '{nombreApellido}' (ID: {idComercial})? ¡Si tiene pedidos asignados se van a desvincular! ", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                Dim respuesta As DialogResult = MessageBox.Show($"¿Está seguro de que desea eliminar este comercial? (ID: {IdComercial})", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
                 If respuesta = DialogResult.Yes Then
 
-                    ' Poner a IdTransportista = Null todos los pedidos de este transportista
-                    Dim consultaDesvincularComercial As String = $"UPDATE CAB_PEDIDOS SET IdComercial = NULL WHERE IdComercial = {idComercial}"
-                    Dim pedidosActualizados As Integer = UpdateBBDD(connectionString, consultaDesvincularComercial)
+                    Dim ConsultaCantidadPedidosAsociados As String = $"SELECT COUNT(*) cantidad FROM CAB_PEDIDOS WHERE IdComercial = {IdComercial}"
 
-                    If pedidosActualizados > 0 Then
-                        MsgBox($"Se han desvinculado {pedidosActualizados} pedidos.", vbInformation + vbOKOnly, "Comerciales desvinculados.")
+                    Dim CantidadPedidos As Integer = ConsultaBBDD(connectionString, ConsultaCantidadPedidosAsociados).Rows(0)("cantidad")
 
+                    If CantidadPedidos <> 0 Then
+                        MsgBox($"¡El comercial '(ID: {IdComercial})' tiene pedidos asignados! No puedes eliminar comerciales que tienen pedidos asignados.", vbExclamation + vbOKOnly, "Error")
+                        Return
                     End If
 
-                    ' Eliminar el transportista
-                    Dim consultaEliminarComercial As String = $"DELETE FROM COMERCIALES Where IdComercial = {idComercial}"
+
+                    ' -- ⬇️ ELIMINAR ⬇️ -- 
+
+                    ' Eliminar el comercial
+                    Dim consultaEliminarComercial As String = $"DELETE FROM COMERCIALES Where IdComercial = {IdComercial}"
                     Dim comercialesEliminados As Integer = DeleteBBDD(connectionString, consultaEliminarComercial)
                     If (comercialesEliminados > 0) Then
                         MsgBox($"El comercial '{nombreApellido}' ha sido eliminado con éxito.", vbInformation + vbOKOnly, "Comercial eliminado con éxito.")

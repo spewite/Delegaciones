@@ -101,21 +101,22 @@ Public Class FormularioArticulos
 
     Private Sub ActualizarBotoneraNavigator()
 
+        BindNavigatorArticulo.Visible = True
+
         If ModoFormulario = ModoEditar Then
             ' Si el modo del formulario es editar va a mostrar todos los botones.
             BtnEditar.Image = Delegacion.My.Resources.Resources.confirmar_editar
 
-            BindNavigatorArticulo.Visible = True
             BtnEliminar.Visible = True
         Else
             BtnEditar.Image = Delegacion.My.Resources.Resources.editar
+
+            BtnEliminar.Visible = False
 
             If ModoFormulario = ModoAñadir Then
                 ' Si el modo del formulario es 'Añadir' oculta el binding navigator porque no tiene sentido que esté ahi
                 BindNavigatorArticulo.Visible = False
             End If
-
-            BtnEliminar.Visible = False
         End If
 
     End Sub
@@ -190,23 +191,23 @@ Public Class FormularioArticulos
             End If
 
             Try
-                Dim dataRow As DataRow = DataTable.Select("NumRegistro = " & indiceNavigator)(0)
+                Dim fila As DataRow = DataTable.Select("NumRegistro = " & indiceNavigator)(0)
 
 
                 ' Rellenar los inputs
-                inputIdArticulo.Text = dataRow("IdArticulo")
-                inputNombre.Text = If(dataRow("Nombre") IsNot DBNull.Value, dataRow("Nombre"), "")
-                comboCategoria.Text = If(dataRow("Categoria") IsNot DBNull.Value, dataRow("Categoria"), "")
-                inputProveedor.Text = If(dataRow("Proveedor") IsNot DBNull.Value, dataRow("Proveedor"), "")
-                inputExistencias.Text = If(dataRow("Existencias") IsNot DBNull.Value, dataRow("Existencias"), 0)
-                inputPrCost.Text = If(dataRow("PrCost") IsNot DBNull.Value, dataRow("PrCost"), 0)
-                inputPrVent.Text = If(dataRow("PrVent") IsNot DBNull.Value, dataRow("PrVent"), 0)
-                inputBajoMinimo.Text = If(dataRow("BajoMinimo") IsNot DBNull.Value, dataRow("BajoMinimo"), "")
-                inputSobreMaximo.Text = If(dataRow("SobreMaximo") IsNot DBNull.Value, dataRow("SobreMaximo"), "")
-                inputDescripcion.Text = If(dataRow("Descripcion") IsNot DBNull.Value, dataRow("Descripcion"), "")
+                inputIdArticulo.Text = fila("IdArticulo")
+                inputNombre.Text = If(fila("Nombre") IsNot DBNull.Value, fila("Nombre"), "")
+                comboCategoria.Text = If(fila("Categoria") IsNot DBNull.Value, fila("Categoria"), "")
+                inputProveedor.Text = If(fila("Proveedor") IsNot DBNull.Value, fila("Proveedor"), "")
+                inputExistencias.Text = If(fila("Existencias") IsNot DBNull.Value, fila("Existencias"), 0)
+                inputPrCost.Text = If(fila("PrCost") IsNot DBNull.Value, fila("PrCost"), 0)
+                inputPrVent.Text = If(fila("PrVent") IsNot DBNull.Value, fila("PrVent"), 0)
+                inputBajoMinimo.Text = If(fila("BajoMinimo") IsNot DBNull.Value, fila("BajoMinimo"), "")
+                inputSobreMaximo.Text = If(fila("SobreMaximo") IsNot DBNull.Value, fila("SobreMaximo"), "")
+                inputDescripcion.Text = If(fila("Descripcion") IsNot DBNull.Value, fila("Descripcion"), "")
 
                 ' Poner la imagen
-                Dim stringBase64 As String = If(dataRow("ImagenBase64") IsNot DBNull.Value, dataRow("ImagenBase64"), "")
+                Dim stringBase64 As String = If(fila("ImagenBase64") IsNot DBNull.Value, fila("ImagenBase64"), "")
                 PonerImagen(stringBase64)
 
             Catch ex As Exception
@@ -224,7 +225,7 @@ Public Class FormularioArticulos
 
         ' Rellenar la ComboBox con todas la categorias disponibles (Si el usuario teclea otro valor crearia una categoria con ese nombre)
 
-        Dim DataTableCategorias As DataTable = ConsultaBBDD(ConnectionString, "SELECT DISTINCT Categoria FROM ARTICULOS")
+        Dim DataTableCategorias As DataTable = ConsultaBBDD(ConnectionString, "SELECT Distinct Categoria FROM ARTICULOS WHERE Categoria <> ''")
         For Each fila As DataRow In DataTableCategorias.Rows
             Dim categoria As String = fila("Categoria").ToString()
 
@@ -544,6 +545,7 @@ Public Class FormularioArticulos
 
         ' Verifica si hay un valor actual
         If BindingSource.Current IsNot Nothing Then
+
             ' Preguntar al usuario si quiere eliminar
             Dim result As DialogResult = MessageBox.Show($"¿Está seguro de que desea el artículo '{inputNombre.Text}' (ID: {IdArticulo})? ¡Se eliminarán las lineas asociadas!", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
@@ -553,7 +555,9 @@ Public Class FormularioArticulos
                 Dim consulta As String = $"DELETE FROM LINEAS_PEDIDO WHERE IdArticulo = {IdArticulo}"
                 Dim lineasEliminadas = DeleteBBDD(ConnectionString, consulta)
 
-                MsgBox($"Se han eliminado {lineasEliminadas} líneas asociadas al artículo.", vbInformation + vbOKOnly, "Líneas eliminadas")
+                If lineasEliminadas > 0 Then
+                    MsgBox($"Se han eliminado {lineasEliminadas} líneas asociadas al artículo.", vbInformation + vbOKOnly, "Líneas eliminadas")
+                End If
 
                 consulta = $"DELETE FROM ARTICULOS WHERE IdArticulo = {IdArticulo}"
                 Dim articulosEliminados As Integer = DeleteBBDD(ConnectionString, consulta)
@@ -563,7 +567,6 @@ Public Class FormularioArticulos
                 Else
                     MsgBox($"No se ha podido eliminar el artículo  '{inputNombre.Text}' (ID: {IdArticulo})'", vbInformation + vbOKOnly, "Error")
                 End If
-
 
                 DataTable = ConsultaBBDD(ConnectionString, SentenciaSelect)
 
